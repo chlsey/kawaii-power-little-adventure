@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 45196e0718c3f0b4bb0cf5d67e5788c3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182354
+  packageName: Dungeon Generator 3D
+  packageVersion: 1.01
+  assetPath: Assets/Dungeon Generator 3D/Demo/Materials/Green.mat
+  uploadId: 423420

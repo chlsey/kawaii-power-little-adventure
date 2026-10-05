@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1a976e4400faa1644be6c249c2e76f9b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182354
+  packageName: Dungeon Generator 3D
+  packageVersion: 1.01
+  assetPath: Assets/Dungeon Generator 3D/Demo/Settings/Settings.asset
+  uploadId: 423420

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fd770588a67da344f9d4af1e6137a5cb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182354
+  packageName: Dungeon Generator 3D
+  packageVersion: 1.01
+  assetPath: Assets/Dungeon Generator 3D/Demo/Prefabs/Structure/Inner Corner.prefab
+  uploadId: 423420

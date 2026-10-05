@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 17f1fa6369c450e499c427882c041f11
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182354
+  packageName: Dungeon Generator 3D
+  packageVersion: 1.01
+  assetPath: Assets/Dungeon Generator 3D/Demo/Materials/Red.mat
+  uploadId: 423420

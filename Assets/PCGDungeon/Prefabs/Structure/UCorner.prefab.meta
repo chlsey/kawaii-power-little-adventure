@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aef390dd402b4da4dbc932f7685a0125
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182354
+  packageName: Dungeon Generator 3D
+  packageVersion: 1.01
+  assetPath: Assets/Dungeon Generator 3D/Demo/Prefabs/Structure/UCorner.prefab
+  uploadId: 423420

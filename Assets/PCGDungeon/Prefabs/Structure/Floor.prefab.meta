@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0234e9a5ed8e17845afb71ada7e4676d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182354
+  packageName: Dungeon Generator 3D
+  packageVersion: 1.01
+  assetPath: Assets/Dungeon Generator 3D/Demo/Prefabs/Structure/Floor.prefab
+  uploadId: 423420

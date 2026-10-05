@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8306b579e4bf8304f9d8a20f97072b1d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182354
+  packageName: Dungeon Generator 3D
+  packageVersion: 1.01
+  assetPath: Assets/Dungeon Generator 3D/Scripts/Data/GenerationSettings.cs
+  uploadId: 423420

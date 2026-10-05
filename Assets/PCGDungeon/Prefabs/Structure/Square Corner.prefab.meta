@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8fd16f9add3b6504a96a92177e5a8142
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 182354
+  packageName: Dungeon Generator 3D
+  packageVersion: 1.01
+  assetPath: Assets/Dungeon Generator 3D/Demo/Prefabs/Structure/Square Corner.prefab
+  uploadId: 423420
