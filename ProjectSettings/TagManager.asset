@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - OuterCorner
   - Room
+  - Loot
+  - Exit
   layers:
   - Default
   - TransparentFX

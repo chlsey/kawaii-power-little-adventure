@@ -1914,6 +1914,25 @@ public class Generator : MonoBehaviour
         {
             SpawnEnemies();
         }
+
+        SpawnExitZone();
+    }
+
+    // The boss room is the dungeon's farthest point from spawn, so reaching it
+    // is what QA counts as completion rather than generation alone succeeding.
+    private void SpawnExitZone()
+    {
+        if (bossSpawnRoom == null)
+            return;
+
+        GameObject exitZone = new GameObject("QaExitZone");
+        exitZone.transform.SetParent(bossSpawnRoom.transform);
+        exitZone.transform.position = bossSpawnRoom.transform.position;
+
+        BoxCollider exitCollider = exitZone.AddComponent<BoxCollider>();
+        exitCollider.size = new Vector3(2f, 3f, 2f);
+
+        exitZone.AddComponent<QaExitZone>();
     }
 
     private void GenerateContent()
