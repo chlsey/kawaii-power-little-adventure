@@ -80,6 +80,7 @@ public class Generator : MonoBehaviour
 
     public GameObject Player { get => player; }
     public Room PlayerSpawnRoom { get => playerSpawnRoom; }
+    public Room BossSpawnRoom { get => bossSpawnRoom; }
     public List<GameObject> DoorGameObjects { get => doorGameObjects; }
     public List<ObjectList> Enemies { get => enemies; }
     public int AmountOfAdjacentRoomsToConnect { get => amountOfAdjacentRoomsToConnect; }
@@ -376,6 +377,7 @@ public class Generator : MonoBehaviour
             else
             {
                 parentRooms[i] = parents[i].GetComponent<Room>();
+                parentRooms[i].GeneratedSize = roomArea[i];
 
                 parentRooms[i].AddMidPoint();
 

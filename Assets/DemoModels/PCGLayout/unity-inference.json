@@ -1,0 +1,17 @@
+{
+    "isEditor": false,
+    "trainingHosts": 0,
+    "cases": 200,
+    "matchingGeneratedResults": 200,
+    "maxActionDifference": 2.384185791015625e-7,
+    "defaultModelChoice": [
+        12,
+        10,
+        10
+    ],
+    "defaultGeneratedResult": [
+        12.0,
+        10.0,
+        10.0
+    ]
+}

@@ -1,29 +1,80 @@
-// Interface file between the onnx model file and the procedural generation system.
-// This file is responsible for taking the output of the model and converting it 
-// into a set of parameters that can be used to generate a dungeon.
-
+using Kcccr.UnityReinforcementLearning;
 using UnityEngine;
 
 public class PcgPolicyRunner : MonoBehaviour
 {
+    public enum PolicyMode { Random, Trained }
+    public enum PolicyParameters { RoomCount, RoomCountAndSize }
+
+    [SerializeField] private PolicyMode mode;
+    [SerializeField] private PolicyParameters parametersMode;
+    [SerializeField] private GenerationSettings generationSettings;
+    [SerializeField] private RlModelRunner modelRunner;
+    [SerializeField, Range(PcgPolicyMapping.MinRooms, PcgPolicyMapping.MaxRooms)]
+    private int targetRoomCount = 12;
+    [SerializeField, Range(PcgLayoutPolicyMapping.MinRoomSize, PcgLayoutPolicyMapping.MaxRoomSize)]
+    private int targetRoomWidth = 10;
+    [SerializeField, Range(PcgLayoutPolicyMapping.MinRoomSize, PcgLayoutPolicyMapping.MaxRoomSize)]
+    private int targetRoomHeight = 10;
+
     public PcgGenerationParameters Parameters;
+    public bool UsesLayoutPolicy => parametersMode == PolicyParameters.RoomCountAndSize;
+
+    public int TargetRoomCount
+    {
+        get => targetRoomCount;
+        set => targetRoomCount = Mathf.Clamp(value, PcgPolicyMapping.MinRooms, PcgPolicyMapping.MaxRooms);
+    }
+
+    public int TargetRoomWidth
+    {
+        get => targetRoomWidth;
+        set => targetRoomWidth = Mathf.Clamp(value, PcgLayoutPolicyMapping.MinRoomSize, PcgLayoutPolicyMapping.MaxRoomSize);
+    }
+
+    public int TargetRoomHeight
+    {
+        get => targetRoomHeight;
+        set => targetRoomHeight = Mathf.Clamp(value, PcgLayoutPolicyMapping.MinRoomSize, PcgLayoutPolicyMapping.MaxRoomSize);
+    }
 
     public PcgGenerationParameters Decide(int seed)
     {
-        Random.InitState(seed);
-
-        Parameters = new PcgGenerationParameters
+        if (UsesLayoutPolicy)
         {
-            Seed = seed,
-            RoomCount = Random.Range(8, 16),
-            AreaWidth = Random.Range(90, 121),
-            AreaHeight = Random.Range(90, 121),
-            MinRoomWidth = Random.Range(5, 8),
-            MaxRoomWidth = Random.Range(9, 14),
-            MinRoomHeight = Random.Range(5, 8),
-            MaxRoomHeight = Random.Range(9, 14),
-        };
-        return Parameters;
+            float[] action;
+            if (mode == PolicyMode.Trained)
+            {
+                action = modelRunner.Predict(PcgLayoutPolicyMapping.Observe(
+                    new Vector3Int(targetRoomCount, targetRoomWidth, targetRoomHeight)));
+            }
+            else
+            {
+                Random.InitState(seed);
+                var target = new Vector3Int(
+                    Random.Range(PcgPolicyMapping.MinRooms, PcgPolicyMapping.MaxRooms + 1),
+                    Random.Range(PcgLayoutPolicyMapping.MinRoomSize, PcgLayoutPolicyMapping.MaxRoomSize + 1),
+                    Random.Range(PcgLayoutPolicyMapping.MinRoomSize, PcgLayoutPolicyMapping.MaxRoomSize + 1));
+                action = PcgLayoutPolicyMapping.Observe(target);
+            }
 
+            Parameters = PcgLayoutPolicyMapping.Parameters(seed, action, generationSettings);
+            return Parameters;
+        }
+
+        int roomCount;
+        if (mode == PolicyMode.Trained)
+        {
+            float[] action = modelRunner.Predict(PcgPolicyMapping.Observe(targetRoomCount));
+            roomCount = PcgPolicyMapping.DecodeRoomCount(action[0]);
+        }
+        else
+        {
+            Random.InitState(seed);
+            roomCount = Random.Range(PcgPolicyMapping.MinRooms, PcgPolicyMapping.MaxRooms + 1);
+        }
+
+        Parameters = PcgPolicyMapping.Parameters(seed, roomCount, generationSettings);
+        return Parameters;
     }
 }

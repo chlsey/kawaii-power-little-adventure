@@ -17,6 +17,30 @@ public class PcgDungeonManager : MonoBehaviour
 
     // The spawned QA player for the current episode, ready for ApplyAction calls. Null until a dungeon is accepted.
     public QaPlayerController ActivePlayer => activePlayer;
+    public GenerationSettings GenerationSettings => dungeonGenerator.GenerationSettings;
+    public int GeneratedRoomCount => dungeonGenerator.GetComponentsInChildren<Room>().Length;
+
+    // Keep the boss's separate dimensions out of the regular-room training metric.
+    public Vector2 GeneratedRegularRoomSize
+    {
+        get
+        {
+            Vector2 total = Vector2.zero;
+            int count = 0;
+            foreach (Room room in dungeonGenerator.GetComponentsInChildren<Room>())
+            {
+                if (room == dungeonGenerator.BossSpawnRoom)
+                    continue;
+
+                Vector2Int size = room.GeneratedSize;
+                total += new Vector2(size.x, size.y);
+                count++;
+            }
+            if (count == 0)
+                return Vector2.zero;
+            return total / count;
+        }
+    }
 
     // Set by QaTcpHost while a remote bot session owns episode control, so the
     // local R-key/dummy-policy loop stands down instead of fighting it for the
@@ -83,27 +107,31 @@ public class PcgDungeonManager : MonoBehaviour
         PcgGenerationParameters parameters =
             policyRunner.Decide(seed);
 
-        if (!dungeonGenerator.RunProgram(parameters))
+        if (!GenerateDungeon(parameters))
         {
             Debug.Log("Dungeon generation failed for seed " + seed);
             return;
         }
 
-        ValidationResult validationResult =
-            validator.Validate(dungeonGenerator);
-
-        if (!validationResult.IsValid)
-        {
-            Debug.Log("Dungeon rejected: " + validationResult.Message);
-            return;
-        }
-
-        Debug.Log("Dungeon accepted (seed " + seed + ")");
+        Debug.Log("Dungeon accepted (seed " + seed + ", policy rooms " + parameters.RoomCount
+            + ", generated rooms " + GeneratedRoomCount + ")");
 
         activePlayer = SpawnOrReuseQaPlayer();
         activePlayer.BeginTest(dungeonGenerator);
         qaPolicyRunner.BeginEpisode(seed);
         qaStepTimer = 0f;
+    }
+
+    // Training uses the same generation path without spawning or stepping a QA player.
+    public bool GenerateDungeon(PcgGenerationParameters parameters)
+    {
+        activePlayer = null;
+        if (!dungeonGenerator.RunProgram(parameters))
+        {
+            return false;
+        }
+
+        return validator.Validate(dungeonGenerator).IsValid;
     }
 
     // The checked-in generation settings currently ship no player prefab, so

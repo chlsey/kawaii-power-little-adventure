@@ -1,0 +1,62 @@
+{
+  "model_sha256": "9e6d0dfeb2d54234bb3a13a6ca3d7360e9bfe30a5b51189a0e2aff4a54b83f02",
+  "completed_timesteps": 30208,
+  "elapsed_training_export_evaluation_seconds": 717.7004077000311,
+  "held_out_seeds": [
+    1000000,
+    1000199
+  ],
+  "cases": 200,
+  "generation_successes": 200,
+  "baseline_generation_successes": 200,
+  "joint_exact_matches": 200,
+  "per_parameter_exact_matches": [
+    200,
+    200,
+    200
+  ],
+  "per_parameter_mae": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "baseline_joint_exact_matches": 2,
+  "baseline_per_parameter_mae": [
+    2.545,
+    1.75,
+    1.67
+  ],
+  "mean_reward": 1.0,
+  "baseline_mean_reward": 0.5938095206449999,
+  "max_sb3_onnx_action_difference": 3.5762786865234375e-07,
+  "default": {
+    "seed": 1000100,
+    "target": [
+      12,
+      10,
+      10
+    ],
+    "chosen": [
+      12,
+      10,
+      10
+    ],
+    "action": [
+      0.17249764502048492,
+      -0.001373032107949257,
+      0.0013704688753932714
+    ],
+    "onnx_action": [
+      0.17249760031700134,
+      -0.0013730311766266823,
+      0.0013704672455787659
+    ],
+    "reward": 1.0,
+    "baseline": [
+      8,
+      8,
+      8
+    ],
+    "baseline_reward": 0.476190478
+  }
+}

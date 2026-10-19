@@ -24,6 +24,7 @@ public class Room : MonoBehaviour
     private int maxAmountOfConnections;
 
     public int MaxAmountOfConnections { get => maxAmountOfConnections;}
+    public Vector2Int GeneratedSize { get; set; }
     public List<Room> ConnectedRooms { get => connectedRooms; }
     public List<GameObject> ClosestRooms { get => closestRooms; }
     public Dictionary<int, float> ConnectedRoomsAngles { get => connectedRoomsAngles; }

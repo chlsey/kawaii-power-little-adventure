@@ -1,0 +1,14 @@
+model: ppo
+port: 7779
+seed: 0
+total_timesteps: 30000
+learning_rate: 0.001
+gamma: 0.99
+n_steps: 512
+device: cpu
+checkpoint_freq: 5000
+output_dir: ../Logs/pcg-layout-runs
+resume_from: null
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 128
