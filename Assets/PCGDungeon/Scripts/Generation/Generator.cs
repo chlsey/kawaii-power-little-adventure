@@ -36,6 +36,7 @@ public class Generator : MonoBehaviour
     private int minDistanceBetweenRooms;
     private int wallObjConsequitiveDistance;
     private int amountOfAdjacentRoomsToConnect;
+    private int powerupsPerRoom;
     private const int MaxFailedPlacementsPerRoom = 500;
 
     private List<ObjectList> walls;
@@ -104,6 +105,8 @@ public class Generator : MonoBehaviour
 
         minRoomHeight = parameters.MinRoomHeight;
         maxRoomHeight = parameters.MaxRoomHeight;
+
+        powerupsPerRoom = parameters.PowerupsPerRoom;
 
         // amountOfAdjacentRoomsToConnect =
         //     parameters.AdjacentRoomConnections;
@@ -410,7 +413,56 @@ public class Generator : MonoBehaviour
 
         SpawnEntities();
 
+        SpawnQaPlaceholders();
+
         return true;
+    }
+
+    // Deliberately standalone from GenerateContent/the wall-object/corner
+    // pipeline: it only depends on room data and powerupsPerRoom, not on the
+    // designer-assigned prefab lists GetGenerationSettings() reads. Swap the
+    // CreatePrimitive call below for a real prefab later without touching
+    // PcgGenerationParameters, the policy mappings, or this method's callers.
+    private void SpawnQaPlaceholders()
+    {
+        for (int i = 0; i < parentRooms.Length; i++)
+        {
+            Room room = parentRooms[i];
+            if (room == null || room == bossSpawnRoom)
+                continue; // The boss room is the QA exit goal, not a loot room.
+
+            for (int p = 0; p < powerupsPerRoom; p++)
+                SpawnPowerupPlaceholder(room);
+        }
+    }
+
+    private void SpawnPowerupPlaceholder(Room room)
+    {
+        GameObject powerup = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        powerup.name = "QaPowerup (Placeholder)";
+        powerup.transform.SetParent(room.transform);
+        // Sized/positioned to straddle QaPlayerController's ray sensor height (0.6);
+        // the previous 0.4-scale cube at y=0.3 topped out at y=0.5, just under the
+        // rays, so it was invisible to Sense() no matter how close the player got.
+        powerup.transform.localScale = Vector3.one * 0.6f;
+        powerup.transform.position = GetRandomFloorPositionInRoom(room) + Vector3.up * 0.5f;
+        powerup.GetComponent<Renderer>().material.color = Color.green;
+        powerup.AddComponent<QaLootPickup>();
+    }
+
+    private Vector3 GetRandomFloorPositionInRoom(Room room)
+    {
+        List<Transform> floorTiles = new List<Transform>();
+        for (int i = 0; i < room.transform.childCount; i++)
+        {
+            Transform child = room.transform.GetChild(i);
+            if (child.CompareTag("Floor"))
+                floorTiles.Add(child);
+        }
+
+        return floorTiles.Count > 0
+            ? floorTiles[Random.Range(0, floorTiles.Count)].position
+            : room.transform.position;
     }
 
     //TODO: Add comments to this function   
@@ -532,12 +584,16 @@ public class Generator : MonoBehaviour
 
         for (int a = 0; a < parentRooms.Length; a++)
         {
+            // Bounded by how many closest rooms were actually recorded above, not just
+            // the configured target - a small dungeon can have fewer than that many.
+            int connectionsToMake = Mathf.Min(parentRooms[a].MaxAmountOfConnections, parentRooms[a].ClosestRooms.Count);
+
             //Chose random rooms between the closest
-            for (int b = 0; b < parentRooms[a].MaxAmountOfConnections; b++)
+            for (int b = 0; b < connectionsToMake; b++)
             {
 
                 //Add all the possible rooms that can be chosen
-                for (int c = 0; c < parentRooms[a].MaxAmountOfConnections; c++)
+                for (int c = 0; c < connectionsToMake; c++)
                 {
                     tempNumbers.Add(c);
                 }
@@ -984,8 +1040,10 @@ public class Generator : MonoBehaviour
                 distances.Sort();
             }
 
-            //Add closest adjacent rooms
-            for (int i = 0; i < AmountOfAdjacentRoomsToConnect; i++)
+            //Add closest adjacent rooms, bounded by how many other rooms actually exist
+            //(a 2-room dungeon only has 1 "other room" per room, regardless of this setting).
+            int adjacentRoomsToAdd = Mathf.Min(AmountOfAdjacentRoomsToConnect, distances.Count);
+            for (int i = 0; i < adjacentRoomsToAdd; i++)
             {
                 parentRooms[a].AddRoom(tempDictionary[distances[i]]);
             }

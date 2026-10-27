@@ -44,17 +44,14 @@ public class PcgDungeonManager : MonoBehaviour
 
     // Set by QaTcpHost while a remote bot session owns episode control, so the
     // local R-key/dummy-policy loop stands down instead of fighting it for the
-    // same generator/player. Clears the local player reference so this loop
-    // can't later touch an object the remote session already destroyed.
+    // same player. Update()'s own remoteControlActive guard is what actually
+    // stops the local loop from touching the player; this does not clear
+    // activePlayer, since QaTcpHost hands that exact existing player over to
+    // the remote session rather than spawning its own.
     public bool RemoteControlActive
     {
         get => remoteControlActive;
-        set
-        {
-            remoteControlActive = value;
-            if (value)
-                activePlayer = null;
-        }
+        set => remoteControlActive = value;
     }
 
     private void Awake()
@@ -117,7 +114,7 @@ public class PcgDungeonManager : MonoBehaviour
             + ", generated rooms " + GeneratedRoomCount + ")");
 
         activePlayer = SpawnOrReuseQaPlayer();
-        activePlayer.BeginTest(dungeonGenerator);
+        activePlayer.BeginTest();
         qaPolicyRunner.BeginEpisode(seed);
         qaStepTimer = 0f;
     }
@@ -142,13 +139,17 @@ public class PcgDungeonManager : MonoBehaviour
         if (playerObject == null)
         {
             playerObject = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-            Vector3 currentScale = playerObject.transform.localScale;
-            currentScale.Scale(new Vector3(0.25f, 1f, 0.25f));
+            playerObject.transform.localScale = new Vector3(0.6f, 1f, 0.6f);
             playerObject.name = "QaPlayer (Placeholder)";
             playerObject.transform.SetParent(dungeonGenerator.transform);
             playerObject.transform.position = dungeonGenerator.PlayerSpawnRoom.transform.position + Vector3.up;
             DestroyImmediate(playerObject.GetComponent<CapsuleCollider>());
-            playerObject.AddComponent<CharacterController>();
+            // CharacterController's radius/height are independent of transform scale and
+            // default to 0.5/2 - exactly a full 1-unit grid tile with no clearance at all.
+            CharacterController controller = playerObject.AddComponent<CharacterController>();
+            controller.radius = 0.3f;
+            controller.height = 1.6f;
+            controller.center = new Vector3(0f, 0.8f, 0f);
         }
 
         QaPlayerController qaPlayer = playerObject.GetComponent<QaPlayerController>();

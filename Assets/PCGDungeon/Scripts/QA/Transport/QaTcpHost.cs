@@ -8,18 +8,19 @@ using System.Threading;
 using UnityEngine;
 
 // TCP host for qa_framework's UnityQAEnvironment. Listens on a background
-// thread; all game-state mutation (Generator, QaPlayerController) happens on
-// the main thread via Update(), since Unity's scene/physics API is not
-// thread-safe. See docs/integration-readiness.md in rein-powered-QA-framework
-// for the authoritative wire contract this implements.
+// thread; all game-state mutation (QaPlayerController) happens on the main
+// thread via Update(), since Unity's scene/physics API is not thread-safe.
+//
+// This host never generates or regenerates a level. It only ever hands off
+// control of whatever player PcgDungeonManager already created locally (R
+// key / Start) - a connecting QA client takes over an existing player, it
+// does not request or cause a new one. See docs/integration-readiness.md in
+// rein-powered-QA-framework for the wire contract this implements.
 public sealed class QaTcpHost : MonoBehaviour
 {
     private const int RayCount = 16;
     private const int DefaultMaxSteps = 1000;
 
-    [SerializeField] private Generator dungeonGenerator;
-    [SerializeField] private PcgPolicyRunner fallbackPolicyRunner;
-    [SerializeField] private DungeonValidator validator;
     [SerializeField] private PcgDungeonManager dungeonManager;
     [SerializeField] private int port = 8800;
 
@@ -40,9 +41,6 @@ public sealed class QaTcpHost : MonoBehaviour
         public int MaxSteps;
         public bool MaxDurationProvided;
         public float MaxDurationSeconds;
-        public bool LevelProvided;
-        public string LevelId;
-        public int GenerationSeed;
     }
 
     private void Start()
@@ -154,52 +152,21 @@ public sealed class QaTcpHost : MonoBehaviour
         }
     }
 
+    // Takes over whatever player already exists in the scene; never generates
+    // or regenerates a level. Resetting with nothing yet generated is an error,
+    // not a prompt to create one - generate it in Unity first (R key / Start).
     private void HandleReset(string line)
     {
         QaWireResetRequest request = JsonUtility.FromJson<QaWireResetRequest>(line);
-        int seed = request.seed_provided ? request.seed : UnityEngine.Random.Range(0, int.MaxValue);
-        PcgGenerationParameters parameters;
 
-        if (request.level_provided)
+        if (dungeonManager == null || dungeonManager.ActivePlayer == null)
         {
-            seed = request.generation_seed;
-            parameters = new PcgGenerationParameters
-            {
-                RoomCount = request.generation_parameters.RoomCount,
-                AreaWidth = request.generation_parameters.AreaWidth,
-                AreaHeight = request.generation_parameters.AreaHeight,
-                MinRoomWidth = request.generation_parameters.MinRoomWidth,
-                MaxRoomWidth = request.generation_parameters.MaxRoomWidth,
-                MinRoomHeight = request.generation_parameters.MinRoomHeight,
-                MaxRoomHeight = request.generation_parameters.MaxRoomHeight,
-                Seed = seed,
-            };
-        }
-        else if (fallbackPolicyRunner != null)
-        {
-            parameters = fallbackPolicyRunner.Decide(seed);
-        }
-        else
-        {
-            SendError("No level was supplied and no fallback PCG policy is configured.");
+            SendError("No level has been generated yet. Generate one in Unity (Start/R key) before connecting.");
             return;
         }
 
-        if (!dungeonGenerator.RunProgram(parameters))
-        {
-            SendError($"Dungeon generation failed for seed {seed}.");
-            return;
-        }
-
-        ValidationResult validation = validator.Validate(dungeonGenerator);
-        if (!validation.IsValid)
-        {
-            SendError($"Dungeon rejected: {validation.Message}");
-            return;
-        }
-
-        remotePlayer = SpawnOrReuseRemotePlayer();
-        remotePlayer.BeginTest(dungeonGenerator);
+        remotePlayer = dungeonManager.ActivePlayer;
+        remotePlayer.BeginTest();
 
         episodeCounter++;
         stepCountThisEpisode = 0;
@@ -208,9 +175,6 @@ public sealed class QaTcpHost : MonoBehaviour
             MaxSteps = request.max_steps > 0 ? request.max_steps : DefaultMaxSteps,
             MaxDurationProvided = request.max_duration_provided,
             MaxDurationSeconds = request.max_duration_seconds,
-            LevelProvided = request.level_provided,
-            LevelId = request.level_id,
-            GenerationSeed = request.generation_seed,
         };
 
         var reply = new QaWireResetReply
@@ -286,9 +250,10 @@ public sealed class QaTcpHost : MonoBehaviour
             schema_version = 1,
             step = step,
             episode_id = $"unity-{episodeCounter}",
-            level_acknowledged = currentLimits.LevelProvided,
-            level_id = currentLimits.LevelId,
-            generation_seed = currentLimits.GenerationSeed,
+            // This host never generates a level, so it has no level identity to acknowledge.
+            level_acknowledged = false,
+            level_id = "",
+            generation_seed = 0,
             has_episode_result = hasResult,
         };
 
@@ -304,25 +269,6 @@ public sealed class QaTcpHost : MonoBehaviour
         }
 
         return info;
-    }
-
-    // Mirrors PcgDungeonManager.SpawnOrReuseQaPlayer; kept separate so this
-    // host has no dependency on the local-play loop beyond RemoteControlActive.
-    private QaPlayerController SpawnOrReuseRemotePlayer()
-    {
-        GameObject playerObject = dungeonGenerator.Player;
-        if (playerObject == null)
-        {
-            playerObject = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-            playerObject.name = "QaPlayer (Remote)";
-            playerObject.transform.SetParent(dungeonGenerator.transform);
-            playerObject.transform.position = dungeonGenerator.PlayerSpawnRoom.transform.position + Vector3.up;
-            DestroyImmediate(playerObject.GetComponent<CapsuleCollider>());
-            playerObject.AddComponent<CharacterController>();
-        }
-
-        QaPlayerController controller = playerObject.GetComponent<QaPlayerController>();
-        return controller != null ? controller : playerObject.AddComponent<QaPlayerController>();
     }
 
     private static QaWireObservation ToWireObservation(QaObservation observation)
@@ -386,8 +332,10 @@ public sealed class QaTcpHost : MonoBehaviour
             $"\"ray_count\":{RayCount}," +
             "\"action_encoding_version\":1," +
             "\"max_ability_slot\":0," +
-            "\"supports_level_recipe\":true," +
-            "\"acknowledges_level_identity\":true," +
+            // This host only ever controls a pre-existing player; it never
+            // generates or acknowledges a specific level recipe.
+            "\"supports_level_recipe\":false," +
+            "\"acknowledges_level_identity\":false," +
             "\"reports_terminal_reason\":true," +
             "\"reports_episode_metrics\":true," +
             "\"separates_termination_flags\":true," +

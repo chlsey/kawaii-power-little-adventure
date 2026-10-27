@@ -40,7 +40,7 @@ public sealed class QaPlayerController : MonoBehaviour
     }
 
     // Resets health, metrics and the previous action, matching QAEnvironment.reset semantics.
-    public void BeginTest(Generator generator)
+    public void BeginTest()
     {
         health = maxHealth;
         powerupCount = 0;

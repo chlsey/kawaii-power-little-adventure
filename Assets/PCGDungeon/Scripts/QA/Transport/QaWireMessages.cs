@@ -25,6 +25,7 @@ public class QaWireGenerationParameters
     public int MaxRoomWidth;
     public int MinRoomHeight;
     public int MaxRoomHeight;
+    public int PowerupsPerRoom;
     public int Seed;
 }
 

@@ -31,6 +31,10 @@ public static class PcgPolicyMapping
             MaxRoomWidth = fixedLayout.maxRoomWidth,
             MinRoomHeight = fixedLayout.minRoomHeight,
             MaxRoomHeight = fixedLayout.maxRoomHeight,
+            // Placeholder, not model-decided: neither trained model outputs loot density yet.
+            // Offset by one so a common round-number seed (e.g. 42, divisible by 3) never
+            // silently lands on zero loot.
+            PowerupsPerRoom = 1 + seed % 3,
         };
     }
 }
