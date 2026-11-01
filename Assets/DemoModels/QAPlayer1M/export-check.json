@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checkpoint_sha256": "641d27eacb23b206331fcb124c45a956cd9c545eb492b54f7f75839c71cd6774",
+  "onnx_sha256": "c29cc53374431c2546333d49fce84f7588ff23cf871a4931b9f4ac70ec488d41",
+  "timesteps": 1000192,
+  "input_shape": [
+    1,
+    119
+  ],
+  "output_shape": [
+    1,
+    5
+  ],
+  "opset": 15,
+  "reference_cases": 65,
+  "max_python_onnx_difference": 3.5762786865234375e-07,
+  "onnx_version": "1.18.0",
+  "onnxruntime_version": "1.22.0"
+}

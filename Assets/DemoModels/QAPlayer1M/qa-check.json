@@ -1,0 +1,39 @@
+{
+  "status": "complete",
+  "completed_at_utc": "2026-10-24T12:32:28.738774+00:00",
+  "scene": "Assets/Scenes/QaPlayerModelTest.unity",
+  "model": "Assets/DemoModels/QAPlayer1M/qa_player.onnx",
+  "checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa-player-1m-runs\\20261024-092227-760849\\final_model.zip",
+  "checkpoint_sha256": "641d27eacb23b206331fcb124c45a956cd9c545eb492b54f7f75839c71cd6774",
+  "onnx_sha256": "c29cc53374431c2546333d49fce84f7588ff23cf871a4931b9f4ac70ec488d41",
+  "successes": 0,
+  "failures": 100,
+  "total_runs": 100,
+  "success_rate": 0.0,
+  "mean_exit_seconds": null,
+  "end_reasons": {
+    "reset": 100
+  },
+  "results_file": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa-results\\qa-player-model-1m-20261024-122836-1349921.jsonl",
+  "full_120_second_windows": true,
+  "recorder_launched_and_stopped_by_unity": true,
+  "gameplay_parity": {
+    "status": "passed",
+    "gameplay_observations": 128,
+    "max_python_unity_difference": 1.7881393432617188e-07,
+    "max_onnx_unity_difference": 5.960464477539063e-08,
+    "attack_interact_match": true
+  },
+  "unity": {
+    "completed_attempts": 100,
+    "gameplay_seconds": 12000.0,
+    "wall_seconds": 223.82908559999998,
+    "reference_cases": 65,
+    "maximum_reference_difference": 2.980232238769531e-07,
+    "gameplay_probes": 128,
+    "time_scale": 1.0,
+    "capture_frame_rate": 60,
+    "physics_step_seconds": 0.019999992102384567
+  },
+  "unity_exit_code": 0
+}

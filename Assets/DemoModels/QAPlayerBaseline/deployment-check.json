@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-24T06:54:19.735164+00:00",
+  "checkpoint": "Logs/qa-player-runs/20261024-045547-797535/final_model.zip",
+  "checkpoint_sha256": "f6af559b1268c46c1da7de9ca622be69f6ead5d140afc1aa3a3972357f5af7dc",
+  "onnx": "qa_player.onnx",
+  "onnx_sha256": "69b0df600d3e4ebd6a13b4870b07b17552ebaee1b48826fc6af2f4da9318b799",
+  "source_training_steps": 100096,
+  "onnx_opset": 15,
+  "input": {
+    "name": "obs",
+    "shape": [
+      1,
+      119
+    ],
+    "dtype": "float32"
+  },
+  "output": {
+    "name": "actions",
+    "shape": [
+      1,
+      5
+    ],
+    "dtype": "float32"
+  },
+  "tolerance": 1e-05,
+  "structured_parity_cases": 65,
+  "structured_sb3_onnxruntime_max_abs_error": 3.5762786865234375e-07,
+  "structured_sb3_unity_max_abs_error": 3.5762786865234375e-07,
+  "gameplay_observations_compared": 2000,
+  "gameplay_sb3_unity_max_abs_error": 3.5762786865234375e-07,
+  "gameplay_onnxruntime_unity_max_abs_error": 1.7881393432617188e-07,
+  "gameplay_sb3_onnxruntime_max_abs_error": 2.384185791015625e-07,
+  "gameplay_button_decoding_mismatches": 0,
+  "standalone_training_host_count": 0,
+  "standalone_exit_code": 0,
+  "unity": {
+    "unity_version": "6000.3.2f1",
+    "training_host_count": 0,
+    "parity_cases": 65,
+    "max_reference_action_error": 3.5762786865234375e-07,
+    "runtime_model_steps": 2000,
+    "all_actions_finite_and_bounded": true,
+    "episodes": [
+      {
+        "seed": 100000,
+        "steps": 1000,
+        "completed": false,
+        "player_died": false,
+        "stuck_events": 49,
+        "reward": -10.000056266784668,
+        "distance_moved": 6.601033687591553
+      },
+      {
+        "seed": 100001,
+        "steps": 1000,
+        "completed": false,
+        "player_died": false,
+        "stuck_events": 49,
+        "reward": -9.992659568786621,
+        "distance_moved": 6.622089385986328
+      }
+    ]
+  },
+  "build": {
+    "result": "Succeeded",
+    "total_errors": 0,
+    "total_warnings": 489,
+    "total_seconds": 5.8646107,
+    "player": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa-player-deployment\\20261024-064835\\Player\\QaPlayerDeploymentCheck.exe"
+  },
+  "raw_artifacts": "Logs\\qa-player-deployment\\20261024-064835",
+  "normal_game_policy_wiring": "unchanged; QaPolicyRunner remains random",
+  "runtime_allocation_lifetime_diagnostics": 3,
+  "temporary_probe_removed": true,
+  "project_build_settings_restored": true
+}
