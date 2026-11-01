@@ -15,4 +15,4 @@ To attach the asset in another scene, select `PcgDungeonManager`, assign this ON
 
 The full run remains outside Git at `%USERPROFILE%\Documents\PCGTrainingRuns\20261018-093558`. It contains the frozen player and trainer, `training.log`, `pcg.yaml`, and `artifacts/20261018-134400-819667/final_model.zip`. Use that checkpoint for resumption; this ONNX asset is for inference. The checkpoint is not copied into this demo folder.
 
-See `Training/README.md` and the system design document's PCG room-count example for the implementation and training steps. Use matching versions of the game and shared RL package with the PCG adapter, exporter, and runner accompanying this asset.
+See [the training guide](../../../Training/README.md#pcg-parameter-training) and [game-specific design](../../../Training/PCG-system-design.md) for implementation and training steps. Use matching versions of the game and shared RL package with the PCG adapter, exporter, and runner accompanying this asset.

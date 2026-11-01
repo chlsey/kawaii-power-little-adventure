@@ -1,4 +1,90 @@
-# PCG training POC
+# Model training
+
+## QA player training
+
+For the simpler navigation task, use [the separate single-room training scene](../Assets/Scenes/QaSingleRoomTraining.README.md) and `Training/qa-player-single-room.yaml`. It provides 10 x 10 and 40 x 40 variants with randomized player and exit positions while retaining the current observations, actions, and rewards. The instructions below cover full-dungeon training.
+
+Open `Assets/Scenes/QaPlayerTraining.unity` in Unity 6000.3.2f1 and press Play. The shared `RlTrainingHost` listens on localhost port 7780. From the game repository, run:
+
+```powershell
+python -m pip install -r ../unity-reinforcement-learning/PythonEnv/requirements.txt
+python ../unity-reinforcement-learning/PythonEnv/train.py --config Training/qa-player-grid.yaml
+```
+
+The game owns the environment, reward, configuration, and run artifacts. The shared RL library supplies the TCP bridge and PPO trainer. The training scene has no QA report adapter or recorder; QA recording is a separate, optional integration described in [the QA guide](../QA/README.md).
+
+```text
++------------------------------------------------------------------+
+| PYTHON: PPO trainer + UnityGymEnv                                |
+| Read game-owned YAML; save game-owned checkpoints/final model.   |
++------------------------------------------------------------------+
+             | five action values
+             ^ observation / reward / done
+             | RL bridge: TCP 7780
+             v
++------------------------------------------------------------------+
+| UNITY: player-training environment                               |
+| Reset -> generate seeded dungeon -> initialize player and map.   |
+| Observe gameplay state + rays + grid window.                     |
+| Apply action -> advance 0.1 simulated seconds.                   |
+| Capture completed action -> calculate reward and done.           |
++------------------------------------------------------------------+
+             |
+             +-- Continue --> Return observation; select next action.
+             |
+             +-- Ended ----> Reset dungeon and sensor map for next episode.
+```
+
+Each reset generates a new dungeon seed. `QaPlayerPolicyMapping` encodes **37,771 inputs**: seven gameplay values, 64 `(hit identifier, normalized distance)` ray pairs, and a world-aligned 97 x 97 grid window with four flags per cell. `ModelSensorPackage` retains the full expanding map in Unity and supplies this fixed nearby view. It uses sensed traces rather than generator layout data. See [the sensor contract](../Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.README.md) for ordering and lifecycle details.
+
+Five outputs drive movement X/Y, attack, interact, and an unused ability value. Each action advances 0.1 simulated seconds, with physics completing before reward and observation return. Exit completion, death, or the 100-second episode limit ends the episode; Python then resets. Generation failures stop the session through the bridge error response.
+
+| Reward | Rule |
+| --- | --- |
+| Completion | +50 on reaching the exit. |
+| Time | -0.001 per action. |
+| Visible-exit progress | +0.1 per world unit of new closest approach when an exit ray hits before the action. |
+| Viewed open space | +0.001 per newly ray-revealed open cell, capped at +0.02 per action and +2 per attempt. |
+
+The first sensed exit surface point becomes the fixed progress target for the attempt. Hidden approach updates the closest-distance record without a bonus, so retreating or changing visibility cannot repay earlier progress. Rewards do not read the dungeon manager's exit position. Exploration rewards exclude the spawn scan, wall/exit hit cells, and visits. They pay only for previously unknown open cells revealed by rays after the action, and are suppressed when the exit is visible before/after the action or the action completes the level. Suppressed and capped discoveries are consumed; rescans and revisits cannot repay the same cells.
+
+## Configure and save runs
+
+| Config | Requested timesteps | Output directory |
+| --- | --- | --- |
+| [qa-player-single-room.yaml](qa-player-single-room.yaml) | 500,000 | `Logs/qa-player-single-room-runs/` |
+| [qa-player-single-room-large.yaml](qa-player-single-room-large.yaml) | 1,000,000 | `Logs/qa-player-single-room-view-runs/` |
+| [qa-player-grid.yaml](qa-player-grid.yaml) | 1,000,000 | `Logs/qa-player-grid-runs/` |
+| [qa-player-grid-smoke.yaml](qa-player-grid-smoke.yaml) | 2,000 | `Logs/qa-player-grid-smoke/` |
+
+The large-room config starts a fresh policy with `ent_coef: 0.01` to encourage varied actions. The shared trainer also accepts an explicit entropy coefficient when resuming a policy.
+
+PPO completes its final 256-step rollout, so the smoke config normally collects 2,048 steps and may begin a third episode. A timestep budget does not guarantee an exact episode count. Restart Play before connecting another trainer.
+
+The trainer requires `--config`; relative `output_dir` and `resume_from` paths resolve beside that YAML file. Each run gets a timestamped directory with checkpoints and `final_model.zip`. Keep these in the model-owning game or its chosen external directory. `Logs/` artifacts are local and ignored by Git. Start a fresh policy for the current layout: retained 119-input checkpoints cannot resume with 37,771 inputs. The older `qa-player.yaml`, `qa-player-smoke.yaml`, and `qa-player-1m.yaml` recipes remain available, but the active Unity scene determines observations and rewards.
+
+## Deploy and evaluate
+
+Install the shared export dependencies, then export a completed compatible checkpoint from the game directory:
+
+```powershell
+python -m pip install -r ../unity-reinforcement-learning/PythonEnv/requirements-export.txt
+python ../unity-reinforcement-learning/PythonEnv/export_onnx.py Logs/qa-player-grid-runs/<run>/final_model.zip Assets/DemoModels/QAPlayerGrid/qa_player.onnx
+```
+
+Assign the export to `RlModelRunner` in [QaPlayerModelTest](../Assets/Scenes/QaPlayerModelTest.README.md). Training and inference share the observation/action mapping. The runner rejects incompatible static input shapes; the scene still references the earlier 119-input million-step model and needs a 37,771-input/five-output replacement. The evaluation scene runs a fixed policy without weight updates and can record 100 attempts through the optional QA integration.
+
+| Evidence | Interpretation |
+| --- | --- |
+| [Grid smoke result](../Logs/qa-opt-in-smoke/20261024-175910/result.json) | Two complete training episodes, both timeouts; checkpoint reload and finite five-action output verified. This exact-episode check used a temporary stopping callback, rather than the ordinary CLI timestep budget. |
+| [Baseline model](../Assets/DemoModels/QAPlayerBaseline/README.md) | Retained 119-input model, provenance, deployment checks, and results. |
+| [Million-step model](../Assets/DemoModels/QAPlayer1M/README.md) | Retained 119-input model, provenance, and 100-attempt QA results. |
+
+The grid smoke verifies the training pipeline; it does not demonstrate learned level clearing. A full grid-policy training and evaluation run is still required. QA outcomes do not currently feed PCG rewards.
+
+## PCG parameter training
+
+See [the game-specific design](PCG-system-design.md) for generator architecture and planned player-evaluation feedback.
 
 Second model: [PCG room count and size](../Assets/DemoModels/PCGLayout/README.md) learns three controls using the same bridge and ONNX runner. Open `Assets/Scenes/PcgLayoutTraining.unity` and use `Training/pcg-layout.yaml` on port 7779 to train it. Open `Assets/Scenes/PcgLayoutModelDemo.unity` to run its saved model. The instructions below describe the original room-count-only example on port 7777.
 
