@@ -1,0 +1,14 @@
+model: ppo
+port: 7781
+seed: 0
+total_timesteps: 500000
+learning_rate: 0.0003
+gamma: 0.99
+n_steps: 256
+device: cpu
+checkpoint_freq: 20000
+output_dir: ../Logs/qa-player-single-room-runs
+resume_from: null
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
