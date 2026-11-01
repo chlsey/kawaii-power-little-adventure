@@ -42,6 +42,8 @@ The shared RL training dependencies must be installed in the chosen Python envir
 
 ## Model contract and rewards
 
+Single-room training also subtracts 0.01 reward per action after 20 consecutive movement actions (2 simulated seconds) within 0.05 horizontal units of an anchor position. The penalty continues while blocked and resets when the player moves at least 0.05 units from the anchor or stops requesting movement. It uses attempted movement and actual displacement, without requiring hidden obstacle geometry. Successful completion and death do not receive this penalty. This reward is separate from the controller's periodic `StuckEvents` diagnostic counter; full-dungeon training retains its existing rewards.
+
 `QaSingleRoomRlEnvironment` uses the existing `QaPlayerController`, `ModelSensorPackage`, and `QaPlayerPolicyMapping`: 37,771 inputs and five actions, with 0.1 simulated seconds per action. Exit position is not supplied directly to the model; perception comes from its rays and discovered grid.
 
 Rewards match dungeon training: +50 completion, +0.1 per world unit of new closest approach toward a ray-visible exit, -0.001 per action, and +0.001 per newly viewed open cell capped at +0.02 per action and +2 per attempt. Spawn views, wall/exit hit cells, visits, and repeated views earn no exploration bonus; visible exits take priority. The sensor range stays at 12 units in both variants. The small room keeps the exit within range throughout the valid spawn area; the large room can begin with the exit out of sight and requires searching the room. See [the sensor contract](../PCGDungeon/Scripts/QA/ModelSensorPackage.README.md).

@@ -1,0 +1,16 @@
+model: ppo
+port: 7782
+seed: 1838
+total_timesteps: 162000
+learning_rate: 0.0003
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 20000
+output_dir: artifacts
+resume_from: starting_model.zip
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 162

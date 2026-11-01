@@ -15,6 +15,9 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     [SerializeField, Min(0f)] private float viewDiscoveryRewardPerCell = 0.001f;
     [SerializeField, Min(0f)] private float maxViewDiscoveryRewardPerAction = 0.02f;
     [SerializeField, Min(0f)] private float maxViewDiscoveryRewardPerAttempt = 2f;
+    [SerializeField, Min(0f)] private float stuckDistanceThreshold = 0.05f;
+    [SerializeField, Min(1)] private int stuckStepThreshold = 20;
+    [SerializeField, Min(0f)] private float stuckPenaltyPerSecond = 0.1f;
     [SerializeField] private float maxEpisodeSeconds = 100f;
 
     private CharacterController character;
@@ -27,6 +30,11 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     private float actionEndTime;
     private int viewDiscoveryBaseline;
     private float explorationRewardEarned;
+    private Vector3 stuckAnchorPosition;
+    private int stationaryMovementSteps;
+    private bool movementRequested;
+    private float stuckPenaltyTotal;
+    private int stuckPenaltySteps;
 
     public override int ObservationSize => QaPlayerPolicyMapping.ObservationSize;
     public override int ActionSize => QaPlayerPolicyMapping.ActionSize;
@@ -77,6 +85,11 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         closestSensedExitDistance = 0f;
         viewDiscoveryBaseline = sensors.ViewedOpenCellCount;
         explorationRewardEarned = 0f;
+        stuckAnchorPosition = player.transform.position;
+        stationaryMovementSteps = 0;
+        movementRequested = false;
+        stuckPenaltyTotal = 0f;
+        stuckPenaltySteps = 0;
         actionEndTime = Time.fixedTime;
     }
 
@@ -101,6 +114,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
 
     public override void ApplyAction(float[] action)
     {
+        movementRequested = false;
         exitVisibleForAction = false;
         sensors.Capture();
         viewDiscoveryBaseline = sensors.ViewedOpenCellCount;
@@ -108,7 +122,9 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         if (!attemptEnded && player.EpisodeActive)
         {
             SenseExitBeforeAction();
-            player.ApplyAction(QaPlayerPolicyMapping.Decode(action));
+            QaAction command = QaPlayerPolicyMapping.Decode(action);
+            movementRequested = new Vector2(command.MoveX, command.MoveY).sqrMagnitude > 0.0001f;
+            player.ApplyAction(command);
         }
         actionEndTime = Time.fixedTime + QaPlayerController.StepDurationSeconds;
     }
@@ -146,6 +162,9 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
             explorationRewardEarned += explorationReward;
         }
 
+        if (!metrics.Completed && !metrics.PlayerDied)
+            reward -= CalculateStuckPenalty();
+
         isDone = metrics.Completed || metrics.PlayerDied || metrics.ElapsedSeconds >= maxEpisodeSeconds;
         if (metrics.Completed)
         {
@@ -157,6 +176,28 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
             sensors.EndAttempt();
         }
         return reward;
+    }
+
+    private float CalculateStuckPenalty()
+    {
+        Vector3 displacement = player.transform.position - stuckAnchorPosition;
+        displacement.y = 0f;
+        // Track continuous blocked movement; sliding away or stopping resets the timer.
+        if (!movementRequested || displacement.sqrMagnitude >= stuckDistanceThreshold * stuckDistanceThreshold)
+        {
+            stuckAnchorPosition = player.transform.position;
+            stationaryMovementSteps = 0;
+            return 0f;
+        }
+
+        stationaryMovementSteps++;
+        if (stationaryMovementSteps < stuckStepThreshold)
+            return 0f;
+
+        float penalty = stuckPenaltyPerSecond * QaPlayerController.StepDurationSeconds;
+        stuckPenaltyTotal += penalty;
+        stuckPenaltySteps++;
+        return penalty;
     }
 
     private void SenseExitBeforeAction()
