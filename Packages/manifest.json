@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.kcccr.qa-framework": "file:../../rein-powered-QA-framework/Unity",
     "com.kcccr.unity-reinforcement-learning": "file:../../unity-reinforcement-learning",
     "com.unity.ai.navigation": "2.0.9",
     "com.unity.collab-proxy": "2.10.2",

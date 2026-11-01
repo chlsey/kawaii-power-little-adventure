@@ -1,14 +1,12 @@
 using System;
 using UnityEngine;
 
-// Drives one QA gameplay episode on a generated level: applies QaAction
-// commands, casts the ray sensors, and accumulates QaEpisodeMetrics. This is
-// the in-engine half of the qa_framework contract; a future Unity transport
-// adapter calls BeginTest/ApplyAction in place of FakeQAEnvironment.
+// Applies gameplay commands and records player state and episode metrics.
+// Unity policies and the RL training adapter use the same controller.
 [RequireComponent(typeof(CharacterController))]
 public sealed class QaPlayerController : MonoBehaviour
 {
-    private const float StepDurationSeconds = 0.1f;
+    public const float StepDurationSeconds = 0.1f;
 
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float turnDegreesPerSecond = 720f;
@@ -16,9 +14,6 @@ public sealed class QaPlayerController : MonoBehaviour
     [SerializeField] private float attackDamage = 1f;
     [SerializeField] private float interactRange = 1.25f;
     [SerializeField] private float maxHealth = 10f;
-    [SerializeField] private int rayCount = 16;
-    [SerializeField] private float rayDistance = 12f;
-    [SerializeField] private float rayHeight = 0.6f;
     [SerializeField] private float stuckDistanceThreshold = 0.05f;
     [SerializeField] private int stuckStepThreshold = 20;
 
@@ -33,6 +28,7 @@ public sealed class QaPlayerController : MonoBehaviour
 
     public bool EpisodeActive => episodeActive;
     public QaEpisodeMetrics Metrics => metrics;
+    public event Action EpisodeEnded;
 
     private void Awake()
     {
@@ -51,11 +47,10 @@ public sealed class QaPlayerController : MonoBehaviour
         episodeActive = true;
     }
 
-    // Returns the current observation without acting, matching QAEnvironment.reset's
-    // initial observation (sensed, but with no movement/attack/interact applied).
+    // Returns gameplay state without acting. Model perception is collected separately.
     public QaObservation Observe()
     {
-        return Sense(previousAction);
+        return new QaObservation(Mathf.Clamp01(health / maxHealth), powerupCount, previousAction);
     }
 
     // Applies one QA command and returns the resulting observation, matching QAEnvironment.step.
@@ -64,6 +59,9 @@ public sealed class QaPlayerController : MonoBehaviour
         if (!episodeActive)
             throw new InvalidOperationException("Call BeginTest before applying actions.");
 
+        // Exit/death callbacks can publish this action's final state during movement.
+        metrics.StepCount++;
+        metrics.ElapsedSeconds = metrics.StepCount * StepDurationSeconds;
         Move(action);
 
         if (action.Attack)
@@ -72,13 +70,10 @@ public sealed class QaPlayerController : MonoBehaviour
         if (action.Interact)
             PerformInteract();
 
-        metrics.StepCount++;
-        metrics.ElapsedSeconds = metrics.StepCount * StepDurationSeconds;
         UpdateStuckTracking();
 
-        QaObservation observation = Sense(action);
         previousAction = action;
-        return observation;
+        return Observe();
     }
 
     private void Move(QaAction action)
@@ -138,6 +133,7 @@ public sealed class QaPlayerController : MonoBehaviour
         {
             metrics.PlayerDied = true;
             episodeActive = false;
+            EpisodeEnded?.Invoke();
         }
     }
 
@@ -149,6 +145,7 @@ public sealed class QaPlayerController : MonoBehaviour
 
         metrics.Completed = true;
         episodeActive = false;
+        EpisodeEnded?.Invoke();
     }
 
     private void UpdateStuckTracking()
@@ -163,37 +160,5 @@ public sealed class QaPlayerController : MonoBehaviour
 
         stuckCheckPosition = transform.position;
         stepsSinceStuckCheck = 0;
-    }
-
-    private QaObservation Sense(QaAction previous)
-    {
-        var rays = new QaRayObservation[rayCount];
-        Vector3 origin = transform.position + Vector3.up * rayHeight;
-
-        for (int i = 0; i < rayCount; i++)
-        {
-            float angle = i * (360f / rayCount);
-            Vector3 direction = Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
-
-            rays[i] = Physics.Raycast(origin, direction, out RaycastHit hit, rayDistance)
-                ? new QaRayObservation(true, Mathf.Clamp01(hit.distance / rayDistance), ClassifyHit(hit.collider))
-                : QaRayObservation.Miss;
-        }
-
-        return new QaObservation(Mathf.Clamp01(health / maxHealth), powerupCount, rays, previous);
-    }
-
-    private static QaObjectType ClassifyHit(Collider collider)
-    {
-        if (collider.CompareTag("Exit"))
-            return QaObjectType.Exit;
-        if (collider.GetComponentInParent<QaEnemy>() != null)
-            return QaObjectType.Enemy;
-        if (collider.GetComponentInParent<QaLootPickup>() != null)
-            return QaObjectType.Loot;
-        if (collider.CompareTag("Wall") || collider.CompareTag("OuterCorner"))
-            return QaObjectType.Obstacle;
-
-        return QaObjectType.None;
     }
 }

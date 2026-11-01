@@ -1935,6 +1935,7 @@ public class Generator : MonoBehaviour
         exitCollider.size = new Vector3(2f, 3f, 2f);
 
         exitZone.AddComponent<QaExitZone>();
+        exitZone.AddComponent<ModelSensorTarget>().HitId = QaObjectType.LevelEnd;
     }
 
     private void GenerateContent()

@@ -1,9 +1,7 @@
-// Mirrors qa_framework's QAObjectType so ray classifications agree with the Python schema.
+// Stable hit identifiers in this game's model observation contract.
 public enum QaObjectType
 {
-    None,
-    Obstacle,
-    Enemy,
-    Loot,
-    Exit
+    None = 0,
+    Wall = 1,
+    LevelEnd = 2
 }

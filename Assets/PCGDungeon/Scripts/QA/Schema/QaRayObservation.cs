@@ -1,20 +1,17 @@
 using System;
 
-// One sensor ray result, matching qa_framework's RayObservation contract:
-// hit=false must report None with the conventional full-range distance of 1.
+// One model sensor ray: a target identifier and distance divided by ray range.
 [Serializable]
 public struct QaRayObservation
 {
-    public readonly bool Hit;
+    public readonly QaObjectType HitId;
     public readonly float Distance01;
-    public readonly QaObjectType ObjectType;
 
-    public QaRayObservation(bool hit, float distance01, QaObjectType objectType)
+    public QaRayObservation(QaObjectType hitId, float distance01)
     {
-        Hit = hit;
+        HitId = hitId;
         Distance01 = distance01;
-        ObjectType = objectType;
     }
 
-    public static QaRayObservation Miss => new QaRayObservation(false, 1f, QaObjectType.None);
+    public static QaRayObservation Miss => new QaRayObservation(QaObjectType.None, 1f);
 }

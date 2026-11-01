@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.kcccr.qa-framework": {
+      "version": "file:../../rein-powered-QA-framework/Unity",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.kcccr.unity-reinforcement-learning": {
       "version": "file:../../unity-reinforcement-learning",
       "depth": 0,

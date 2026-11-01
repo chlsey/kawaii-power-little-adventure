@@ -396,6 +396,9 @@ GameObject:
   - component: {fileID: 2013417431}
   - component: {fileID: 2013417430}
   - component: {fileID: 2013417434}
+  - component: {fileID: 2013417435}
+  - component: {fileID: 2013417437}
+  - component: {fileID: 2013417438}
   m_Layer: 0
   m_Name: PcgDungeonManager
   m_TagString: Untagged
@@ -447,7 +450,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013417429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f691bc8a57cef499a9fb04d32fa50dc3, type: 3}
   m_Name: 
@@ -456,6 +459,9 @@ MonoBehaviour:
   policyRunner: {fileID: 2013417431}
   validator: {fileID: 2013417430}
   generateOnStart: 1
+  qaStepIntervalSeconds: 0.1
+  maxQaSteps: 1000
+  autoResetIntervalSeconds: 120
 --- !u!4 &2013417433
 Transform:
   m_ObjectHideFlags: 0
@@ -484,6 +490,80 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: Kcccr.UnityReinforcementLearning.Runtime::Kcccr.UnityReinforcementLearning.RlModelRunner
   modelAsset: {fileID: 0}
+--- !u!114 &2013417435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013417429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5049d836e35548ad9fd45ef98042f40, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonQaAdapter
+  host: 127.0.0.1
+  port: 8800
+--- !u!114 &2013417437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013417429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcba60bdd194012ac304013f00a93db, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Kcccr.QaFramework.Runtime::Kcccr.QaFramework.QaRecorderLauncher
+  pythonExecutable: python
+  arguments: -u QA/record_dungeon_runs.py --output Logs/qa-results/random-player-{timestamp}.jsonl
+  workingDirectory: .
+  pythonPath: ../rein-powered-QA-framework/src
+  adapter: {fileID: 2013417435}
+  startupTimeoutSeconds: 30
+  onReady:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2013417432}
+        m_TargetAssemblyTypeName: PcgDungeonManager, Assembly-CSharp
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument:
+          m_BoolArgument: 1
+        m_CallState: 2
+  onStopped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2013417432}
+        m_TargetAssemblyTypeName: PcgDungeonManager, Assembly-CSharp
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument:
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2013417438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013417429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9996b1f8b3164b648b0265bafeaae184, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonStateSource
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

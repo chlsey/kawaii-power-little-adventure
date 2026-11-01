@@ -1,11 +1,17 @@
+using Kcccr.UnityReinforcementLearning;
 using UnityEngine;
 
-// Stand-in for a trained QA policy, mirroring PcgPolicyRunner's role on the
-// generation side: it produces commands so the loop can run end-to-end
-// before a real model exists. Replace Decide() with a trained policy later;
-// QaPlayerController.ApplyAction does not change.
+public enum QaPolicyMode
+{
+    Random,
+    Trained
+}
+
+/// <summary>Chooses player commands using either the local trained ONNX policy or the seeded random baseline.</summary>
 public class QaPolicyRunner : MonoBehaviour
 {
+    [SerializeField] private QaPolicyMode mode;
+    [SerializeField] private RlModelRunner modelRunner;
     [Range(0f, 1f)] [SerializeField] private float attackChance = 0.1f;
     [Range(0f, 1f)] [SerializeField] private float interactChance = 0.1f;
 
@@ -19,10 +25,14 @@ public class QaPolicyRunner : MonoBehaviour
         stepIndex = 0;
     }
 
-    // Produces the next QA command. A trained policy would consume the
-    // previous QaObservation here instead of acting blindly.
-    public QaAction Decide()
+    public QaAction Decide(QaObservation observation, ModelSensorSnapshot sensors)
     {
+        if (mode == QaPolicyMode.Trained)
+        {
+            float[] actions = modelRunner.Predict(QaPlayerPolicyMapping.Observe(observation, sensors));
+            return QaPlayerPolicyMapping.Decode(actions);
+        }
+
         Random.InitState(episodeSeed + stepIndex);
         stepIndex++;
 

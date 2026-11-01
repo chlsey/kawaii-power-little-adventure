@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4589427283787544609}
   - component: {fileID: 3468683452277196089}
   - component: {fileID: 7715926297375826469}
+  - component: {fileID: 9050201234000000001}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9050201234000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4725644372996588504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9bbc49c45d41ddb9b630807915ff70, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ModelSensorTarget
+  hitId: 1
