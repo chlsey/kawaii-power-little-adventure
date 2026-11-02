@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "episodes": 100,
+  "seed_range": [
+    100000,
+    100099
+  ],
+  "successes": 13,
+  "timeouts": 87,
+  "deaths": 0,
+  "success_rate": 0.13,
+  "mean_successful_exit_seconds": 0.9076923269491929,
+  "deterministic_actions": true,
+  "weight_updates": 0,
+  "checkpoint_sha256": "38e508d516f1b99d152086d92b75ea1b0eeaef70acbae347fd8e822350d11511",
+  "stage": 1,
+  "manual_advancement": true,
+  "promotion_decision": "manual_review_required"
+}

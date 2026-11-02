@@ -1,0 +1,16 @@
+model: ppo
+port: 7783
+seed: 0
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Logs\qa-player-no-exploration-sessions\20261102-170309-10x10\models
+resume_from: null
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
