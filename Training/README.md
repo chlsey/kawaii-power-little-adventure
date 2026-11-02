@@ -4,6 +4,8 @@ See the [training change logs](changelog/README.md) for the [QA player's iterati
 
 ## QA player training
 
+The current [local movement experiment](../Assets/Scenes/QaSingleRoomTraining.README.md#local-movement-experiment) uses the maintained `run_local_movement.py` command to train a 134-input policy without map encoding. Historical grid/full-dungeon workflows follow below.
+
 For the simpler navigation task, use [the separate single-room training scene](../Assets/Scenes/QaSingleRoomTraining.README.md) and `Training/qa-player-single-room.yaml`. It provides 10 x 10 and 40 x 40 variants with randomized player and exit positions while retaining the current observations, actions, and rewards. The instructions below cover full-dungeon training.
 
 Open `Assets/Scenes/QaPlayerTraining.unity` in Unity 6000.3.2f1 and press Play. The shared `RlTrainingHost` listens on localhost port 7780. From the game repository, run:

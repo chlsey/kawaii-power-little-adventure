@@ -140,14 +140,14 @@ The game owns scenarios and learning rewards; the shared RL framework supplies t
 4. Export a validated policy to ONNX, verify Python/ONNX/Unity action agreement, and evaluate complete QA attempts before selecting it as the fixed PCG evaluator.
 
 Current and later stages:
-- The current movement campaign starts fresh in a 10 x 10 room, then continues at 20 x 20 and 30 x 30 with manual advancement and 500 training episodes per size. Exits start visible, 3-6 units away; exploration reward is disabled. Vision remains 12 units, with two movement outputs and a 30-second limit. The [config](qa-player-no-exploration-10x10.yaml) owns learning settings; the [QA changelog](changelog/qa-player.md) owns experiment lineage and results. Review frozen evaluation before advancement.
+- The active experiment trains a fresh local movement policy to leave a 10 x 10 room: current vision only, 134 inputs, two movement outputs, visible exits 3-6 units away, unchanged 12-unit rays, no exploration reward, and a 30-second limit. The [config](qa-player-local-movement.yaml) owns learning settings and the 500-training/100-evaluation budget; the [QA changelog](changelog/qa-player.md) owns lineage/results. Larger-room advancement is paused until reliable local movement is established and reviewed manually.
 - Later stages increase distance, introduce hidden exits, and then add obstacles. Their scenario definitions, earlier-stage replay proportions, and promotion thresholds remain to be specified before use.
 
 ### Policy strategy options
 
-The [RL policy evolution design](../../../google-docs/reinforcement-learning-framework-system-design.md#planned-policy-evolution-strategies) owns the future patterns: weight transfer, movement/action specialists, and memory/navigation/local-control separation. These remain proposals.
+Selected direction: separate memory/navigation from local action decisions, following the [RL design's policy patterns](../../../google-docs/reinforcement-learning-framework-system-design.md#planned-policy-evolution-strategies). Train local target-reaching first; add a higher-level navigator to select destinations from observed map memory later. Movement versus attack/interaction specialists and weight transfer remain separate options.
 
-The game already has explicit memory: `ModelSensorPackage` retains discovered cells per attempt and supplies a player-centered window to one feedforward policy. It has no separate waypoint navigator or recurrent policy. The future memory pattern would retain that map, select targets from observed information, and train a local movement policy to reach them using current sensors. Establish local movement with visible nearby exits before testing remembered/hidden goals; evaluate complete navigation separately.
+`QaLocalMovementPolicyMapping` implements the first phase: previous movement, current wall/exit ray channels, and a visible-exit direction/distance summary. It reads no map or remembered goal. `ModelSensorPackage` can retain discovered cells for diagnostics and future navigation, outside this policy's inputs. The waypoint navigator, coordinator, and non-movement specialists remain unimplemented. The [scene guide](../Assets/Scenes/QaSingleRoomTraining.README.md#local-movement-experiment) owns the input encoding and training command.
 
 ### Integration sequence
 

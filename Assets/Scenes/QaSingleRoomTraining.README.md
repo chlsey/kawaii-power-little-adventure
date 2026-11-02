@@ -4,6 +4,7 @@ Choose a scene and press Play. Start the external Python trainer from the game r
 
 | Scene | Floor size | Config | TCP port |
 | --- | --- | --- | --- |
+| [QaLocalMovementTraining](QaLocalMovementTraining.unity) | 10 x 10; current vision only, no map input | [qa-player-local-movement.yaml](../../Training/qa-player-local-movement.yaml) | 7783 |
 | [QaMovementNoExploration10Training](QaMovementNoExploration10Training.unity) | 10 x 10; nearby exit; exploration reward disabled | [qa-player-no-exploration-10x10.yaml](../../Training/qa-player-no-exploration-10x10.yaml) | 7783 |
 | [QaMovementStage1Training](QaMovementStage1Training.unity) | 40 x 40; exit 3-6 units away | [qa-player-movement-stage1.yaml](../../Training/qa-player-movement-stage1.yaml) | 7783 |
 | [QaSingleRoomTraining](QaSingleRoomTraining.unity) | 10 x 10 | [qa-player-single-room.yaml](../../Training/qa-player-single-room.yaml) | 7781 |
@@ -15,9 +16,29 @@ python ../unity-reinforcement-learning/PythonEnv/train.py --config Training/qa-p
 
 The shared RL training dependencies must be installed in the chosen Python environment. Each scene listens on its configured localhost port and waits for the trainer; these scenes contain no QA recorder or report adapter.
 
+## Local movement experiment
+
+Objective: leave the 10 x 10 room using local vision and movement X/Y. `QaLocalMovementPolicyMapping` defines **local-vision-v1**, a fresh **134 -> 64 -> 64 -> 2** policy. Grid checkpoints are incompatible; no weights are transferred. Each reset places a visible exit 3-6 units away in a random direction. Keep 12-unit rays, 30 seconds/episode, learning rate 0.0002, entropy 0.01, and the existing completion/progress/time/stuck rewards; exploration reward remains zero.
+
+| Input indexes | Encoding |
+| --- | --- |
+| 0-1 | Previous movement X/Y, each in [-1,1]. |
+| 2-129 | 64 world-space rays starting at +Z and rotating toward +X. Each ray has separate wall and exit proximity channels: `1 - distance / 12` for the corresponding hit; otherwise zero. |
+| 130-133 | Visible-exit flag, direction X, direction Z, normalized hit distance. Direction and distance describe the nearest current exit ray, not the true exit center. All four values are zero when no ray sees an exit. |
+
+No health, inventory, combat actions, map cells, visited history, or remembered exit is supplied. The sensor's map can still be collected for diagnostics. A later navigator will own long-term memory and target selection; this experiment implements only local movement.
+
+From the game repository, with Unity closed:
+
+```powershell
+python -B Training/run_local_movement.py --config Training/qa-player-local-movement.yaml
+```
+
+This maintained command launches Unity, verifies visibility/alignment on 100 seeds, checks sensor-guided completion in all eight compass directions and hidden-exit signal clearing, then trains exactly 500 episodes and runs 100 frozen deterministic evaluations. Runtime records, source hashes, PPO metrics, and checkpoints go under `Logs/qa-player-local-movement/`; completed models/configs/results go under `SavedModels/qa-local-movement-<run>/`. The maintained Editor entry point is `Assets/Editor/QaLocalMovementSession.cs`; no per-run scripts are generated. Review results before manually changing difficulty. The existing five-output deployment adapter does not support this contract yet.
+
 ## Manual movement curriculum: stage 1
 
-Both movement scenes use **37,771 observations and two outputs: movement X/Y**. Attack, interact, and ability commands are disabled. The current campaign uses `QaMovementNoExploration10Training`; `QaMovementStage1Training` retains the earlier 40 x 40 task. Existing five-output checkpoints cannot resume these policies, and the five-output inference adapter needs a matching movement-only adapter before using an export.
+The two historical grid-based movement scenes use **37,771 observations and two outputs: movement X/Y**. Attack, interact, and ability commands are disabled. `QaMovementNoExploration10Training` retains the earlier 10 x 10 task; `QaMovementStage1Training` retains the earlier 40 x 40 task. Existing five-output checkpoints cannot resume these policies, and the five-output inference adapter needs a matching movement-only adapter before using an export.
 
 Each seeded reset places the exit **3-6 units away at a random angle**, then samples a player position keeping both actors at least 1.5 units inside the room. The exit begins within the unchanged 12-unit sensor range and in unobstructed view. Episodes end on completion, death, or **30 simulated seconds / 300 movement actions**. The current 10 x 10 scene disables all exploration reward settings while retaining sensors, progress/completion rewards, and the stuck penalty.
 

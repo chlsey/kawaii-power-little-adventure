@@ -10,6 +10,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     [SerializeField] private QaPlayerController player;
     [SerializeField] private Transform exit;
     [SerializeField] private bool movementOnly;
+    [SerializeField] private bool localVision;
     [SerializeField] private bool nearbyExit;
     [SerializeField, Min(0f)] private float minExitDistance = 3f;
     [SerializeField, Min(0f)] private float maxExitDistance = 6f;
@@ -40,12 +41,20 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     private float stuckPenaltyTotal;
     private int stuckPenaltySteps;
 
-    public override int ObservationSize => QaPlayerPolicyMapping.ObservationSize;
+    public override int ObservationSize
+    {
+        get
+        {
+            if (localVision)
+                return QaLocalMovementPolicyMapping.ObservationSize;
+            return QaPlayerPolicyMapping.ObservationSize;
+        }
+    }
     public override int ActionSize
     {
         get
         {
-            if (movementOnly)
+            if (localVision || movementOnly)
                 return 2;
             return QaPlayerPolicyMapping.ActionSize;
         }
@@ -57,6 +66,9 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     public Vector3 SpawnPosition { get; private set; }
     public Vector3 ExitPosition => exit.position;
     public bool InitialExitVisible { get; private set; }
+    public float ExplorationRewardEarned => explorationRewardEarned;
+    public float StuckPenaltyTotal => stuckPenaltyTotal;
+    public int StuckPenaltySteps => stuckPenaltySteps;
 
     private void Awake()
     {
@@ -143,6 +155,8 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
 
     public override float[] CollectObservation()
     {
+        if (localVision)
+            return QaLocalMovementPolicyMapping.Observe(player.Observe(), sensors.Rays);
         return QaPlayerPolicyMapping.Observe(player.Observe(), sensors.ReadSnapshot());
     }
 
@@ -157,8 +171,8 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         {
             SenseExitBeforeAction();
             QaAction command;
-            if (movementOnly)
-                command = new QaAction(action[0], action[1], false, false, 0);
+            if (localVision || movementOnly)
+                command = QaLocalMovementPolicyMapping.Decode(action);
             else
                 command = QaPlayerPolicyMapping.Decode(action);
             movementRequested = new Vector2(command.MoveX, command.MoveY).sqrMagnitude > 0.0001f;
