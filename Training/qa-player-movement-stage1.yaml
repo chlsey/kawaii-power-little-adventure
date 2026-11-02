@@ -1,0 +1,19 @@
+# Manual stage 1: open room, visible exit 3-6 units away, 30-second limit.
+# The ordinary trainer uses the timestep budget; the episode-limited session
+# runner records exactly max_episodes and performs a separate frozen evaluation.
+model: ppo
+port: 7783
+seed: 0
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-player-movement-stage1-runs
+resume_from: null
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500

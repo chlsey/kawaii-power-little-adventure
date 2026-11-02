@@ -9,6 +9,10 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     [SerializeField] private BoxCollider roomFloor;
     [SerializeField] private QaPlayerController player;
     [SerializeField] private Transform exit;
+    [SerializeField] private bool movementOnly;
+    [SerializeField] private bool nearbyExit;
+    [SerializeField, Min(0f)] private float minExitDistance = 3f;
+    [SerializeField, Min(0f)] private float maxExitDistance = 6f;
     [SerializeField] private float completionReward = 50f;
     [SerializeField] private float timeCostPerSecond = 0.01f;
     [SerializeField] private float visibleExitProgressRewardPerUnit = 0.1f;
@@ -37,13 +41,22 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     private int stuckPenaltySteps;
 
     public override int ObservationSize => QaPlayerPolicyMapping.ObservationSize;
-    public override int ActionSize => QaPlayerPolicyMapping.ActionSize;
+    public override int ActionSize
+    {
+        get
+        {
+            if (movementOnly)
+                return 2;
+            return QaPlayerPolicyMapping.ActionSize;
+        }
+    }
 
     public QaPlayerController Player => player;
     public ModelSensorPackage Sensors => sensors;
     public int ActiveSeed { get; private set; }
     public Vector3 SpawnPosition { get; private set; }
     public Vector3 ExitPosition => exit.position;
+    public bool InitialExitVisible { get; private set; }
 
     private void Awake()
     {
@@ -58,13 +71,33 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         sensors.EndAttempt();
         player.EpisodeEnded -= OnPlayerEnded;
         var random = new System.Random(seed);
-        Vector3 spawn = SampleFloorPosition(random);
+        Vector3 spawn;
         Vector3 goal;
-        do
+        if (nearbyExit)
         {
-            goal = SampleFloorPosition(random);
+            // Choose direction first, then fit both actors inside the room without direction bias.
+            float angle = (float)random.NextDouble() * Mathf.PI * 2f;
+            float distance = Mathf.Lerp(minExitDistance, maxExitDistance, (float)random.NextDouble());
+            Vector3 offset = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * distance;
+            Bounds bounds = roomFloor.bounds;
+            Vector3 min = bounds.min + new Vector3(1.5f, 0f, 1.5f);
+            Vector3 max = bounds.max - new Vector3(1.5f, 0f, 1.5f);
+            float x = Mathf.Lerp(Mathf.Max(min.x, min.x - offset.x),
+                Mathf.Min(max.x, max.x - offset.x), (float)random.NextDouble());
+            float z = Mathf.Lerp(Mathf.Max(min.z, min.z - offset.z),
+                Mathf.Min(max.z, max.z - offset.z), (float)random.NextDouble());
+            spawn = new Vector3(x, bounds.max.y + 0.01f, z);
+            goal = spawn + offset;
         }
-        while (Vector3.Distance(spawn, goal) < 3f);
+        else
+        {
+            spawn = SampleFloorPosition(random);
+            do
+            {
+                goal = SampleFloorPosition(random);
+            }
+            while (Vector3.Distance(spawn, goal) < 3f);
+        }
 
         character.enabled = false;
         exit.gameObject.SetActive(false);
@@ -76,6 +109,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         player.BeginTest(null);
         player.EpisodeEnded += OnPlayerEnded;
         sensors.BeginAttempt();
+        InitialExitVisible = sensors.ExitVisible;
         ActiveSeed = seed;
         SpawnPosition = spawn;
         attemptEnded = false;
@@ -93,11 +127,11 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         actionEndTime = Time.fixedTime;
     }
 
-    private Vector3 SampleFloorPosition(System.Random random)
+    private Vector3 SampleFloorPosition(System.Random random, float margin = 1.5f)
     {
         Bounds bounds = roomFloor.bounds;
-        float x = Mathf.Lerp(bounds.min.x + 1.5f, bounds.max.x - 1.5f, (float)random.NextDouble());
-        float z = Mathf.Lerp(bounds.min.z + 1.5f, bounds.max.z - 1.5f, (float)random.NextDouble());
+        float x = Mathf.Lerp(bounds.min.x + margin, bounds.max.x - margin, (float)random.NextDouble());
+        float z = Mathf.Lerp(bounds.min.z + margin, bounds.max.z - margin, (float)random.NextDouble());
         return new Vector3(x, bounds.max.y + 0.01f, z);
     }
 
@@ -122,7 +156,11 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         if (!attemptEnded && player.EpisodeActive)
         {
             SenseExitBeforeAction();
-            QaAction command = QaPlayerPolicyMapping.Decode(action);
+            QaAction command;
+            if (movementOnly)
+                command = new QaAction(action[0], action[1], false, false, 0);
+            else
+                command = QaPlayerPolicyMapping.Decode(action);
             movementRequested = new Vector2(command.MoveX, command.MoveY).sqrMagnitude > 0.0001f;
             player.ApplyAction(command);
         }

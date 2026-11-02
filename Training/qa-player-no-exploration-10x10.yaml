@@ -1,0 +1,19 @@
+# Fresh movement-only policy; 500 episodes in the 10 x 10 room.
+# The episode-limited session runner stops at 500 complete episodes and
+# evaluates the frozen checkpoint before manual advancement to 20 x 20.
+model: ppo
+port: 7783
+seed: 0
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-player-no-exploration-10x10-runs
+resume_from: null
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
