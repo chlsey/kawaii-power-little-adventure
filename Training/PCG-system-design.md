@@ -132,38 +132,28 @@ The initial return policy is:
 
 ## Planned player curriculum
 
-The curriculum trains the player model to acquire the gameplay capabilities needed for QA tasks. Adding a gameplay feature should add or extend a training stage with observable state, usable actions and developer-defined requirements whose achievement can be measured.
+The game owns scenarios and learning rewards; the shared RL framework supplies training and inference. Establish individual gameplay capabilities before combining them into complete QA attempts.
 
-1. Define each stage's test units/levels, developer requirements, enabled features, seed distribution, observation/action schema, player-training reward, episode limits and promotion criteria.
-2. Start or resume a compatible QA checkpoint. At each reset, the curriculum selects a scenario and seed from the active stage; Unity resets the player and generates or loads that scenario.
-3. Train the player model in Python through the game-owned RL environment. Unity supplies gameplay observations and event signals; the training environment returns the stage's learning reward and explicit outcomes based on the task definition.
-4. Include scenarios from earlier stages in later training so new mechanics do not replace basic navigation and completion skills.
-5. Periodically freeze a checkpoint and evaluate it on separate validation scenarios and seeds, including earlier stages. Validation runs do not update the policy.
-6. Promote the player model when it achieves the stage's developer-defined requirements at the configured performance threshold and passes earlier-stage checks. Otherwise continue training and inspect the failure reasons.
-7. Save the checkpoint together with the active curriculum stage, sampling settings, reward configuration, schema and game revision so training can resume with the same task definition.
-8. Export a validated player PPO checkpoint to ONNX, verify Python/ONNX/Unity action agreement, and rerun the QA tasks through the deployed runtime path. For PCG clearability training, select a player model whose ability to attempt that clear requirement has been validated.
+1. Define each stage's scenarios, supported mechanics, observation/action contract, seeds, rewards, episode limits, and measurable promotion criteria. Resume only a compatible checkpoint; contract changes require explicit transfer or a fresh model.
+2. Train on the active stage, retaining earlier scenarios as skills expand. Freeze checkpoints for evaluation on separate seeds, including earlier-stage regression checks; evaluation never updates weights.
+3. Review task success and failure reasons, then advance manually only after the requirements pass. Save the checkpoint with its stage, sampling/reward settings, contract, and game revision.
+4. Export a validated policy to ONNX, verify Python/ONNX/Unity action agreement, and evaluate complete QA attempts before selecting it as the fixed PCG evaluator.
 
-The curriculum should be organized around the player's required capabilities:
+Current and later stages:
+- The current movement campaign starts fresh in a 10 x 10 room, then continues at 20 x 20 and 30 x 30 with manual advancement and 500 training episodes per size. Exits start visible, 3-6 units away; exploration reward is disabled. Vision remains 12 units, with two movement outputs and a 30-second limit. The [config](qa-player-no-exploration-10x10.yaml) owns learning settings; the [QA changelog](changelog/qa-player.md) owns experiment lineage and results. Review frozen evaluation before advancement.
+- Later stages increase distance, introduce hidden exits, and then add obstacles. Their scenario definitions, earlier-stage replay proportions, and promotion thresholds remain to be specified before use.
 
-| Stage | Training task | Capability to establish |
-| --- | --- | --- |
-| Initial QA task | A developer-defined unit/level with a small set of supported mechanics and explicit requirements. | Perform the actions needed to achieve the selected requirements under the configured conditions. |
-| Broader task coverage | Variations of those units/levels, seeds and task conditions. | Retain the learned capability beyond a single training scenario. |
-| Added game mechanics | Introduce a supported mechanic in focused QA tasks, then combine it with previously learned tasks. | Achieve requirements involving the new feature while retaining earlier player capabilities. |
+### Policy strategy options
 
-- Progress the curriculum from simpler tasks to combinations that reflect the current game. Keep the validation set separate from training samples.
-- Define the player's learning objective and reward from the stage's task and requirements. Stage-specific rewards may teach prerequisite behavior; they do not become PCG rewards automatically.
-- Version the observation/action contract when new features change policy inputs or outputs. Resume directly only when the checkpoint remains compatible; define model transfer or retraining when the contract changes.
-- Keep earlier validation stages as regression checks when the game or QA model changes.
-- → Add the first stage's developer-defined unit/level and requirements, concrete scenarios and reward terms, training/validation seed sets, replay proportions, evaluation frequency and promotion thresholds.
+The [RL policy evolution design](../../../google-docs/reinforcement-learning-framework-system-design.md#planned-policy-evolution-strategies) owns the future patterns: weight transfer, movement/action specialists, and memory/navigation/local-control separation. These remain proposals.
+
+The game already has explicit memory: `ModelSensorPackage` retains discovered cells per attempt and supplies a player-centered window to one feedforward policy. It has no separate waypoint navigator or recurrent policy. The future memory pattern would retain that map, select targets from observed information, and train a local movement policy to reach them using current sensors. Establish local movement with visible nearby exits before testing remembered/hidden goals; evaluate complete navigation separately.
 
 ### Integration sequence
 
-1. Define the first curriculum stage's scenarios, requirements, and promotion criteria around the existing player environment and reliable exit/death/time-limit signals.
-2. Add scenario sampling and stage validation to the training workflow, keeping model configuration and run artifacts in the game repository.
-3. Train and validate a policy compatible with the current sensor/grid contract, export it, and evaluate it through the existing `QaPolicyRunner` and optional QA recorder.
-4. Connect the deployed attempt outcome to `PcgRlEnvironment`, keeping the PCG action running until evaluation finishes; verify reward and reset behavior end to end.
-5. Extend the curriculum as gameplay capabilities expand, validating each player model before replacing the fixed PCG evaluator.
+1. Establish reliable movement through the room-size curriculum and separate evaluation.
+2. Extend validated capabilities to searching, obstacles, and additional mechanics; use a future policy pattern only when an experiment justifies it.
+3. Connect the fixed deployed player's attempt outcome to `PcgRlEnvironment`, holding the PCG action open until evaluation finishes. Validate reward/reset behavior end to end before training for clearability.
 
 ## Implemented examples
 

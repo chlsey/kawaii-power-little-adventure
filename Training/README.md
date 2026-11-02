@@ -1,5 +1,7 @@
 # Model training
 
+See the [training change logs](changelog/README.md) for the [QA player's iteration history](changelog/qa-player.md) and [PCG experiments](changelog/pcg.md): changes, checkpoint lineage, measured results, and proposals that have not been tried.
+
 ## QA player training
 
 For the simpler navigation task, use [the separate single-room training scene](../Assets/Scenes/QaSingleRoomTraining.README.md) and `Training/qa-player-single-room.yaml`. It provides 10 x 10 and 40 x 40 variants with randomized player and exit positions while retaining the current observations, actions, and rewards. The instructions below cover full-dungeon training.
