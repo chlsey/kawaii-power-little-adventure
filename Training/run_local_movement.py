@@ -56,7 +56,9 @@ def wait_record(directory, name, process, timeout=300):
 def launch_unity(executable, directory, config, episodes, verify):
     directory.mkdir(exist_ok=True)
     save(directory / 'session.json', {'scene': config['unity_scene'], 'port': config['port'], 'episodes': episodes,
-         'verify': verify, 'room_width': config['room_size'][0], 'room_depth': config['room_size'][1]})
+         'verify': verify, 'room_width': config['room_size'][0], 'room_depth': config['room_size'][1],
+         'initial_exit_visible': config['initial_exit_visible'],
+         'min_exit_distance': config['exit_distance_range'][0], 'max_exit_distance': config['exit_distance_range'][1]})
     process = subprocess.Popen([
         str(executable), '-batchmode', '-nographics', '-projectPath', str(GAME),
         '-executeMethod', 'QaLocalMovementSession.Run', '-trainingRunDirectory', str(directory),
@@ -103,6 +105,8 @@ class RecordedEnvironment(UnityGymEnv):
         assert self.observation_size == 134 and self.action_size == 2
         self.directory, self.process = directory, process
         self.target, self.first_seed = target, seed
+        self.initial_exit_visible = config['initial_exit_visible']
+        self.exit_distance_range = config['exit_distance_range']
         self.progress_path, self.phase = progress_path, phase
         self.episodes = []
         self.steps = 0
@@ -115,7 +119,9 @@ class RecordedEnvironment(UnityGymEnv):
         self.active_seed = self.first_seed + len(self.episodes)
         observation, info = super().reset(seed=self.active_seed, options=options)
         self.episode_steps, self.episode_reward = 0, 0.
-        assert observation[130] == 1 and np.all(np.abs(observation) <= 1.00001)
+        assert observation[130] == int(self.initial_exit_visible) and np.all(np.abs(observation) <= 1.00001)
+        if not self.initial_exit_visible:
+            assert np.all(observation[130:134] == 0)
         return observation, info
 
     def step(self, action):
@@ -128,7 +134,8 @@ class RecordedEnvironment(UnityGymEnv):
             assert record['seed'] == self.active_seed
             late_terminal = (record['completed'] or record['player_died']) and record['steps'] == self.episode_steps - 1
             assert record['steps'] == self.episode_steps or late_terminal
-            assert record['initial_exit_visible'] and 2.9999 <= record['initial_exit_distance'] <= 6.0001
+            assert record['initial_exit_visible'] == self.initial_exit_visible
+            assert self.exit_distance_range[0] - .0001 <= record['initial_exit_distance'] <= self.exit_distance_range[1] + .0001
             assert record['elapsed_seconds'] <= 30.0001 and record['exploration_reward'] == 0
             record.update(reward=self.episode_reward, trainer_requests=self.episode_steps)
             self.episodes.append(record)
@@ -164,6 +171,7 @@ def run(config_path, unity):
          'parent_checkpoint': str(resume_path) if resume_path else None, 'parent_checkpoint_sha256': parent_hash,
          'observation_contract': 'local-vision-v1', 'observation_size': 134, 'action_size': 2,
          'room_size': config['room_size'], 'episode_seconds': 30, 'manual_advancement': True, 'source_sha256': hashes,
+         'initial_exit_visible': config['initial_exit_visible'], 'exit_distance_range': config['exit_distance_range'],
          'training_seed_range': [config['seed'], config['seed'] + config['max_episodes'] - 1],
          'evaluation_seed_range': [config['evaluation_seed'], config['evaluation_seed'] + config['evaluation_episodes'] - 1]})
     print(f'Run directory: {directory}', flush=True)
@@ -202,6 +210,7 @@ def run(config_path, unity):
                       initial_model_timesteps=initial_model_timesteps, final_model_timesteps=model.num_timesteps,
                       parent_checkpoint=str(resume_path) if resume_path else None, parent_checkpoint_sha256=parent_hash,
                       observation_size=134, action_size=2, observation_contract='local-vision-v1', room_size=config['room_size'],
+                      initial_exit_visible=config['initial_exit_visible'], exit_distance_range=config['exit_distance_range'],
                       manual_advancement=True, checkpoint_sha256=hashlib.sha256(checkpoint.read_bytes()).hexdigest())
         save(directory / 'result.json', result)
         vector.close()

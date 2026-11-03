@@ -19,3 +19,5 @@ evaluation_episodes: 100
 evaluation_seed: 100000
 unity_scene: Assets/Scenes/QaLocalMovementTraining.unity
 room_size: [10, 10]
+initial_exit_visible: true
+exit_distance_range: [3, 6]

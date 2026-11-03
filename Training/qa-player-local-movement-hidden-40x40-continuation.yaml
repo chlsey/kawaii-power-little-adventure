@@ -1,0 +1,23 @@
+# Continue a preserved copy of the hidden-exit checkpoint for 500 additional episodes.
+model: ppo
+port: 7783
+seed: 1500
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-player-local-movement-hidden-40x40-continuation
+resume_from: ../SavedModels/qa-local-movement-20261103-010610-continuation-start/final_model.zip
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 100000
+unity_scene: Assets/Scenes/QaLocalMovementHidden40Training.unity
+room_size: [40, 40]
+initial_exit_visible: false
+exit_distance_range: [14, 18]

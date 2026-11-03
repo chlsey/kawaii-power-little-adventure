@@ -105,16 +105,32 @@ public static class QaLocalMovementSession
         Require(Mathf.Abs(floor.bounds.size.x - session.room_width) < 0.001f &&
             Mathf.Abs(floor.bounds.size.z - session.room_depth) < 0.001f, "Configured room dimensions");
         Require(environment.Sensors.RayRange == 12f, "Unchanged 12-unit vision range");
+        Require(serialized.FindProperty("minExitDistance").floatValue == session.min_exit_distance &&
+            serialized.FindProperty("maxExitDistance").floatValue == session.max_exit_distance, "Configured exit distances");
         foreach (string field in new[] { "viewDiscoveryRewardPerCell", "maxViewDiscoveryRewardPerAction", "maxViewDiscoveryRewardPerAttempt" })
             Require(serialized.FindProperty(field).floatValue == 0f, "Exploration reward disabled");
         for (int seed = 0; seed < 100; seed++)
         {
             environment.ResetEpisode(seed);
             float[] observation = environment.CollectObservation();
-            Require(observation.Length == 134 && observation[130] == 1f, "Visible target on seeded reset");
-            Vector3 towardExit = (environment.ExitPosition - environment.SpawnPosition).normalized;
-            Vector3 sensedDirection = new Vector3(observation[131], 0f, observation[132]);
-            Require(Vector3.Dot(towardExit, sensedDirection) > 0.9f, "Vision and movement direction alignment");
+            Require(observation.Length == 134 && environment.InitialExitVisible == session.initial_exit_visible,
+                "Configured visibility on seeded reset");
+            float distance = Vector3.Distance(environment.ExitPosition, environment.SpawnPosition);
+            Require(distance >= session.min_exit_distance - 0.0001f && distance <= session.max_exit_distance + 0.0001f,
+                "Seeded spawn distance");
+            if (session.initial_exit_visible)
+            {
+                Require(observation[130] == 1f, "Visible target signal");
+                Vector3 towardExit = (environment.ExitPosition - environment.SpawnPosition).normalized;
+                Vector3 sensedDirection = new Vector3(observation[131], 0f, observation[132]);
+                Require(Vector3.Dot(towardExit, sensedDirection) > 0.9f, "Vision and movement direction alignment");
+            }
+            else
+            {
+                Require(distance > environment.Sensors.RayRange, "Exit starts beyond vision range");
+                for (int i = 130; i < 134; i++)
+                    Require(observation[i] == 0f, "Unseen exit supplies no target signal");
+            }
         }
 
         // Exercise every compass direction using sensed directions, never the goal position as an action.
@@ -138,6 +154,8 @@ public static class QaLocalMovementSession
 
         environment.ResetEpisode(0);
         // Keep the sensor's previously discovered exit in memory, but hide it from current vision.
+        PlaceActors(environment, exit, new Vector3(3f, 0f, 0f));
+        Require(environment.CollectObservation()[130] == 1f, "Visible exit recorded before memory check");
         PlaceActors(environment, exit, new Vector3(20f, 0f, 0f), false);
         float[] hidden = environment.CollectObservation();
         for (int i = 130; i < 134; i++)
@@ -156,7 +174,10 @@ public static class QaLocalMovementSession
         File.WriteAllText(Path.Combine(directory, "verification.json"),
             "{\"room_width\":" + session.room_width.ToString(System.Globalization.CultureInfo.InvariantCulture) +
             ",\"room_depth\":" + session.room_depth.ToString(System.Globalization.CultureInfo.InvariantCulture) +
-            ",\"observation_size\":134,\"action_size\":2,\"reset_seeds\":100,\"all_exits_visible\":true,\"sensor_guided_compass_completions\":8,\"hidden_exit_signal_zero\":true,\"timeout_actions\":300,\"vision_range\":12,\"exploration_reward\":0}");
+            ",\"min_exit_distance\":" + session.min_exit_distance.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+            ",\"max_exit_distance\":" + session.max_exit_distance.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+            ",\"initial_exit_visible\":" + session.initial_exit_visible.ToString().ToLowerInvariant() +
+            ",\"observation_size\":134,\"action_size\":2,\"reset_seeds\":100,\"all_resets_match_visibility\":true,\"sensor_guided_compass_completions\":8,\"hidden_exit_signal_zero\":true,\"timeout_actions\":300,\"vision_range\":12,\"exploration_reward\":0}");
     }
 
     private static void PlaceActors(QaSingleRoomRlEnvironment environment, Transform exit, Vector3 offset, bool resetMemory = true)
@@ -193,7 +214,13 @@ public static class QaLocalMovementSession
         }
     }
 
-    [Serializable] private class Session { public string scene; public int port, episodes; public bool verify; public float room_width, room_depth; }
+    [Serializable] private class Session
+    {
+        public string scene;
+        public int port, episodes;
+        public bool verify, initial_exit_visible;
+        public float room_width, room_depth, min_exit_distance, max_exit_distance;
+    }
     [Serializable] private class Episode
     {
         public int episode, seed, steps, stuck_events, stuck_penalty_steps;
