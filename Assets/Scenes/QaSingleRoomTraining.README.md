@@ -5,6 +5,8 @@ Choose a scene and press Play. Start the external Python trainer from the game r
 | Scene | Floor size | Config | TCP port |
 | --- | --- | --- | --- |
 | [QaLocalMovementTraining](QaLocalMovementTraining.unity) | 10 x 10; current vision only, no map input | [qa-player-local-movement.yaml](../../Training/qa-player-local-movement.yaml) | 7783 |
+| [QaLocalMovement20Training](QaLocalMovement20Training.unity) | 20 x 20; visible exit 3-6 units away | [qa-player-local-movement-20x20.yaml](../../Training/qa-player-local-movement-20x20.yaml) | 7783 |
+| [QaLocalMovementHidden40Training](QaLocalMovementHidden40Training.unity) | 40 x 40; exit starts outside vision, 14-18 units away | [qa-player-local-movement-hidden-40x40.yaml](../../Training/qa-player-local-movement-hidden-40x40.yaml) | 7783 |
 | [QaMovementNoExploration10Training](QaMovementNoExploration10Training.unity) | 10 x 10; nearby exit; exploration reward disabled | [qa-player-no-exploration-10x10.yaml](../../Training/qa-player-no-exploration-10x10.yaml) | 7783 |
 | [QaMovementStage1Training](QaMovementStage1Training.unity) | 40 x 40; exit 3-6 units away | [qa-player-movement-stage1.yaml](../../Training/qa-player-movement-stage1.yaml) | 7783 |
 | [QaSingleRoomTraining](QaSingleRoomTraining.unity) | 10 x 10 | [qa-player-single-room.yaml](../../Training/qa-player-single-room.yaml) | 7781 |
@@ -18,7 +20,9 @@ The shared RL training dependencies must be installed in the chosen Python envir
 
 ## Local movement experiment
 
-Objective: leave the 10 x 10 room using local vision and movement X/Y. `QaLocalMovementPolicyMapping` defines **local-vision-v1**, a fresh **134 -> 64 -> 64 -> 2** policy. Grid checkpoints are incompatible; no weights are transferred. Each reset places a visible exit 3-6 units away in a random direction. Keep 12-unit rays, 30 seconds/episode, learning rate 0.0002, entropy 0.01, and the existing completion/progress/time/stuck rewards; exploration reward remains zero.
+Objective: reach a single-room exit using local vision and movement X/Y. `QaLocalMovementPolicyMapping` defines **local-vision-v1**, a **134 -> 64 -> 64 -> 2** policy. The 10 x 10 config starts fresh; later configs resume a compatible local-vision checkpoint and its optimizer. Grid checkpoints are incompatible. Keep 12-unit rays, 30 seconds/episode, learning rate 0.0002, entropy 0.01, and the existing completion/progress/time/stuck rewards; exploration reward remains zero.
+
+The visible-exit stages place the exit 3-6 units away in 10 x 10 and 20 x 20 rooms. The hidden-exit stage continues the 20 x 20 checkpoint in a **40 x 40 room**, with randomized direction and **14-18 unit** spawn-to-exit distance. The 14-unit minimum leaves the 2 x 2 exit collider beyond the 12-unit rays. Both actors remain at least 1.5 units inside the floor edges. The config records the expected initial visibility and placement range; the launcher verifies them at runtime. No exit summary is supplied until a ray actually detects the exit.
 
 | Input indexes | Encoding |
 | --- | --- |
@@ -31,10 +35,10 @@ No health, inventory, combat actions, map cells, visited history, or remembered 
 From the game repository, with Unity closed:
 
 ```powershell
-python -B Training/run_local_movement.py --config Training/qa-player-local-movement.yaml
+python -B Training/run_local_movement.py --config Training/qa-player-local-movement-hidden-40x40.yaml
 ```
 
-This maintained command launches Unity, verifies visibility/alignment on 100 seeds, checks sensor-guided completion in all eight compass directions and hidden-exit signal clearing, then trains exactly 500 episodes and runs 100 frozen deterministic evaluations. Runtime records, source hashes, PPO metrics, and checkpoints go under `Logs/qa-player-local-movement/`; completed models/configs/results go under `SavedModels/qa-local-movement-<run>/`. The maintained Editor entry point is `Assets/Editor/QaLocalMovementSession.cs`; no per-run scripts are generated. Review results before manually changing difficulty. The existing five-output deployment adapter does not support this contract yet.
+This maintained command launches Unity, verifies the configured room size, exit distances, and initial visibility on 100 seeds, checks sensor-guided completion in all eight compass directions and hidden-exit signal clearing, then trains exactly 500 episodes and runs 100 frozen deterministic evaluations. Per-episode records also check the starting visibility and distance. Runtime records, source hashes, PPO metrics, and checkpoints go under the config's `output_dir`; completed models/configs/results go under `SavedModels/qa-local-movement-<run>/`. The maintained Editor entry point is `Assets/Editor/QaLocalMovementSession.cs`; no per-run scripts are generated. The hidden-exit experiment retains current-vision-only inputs and zero exploration reward, so it tests search/transfer without a new navigator or memory input. Review results before manually changing difficulty. The existing five-output deployment adapter does not support this contract yet.
 
 ## Manual movement curriculum: stage 1
 

@@ -4,7 +4,7 @@ See the [training change logs](changelog/README.md) for the [QA player's iterati
 
 ## QA player training
 
-The current [local movement experiment](../Assets/Scenes/QaSingleRoomTraining.README.md#local-movement-experiment) uses the maintained `run_local_movement.py` command to train a 134-input policy without map encoding. Historical grid/full-dungeon workflows follow below.
+The current [local movement experiment](../Assets/Scenes/QaSingleRoomTraining.README.md#local-movement-experiment) uses the maintained `run_local_movement.py` command to train a 134-input policy without map encoding. The [hidden-exit config](qa-player-local-movement-hidden-40x40.yaml) continues the validated 20 x 20 checkpoint in a 40 x 40 room with the exit initially outside vision. The scene guide owns placement and launch details; the changelog owns results. Historical grid/full-dungeon workflows follow below.
 
 For the simpler navigation task, use [the separate single-room training scene](../Assets/Scenes/QaSingleRoomTraining.README.md) and `Training/qa-player-single-room.yaml`. It provides 10 x 10 and 40 x 40 variants with randomized player and exit positions while retaining the current observations, actions, and rewards. The instructions below cover full-dungeon training.
 

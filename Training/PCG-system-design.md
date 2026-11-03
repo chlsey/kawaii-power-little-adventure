@@ -140,8 +140,8 @@ The game owns scenarios and learning rewards; the shared RL framework supplies t
 4. Export a validated policy to ONNX, verify Python/ONNX/Unity action agreement, and evaluate complete QA attempts before selecting it as the fixed PCG evaluator.
 
 Current and later stages:
-- The active experiment trains a fresh local movement policy to leave a 10 x 10 room: current vision only, 134 inputs, two movement outputs, visible exits 3-6 units away, unchanged 12-unit rays, no exploration reward, and a 30-second limit. The [config](qa-player-local-movement.yaml) owns learning settings and the 500-training/100-evaluation budget; the [QA changelog](changelog/qa-player.md) owns lineage/results. Larger-room advancement is paused until reliable local movement is established and reviewed manually.
-- Later stages increase distance, introduce hidden exits, and then add obstacles. Their scenario definitions, earlier-stage replay proportions, and promotion thresholds remain to be specified before use.
+- The local movement lineage starts fresh in a 10 x 10 room, then continues in a 20 x 20 room with visible exits 3-6 units away. The current authorized experiment resumes that 20 x 20 checkpoint in a **40 x 40 room with initially unseen exits 14-18 units away**. It retains current vision only, 134 inputs, two movement outputs, 12-unit rays, zero exploration reward, and a 30-second limit. The [hidden-exit config](qa-player-local-movement-hidden-40x40.yaml) owns learning settings and the 500-training/100-evaluation budget; the [QA changelog](changelog/qa-player.md) owns lineage/results. Review results before any further manual advancement.
+- Hidden-exit search is now an experiment with the existing local policy, not an implemented higher-level navigator. Obstacles, earlier-stage replay proportions, and promotion thresholds remain to be specified before use.
 
 ### Policy strategy options
 
