@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "completed_episodes": 100,
+  "successes": 58,
+  "timeouts": 42,
+  "deaths": 0,
+  "success_rate": 0.58,
+  "mean_successful_exit_seconds": 7.325862156933751,
+  "total_stuck_penalty": 79.67994091287255,
+  "total_exploration_reward": 0.0,
+  "seed_range": [
+    100000,
+    100099
+  ],
+  "deterministic_actions": true,
+  "weight_updates": 0,
+  "checkpoint_sha256": "b0266a1f169509d23b0ae86662091769e546504a7d26cc3b7d831c1141d54250"
+}

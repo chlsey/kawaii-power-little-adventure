@@ -1,0 +1,51 @@
+{
+  "status": "complete",
+  "completed_episodes": 500,
+  "successes": 293,
+  "timeouts": 207,
+  "deaths": 0,
+  "success_rate": 0.586,
+  "mean_successful_exit_seconds": 8.298293664593745,
+  "total_stuck_penalty": 6.249996926635504,
+  "total_exploration_reward": 0.0,
+  "training_steps": 86414,
+  "training_wall_seconds": 608.7563088999595,
+  "fresh_policy": false,
+  "initial_model_timesteps": 27586,
+  "final_model_timesteps": 114000,
+  "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa-local-movement-20261102-232854\\final_model.zip",
+  "parent_checkpoint_sha256": "ca867f6d4d0b6a161830961d61fb3bfccdc6ec5e7d679ac8eaf06442844104d7",
+  "observation_size": 134,
+  "action_size": 2,
+  "observation_contract": "local-vision-v1",
+  "room_size": [
+    40,
+    40
+  ],
+  "initial_exit_visible": false,
+  "exit_distance_range": [
+    14,
+    18
+  ],
+  "manual_advancement": true,
+  "checkpoint_sha256": "b0266a1f169509d23b0ae86662091769e546504a7d26cc3b7d831c1141d54250",
+  "evaluation": {
+    "status": "complete",
+    "completed_episodes": 100,
+    "successes": 58,
+    "timeouts": 42,
+    "deaths": 0,
+    "success_rate": 0.58,
+    "mean_successful_exit_seconds": 7.325862156933751,
+    "total_stuck_penalty": 79.67994091287255,
+    "total_exploration_reward": 0.0,
+    "seed_range": [
+      100000,
+      100099
+    ],
+    "deterministic_actions": true,
+    "weight_updates": 0,
+    "checkpoint_sha256": "b0266a1f169509d23b0ae86662091769e546504a7d26cc3b7d831c1141d54250"
+  },
+  "saved_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa-local-movement-20261103-010610\\final_model.zip"
+}

@@ -1,0 +1,12 @@
+{
+  "purpose": "Preserved starting copy for QA-17; not the continuation result.",
+  "copied_at_utc": "2026-11-03T02:07:28.341661+00:00",
+  "source_checkpoint": "../qa-local-movement-20261103-010610/final_model.zip",
+  "checkpoint_sha256": "b0266a1f169509d23b0ae86662091769e546504a7d26cc3b7d831c1141d54250",
+  "initial_model_timesteps": 114000,
+  "source_training_episodes": 500,
+  "source_frozen_evaluation": {
+    "successes": 58,
+    "attempts": 100
+  }
+}
