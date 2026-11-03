@@ -1,0 +1,21 @@
+# Continue the validated 10 x 10 local movement policy; next advancement stays manual.
+model: ppo
+port: 7783
+seed: 500
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-player-local-movement-20x20
+resume_from: ../SavedModels/qa-local-movement-20261102-225827/final_model.zip
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 100000
+unity_scene: Assets/Scenes/QaLocalMovement20Training.unity
+room_size: [20, 20]

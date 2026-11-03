@@ -55,7 +55,8 @@ def wait_record(directory, name, process, timeout=300):
 
 def launch_unity(executable, directory, config, episodes, verify):
     directory.mkdir(exist_ok=True)
-    save(directory / 'session.json', {'scene': config['unity_scene'], 'port': config['port'], 'episodes': episodes, 'verify': verify})
+    save(directory / 'session.json', {'scene': config['unity_scene'], 'port': config['port'], 'episodes': episodes,
+         'verify': verify, 'room_width': config['room_size'][0], 'room_depth': config['room_size'][1]})
     process = subprocess.Popen([
         str(executable), '-batchmode', '-nographics', '-projectPath', str(GAME),
         '-executeMethod', 'QaLocalMovementSession.Run', '-trainingRunDirectory', str(directory),
@@ -143,7 +144,11 @@ class RecordedEnvironment(UnityGymEnv):
 
 def run(config_path, unity):
     config = load_config(config_path)
-    assert config['resume_from'] is None, 'The local-vision contract requires fresh weights.'
+    resume_path = None
+    parent_hash = None
+    if config['resume_from']:
+        resume_path = (config_path.parent / config['resume_from']).resolve()
+        parent_hash = hashlib.sha256(resume_path.read_bytes()).hexdigest()
     output = (config_path.parent / config['output_dir']).resolve()
     directory = output / datetime.now(timezone.utc).strftime('%Y%m%d-%H%M%S')
     directory.mkdir(parents=True)
@@ -155,9 +160,10 @@ def run(config_path, unity):
                'Assets/PCGDungeon/Scripts/RL/QaSingleRoomRlEnvironment.cs', 'Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs',
                'Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs', 'Assets/Editor/QaLocalMovementSession.cs', 'Training/run_local_movement.py']
     hashes = {name: hashlib.sha256((GAME / name).read_bytes()).hexdigest() for name in sources}
-    save(directory / 'run.json', {'started_at_utc': datetime.now(timezone.utc).isoformat(), 'fresh_policy': True,
+    save(directory / 'run.json', {'started_at_utc': datetime.now(timezone.utc).isoformat(), 'fresh_policy': resume_path is None,
+         'parent_checkpoint': str(resume_path) if resume_path else None, 'parent_checkpoint_sha256': parent_hash,
          'observation_contract': 'local-vision-v1', 'observation_size': 134, 'action_size': 2,
-         'room_size': [10, 10], 'episode_seconds': 30, 'manual_advancement': True, 'source_sha256': hashes,
+         'room_size': config['room_size'], 'episode_seconds': 30, 'manual_advancement': True, 'source_sha256': hashes,
          'training_seed_range': [config['seed'], config['seed'] + config['max_episodes'] - 1],
          'evaluation_seed_range': [config['evaluation_seed'], config['evaluation_seed'] + config['evaluation_episodes'] - 1]})
     print(f'Run directory: {directory}', flush=True)
@@ -171,21 +177,31 @@ def run(config_path, unity):
         wait_ready(directory, process)
         environment = RecordedEnvironment(directory, process, config, config['max_episodes'], config['seed'], directory / 'progress.json', phase)
         vector = DummyVecEnv([lambda: Monitor(environment)])
-        model = PPO('MlpPolicy', vector, learning_rate=config['learning_rate'], gamma=config['gamma'],
-                    ent_coef=config['ent_coef'], n_steps=config['n_steps'], batch_size=config['ppo']['batch_size'],
-                    device=config['device'], seed=config['seed'], verbose=0)
+        if resume_path:
+            # Continue the compatible policy and optimizer; keep cumulative model steps.
+            model = PPO.load(resume_path, env=vector, device=config['device'], seed=config['seed'])
+            assert model.learning_rate == config['learning_rate'] and model.gamma == config['gamma']
+            assert model.ent_coef == config['ent_coef'] and model.n_steps == config['n_steps']
+            assert model.batch_size == config['ppo']['batch_size']
+        else:
+            model = PPO('MlpPolicy', vector, learning_rate=config['learning_rate'], gamma=config['gamma'],
+                        ent_coef=config['ent_coef'], n_steps=config['n_steps'], batch_size=config['ppo']['batch_size'],
+                        device=config['device'], seed=config['seed'], verbose=0)
+        initial_model_timesteps = model.num_timesteps
         model.set_logger(configure(str(directory), ['csv']))
         callbacks = [StopTrainingOnMaxEpisodes(config['max_episodes'])]
         if config['checkpoint_freq']:
             callbacks.append(CheckpointCallback(config['checkpoint_freq'], str(directory / 'checkpoints')))
         started = time.monotonic()
-        model.learn(config['total_timesteps'], callback=CallbackList(callbacks))
+        model.learn(config['total_timesteps'], callback=CallbackList(callbacks), reset_num_timesteps=resume_path is None)
         assert len(environment.episodes) == config['max_episodes']
         checkpoint = directory / 'final_model.zip'
         model.save(checkpoint)
         result = dict(status='training_complete', **summary(environment.episodes), training_steps=environment.steps,
-                      training_wall_seconds=time.monotonic() - started, fresh_policy=True, initial_model_timesteps=0,
-                      observation_size=134, action_size=2, observation_contract='local-vision-v1', room_size=[10, 10],
+                      training_wall_seconds=time.monotonic() - started, fresh_policy=resume_path is None,
+                      initial_model_timesteps=initial_model_timesteps, final_model_timesteps=model.num_timesteps,
+                      parent_checkpoint=str(resume_path) if resume_path else None, parent_checkpoint_sha256=parent_hash,
+                      observation_size=134, action_size=2, observation_contract='local-vision-v1', room_size=config['room_size'],
                       manual_advancement=True, checkpoint_sha256=hashlib.sha256(checkpoint.read_bytes()).hexdigest())
         save(directory / 'result.json', result)
         vector.close()

@@ -54,7 +54,7 @@ public static class QaLocalMovementSession
         Require(host.Port == session.port && host.IsListening, "Training host readiness");
         Require(environment.ObservationSize == 134 && environment.ActionSize == 2, "Local movement contract");
         if (session.verify)
-            yield return VerifyVision(environment);
+            yield return VerifyVision(environment, session);
         File.WriteAllText(Path.Combine(directory, "unity-ready.txt"), "134 observations; 2 movement actions\n");
 
         QaEpisodeMetrics previous = null;
@@ -97,12 +97,13 @@ public static class QaLocalMovementSession
         EditorApplication.Exit(0);
     }
 
-    private static IEnumerator VerifyVision(QaSingleRoomRlEnvironment environment)
+    private static IEnumerator VerifyVision(QaSingleRoomRlEnvironment environment, Session session)
     {
         var serialized = new SerializedObject(environment);
         var floor = (BoxCollider)serialized.FindProperty("roomFloor").objectReferenceValue;
         var exit = (Transform)serialized.FindProperty("exit").objectReferenceValue;
-        Require(Mathf.Abs(floor.bounds.size.x - 10f) < 0.001f && Mathf.Abs(floor.bounds.size.z - 10f) < 0.001f, "10 x 10 room");
+        Require(Mathf.Abs(floor.bounds.size.x - session.room_width) < 0.001f &&
+            Mathf.Abs(floor.bounds.size.z - session.room_depth) < 0.001f, "Configured room dimensions");
         Require(environment.Sensors.RayRange == 12f, "Unchanged 12-unit vision range");
         foreach (string field in new[] { "viewDiscoveryRewardPerCell", "maxViewDiscoveryRewardPerAction", "maxViewDiscoveryRewardPerAttempt" })
             Require(serialized.FindProperty(field).floatValue == 0f, "Exploration reward disabled");
@@ -153,7 +154,9 @@ public static class QaLocalMovementSession
         }
         environment.ResetEpisode(0);
         File.WriteAllText(Path.Combine(directory, "verification.json"),
-            "{\"observation_size\":134,\"action_size\":2,\"reset_seeds\":100,\"all_exits_visible\":true,\"sensor_guided_compass_completions\":8,\"hidden_exit_signal_zero\":true,\"timeout_actions\":300,\"vision_range\":12,\"exploration_reward\":0}");
+            "{\"room_width\":" + session.room_width.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+            ",\"room_depth\":" + session.room_depth.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+            ",\"observation_size\":134,\"action_size\":2,\"reset_seeds\":100,\"all_exits_visible\":true,\"sensor_guided_compass_completions\":8,\"hidden_exit_signal_zero\":true,\"timeout_actions\":300,\"vision_range\":12,\"exploration_reward\":0}");
     }
 
     private static void PlaceActors(QaSingleRoomRlEnvironment environment, Transform exit, Vector3 offset, bool resetMemory = true)
@@ -190,7 +193,7 @@ public static class QaLocalMovementSession
         }
     }
 
-    [Serializable] private class Session { public string scene; public int port, episodes; public bool verify; }
+    [Serializable] private class Session { public string scene; public int port, episodes; public bool verify; public float room_width, room_depth; }
     [Serializable] private class Episode
     {
         public int episode, seed, steps, stuck_events, stuck_penalty_steps;

@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-11-02T23:28:54.076688+00:00",
+  "fresh_policy": false,
+  "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa-local-movement-20261102-225827\\final_model.zip",
+  "parent_checkpoint_sha256": "0c85d18b59478abc246365139116706bdf8416efbfbbcfd89ca53ada02764d64",
+  "observation_contract": "local-vision-v1",
+  "observation_size": 134,
+  "action_size": 2,
+  "room_size": [
+    20,
+    20
+  ],
+  "episode_seconds": 30,
+  "manual_advancement": true,
+  "source_sha256": {
+    "Assets/Scenes/QaLocalMovement20Training.unity": "f58059594c7571f1974d6133f8a8822c3bc6b7820b102015391953ea51d899ae",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "7557a1bdcfa96af55a371c8e68824632bebc4f712ce96e2be9c4d87231486840",
+    "Assets/PCGDungeon/Scripts/RL/QaSingleRoomRlEnvironment.cs": "fd80e3c1716e0c15e9b5d45bdcc64c67b36730b1d2e7d73f81c0f637e7e5872d",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "8102a00d90697cbf2dac42c947372bcf301ddf6a21d232fc06a55d8c2827ce90",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "fe4ced7382c7c613cbe96f6a98eb42dab63af251ff740e41330c4c6259a39a9d",
+    "Assets/Editor/QaLocalMovementSession.cs": "fa21f00d79c3a25458a5d47380b1cc18eae8602bdf428d012930bf7c15a4bf1f",
+    "Training/run_local_movement.py": "482a246aae9e4a557d54c6918b93b5b7bc4c5ea55685469561d6e4bac9d7d204"
+  },
+  "training_seed_range": [
+    500,
+    999
+  ],
+  "evaluation_seed_range": [
+    100000,
+    100099
+  ]
+}
