@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.AI;
 
-public class Generator : MonoBehaviour
+public partial class Generator : MonoBehaviour
 {
     //[SerializeField] private GameObject m_wall;
 
@@ -440,6 +440,8 @@ public class Generator : MonoBehaviour
         SpawnQaPlaceholders();
 
         SpawnPuzzles();
+
+        SpawnBreakableProps();
 
         return true;
     }
@@ -2681,6 +2683,9 @@ public class Generator : MonoBehaviour
                 {
                     area[coords.x + additive.x, coords.y + additive.y] = Instantiate(tempContent, area[coords.x + additive.x, coords.y + additive.y].transform.position, Quaternion.identity, parentRooms[i].Corners[j].transform.parent.transform);
 
+                    if (staticOrBreakable == 1 && area[coords.x + additive.x, coords.y + additive.y].GetComponent<BreakableProp>() == null)
+                        area[coords.x + additive.x, coords.y + additive.y].AddComponent<BreakableProp>();
+
                     area[coords.x + additive.x, coords.y + additive.y].transform.position = new Vector3(area[coords.x + additive.x, coords.y + additive.y].transform.position.x, tempContent.transform.position.y, area[coords.x + additive.x, coords.y + additive.y].transform.position.z);
                 }
             }
@@ -2709,6 +2714,9 @@ public class Generator : MonoBehaviour
                         if (area[coords.x + additive.x, coords.y + additive.y].transform.parent.CompareTag("Room") && area[coords.x + additive.x, coords.y + additive.y].transform.position != parentRooms[i].Corners[j].transform.position)
                         {
                             area[coords.x + additive.x, coords.y + additive.y] = Instantiate(tempContent, area[coords.x + additive.x, coords.y + additive.y].transform.position, Quaternion.identity, parentRooms[i].Corners[j].transform.parent.transform);
+
+                            if (area[coords.x + additive.x, coords.y + additive.y].GetComponent<BreakableProp>() == null)
+                                area[coords.x + additive.x, coords.y + additive.y].AddComponent<BreakableProp>();
 
                             area[coords.x + additive.x, coords.y + additive.y].transform.position = new Vector3(area[coords.x + additive.x, coords.y + additive.y].transform.position.x, tempContent.transform.position.y, area[coords.x + additive.x, coords.y + additive.y].transform.position.z);
                         }

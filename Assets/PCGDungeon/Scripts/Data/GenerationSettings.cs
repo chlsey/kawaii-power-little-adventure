@@ -53,6 +53,8 @@ public class Data
     [SerializeField] public List<ObjectList> enemies = new List<ObjectList>();
     [SerializeField] public List<ObjectList> bosses = new List<ObjectList>();
     [SerializeField] public List<ObjectList> breakables = new List<ObjectList>();
+    [Min(0)] public int breakablePropsPerRoom = 3;
+    [Range(0f, 1f)] public float breakableLootChance = 0.4f;
     [SerializeField] public List<ObjectList> staticObjects = new List<ObjectList>();
     [SerializeField] public List<ObjectList> wallObjects = new List<ObjectList>();
 

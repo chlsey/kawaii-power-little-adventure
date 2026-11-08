@@ -128,11 +128,15 @@ public sealed class QaPlayerController : MonoBehaviour
 
         Vector3 center = transform.position + transform.forward * (range * 0.5f);
         Collider[] hits = Physics.OverlapSphere(center, range);
+        var damaged = new System.Collections.Generic.HashSet<UnityEngine.Object>();
         foreach (Collider hit in hits)
         {
             QaEnemy enemy = hit.GetComponentInParent<QaEnemy>();
-            if (enemy != null && enemy.TakeDamage(damage))
+            if (enemy != null && damaged.Add(enemy) && enemy.TakeDamage(damage))
                 metrics.EnemiesKilled++;
+            BreakableProp prop = hit.GetComponentInParent<BreakableProp>();
+            if (prop != null && damaged.Add(prop))
+                prop.TakeDamage(damage);
         }
     }
 
@@ -239,6 +243,8 @@ public sealed class QaPlayerController : MonoBehaviour
             return QaObjectType.Enemy;
         if (collider.GetComponentInParent<QaLootPickup>() != null)
             return QaObjectType.Loot;
+        if (collider.GetComponentInParent<BreakableProp>() != null)
+            return QaObjectType.Obstacle;
         if (collider.CompareTag("Wall") || collider.CompareTag("OuterCorner"))
             return QaObjectType.Obstacle;
 
