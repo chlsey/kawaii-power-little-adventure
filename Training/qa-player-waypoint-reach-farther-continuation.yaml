@@ -1,0 +1,28 @@
+# 500 more episodes from QA-28; identical task/settings and matched frozen evaluation cases.
+task: waypoint-reach-farther
+model: ppo
+port: 7783
+seed: 7000
+total_timesteps: 300000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-waypoint-reach-training
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261107-051415-train/final_model.zip
+resume_sha256: e4ddd962f8f63fd739d5711eda23d5d40b307e2faf15a85e8a173e8982c32a3b
+parent_lineage_episodes: 6000
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 120
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 281000
+unity_scene: Assets/Scenes/QaWaypointReachTraining.unity
+waypoint_distance_range: [13, 18]
+episode_seconds: 60
+waypoint_reward_budget: 5
+minimum_local_objective_reward: 50
