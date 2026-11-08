@@ -1876,9 +1876,15 @@ public class Generator : MonoBehaviour
         }
     }
 
+    // Doors without a matching displacement entry sit centred on their floor tile.
+    private float DoorDisplacement(int door)
+    {
+        return doorsDisplacements != null && door < doorsDisplacements.Count ? doorsDisplacements[door].z : 0f;
+    }
+
     private void GenerateDoors()
     {
-        if(doorGameObjects.Count > 0)
+        if(doors.Count > 0)
         {
             for (int a = 0; a < areaWidth; a++)
             {
@@ -1897,7 +1903,7 @@ public class Generator : MonoBehaviour
                                     {
                                         int randomDoor = Random.Range(0, doors.Count);
 
-                                        Vector3 pos = new Vector3(area[a, b].transform.position.x, area[a, b].transform.position.y, area[a, b].transform.position.z + doorsDisplacements[randomDoor].z);
+                                        Vector3 pos = new Vector3(area[a, b].transform.position.x, area[a, b].transform.position.y + doors[randomDoor].gameObject.transform.position.y, area[a, b].transform.position.z + DoorDisplacement(randomDoor));
                                         doorGameObjects.Add(Instantiate(doors[randomDoor].gameObject, pos, Quaternion.identity, area[a, b].transform.parent)); 
                                     }
                                 }
@@ -1911,7 +1917,7 @@ public class Generator : MonoBehaviour
                                     {
                                         int randomDoor = Random.Range(0, doors.Count);
 
-                                        Vector3 pos = new Vector3(area[a, b].transform.position.x, area[a, b].transform.position.y, area[a, b].transform.position.z - doorsDisplacements[randomDoor].z);
+                                        Vector3 pos = new Vector3(area[a, b].transform.position.x, area[a, b].transform.position.y + doors[randomDoor].gameObject.transform.position.y, area[a, b].transform.position.z - DoorDisplacement(randomDoor));
                                         doorGameObjects.Add(Instantiate(doors[randomDoor].gameObject, pos, Quaternion.identity, area[a, b].transform.parent));
                                     }
                                 }
@@ -1927,7 +1933,7 @@ public class Generator : MonoBehaviour
                                     {
                                         int randomDoor = Random.Range(0, doors.Count);
 
-                                        Vector3 pos = new Vector3(area[a, b].transform.position.x + doorsDisplacements[randomDoor].z, area[a, b].transform.position.y, area[a, b].transform.position.z);
+                                        Vector3 pos = new Vector3(area[a, b].transform.position.x + DoorDisplacement(randomDoor), area[a, b].transform.position.y + doors[randomDoor].gameObject.transform.position.y, area[a, b].transform.position.z);
                                         doorGameObjects.Add(Instantiate(doors[randomDoor].gameObject, pos, Quaternion.Euler(0, 90, 0), area[a, b].transform.parent));
                                     }
                                 }
@@ -1941,7 +1947,7 @@ public class Generator : MonoBehaviour
                                     {
                                         int randomDoor = Random.Range(0, doors.Count);
 
-                                        Vector3 pos = new Vector3(area[a, b].transform.position.x - doorsDisplacements[randomDoor].z, area[a, b].transform.position.y, area[a, b].transform.position.z);
+                                        Vector3 pos = new Vector3(area[a, b].transform.position.x - DoorDisplacement(randomDoor), area[a, b].transform.position.y + doors[randomDoor].gameObject.transform.position.y, area[a, b].transform.position.z);
                                         doorGameObjects.Add(Instantiate(doors[randomDoor].gameObject, pos, Quaternion.Euler(0, -90, 0), area[a, b].transform.parent));
                                     }
                                 }
