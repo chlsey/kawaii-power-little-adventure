@@ -1,0 +1,29 @@
+# Frozen integration test: existing map/navigator guides QA-32 to an actual initially unseen exit.
+model: ppo
+port: 7783
+seed: 9000
+total_timesteps: 1
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 0
+output_dir: ../Logs/qa-waypoint-distant-exit-tests
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261107-214655-train/final_model.zip
+resume_sha256: 0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0
+parent_lineage_episodes: 7000
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 0
+evaluation_episodes: 500
+evaluation_seed: 285000
+unity_scene: Assets/Scenes/QaWaypoint40Training.unity
+room_size: [40, 40]
+initial_exit_visible: false
+exit_distance_range: [30, 34]
+completion_reward: 50.0
+episode_seconds: 60
+time_scale: 100

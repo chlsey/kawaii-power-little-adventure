@@ -16,6 +16,44 @@ public sealed class ModelSensorPackage : MonoBehaviour
 
     public float RayRange => rayRange;
 
+    /// <summary>Local visibility and swept actor clearance, bounded by the current sensor range.</summary>
+    public bool CanUseWaypoint(Vector3 point, CharacterController actor)
+    {
+        Vector3 delta = point - transform.position;
+        delta.y = 0f;
+        float distance = delta.magnitude;
+        if (distance > rayRange || distance < 0.0001f) return false;
+        Vector3 direction = delta / distance;
+        Vector3 origin = transform.position + Vector3.up * rayHeight;
+        foreach (RaycastHit hit in Physics.RaycastAll(origin, direction, distance,
+            Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
+        {
+            if (IsWall(hit.collider)) return false;
+        }
+        float radius = actor.radius + actor.skinWidth + 0.05f;
+        Vector3 center = actor.transform.TransformPoint(actor.center);
+        float half = Mathf.Max(0f, actor.height * 0.5f - actor.radius);
+        Vector3 bottom = center - Vector3.up * half;
+        Vector3 top = center + Vector3.up * half;
+        foreach (Collider hit in Physics.OverlapCapsule(bottom, top, radius,
+            Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
+            if (IsWall(hit)) return false;
+        foreach (RaycastHit hit in Physics.CapsuleCastAll(bottom, top, radius, direction, distance,
+            Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
+            if (IsWall(hit.collider)) return false;
+        foreach (Collider hit in Physics.OverlapCapsule(bottom + delta, top + delta, radius,
+            Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
+            if (IsWall(hit)) return false;
+        return true;
+    }
+
+    private bool IsWall(Collider collider)
+    {
+        if (collider.transform.IsChildOf(transform)) return false;
+        ModelSensorTarget target = collider.GetComponentInParent<ModelSensorTarget>();
+        return target != null && target.HitId == QaObjectType.Wall;
+    }
+
     private readonly QaRayObservation[] rays = new QaRayObservation[RayCount];
     private readonly ModelSensorTrace[] traces = new ModelSensorTrace[RayCount];
     private readonly float[] localGrid = new float[LocalGridValueCount];

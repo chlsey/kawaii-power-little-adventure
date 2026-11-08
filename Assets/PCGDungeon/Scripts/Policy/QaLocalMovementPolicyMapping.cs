@@ -3,6 +3,7 @@ using UnityEngine;
 /// <summary>Current vision and movement only; no discovered-map or remembered-goal inputs.</summary>
 public static class QaLocalMovementPolicyMapping
 {
+    public const string Version = "local-vision-v1";
     public const int ExitSignalOffset = 2 + ModelSensorPackage.RayCount * 2;
     public const int ObservationSize = ExitSignalOffset + 4;
     public const int ActionSize = 2;

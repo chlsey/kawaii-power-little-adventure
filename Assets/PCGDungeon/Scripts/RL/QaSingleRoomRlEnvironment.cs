@@ -11,6 +11,8 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     [SerializeField] private Transform exit;
     [SerializeField] private bool movementOnly;
     [SerializeField] private bool localVision;
+    [SerializeField] private bool waypointNavigation;
+    [SerializeField] private bool disableWaypointNavigatorForEvaluation;
     [SerializeField] private bool nearbyExit;
     [SerializeField, Min(0f)] private float minExitDistance = 3f;
     [SerializeField, Min(0f)] private float maxExitDistance = 6f;
@@ -40,12 +42,34 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     private bool movementRequested;
     private float stuckPenaltyTotal;
     private int stuckPenaltySteps;
+    private readonly QaNavigationCoordinator navigation = new QaNavigationCoordinator();
+    private readonly QaWaypointRewardTracker waypointRewards = new QaWaypointRewardTracker();
+    public QaNavigationCoordinator Navigation => navigation;
+    public bool NavigatorDisabled => disableWaypointNavigatorForEvaluation;
+    public float WaypointCompletionBonus => waypointRewards.CompletionBonus;
+    public string PolicyVersion => waypointNavigation ? QaWaypointPolicyMapping.Version : QaLocalMovementPolicyMapping.Version;
+
+    public void ResetNavigation()
+    {
+        navigation.Reset();
+        // Route recovery may restart navigation, but only a new attempt refills its reward budget.
+        waypointRewards.Assign(false, 0, Vector3.zero, player.transform.position);
+        AdvanceNavigation(false);
+    }
+
+    private void AdvanceNavigation(bool actionCompleted)
+    {
+        // Preserve the waypoint observation contract, but supply no assignment in the evaluation control.
+        if (!waypointNavigation || disableWaypointNavigatorForEvaluation) return;
+        navigation.Advance(sensors, character, actionCompleted);
+        waypointRewards.Assign(navigation.HasWaypoint, navigation.WaypointVersion, navigation.Waypoint, player.transform.position);
+    }
 
     public override int ObservationSize
     {
         get
         {
-            if (localVision)
+            if (waypointNavigation || localVision)
                 return QaLocalMovementPolicyMapping.ObservationSize;
             return QaPlayerPolicyMapping.ObservationSize;
         }
@@ -54,7 +78,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     {
         get
         {
-            if (localVision || movementOnly)
+            if (waypointNavigation || localVision || movementOnly)
                 return 2;
             return QaPlayerPolicyMapping.ActionSize;
         }
@@ -79,6 +103,8 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
 
     public override void ResetEpisode(int seed)
     {
+        if (waypointNavigation && completionReward <= waypointRewards.PositiveRewardBudget)
+            throw new System.InvalidOperationException("Local completion reward must exceed the total waypoint reward budget.");
         // Reuse the room and actors; only their seeded positions and tracking reset.
         sensors.EndAttempt();
         player.EpisodeEnded -= OnPlayerEnded;
@@ -137,6 +163,10 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         stuckPenaltyTotal = 0f;
         stuckPenaltySteps = 0;
         actionEndTime = Time.fixedTime;
+        if (waypointNavigation && InitialExitVisible)
+            throw new System.InvalidOperationException("Waypoint task requires an initially unseen exit.");
+        waypointRewards.Reset();
+        ResetNavigation();
     }
 
     private Vector3 SampleFloorPosition(System.Random random, float margin = 1.5f)
@@ -155,6 +185,8 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
 
     public override float[] CollectObservation()
     {
+        if (waypointNavigation)
+            return QaWaypointPolicyMapping.Observe(player.Observe(), sensors, navigation, player.transform.position);
         if (localVision)
             return QaLocalMovementPolicyMapping.Observe(player.Observe(), sensors.Rays);
         return QaPlayerPolicyMapping.Observe(player.Observe(), sensors.ReadSnapshot());
@@ -169,9 +201,9 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         // A death or exit callback can end the episode between trainer requests.
         if (!attemptEnded && player.EpisodeActive)
         {
-            SenseExitBeforeAction();
+            if (!waypointNavigation) SenseExitBeforeAction();
             QaAction command;
-            if (localVision || movementOnly)
+            if (waypointNavigation || localVision || movementOnly)
                 command = QaLocalMovementPolicyMapping.Decode(action);
             else
                 command = QaPlayerPolicyMapping.Decode(action);
@@ -195,7 +227,9 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         viewDiscoveryBaseline = sensors.ViewedOpenCellCount;
         QaEpisodeMetrics metrics = player.Metrics;
         float reward = -timeCostPerSecond * QaPlayerController.StepDurationSeconds;
-        if (hasSensedExit)
+        if (waypointNavigation)
+            reward += waypointRewards.Measure(player.transform.position);
+        else if (hasSensedExit)
         {
             float distance = DistanceToSensedExit();
             if (exitVisibleForAction && distance < closestSensedExitDistance)
@@ -205,7 +239,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
             closestSensedExitDistance = Mathf.Min(closestSensedExitDistance, distance);
         }
 
-        if (!metrics.Completed && !exitVisibleForAction && !sensors.ExitVisible)
+        if (!waypointNavigation && !metrics.Completed && !exitVisibleForAction && !sensors.ExitVisible)
         {
             float explorationReward = Mathf.Min(newViewedCells * viewDiscoveryRewardPerCell,
                 maxViewDiscoveryRewardPerAction,
@@ -227,6 +261,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
             attemptEnded = true;
             sensors.EndAttempt();
         }
+        if (waypointNavigation && !isDone) AdvanceNavigation(true);
         return reward;
     }
 

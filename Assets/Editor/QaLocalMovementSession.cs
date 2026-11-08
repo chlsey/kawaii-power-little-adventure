@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 /// <summary>Editor entry point used by Training/run_local_movement.py for repeatable sessions.</summary>
 [InitializeOnLoad]
-public static class QaLocalMovementSession
+public static partial class QaLocalMovementSession
 {
     private const string SessionKey = "qa-local-movement-session";
     private static string directory;
@@ -45,16 +45,43 @@ public static class QaLocalMovementSession
     private static IEnumerator Observe(QaSingleRoomRlEnvironment environment)
     {
         EditorApplication.LockReloadAssemblies();
-        Time.timeScale = 20f;
+        Session session = ReadSession();
+        Time.timeScale = session.time_scale;
         QualitySettings.vSyncCount = 0;
         Application.runInBackground = true;
         yield return null;
-        Session session = ReadSession();
+        // Keep reward variants in run-owned configuration without changing historical scenes.
+        var serialized = new SerializedObject(environment);
+        serialized.FindProperty("completionReward").floatValue = session.completion_reward;
+        serialized.FindProperty("maxEpisodeSeconds").floatValue = session.episode_seconds;
+        serialized.FindProperty("disableWaypointNavigatorForEvaluation").boolValue = session.navigator_disabled;
+        serialized.ApplyModifiedPropertiesWithoutUndo();
         var host = environment.GetComponent<RlTrainingHost>();
         Require(host.Port == session.port && host.IsListening, "Training host readiness");
         Require(environment.ObservationSize == 134 && environment.ActionSize == 2, "Local movement contract");
+        Require(environment.PolicyVersion == session.policy_version, "Semantic policy version matches game configuration");
         if (session.verify)
-            yield return VerifyVision(environment, session);
+        {
+            if (session.navigator_disabled)
+                yield return VerifyNavigatorDisabled(environment, session);
+            else if (session.policy_version == QaWaypointPolicyMapping.Version)
+                yield return VerifyWaypoints(environment, session);
+            else
+                yield return VerifyVision(environment, session);
+        }
+        if (session.mode == "verify")
+        {
+            host.StopTraining();
+            SessionState.SetString(SessionKey, "");
+            EditorApplication.UnlockReloadAssemblies();
+            EditorApplication.Exit(0);
+            yield break;
+        }
+        File.WriteAllText(Path.Combine(directory, "policy-contract.json"),
+            "{\"observation_contract\":\"" + environment.PolicyVersion + "\",\"completion_reward\":" +
+            serialized.FindProperty("completionReward").floatValue.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+            ",\"episode_seconds\":" + serialized.FindProperty("maxEpisodeSeconds").floatValue.ToString(System.Globalization.CultureInfo.InvariantCulture) +
+            ",\"navigator_disabled\":" + environment.NavigatorDisabled.ToString().ToLowerInvariant() + "}");
         File.WriteAllText(Path.Combine(directory, "unity-ready.txt"), "134 observations; 2 movement actions\n");
 
         QaEpisodeMetrics previous = null;
@@ -79,7 +106,14 @@ public static class QaLocalMovementSession
                     spawn_x = spawn.x, spawn_z = spawn.z, exit_x = exit.x, exit_z = exit.z,
                     exploration_reward = environment.ExplorationRewardEarned,
                     stuck_penalty = environment.StuckPenaltyTotal,
-                    stuck_penalty_steps = environment.StuckPenaltySteps
+                    stuck_penalty_steps = environment.StuckPenaltySteps,
+                    waypoint_bonus = environment.WaypointCompletionBonus,
+                    waypoint_assignments = environment.Navigation.WaypointVersion,
+                    replans = environment.Navigation.Replans,
+                    abandoned_goals = environment.Navigation.AbandonedGoals,
+                    navigation_status = environment.Navigation.Status,
+                    navigator_disabled = environment.NavigatorDisabled,
+                    exit_discovered = HasDiscoveredExit(environment.Sensors.Grid)
                 };
                 string path = Path.Combine(directory, "episode-" + captured + ".json");
                 File.WriteAllText(path + ".tmp", JsonUtility.ToJson(record));
@@ -162,13 +196,14 @@ public static class QaLocalMovementSession
             Require(hidden[i] == 0f, "Hidden goal cannot leak from memory into the local observation");
         environment.ResetEpisode(0);
         bool timedOut = false;
-        for (int step = 0; step < 300; step++)
+        int timeoutActions = Mathf.RoundToInt(session.episode_seconds / QaPlayerController.StepDurationSeconds);
+        for (int step = 0; step < timeoutActions; step++)
         {
             environment.ApplyAction(new float[2]);
             while (environment.IsActionRunning())
                 yield return null;
             float reward = environment.CalculateReward(out timedOut);
-            Require(Mathf.Abs(reward + 0.001f) < 0.00001f && timedOut == (step == 299), "Time cost and 30-second timeout");
+            Require(Mathf.Abs(reward + 0.001f) < 0.00001f && timedOut == (step == timeoutActions - 1), "Time cost and configured timeout");
         }
         environment.ResetEpisode(0);
         File.WriteAllText(Path.Combine(directory, "verification.json"),
@@ -177,7 +212,7 @@ public static class QaLocalMovementSession
             ",\"min_exit_distance\":" + session.min_exit_distance.ToString(System.Globalization.CultureInfo.InvariantCulture) +
             ",\"max_exit_distance\":" + session.max_exit_distance.ToString(System.Globalization.CultureInfo.InvariantCulture) +
             ",\"initial_exit_visible\":" + session.initial_exit_visible.ToString().ToLowerInvariant() +
-            ",\"observation_size\":134,\"action_size\":2,\"reset_seeds\":100,\"all_resets_match_visibility\":true,\"sensor_guided_compass_completions\":8,\"hidden_exit_signal_zero\":true,\"timeout_actions\":300,\"vision_range\":12,\"exploration_reward\":0}");
+            ",\"observation_size\":134,\"action_size\":2,\"reset_seeds\":100,\"all_resets_match_visibility\":true,\"sensor_guided_compass_completions\":8,\"hidden_exit_signal_zero\":true,\"timeout_actions\":" + timeoutActions + ",\"vision_range\":12,\"exploration_reward\":0}");
     }
 
     private static void PlaceActors(QaSingleRoomRlEnvironment environment, Transform exit, Vector3 offset, bool resetMemory = true)
@@ -193,6 +228,15 @@ public static class QaLocalMovementSession
             environment.Sensors.BeginAttempt();
         else
             environment.Sensors.Capture();
+    }
+
+    private static bool HasDiscoveredExit(ModelSensorGrid grid)
+    {
+        // Read sensor memory for diagnostics; do not consult the true scene destination.
+        for (int z = 0; z < grid.Depth; z++)
+        for (int x = 0; x < grid.Width; x++)
+            if (grid.ReadCell(grid.MinCell + new Vector2Int(x, z)).Exit) return true;
+        return false;
     }
 
     private static void Require(bool condition, string message)
@@ -216,16 +260,21 @@ public static class QaLocalMovementSession
 
     [Serializable] private class Session
     {
-        public string scene;
+        public string scene, mode, policy_version = "local-vision-v1";
         public int port, episodes;
-        public bool verify, initial_exit_visible;
+        public int training_seed = 2000, training_episodes = 500, evaluation_seed = 200000, evaluation_episodes = 100;
+        public bool verify, initial_exit_visible, navigator_disabled;
+        public float completion_reward = 50f;
+        public float episode_seconds = 30f, time_scale = 20f;
         public float room_width, room_depth, min_exit_distance, max_exit_distance;
     }
     [Serializable] private class Episode
     {
         public int episode, seed, steps, stuck_events, stuck_penalty_steps;
         public float elapsed_seconds, initial_exit_distance, final_exit_distance, spawn_x, spawn_z, exit_x, exit_z, exploration_reward, stuck_penalty;
-        public bool completed, player_died, initial_exit_visible;
-        public string end_reason;
+        public bool completed, player_died, initial_exit_visible, exit_discovered, navigator_disabled;
+        public string end_reason, navigation_status;
+        public float waypoint_bonus;
+        public int waypoint_assignments, replans, abandoned_goals;
     }
 }

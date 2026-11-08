@@ -1,0 +1,27 @@
+# Prepared transfer stage. Training requires explicit --mode train; advancement is manual.
+model: ppo
+port: 7783
+seed: 2000
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-player-waypoint-20x20
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-transfer-start/final_model.zip
+transfer_actor_from: ../SavedModels/qa/local-vision-v1/qa-local-movement-20261103-020805/final_model.zip
+transfer_parent_sha256: 76226e50dee7f0586b4c6b5b1bb8a3f3358980a5983fa712a7e0a413cc22833d
+parent_lineage_episodes: 2000
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 200000
+unity_scene: Assets/Scenes/QaWaypoint20Training.unity
+room_size: [20, 20]
+initial_exit_visible: false
+exit_distance_range: [14, 16]
