@@ -4,7 +4,7 @@ This is the game-specific application of the shared RL and QA frameworks. For re
 
 ## Overall navigation and action design
 
-The QA player has two control levels: a game-owned **orchestrator** maintains observed knowledge and navigation intent, and a **local policy** chooses the next movement action. The orchestrator is currently deterministic C# code, combining map memory, goal selection, A* routing and recovery. Only the local policy is learned: a feed-forward PPO actor with two 64-unit hidden layers. There is no second trained orchestrator model, recurrent policy memory or LLM in this path.
+The QA player has two control levels: a deterministic C# **orchestrator** maintains observed-map memory, goals, A* routes and recovery; a learned **local policy** chooses the next movement action. The policy is a feed-forward PPO actor with two 64-unit hidden layers. Training the local actor does not train the orchestrator.
 
 A waypoint carries a higher-level instruction toward a gameplay objective. The local policy receives that instruction alongside current sensors; the game determines whether the actual objective has been completed. The orchestrator never moves the actor directly or completes the objective by declaring a waypoint reached.
 

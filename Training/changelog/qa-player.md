@@ -4,7 +4,7 @@ Updated through 2026-11-07. Dates below follow the UTC run records where availab
 
 ## Current position
 
-Evidence reconciled on 2026-11-07 against saved summaries, episode records and local progress files. No training or evaluation process is active; this documentation/filesystem check launches no new run.
+Last reconciled: 2026-11-07. All recorded training and evaluation runs below are complete or explicitly halted.
 
 - **Control design:** deterministic map/goal/route/recovery orchestrator plus one learned `local-waypoint-v1` movement policy. Waypoints are instructions; only the actual exit completes the integrated task. The combined positive waypoint budget is +5 per attempt, below the current +50 objective reward. Combat/competing-objective priority and learned orchestration are not implemented or validated. [Detailed contract](../PCG-system-design.md#overall-navigation-and-action-design).
 - **Latest trained skill checkpoint:** QA-32, 492/500 training arrivals and 99/100 frozen arrivals at 8-12 units, successful frozen mean 2.99 s. Successful branch QA-27 -> QA-30 -> QA-31 -> QA-32, **63,246 branch training steps / 7,000 actor-lineage episodes**. QA-28/29's farther-distance fork is preserved separately and excluded from those counters.
@@ -68,8 +68,6 @@ QA-24 complete: 500/500 training episodes, 232 clears; frozen enabled 54/100, ma
 Storage maintenance on Nov 3: grouped all 12 retained run/start folders by architecture under [SavedModels/qa/](../../SavedModels/qa/). The current [local-waypoint-v1 workflow](../../SavedModels/qa/local-waypoint-v1/README.md) keeps QA-18's transfer and QA-19's final weights with the 10k, 20k and 30k snapshots recovered from local logs. QA-19's 500 training / 100 evaluation episode records are now retained beside its summaries. All 12 original checkpoint hashes remained unchanged after relocation; the QA-19 final hash is still `67c50b7f30f38eb7194979f4e63ec836c4ee1e45fecc7f2a89961f84631a03cd`.
 
 Maintained configs/docs now use the organized paths. The runner saves future periodic checkpoints directly under the matching architecture/run, preserves final weights before evaluation, and writes file manifests. Original run-owned JSON/config snapshots remain historical evidence with their recorded original paths. This changes storage only: no new training/evaluation run, weight update or stage advancement. [Checkpoint index](../../SavedModels/README.md).
-
-Nov 7 evidence reconciliation: all **125 saved checkpoint ZIPs** are covered by **23 manifests**, with matching SHA-256/byte sizes and valid ZIP contents. The six waypoint-skill runs' 3,600 training/evaluation records and QA-33/34's 1,000 exit records agree with their saved result counts; skill-parent hashes and all 500 paired integration placements match. Latest skill progress is complete. QA-33/34's local progress labels were reconciled from `evaluation` to `complete` using their completed 500-case final summaries; run-owned configs, model bytes and saved evidence remain unchanged.
 
 ## Interface and perception changes
 

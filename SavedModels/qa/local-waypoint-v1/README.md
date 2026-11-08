@@ -10,17 +10,7 @@ The [QA-33 navigator-enabled test](diagnostics/distant-exit-20261107-220640-eval
 
 ## Historical exit-task baselines
 
-**QA-24 completed:** [500 episodes from QA-23 with exit reward +200](qa-waypoint-20261104-170721-train/README.md), **232/500 training clears**, then **54/100 enabled versus 50/100 masked** frozen clears. Enabled gain over QA-23 is +6 points (-4 to +16); latest input effect +4 (-9 to +16). No clear completion improvement or positive latest waypoint benefit is established. The relative gap improved mainly because masked completion declined 62 -> 50. Parent preserved; all sessions stopped. This reward-change continuation has no parallel unchanged-reward training arm.
-
-**QA-23 completed:** [1,000 further 40 x 40 episodes from QA-22](qa-waypoint-20261104-084138-train/README.md), **559/1,000 training clears**, then **48/100 enabled versus 62/100 masked** frozen clears. Enabled completion regressed **64 -> 48** (paired 95% interval -30 to -2 points), although rewarded waypoint arrivals rose 201 -> 346. Child retained without promotion; parent archive preserved; all sessions stopped.
-
-**QA-22 completed:** [500 further 40 x 40 episodes from QA-21](qa-waypoint-20261104-011557-train/README.md), **324/500 training clears**, then **64/100 enabled versus 55/100 masked** frozen clears. The enabled gain over QA-21 is +3 points (-10 to +16); the waypoint gap increased by +4 points (-15 to +23). Neither establishes clear improvement or stronger waypoint reliance. QA-22 sessions are stopped; both checkpoints remain preserved.
-
-[QA-19: final checkpoint and results](qa-waypoint-20261103-163554-train/README.md): **468/500 training clears (93.6%)**, then **100/100 frozen evaluation clears**, 4.323 seconds per exit on average, zero evaluation updates. This covers the open 20 x 20 room; advancement remains manual.
-
-QA-19 SHA-256: `67c50b7f30f38eb7194979f4e63ec836c4ee1e45fecc7f2a89961f84631a03cd`.
-
-[QA-21: larger 40 x 40 run](qa-waypoint-20261103-172142-train/README.md) completed **248/500 training clears**, then **61/100 frozen evaluation clears**. The [100-case matched comparison](qa-waypoint-20261103-172142-train/comparison-100/README.md) cleared **61/100 with waypoints versus 56/100 masked**; the paired difference interval spans -8 to +18 points. Before-training enabled score was **63/100**. Neither a training improvement nor clear waypoint benefit is established; waypoint dependence remains unresolved. This is a separate task from QA-19's 20 x 20 baseline; keep both checkpoints. QA-21 SHA-256: `de32a90630b506d97610a918cadea89039518720d0ae2e96c1af58a231e1fe6b`.
+[QA-19](qa-waypoint-20261103-163554-train/README.md) remains the 20 x 20 baseline with 100/100 frozen exit clears. QA-21 through QA-24 cover the separate 40 x 40, 30-second exit task; they do not establish consistent improvement from further training or larger exit rewards. Their checkpoints and full comparisons remain linked in the inventory and [training history](../../../Training/changelog/qa-player.md).
 
 ## Checkpoint inventory
 
