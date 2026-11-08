@@ -1,8 +1,10 @@
 # DS_Store
 .DS_Store
 
-# Python QA recorder cache
-/QA/__pycache__/
+# Python recorder and training caches
+__pycache__/
+*.pyc
+.pytest_cache/
 
 # Compiled Object files
 *.slo

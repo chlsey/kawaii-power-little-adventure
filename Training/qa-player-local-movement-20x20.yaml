@@ -10,7 +10,7 @@ n_steps: 256
 device: cpu
 checkpoint_freq: 10000
 output_dir: ../Logs/qa-player-local-movement-20x20
-resume_from: ../SavedModels/qa-local-movement-20261102-225827/final_model.zip
+resume_from: ../SavedModels/qa/local-vision-v1/qa-local-movement-20261102-225827/final_model.zip
 socket_timeout_seconds: 300
 ppo:
   batch_size: 64

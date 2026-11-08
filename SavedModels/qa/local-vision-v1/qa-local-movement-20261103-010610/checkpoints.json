@@ -1,0 +1,10 @@
+{
+  "architecture": "local-vision-v1",
+  "checkpoints": [
+    {
+      "path": "final_model.zip",
+      "sha256": "b0266a1f169509d23b0ae86662091769e546504a7d26cc3b7d831c1141d54250",
+      "bytes": 349987
+    }
+  ]
+}

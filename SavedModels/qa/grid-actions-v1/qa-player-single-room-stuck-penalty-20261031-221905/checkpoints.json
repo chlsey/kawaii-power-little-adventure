@@ -1,0 +1,10 @@
+{
+  "architecture": "grid-actions-v1",
+  "checkpoints": [
+    {
+      "path": "final_model.zip",
+      "sha256": "9207be75f95553a88f423f90d6d7a22def7a872845eabc4273d29822334e5e64",
+      "bytes": 58863290
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "architecture": "grid-movement-v1",
+  "checkpoints": [
+    {
+      "path": "final_model.zip",
+      "sha256": "2598b39cc35b93fd69cbfbc274d33ad9375a7b9880beb7539ce82f7a29bcdfa5",
+      "bytes": 58859816
+    }
+  ]
+}
