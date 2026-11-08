@@ -41,15 +41,19 @@ MonoBehaviour:
     squareCorners:
     - gameObject: {fileID: 3746928169460061138, guid: 8fd16f9add3b6504a96a92177e5a8142, type: 3}
       name: Square Corner
-    doors: []
+    doors:
+    - gameObject: {fileID: 6753052547389966800, guid: d4f95008dba4d47aaa04623060e49e3a, type: 3}
+      name: Door
     doorsDisplacements: []
     flooring:
     - gameObject: {fileID: 8761019777689142071, guid: 0234e9a5ed8e17845afb71ada7e4676d, type: 3}
       name: Floor
-    player: {fileID: 0}
+    player: {fileID: 5822665392098863791, guid: 403cbb5ec90a547b592865fc20d18493, type: 3}
     minEnemiesPerRoom: 0
-    maxEnemiesPerRoom: 0
-    enemies: []
+    maxEnemiesPerRoom: 2
+    enemies:
+    - gameObject: {fileID: 1286918450490302872, guid: 3487785e5c45e4e19a6244693e9204f8, type: 3}
+      name: Enemy
     bosses: []
     breakables: []
     staticObjects: []
@@ -60,3 +64,13 @@ MonoBehaviour:
     destroyablesRate: 0
     middleObjects: []
     middleObjectsRate: 0
+    lootPickup: {fileID: 0}
+    lootTable:
+    - item: {fileID: 11400000, guid: 5feef7733fa8c4f6ea6a4173a66d4cb4, type: 2}
+      weight: 1
+    - item: {fileID: 11400000, guid: 28239aa1b06da42eaa389fd5d44accb5, type: 2}
+      weight: 1
+    - item: {fileID: 11400000, guid: fe823a012722247b0a8b2fb4d4d098cb, type: 2}
+      weight: 2
+    puzzleRoomCount: 2
+    puzzles: []

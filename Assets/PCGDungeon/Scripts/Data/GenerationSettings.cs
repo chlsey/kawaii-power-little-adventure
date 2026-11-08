@@ -67,6 +67,31 @@ public class Data
     [SerializeField] public List<ObjectList> middleObjects = new List<ObjectList>();
     [Range(0, 100)]
     [SerializeField] public int middleObjectsRate;
+
+    // Pickup prefab (with QaLootPickup) used for items that have no pickup prefab of their own.
+    // Empty falls back to the green placeholder cube.
+    [SerializeField] public GameObject lootPickup;
+    // Items rolled for each powerup slot. Empty keeps the plain QA powerups.
+    [SerializeField] public List<LootEntry> lootTable = new List<LootEntry>();
+
+    // Rooms that lock the player in until a puzzle is solved. Never the spawn or boss room.
+    [Min(0)]
+    [SerializeField] public int puzzleRoomCount;
+    // Puzzle prefabs (each with a RoomPuzzle component). Empty uses a placeholder lever.
+    [SerializeField] public List<ObjectList> puzzles = new List<ObjectList>();
+
+    // Level exit model. Empty builds a glowing pillar and light as a placeholder.
+    [SerializeField] public GameObject exitPrefab;
+    // Off: touching the exit completes the level (what the QA bot and trained models do).
+    // On: the player must also press Interact next to it.
+    [SerializeField] public bool exitRequiresInteract;
+}
+
+[System.Serializable]
+public class LootEntry
+{
+    public ItemDefinition item;
+    [Min(0)] public int weight = 1;
 }
 
 [System.Serializable]

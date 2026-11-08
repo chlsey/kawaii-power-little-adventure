@@ -11,9 +11,17 @@ public class PcgDungeonManager : MonoBehaviour
     [SerializeField] private bool generateOnStart = true;
     [SerializeField] private float qaStepIntervalSeconds = 1f;
 
+    // Tab toggles between the QA policy and keyboard play (WASD move, Space
+    // attack, E interact). Both drive the same QaPlayerController.ApplyAction.
+    [SerializeField] private bool manualControl;
+    [SerializeField] private float manualStepIntervalSeconds = 0.1f;
+
     private QaPlayerController activePlayer;
     private float qaStepTimer;
     private bool remoteControlActive;
+    private bool manualAttackQueued;
+    private bool manualInteractQueued;
+    private DungeonCamera dungeonCamera;
 
     // The spawned QA player for the current episode, ready for ApplyAction calls. Null until a dungeon is accepted.
     public QaPlayerController ActivePlayer => activePlayer;
@@ -71,8 +79,16 @@ public class PcgDungeonManager : MonoBehaviour
         if (remoteControlActive)
             return;
 
-        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard != null && keyboard.rKey.wasPressedThisFrame)
             StartEpisode();
+
+        if (keyboard != null && keyboard.tabKey.wasPressedThisFrame)
+        {
+            manualControl = !manualControl;
+            qaStepTimer = 0f;
+            Debug.Log(manualControl ? "Manual control (WASD, Space attack, E interact)" : "QA policy control");
+        }
 
         DriveQaPlayer();
     }
@@ -84,13 +100,48 @@ public class PcgDungeonManager : MonoBehaviour
         if (activePlayer == null || !activePlayer.EpisodeActive)
             return;
 
+        Keyboard keyboard = Keyboard.current;
+        if (manualControl && keyboard != null)
+        {
+            // Latch presses between steps so a quick tap isn't missed.
+            manualAttackQueued |= keyboard.spaceKey.wasPressedThisFrame;
+            manualInteractQueued |= keyboard.eKey.wasPressedThisFrame;
+        }
+
         qaStepTimer += Time.deltaTime;
-        if (qaStepTimer < qaStepIntervalSeconds)
+        if (qaStepTimer < (manualControl ? manualStepIntervalSeconds : qaStepIntervalSeconds))
             return;
 
         qaStepTimer = 0f;
-        QaAction action = qaPolicyRunner.Decide();
+        QaAction action = manualControl ? ReadManualAction(keyboard) : qaPolicyRunner.Decide();
         activePlayer.ApplyAction(action);
+    }
+
+    private QaAction ReadManualAction(Keyboard keyboard)
+    {
+        if (keyboard == null)
+            return QaAction.Noop;
+
+        float right = (keyboard.dKey.isPressed ? 1f : 0f) - (keyboard.aKey.isPressed ? 1f : 0f);
+        float forward = (keyboard.wKey.isPressed ? 1f : 0f) - (keyboard.sKey.isPressed ? 1f : 0f);
+
+        // W moves up the screen: rotate input by the follow camera's fixed yaw when there is one.
+        Vector3 move = new Vector3(right, 0f, forward);
+        if (dungeonCamera == null && Camera.main != null)
+            dungeonCamera = Camera.main.GetComponent<DungeonCamera>();
+        if (dungeonCamera != null)
+            move = dungeonCamera.PlanarRight * right + dungeonCamera.PlanarForward * forward;
+        if (move.sqrMagnitude > 1f)
+            move.Normalize();
+
+        float moveX = move.x;
+        float moveY = move.z;
+        bool attack = manualAttackQueued || keyboard.spaceKey.isPressed;
+        bool interact = manualInteractQueued;
+
+        manualAttackQueued = false;
+        manualInteractQueued = false;
+        return new QaAction(moveX, moveY, attack, interact, 0);
     }
 
     [ContextMenu("Start Episode")]

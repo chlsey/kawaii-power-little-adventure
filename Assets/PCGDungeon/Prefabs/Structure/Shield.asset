@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e730c8c74634545a090774ad1a34552a, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: Assembly-CSharp::ShieldDefinition
+  displayName: 
+  icon: {fileID: 0}
+  pickupColor: {r: 0.08962262, g: 0.19561724, b: 1, a: 1}
+  pickupPrefab: {fileID: 4099614258647102033, guid: 7199925d7aef34c2cb7618b26e1383b7, type: 3}
+  damageReduction: 0.3
