@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "phase": "training",
+  "completed_episodes": 500,
+  "successes": 500,
+  "timeouts": 0,
+  "success_rate": 1.0,
+  "successful_arrival_seconds": {
+    "mean": 2.817200055837631,
+    "median": 2.5,
+    "p90": 4.700000286102295,
+    "minimum": 1.5,
+    "maximum": 10.5
+  },
+  "new_model_steps": 40668,
+  "initial_model_steps": 26582,
+  "new_training_steps": 14086,
+  "total_lineage_episodes": 6500,
+  "weight_updates": 550,
+  "game_completions": 0,
+  "max_positive_waypoint_reward": 1.9734970331192017
+}

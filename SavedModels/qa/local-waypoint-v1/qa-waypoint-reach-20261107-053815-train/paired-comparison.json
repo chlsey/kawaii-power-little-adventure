@@ -1,0 +1,26 @@
+{
+  "parent_arrivals": 51,
+  "new_arrivals": 33,
+  "episodes": 100,
+  "gained": 4,
+  "lost": 22,
+  "retained_arrivals": 29,
+  "failed_both": 45,
+  "change_percentage_points": -18,
+  "paired_bootstrap_95_interval_pp": [
+    -27.0,
+    -9.0
+  ],
+  "bootstrap_samples": 20000,
+  "bootstrap_seed": 281000,
+  "exact_paired_p": 0.0005335211753845215,
+  "exact_seed_and_placement_match": true,
+  "reused_evaluation_seed_range": [
+    281000,
+    281099
+  ],
+  "common_success_cases": 29,
+  "common_success_parent_mean_seconds": 5.100000101944496,
+  "common_success_new_mean_seconds": 11.534482955932617,
+  "interpretation": "Exploratory paired case comparison on a reused evaluation set; unadjusted for repeated comparisons, not independent-training variability."
+}

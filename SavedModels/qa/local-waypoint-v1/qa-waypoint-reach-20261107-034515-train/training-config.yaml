@@ -1,0 +1,29 @@
+# Dedicated nearby-waypoint skill drill. Farther waypoints are a later, manual 500-episode stage.
+model: ppo
+port: 7783
+seed: 6000
+total_timesteps: 300000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-waypoint-reach-training
+transfer_actor_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-20261104-170721-train/final_model.zip
+transfer_parent_sha256: 78548d2ca50e90f61b737e9f74a6bf983c7682ea96c2e431b94cf71810076c36
+transfer_parent_contract: local-waypoint-v1
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-transfer-start/final_model.zip
+parent_lineage_episodes: 5000
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 120
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 280000
+unity_scene: Assets/Scenes/QaWaypointReachTraining.unity
+waypoint_distance_range: [3, 6]
+episode_seconds: 60
+waypoint_reward_budget: 5
+minimum_local_objective_reward: 50

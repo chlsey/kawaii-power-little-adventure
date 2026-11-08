@@ -1,0 +1,39 @@
+{
+  "task": "fixed nearby waypoint skill drill",
+  "observation_contract": "local-waypoint-v1",
+  "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-waypoint-20261104-170721-train\\final_model.zip",
+  "parent_checkpoint_sha256": "78548d2ca50e90f61b737e9f74a6bf983c7682ea96c2e431b94cf71810076c36",
+  "parent_lineage_episodes": 5000,
+  "actor_transfer": true,
+  "fresh_critic": true,
+  "fresh_optimizer": true,
+  "training_seed_range": [
+    6000,
+    6499
+  ],
+  "evaluation_seed_range": [
+    280000,
+    280099
+  ],
+  "waypoint_distance_range": [
+    3,
+    6
+  ],
+  "episode_seconds": 60,
+  "waypoint_reward_budget": 5,
+  "minimum_local_objective_reward": 50,
+  "no_exit": true,
+  "no_automatic_stage_advancement": true,
+  "source_sha256": {
+    "Assets/Scenes/QaWaypointReachTraining.unity": "a4344efcefb7d6fd27fea2663272bda8352a1c73063b23480b7498bd133e6c8f",
+    "Assets/Editor/QaWaypointReachTrainingSession.cs": "18c800cba850933b71d581bc84318ce1274bca1b4196eaf4b83c1f72e8ece9d3",
+    "Assets/PCGDungeon/Scripts/RL/QaWaypointReachRlEnvironment.cs": "82587f367d65bbe2b36046ba67e4d396988c79fcce2a8c6b8872bb42cbc8c00d",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "6515d4c9ccb6c76869cf8c179dcc8283dfc42214f98de40ae6570f42626870d4",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "fe4ced7382c7c613cbe96f6a98eb42dab63af251ff740e41330c4c6259a39a9d",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Training/run_waypoint_reach.py": "a6e7f3bb8d28ab41102f0492e250c1c99ea4d028dc9b1e6a603456f482df250d",
+    "Training/run_local_movement.py": "cc14a8962e82cd561b1393a7bb7b9a9f89ae971201123669141689ec33ee7c19"
+  }
+}

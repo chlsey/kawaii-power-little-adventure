@@ -1,0 +1,28 @@
+# Raise the entire distance band from 3-7 to 6-10 units, continuing QA-30's successful model.
+task: waypoint-reach-medium
+model: ppo
+port: 7783
+seed: 8000
+total_timesteps: 300000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-waypoint-reach-training
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261107-185241-train/final_model.zip
+resume_sha256: b3292b0e46a2824451de516221a2479889b1854224d58e59ac06bea941891202
+parent_lineage_episodes: 6000
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 120
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 283000
+unity_scene: Assets/Scenes/QaWaypointReachTraining.unity
+waypoint_distance_range: [6, 10]
+episode_seconds: 60
+waypoint_reward_budget: 5
+minimum_local_objective_reward: 50
