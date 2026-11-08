@@ -1,0 +1,30 @@
+{
+  "observation_contract": "local-waypoint-v1",
+  "observation_size": 134,
+  "action_size": 2,
+  "architecture": [
+    134,
+    64,
+    64,
+    2
+  ],
+  "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa-local-movement-20261103-020805\\final_model.zip",
+  "parent_checkpoint_sha256": "76226e50dee7f0586b4c6b5b1bb8a3f3358980a5983fa712a7e0a413cc22833d",
+  "parent_lineage_episodes": 2000,
+  "parent_model_steps": 198495,
+  "new_training_episodes": 0,
+  "new_training_steps": 0,
+  "weight_updates": 0,
+  "transferred_parameters": [
+    "action_net.bias",
+    "action_net.weight",
+    "log_std",
+    "mlp_extractor.policy_net.0.bias",
+    "mlp_extractor.policy_net.0.weight",
+    "mlp_extractor.policy_net.2.bias",
+    "mlp_extractor.policy_net.2.weight"
+  ],
+  "fresh_critic": true,
+  "fresh_optimizer": true,
+  "checkpoint_sha256": "9657ec0745b6163cc14f91fa2dc171a56e0a1cd4c190568d5ceb100f0f58fba9"
+}

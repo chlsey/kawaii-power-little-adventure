@@ -1,0 +1,12 @@
+{
+  "after_clears": 61,
+  "before_clears": 63,
+  "after_only": 18,
+  "before_only": 20,
+  "difference_percentage_points": -2,
+  "paired_bootstrap_95pct_interval_pp": [
+    -14.000000000000002,
+    10.0
+  ],
+  "exact_paired_two_sided_p": 0.8714146793645341
+}

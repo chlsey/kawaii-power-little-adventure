@@ -1,0 +1,30 @@
+# QA-22 final child: frozen matched waypoint-input control, never train from this snapshot.
+model: ppo
+port: 7783
+seed: 3000
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Logs\qa-player-waypoint-40x40-continuation\waypoint-control
+resume_from: C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\SavedModels\qa\local-waypoint-v1\qa-waypoint-20261104-011557-train\final_model.zip
+resume_sha256: 0ab90c438098dbd19b540b16fe72092c2e4a190ed6f10efc769fb75c99fa3bd2
+parent_lineage_episodes: 3500
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 250000
+unity_scene: Assets/Scenes/QaWaypoint40Training.unity
+room_size:
+- 40
+- 40
+initial_exit_visible: false
+exit_distance_range:
+- 30
+- 34

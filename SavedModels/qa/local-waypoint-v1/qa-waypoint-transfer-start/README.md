@@ -1,0 +1,14 @@
+# QA waypoint transfer start
+
+This is the zero-step actor transfer for `local-waypoint-v1`, not a trained waypoint policy. Use the maintained [runner and scene guide](../../../../Assets/Scenes/QaSingleRoomTraining.README.md#waypoint-navigation).
+
+- Parent: QA-17, SHA-256 `76226e50dee7f0586b4c6b5b1bb8a3f3358980a5983fa712a7e0a413cc22833d`; preserved at [its original path](../../local-vision-v1/qa-local-movement-20261103-020805/final_model.zip).
+- Parent history: 2,000 training episodes / 198,495 model steps, recorded separately from this model's **zero new training episodes, zero steps, zero updates**.
+- Copied: actor MLP, action head and distribution log standard deviation. Fresh critic and optimizer. Tensor equality and fresh-state checks passed during preparation; [transfer manifest](transfer.json) records the exact parameter keys and new checkpoint hash.
+- Architecture: 134 -> 64 -> 64 -> 2, movement X/Y. Inputs 130-133 now describe the assigned visible waypoint. Checkpoint metadata stores `local-waypoint-v1`; historical models retain `local-vision-v1`.
+- Prepared task: open 20 x 20 room, initially unseen exit 14-16 units away, 12-unit vision, 30 seconds. PPO learning rate 0.0002, entropy 0.01, gamma 0.99, rollout 256, batch 64. [Config snapshot](training-config.yaml).
+- Prepared budget: 500 training episodes (2000-2499), then 100 frozen evaluations (200000-200099). The checkpoint itself remains at zero training steps; [QA-19](../qa-waypoint-20261103-163554-train/README.md) is its separately saved trained descendant. Advancement remains manual.
+
+[Reference verification](reference-verification.json): all 600 prepared spawn/exit placements began unseen; eight compass completions; fixed-barrier A*, unknown gaps and diagonal blocking, local actor clearance, goal selection/exclusion, recovery, reset and reward checks passed. The deterministic observation-only controller cleared 10/10 unseen-exit attempts (200000-200009), with 52 waypoint handoffs, ten exit discoveries, and 39 total waypoint bonuses. These are navigation checks, not a learned-policy score. [Source hashes and provenance](reference-run.json).
+
+[Frozen transfer-policy smoke](smoke-evaluation.json): **5/10 clears**, five timeouts, no deaths, seeds 200000-200009; 1,719 requests and 4.38 seconds per successful exit on average. Ten waypoint bonuses in total, zero exploration reward, and 12.68 total stuck penalty. Evaluation made zero updates and kept every policy tensor, the transfer checkpoint and the parent checkpoint unchanged. [Per-episode records](smoke-episodes.jsonl), [source provenance](smoke-run.json). This small smoke set is not the prepared 100-episode post-training evaluation, and the 10/10 reference result does not establish learned-policy reliability. See the [QA changelog](../../../../Training/changelog/qa-player.md). Generated-dungeon integration, combat interruption and standalone ONNX deployment are deferred.

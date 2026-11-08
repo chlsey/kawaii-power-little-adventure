@@ -1,0 +1,30 @@
+{
+  "sha256": {
+    "checkpoints/rl_model_506365_steps.zip": "0aad697d291a92d85b0aa14cd430d9c049e261e43a02795e59d07496fe205d74",
+    "checkpoints/rl_model_516365_steps.zip": "29724033f9712f6923475e77352a4d5e3b070f61ceac5a1265871e3bcb487565",
+    "checkpoints/rl_model_526365_steps.zip": "984b736a55675c1e4f26c4978a1f1969dfb0e7c214292ffc9b679e5af202f14e",
+    "checkpoints/rl_model_536365_steps.zip": "c6ae784b0d967fe39156d0d967fac60deea8109e7ba70bc823424430414e6cc0",
+    "checkpoints/rl_model_546365_steps.zip": "c44319b1c2b5e30863472e575a97455c6dd54889760ca7131c6a5198f317187e",
+    "checkpoints/rl_model_556365_steps.zip": "2976d08eada09d89f1a72ea3ac8bbbfeb0c8a7486732c9307b1f7eec6a416cc3",
+    "checkpoints/rl_model_566365_steps.zip": "615a3e8ab8fe065ca68252dd00bc933412a6da41005fad73b925ea159f6afdeb",
+    "checkpoints/rl_model_576365_steps.zip": "483b7f7fd2ea8a493b2dd1576b1e53dd422cfdae8a9776aaf5dadbdba468aa88",
+    "checkpoints/rl_model_586365_steps.zip": "732f66c0f0d6684d350a9eb1e11296f32c5847e19d65a99acfd13fff9bcf1a33",
+    "checkpoints/rl_model_596365_steps.zip": "4ef8f21d38985e5335b5c80c40ed58494ec2cc920fd665fafde3b818f4df2d0e",
+    "checkpoints/rl_model_606365_steps.zip": "f450c53ee014c6dff833073081ec72ef9595354b6e6330d69a3a20a363a75b66",
+    "checkpoints.json": "00199992095f8eb6ae5579cf8d74ef3006412e6a85f2f3459affd73a7f8f232f",
+    "evaluation-episodes.jsonl": "c868394ef6cf9da1a83f2cbe87ecaa3b98f5080065167badb950a208d77bb182",
+    "evaluation-result.json": "79d648bf49f2f0a84ec64fd784f41bd4ce6d0b8b5c9eb73ec3ad69c38aea7276",
+    "final_model.zip": "78548d2ca50e90f61b737e9f74a6bf983c7682ea96c2e431b94cf71810076c36",
+    "frozen-control-config.yaml": "430e662f164c8bd1f016ee9ba3813a29838d844c829afc46c8fda8a004c6f740",
+    "README.md": "aa0871edc2c749f653e014f72f9155d17b40cf583061f7a797daebffc0df1483",
+    "run.json": "097ee240f8c5fd0e1c235ff4d6dfa307255563376849b1e54675db4b8b6a158f",
+    "training-config.yaml": "6ed0f8f03c9a7aa87b6920ce9832315f8e385a462f38dae60a12258543828738",
+    "training-episodes.jsonl": "cb952fba3d38514d7026454708e8c34cb6c6f3f697cc57f1d12f5f19efd1dda0",
+    "training-result.json": "eaa492720c4cf5ccfaf293eaa1f5e0a41747faafa89114ca3a9127eb3786731a",
+    "verification.json": "8c207eda1251c0853927acaabc135b06c254cbc2e0a81068639121a88ce2dd0e",
+    "waypoint-comparison.json": "ee1b2af01ae1593c16700e3c0062f129682f6c0937ae79f4bde882131a46cd33",
+    "waypoint-masked-episodes.jsonl": "824dce224b179abd26ec3d0ea3c30cf68e41335ac2765f27c279d8906b05f9ee",
+    "waypoint-masked-result.json": "27ef96fa4c9f478be95f31b5ecb32525b002d58a4fe68d6cb12140ba3108b8f2",
+    "waypoint-masked-run.json": "df5051fde88314d19796f1a2fe050f68a333703e625f6e068849444cfdca7a00"
+  }
+}

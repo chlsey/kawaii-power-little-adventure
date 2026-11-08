@@ -1,0 +1,65 @@
+{
+  "architecture": "local-waypoint-v1",
+  "checkpoints": [
+    {
+      "path": "checkpoints/rl_model_506365_steps.zip",
+      "sha256": "0aad697d291a92d85b0aa14cd430d9c049e261e43a02795e59d07496fe205d74",
+      "bytes": 351855
+    },
+    {
+      "path": "checkpoints/rl_model_516365_steps.zip",
+      "sha256": "29724033f9712f6923475e77352a4d5e3b070f61ceac5a1265871e3bcb487565",
+      "bytes": 351855
+    },
+    {
+      "path": "checkpoints/rl_model_526365_steps.zip",
+      "sha256": "984b736a55675c1e4f26c4978a1f1969dfb0e7c214292ffc9b679e5af202f14e",
+      "bytes": 351856
+    },
+    {
+      "path": "checkpoints/rl_model_536365_steps.zip",
+      "sha256": "c6ae784b0d967fe39156d0d967fac60deea8109e7ba70bc823424430414e6cc0",
+      "bytes": 351848
+    },
+    {
+      "path": "checkpoints/rl_model_546365_steps.zip",
+      "sha256": "c44319b1c2b5e30863472e575a97455c6dd54889760ca7131c6a5198f317187e",
+      "bytes": 351848
+    },
+    {
+      "path": "checkpoints/rl_model_556365_steps.zip",
+      "sha256": "2976d08eada09d89f1a72ea3ac8bbbfeb0c8a7486732c9307b1f7eec6a416cc3",
+      "bytes": 351844
+    },
+    {
+      "path": "checkpoints/rl_model_566365_steps.zip",
+      "sha256": "615a3e8ab8fe065ca68252dd00bc933412a6da41005fad73b925ea159f6afdeb",
+      "bytes": 351844
+    },
+    {
+      "path": "checkpoints/rl_model_576365_steps.zip",
+      "sha256": "483b7f7fd2ea8a493b2dd1576b1e53dd422cfdae8a9776aaf5dadbdba468aa88",
+      "bytes": 351848
+    },
+    {
+      "path": "checkpoints/rl_model_586365_steps.zip",
+      "sha256": "732f66c0f0d6684d350a9eb1e11296f32c5847e19d65a99acfd13fff9bcf1a33",
+      "bytes": 351848
+    },
+    {
+      "path": "checkpoints/rl_model_596365_steps.zip",
+      "sha256": "4ef8f21d38985e5335b5c80c40ed58494ec2cc920fd665fafde3b818f4df2d0e",
+      "bytes": 351840
+    },
+    {
+      "path": "checkpoints/rl_model_606365_steps.zip",
+      "sha256": "f450c53ee014c6dff833073081ec72ef9595354b6e6330d69a3a20a363a75b66",
+      "bytes": 351849
+    },
+    {
+      "path": "final_model.zip",
+      "sha256": "78548d2ca50e90f61b737e9f74a6bf983c7682ea96c2e431b94cf71810076c36",
+      "bytes": 351845
+    }
+  ]
+}

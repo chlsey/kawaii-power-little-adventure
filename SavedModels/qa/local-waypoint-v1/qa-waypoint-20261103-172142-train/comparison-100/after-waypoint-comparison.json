@@ -1,0 +1,20 @@
+{
+  "cases": 100,
+  "seeds": [
+    250000,
+    250099
+  ],
+  "enabled_clears": 61,
+  "masked_clears": 56,
+  "enabled_only": 26,
+  "masked_only": 21,
+  "both_clear": 35,
+  "both_fail": 18,
+  "difference_percentage_points": 5,
+  "paired_bootstrap_95pct_interval_pp": [
+    -8.0,
+    18.0
+  ],
+  "exact_paired_two_sided_p": 0.5600646295802107,
+  "analysis": "Paired case bootstrap: 20,000 resamples, RNG seed 250000. Exact two-sided binomial test on discordant outcomes."
+}

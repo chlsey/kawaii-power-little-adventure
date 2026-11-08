@@ -1,0 +1,25 @@
+{
+  "architecture": "local-waypoint-v1",
+  "checkpoints": [
+    {
+      "path": "checkpoints/rl_model_10000_steps.zip",
+      "sha256": "ac4bf3b7049a3d1b0e0b9f0011961e9fef0789a9d46614b86517bcefe9f7486f",
+      "bytes": 348843
+    },
+    {
+      "path": "checkpoints/rl_model_20000_steps.zip",
+      "sha256": "aaed9e1efe66c2c3b34b76f708908bc07032ea3dfb81bb54a294b66c5b0c41b7",
+      "bytes": 349583
+    },
+    {
+      "path": "checkpoints/rl_model_30000_steps.zip",
+      "sha256": "d122c3bdcdfb1966b6a960063a9afc035acbfb176fee1d967079575962abfaad",
+      "bytes": 349576
+    },
+    {
+      "path": "final_model.zip",
+      "sha256": "67c50b7f30f38eb7194979f4e63ec836c4ee1e45fecc7f2a89961f84631a03cd",
+      "bytes": 349580
+    }
+  ]
+}

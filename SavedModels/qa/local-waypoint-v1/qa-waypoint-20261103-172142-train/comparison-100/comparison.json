@@ -1,0 +1,180 @@
+{
+  "seeds": [
+    250000,
+    250099
+  ],
+  "episodes_per_condition": 100,
+  "conditions": {
+    "after_enabled": {
+      "case": "after_enabled",
+      "completed_episodes": 100,
+      "successes": 61,
+      "timeouts": 39,
+      "deaths": 0,
+      "success_rate": 0.61,
+      "mean_successful_exit_seconds": 18.854098593602416,
+      "mean_episode_seconds": 23.201000142097474,
+      "requests": 23201,
+      "seed_range": [
+        250000,
+        250099
+      ],
+      "weight_updates": 0,
+      "waypoint_inputs_masked": false,
+      "checkpoint_sha256": "de32a90630b506d97610a918cadea89039518720d0ae2e96c1af58a231e1fe6b"
+    },
+    "after_masked": {
+      "case": "after_masked",
+      "completed_episodes": 100,
+      "successes": 56,
+      "timeouts": 44,
+      "deaths": 0,
+      "success_rate": 0.56,
+      "mean_successful_exit_seconds": 11.857143146651131,
+      "mean_episode_seconds": 19.840000162124635,
+      "requests": 19840,
+      "seed_range": [
+        250000,
+        250099
+      ],
+      "weight_updates": 0,
+      "waypoint_inputs_masked": true,
+      "checkpoint_sha256": "de32a90630b506d97610a918cadea89039518720d0ae2e96c1af58a231e1fe6b"
+    },
+    "before_enabled": {
+      "case": "before_enabled",
+      "completed_episodes": 100,
+      "successes": 63,
+      "timeouts": 37,
+      "deaths": 0,
+      "success_rate": 0.63,
+      "mean_successful_exit_seconds": 18.496825695037842,
+      "mean_episode_seconds": 22.75300018787384,
+      "requests": 22753,
+      "seed_range": [
+        250000,
+        250099
+      ],
+      "weight_updates": 0,
+      "waypoint_inputs_masked": false,
+      "checkpoint_sha256": "67c50b7f30f38eb7194979f4e63ec836c4ee1e45fecc7f2a89961f84631a03cd"
+    },
+    "before_masked": {
+      "case": "before_masked",
+      "completed_episodes": 100,
+      "successes": 25,
+      "timeouts": 75,
+      "deaths": 0,
+      "success_rate": 0.25,
+      "mean_successful_exit_seconds": 13.216000232696533,
+      "mean_episode_seconds": 25.804000058174132,
+      "requests": 25804,
+      "seed_range": [
+        250000,
+        250099
+      ],
+      "weight_updates": 0,
+      "waypoint_inputs_masked": true,
+      "checkpoint_sha256": "67c50b7f30f38eb7194979f4e63ec836c4ee1e45fecc7f2a89961f84631a03cd"
+    }
+  },
+  "comparisons": {
+    "training_with_waypoints": {
+      "condition_a": "after_enabled",
+      "condition_b": "before_enabled",
+      "a_clears": 61,
+      "b_clears": 63,
+      "both_clear": 43,
+      "both_fail": 19,
+      "a_only": 18,
+      "b_only": 20,
+      "difference_percentage_points": -2,
+      "paired_bootstrap_95pct_interval_pp": [
+        -14.000000000000002,
+        10.0
+      ],
+      "exact_paired_two_sided_p": 0.8714146793645341
+    },
+    "waypoints_after_training": {
+      "condition_a": "after_enabled",
+      "condition_b": "after_masked",
+      "a_clears": 61,
+      "b_clears": 56,
+      "both_clear": 35,
+      "both_fail": 18,
+      "a_only": 26,
+      "b_only": 21,
+      "difference_percentage_points": 5,
+      "paired_bootstrap_95pct_interval_pp": [
+        -8.0,
+        18.0
+      ],
+      "exact_paired_two_sided_p": 0.5600646295802107
+    },
+    "waypoints_before_training": {
+      "condition_a": "before_enabled",
+      "condition_b": "before_masked",
+      "a_clears": 63,
+      "b_clears": 25,
+      "both_clear": 15,
+      "both_fail": 27,
+      "a_only": 48,
+      "b_only": 10,
+      "difference_percentage_points": 38,
+      "paired_bootstrap_95pct_interval_pp": [
+        25.0,
+        51.0
+      ],
+      "exact_paired_two_sided_p": 4.5166191631196284e-07
+    },
+    "training_with_waypoints_masked": {
+      "condition_a": "after_masked",
+      "condition_b": "before_masked",
+      "a_clears": 56,
+      "b_clears": 25,
+      "both_clear": 23,
+      "both_fail": 42,
+      "a_only": 33,
+      "b_only": 2,
+      "difference_percentage_points": 31,
+      "paired_bootstrap_95pct_interval_pp": [
+        21.0,
+        41.0
+      ],
+      "exact_paired_two_sided_p": 3.6729034036397934e-08
+    }
+  },
+  "analysis_method": "100 paired cases; percentile bootstrap of paired success differences with 20,000 resamples and RNG seed 250000. Exact two-sided binomial test on discordant pairs. No multiple-comparison adjustment; intervals describe this scenario distribution, not a guarantee for other tasks.",
+  "verification": {
+    "same_100_unique_seeds_each_condition": true,
+    "exact_matching_spawn_exit_placements": true,
+    "all_initial_exits_unseen": true,
+    "same_source_hashes": true,
+    "correct_unchanged_checkpoint_hashes": true,
+    "all_evaluation_weight_updates_zero": true,
+    "runner_asserts_every_policy_tensor_unchanged": true,
+    "all_extensions_unity_exit_clean": true,
+    "project_settings_restored": true,
+    "episode_bonus_limits_and_duration_verified": true
+  },
+  "checkpoint_sha256": {
+    "before": "67c50b7f30f38eb7194979f4e63ec836c4ee1e45fecc7f2a89961f84631a03cd",
+    "after": "de32a90630b506d97610a918cadea89039518720d0ae2e96c1af58a231e1fe6b"
+  },
+  "source_sha256": {
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Training/run_local_movement.py": "76b44b0dd1a78484332da48a7506c123171a229dbd61495562bc3cec34c45f84",
+    "Assets/Editor/QaLocalMovementSession.cs": "dee5e757ffcbbda16850029a038bd0ad64129b64a5fbb6114ead24e2f9ea9f8c",
+    "Assets/Editor/QaWaypointVerification.cs": "5ac113a8a5cec4b505163048c8b536ae4780ceda302821a9e048026cc16de758",
+    "Assets/PCGDungeon/Scripts/QA/QaMapNavigation.cs": "30301f5c6c3a31f6886b6e7841e6f90951d1ff20c805abc022bfcf3ac8d11e5d",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "4792b2cbdcfd06f1c9eeea6fcd26061de3054f782089e67a02d19625d2ed5bcf",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorGrid.cs": "f5ca4b55be65307af7b4ab6b3bce733603ae409b1fdcfd140a4c2d2649e82e3a",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "f2ffdd7b21bb594f923b983b1aca9df10cb8ec13711ad959f487ea4dca8ba39c",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/RL/QaSingleRoomRlEnvironment.cs": "287289c82cc6e4e33ba1d34aa8f81424d5b55e742c9f8bfa8d978381d1d30bf1"
+  },
+  "new_rollouts": 270,
+  "reused_rollouts": 130,
+  "training_updates": 0
+}

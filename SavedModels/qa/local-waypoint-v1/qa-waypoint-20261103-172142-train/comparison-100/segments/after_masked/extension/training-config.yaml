@@ -1,0 +1,29 @@
+model: ppo
+port: 7783
+seed: 2500
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Logs\qa-waypoint-comparison-100-20261103\after_masked
+resume_from: C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\SavedModels\qa\local-waypoint-v1\qa-waypoint-20261103-172142-train\final_model.zip
+resume_sha256: de32a90630b506d97610a918cadea89039518720d0ae2e96c1af58a231e1fe6b
+parent_lineage_episodes: 3000
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 90
+evaluation_seed: 250010
+unity_scene: Assets/Scenes/QaWaypoint40Training.unity
+room_size:
+- 40
+- 40
+initial_exit_visible: false
+exit_distance_range:
+- 30
+- 34

@@ -1,0 +1,14 @@
+{
+    "policy_version": "local-waypoint-v1",
+    "reset_seeds": 600,
+    "compass_completions": 8,
+    "map_barrier_checks": true,
+    "unknown_gap_checks": true,
+    "recovery_checks": true,
+    "reward_checks": true,
+    "reference_episodes": 10,
+    "reference_successes": 10,
+    "reference_handoffs": 52,
+    "reference_exit_discoveries": 10,
+    "reference_waypoint_bonus": 39.0
+}

@@ -1,0 +1,19 @@
+{
+  "seeds": [
+    250000,
+    250009
+  ],
+  "enabled_clears": 7,
+  "masked_clears": 9,
+  "both_clear": 6,
+  "enabled_only": [
+    250000
+  ],
+  "masked_only": [
+    250005,
+    250006,
+    250009
+  ],
+  "waypoint_dependence_established": false,
+  "weight_updates": 0
+}

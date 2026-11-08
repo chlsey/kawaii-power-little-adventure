@@ -1,0 +1,24 @@
+{
+  "status": "complete",
+  "phase": "training",
+  "completed_episodes": 500,
+  "successes": 468,
+  "timeouts": 32,
+  "deaths": 0,
+  "success_rate": 0.936,
+  "mean_successful_exit_seconds": 5.702136847198519,
+  "total_stuck_penalty": 0.8899998236447573,
+  "total_exploration_reward": 0.0,
+  "seed_range": [
+    2000,
+    2499
+  ],
+  "steps": 36286,
+  "weight_updates": 1410,
+  "observation_contract": "local-waypoint-v1",
+  "parent_lineage_episodes": 2000,
+  "new_model_training_steps": 36286,
+  "checkpoint_sha256": "67c50b7f30f38eb7194979f4e63ec836c4ee1e45fecc7f2a89961f84631a03cd",
+  "parent_checkpoint_unchanged": true,
+  "total_waypoint_bonus": 712.0
+}

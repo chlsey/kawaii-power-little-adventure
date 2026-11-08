@@ -1,0 +1,27 @@
+# QA-24: raise actual exit reward; 500 episodes from the latest QA-23 checkpoint.
+model: ppo
+port: 7783
+seed: 4500
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-player-waypoint-exit-priority
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-20261104-084138-train/final_model.zip
+resume_sha256: 13cd921420cb72eb44a2b5c08491589d14c37e134cea518e49e750a2f0a7c98e
+parent_lineage_episodes: 4500
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 250000
+completion_reward: 200.0
+unity_scene: Assets/Scenes/QaWaypoint40Training.unity
+room_size: [40, 40]
+initial_exit_visible: false
+exit_distance_range: [30, 34]

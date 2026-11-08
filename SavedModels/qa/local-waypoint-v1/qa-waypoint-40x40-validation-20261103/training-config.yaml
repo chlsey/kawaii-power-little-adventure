@@ -1,0 +1,26 @@
+# Larger-room waypoint continuation from QA-19. Training requires explicit --mode train.
+model: ppo
+port: 7783
+seed: 2500
+total_timesteps: 150000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-player-waypoint-40x40
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-20261103-163554-train/final_model.zip
+resume_sha256: 67c50b7f30f38eb7194979f4e63ec836c4ee1e45fecc7f2a89961f84631a03cd
+parent_lineage_episodes: 2500
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 250000
+unity_scene: Assets/Scenes/QaWaypoint40Training.unity
+room_size: [40, 40]
+initial_exit_visible: false
+exit_distance_range: [30, 34]

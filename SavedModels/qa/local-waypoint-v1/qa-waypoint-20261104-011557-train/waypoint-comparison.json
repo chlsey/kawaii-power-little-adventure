@@ -1,0 +1,168 @@
+{
+  "episodes_per_condition": 100,
+  "seed_range": [
+    250000,
+    250099
+  ],
+  "conditions": {
+    "before_enabled": {
+      "episodes": 100,
+      "clears": 61,
+      "timeouts": 39,
+      "deaths": 0,
+      "mean_successful_exit_seconds": 18.854098593602416,
+      "mean_episode_seconds": 23.201000142097474,
+      "waypoint_bonus": 349.0,
+      "episodes_with_waypoint_bonus": 96,
+      "checkpoint_sha256": "de32a90630b506d97610a918cadea89039518720d0ae2e96c1af58a231e1fe6b"
+    },
+    "before_masked": {
+      "episodes": 100,
+      "clears": 56,
+      "timeouts": 44,
+      "deaths": 0,
+      "mean_successful_exit_seconds": 11.857143146651131,
+      "mean_episode_seconds": 19.840000162124635,
+      "waypoint_bonus": 70.0,
+      "episodes_with_waypoint_bonus": 34,
+      "checkpoint_sha256": "de32a90630b506d97610a918cadea89039518720d0ae2e96c1af58a231e1fe6b"
+    },
+    "after_enabled": {
+      "episodes": 100,
+      "clears": 64,
+      "timeouts": 36,
+      "deaths": 0,
+      "mean_successful_exit_seconds": 16.09218780696392,
+      "mean_episode_seconds": 21.09900019645691,
+      "waypoint_bonus": 201.0,
+      "episodes_with_waypoint_bonus": 85,
+      "checkpoint_sha256": "0ab90c438098dbd19b540b16fe72092c2e4a190ed6f10efc769fb75c99fa3bd2"
+    },
+    "after_masked": {
+      "episodes": 100,
+      "clears": 55,
+      "timeouts": 45,
+      "deaths": 0,
+      "mean_successful_exit_seconds": 11.692727453058415,
+      "mean_episode_seconds": 19.93100009918213,
+      "waypoint_bonus": 120.0,
+      "episodes_with_waypoint_bonus": 50,
+      "checkpoint_sha256": "0ab90c438098dbd19b540b16fe72092c2e4a190ed6f10efc769fb75c99fa3bd2"
+    }
+  },
+  "comparisons": {
+    "training_with_waypoints": {
+      "condition_a": "after_enabled",
+      "condition_b": "before_enabled",
+      "difference_percentage_points": 3,
+      "paired_bootstrap_95pct_interval_pp": [
+        -10.0,
+        16.0
+      ],
+      "a_only": 25,
+      "b_only": 22,
+      "both_clear": 39,
+      "both_fail": 14,
+      "exact_paired_two_sided_p": 0.7708669945730264
+    },
+    "waypoints_after_training": {
+      "condition_a": "after_enabled",
+      "condition_b": "after_masked",
+      "difference_percentage_points": 9,
+      "paired_bootstrap_95pct_interval_pp": [
+        -2.0,
+        20.0
+      ],
+      "a_only": 21,
+      "b_only": 12,
+      "both_clear": 43,
+      "both_fail": 24,
+      "exact_paired_two_sided_p": 0.16275565745308995
+    },
+    "training_when_masked": {
+      "condition_a": "after_masked",
+      "condition_b": "before_masked",
+      "difference_percentage_points": -1,
+      "paired_bootstrap_95pct_interval_pp": [
+        -13.0,
+        11.0
+      ],
+      "a_only": 19,
+      "b_only": 20,
+      "both_clear": 36,
+      "both_fail": 25,
+      "exact_paired_two_sided_p": 1
+    },
+    "change_in_waypoint_gap": {
+      "difference_percentage_points": 4,
+      "paired_bootstrap_95pct_interval_pp": [
+        -15.0,
+        23.0
+      ]
+    }
+  },
+  "training": {
+    "status": "complete",
+    "phase": "training",
+    "completed_episodes": 500,
+    "successes": 324,
+    "timeouts": 176,
+    "deaths": 0,
+    "success_rate": 0.648,
+    "mean_successful_exit_seconds": 17.964815075014844,
+    "total_stuck_penalty": 0.010000000707805157,
+    "total_exploration_reward": 0.0,
+    "seed_range": [
+      3000,
+      3499
+    ],
+    "steps": 111006,
+    "weight_updates": 4330,
+    "observation_contract": "local-waypoint-v1",
+    "parent_lineage_episodes": 3000,
+    "initial_model_timesteps": 160362,
+    "new_training_steps": 111006,
+    "new_model_training_steps": 271368,
+    "waypoint_inputs_masked": false,
+    "checkpoint_sha256": "0ab90c438098dbd19b540b16fe72092c2e4a190ed6f10efc769fb75c99fa3bd2",
+    "parent_checkpoint_unchanged": true,
+    "total_waypoint_bonus": 1025.0
+  },
+  "clears_per_training_hundred": [
+    57,
+    59,
+    69,
+    74,
+    65
+  ],
+  "training_lineage_episodes": 3500,
+  "analysis_method": "20,000 paired case-bootstrap resamples; percentile 95% intervals, RNG seed 250000. Exact two-sided binomial tests on discordant pairs for binary comparisons. Gap-change interval resamples all four outcomes together by seed. No multiple-comparison adjustment; covers case sampling, not training-seed variability.",
+  "verification": {
+    "matching_100_unique_seeds_and_exact_placements": true,
+    "all_new_episode_limits_and_bonus_caps": true,
+    "all_initial_exits_unseen": true,
+    "same_source_hashes": true,
+    "parent_checkpoint_unchanged": true,
+    "frozen_weight_updates_zero": true,
+    "runner_asserted_frozen_tensors_unchanged": true,
+    "all_checkpoint_archives_valid": true,
+    "all_sessions_finished_cleanly": true,
+    "settings_restored": true
+  },
+  "source_sha256": {
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Training/run_local_movement.py": "76b44b0dd1a78484332da48a7506c123171a229dbd61495562bc3cec34c45f84",
+    "Assets/Editor/QaLocalMovementSession.cs": "dee5e757ffcbbda16850029a038bd0ad64129b64a5fbb6114ead24e2f9ea9f8c",
+    "Assets/Editor/QaWaypointVerification.cs": "5ac113a8a5cec4b505163048c8b536ae4780ceda302821a9e048026cc16de758",
+    "Assets/PCGDungeon/Scripts/QA/QaMapNavigation.cs": "30301f5c6c3a31f6886b6e7841e6f90951d1ff20c805abc022bfcf3ac8d11e5d",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "4792b2cbdcfd06f1c9eeea6fcd26061de3054f782089e67a02d19625d2ed5bcf",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorGrid.cs": "f5ca4b55be65307af7b4ab6b3bce733603ae409b1fdcfd140a4c2d2649e82e3a",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "f2ffdd7b21bb594f923b983b1aca9df10cb8ec13711ad959f487ea4dca8ba39c",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/RL/QaSingleRoomRlEnvironment.cs": "287289c82cc6e4e33ba1d34aa8f81424d5b55e742c9f8bfa8d978381d1d30bf1"
+  },
+  "checkpoint_sha256": "0ab90c438098dbd19b540b16fe72092c2e4a190ed6f10efc769fb75c99fa3bd2",
+  "parent_checkpoint_sha256": "de32a90630b506d97610a918cadea89039518720d0ae2e96c1af58a231e1fe6b",
+  "control_run": "Logs\\qa-player-waypoint-40x40-continuation\\waypoint-control\\20261104-031932-evaluate-without-waypoint"
+}
