@@ -1,0 +1,9 @@
+{
+    "room_width": 40.0,
+    "room_depth": 40.0,
+    "target_x": 2.8284270763397219,
+    "target_z": 2.8284270763397219,
+    "episode_seconds": 60.0,
+    "acceptance_radius": 0.5,
+    "observation_contract": "local-waypoint-v1"
+}

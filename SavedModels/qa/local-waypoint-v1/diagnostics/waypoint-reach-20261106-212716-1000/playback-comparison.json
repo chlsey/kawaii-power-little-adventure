@@ -1,0 +1,9 @@
+{
+  "prior_segment_status": "intentionally halted to speed playback",
+  "prior_unity_completed_cases": 21,
+  "prior_arrivals": 3,
+  "prior_timeouts": 18,
+  "compared_cases": 21,
+  "outcomes_and_action_counts_identical": true,
+  "prior_cases_excluded_from_final_denominator": true
+}

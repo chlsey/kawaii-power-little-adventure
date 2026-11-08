@@ -1,0 +1,33 @@
+{
+  "arrivals_by_game_seconds": {
+    "5": 208,
+    "10": 228,
+    "30": 248,
+    "60": 249
+  },
+  "distance_range_observed": [
+    13.00189208984375,
+    17.992639541625977
+  ],
+  "direction_groups": {
+    "west-south": {
+      "attempts": 250,
+      "arrivals": 74
+    },
+    "east-north": {
+      "attempts": 249,
+      "arrivals": 65
+    },
+    "west-north": {
+      "attempts": 251,
+      "arrivals": 6
+    },
+    "east-south": {
+      "attempts": 250,
+      "arrivals": 104
+    }
+  },
+  "failed_minimum_distance_under_1": 77,
+  "seed_and_record_checks_passed": true,
+  "all_source_hashes_match": true
+}

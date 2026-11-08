@@ -1,0 +1,20 @@
+{
+  "scene": "Assets/Scenes/QaWaypoint40Training.unity",
+  "port": 7783,
+  "episodes": 500,
+  "verify": false,
+  "mode": "evaluate",
+  "policy_version": "local-waypoint-v1",
+  "room_width": 40,
+  "room_depth": 40,
+  "initial_exit_visible": false,
+  "completion_reward": 50.0,
+  "episode_seconds": 60,
+  "time_scale": 100,
+  "min_exit_distance": 30,
+  "max_exit_distance": 34,
+  "training_seed": 9000,
+  "training_episodes": 0,
+  "evaluation_seed": 285000,
+  "evaluation_episodes": 500
+}

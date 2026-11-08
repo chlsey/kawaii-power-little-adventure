@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "completed_episodes": 1000,
+  "successes": 249,
+  "timeouts": 751,
+  "success_rate": 0.249,
+  "successful_arrival_seconds": {
+    "mean": 5.212449869477605,
+    "median": 4.0,
+    "p90": 8.360000228881841,
+    "minimum": 3.200000047683716,
+    "maximum": 31.200000762939453
+  },
+  "weight_updates": 0,
+  "policy_tensors_unchanged": true,
+  "checkpoint_unchanged": true,
+  "checkpoint_sha256": "78548d2ca50e90f61b737e9f74a6bf983c7682ea96c2e431b94cf71810076c36",
+  "wall_seconds": 938.5507100999966
+}

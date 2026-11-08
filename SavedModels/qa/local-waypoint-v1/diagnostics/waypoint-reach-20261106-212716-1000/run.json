@@ -1,0 +1,45 @@
+{
+  "checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-waypoint-20261104-170721-train\\final_model.zip",
+  "checkpoint_sha256": "78548d2ca50e90f61b737e9f74a6bf983c7682ea96c2e431b94cf71810076c36",
+  "mode": "frozen deterministic evaluation",
+  "episodes": 1000,
+  "seed_range": [
+    270000,
+    270999
+  ],
+  "room_size": [
+    40,
+    40
+  ],
+  "spawn_xz": [
+    0,
+    0
+  ],
+  "distance_range": [
+    13,
+    18
+  ],
+  "vision_range": 12,
+  "sampling": "System.Random per seed; uniform angle [0,2pi), uniform radius [13,18)",
+  "episode_seconds": 60,
+  "max_actions": 600,
+  "action_seconds": 0.1,
+  "acceptance_radius": 0.5,
+  "exit_disabled": true,
+  "automatic_navigation": false,
+  "assigned_waypoint_signal_always_present": true,
+  "waypoint_distance_encoding": "clamp01(distance / 12)",
+  "time_scale": 100,
+  "initial_model_timesteps": 613364,
+  "initial_optimizer_updates": 23930,
+  "source_sha256": {
+    "Assets/Editor/QaWaypointReachBatchSession.cs": "4686a6c4bc9e48d7e7d3c076366c8a76f4086dcb50b08513838f9cc4b8bd3164",
+    "Training/test_waypoint_reach_batch.py": "b4a7f67b0a53f2ad050e3d05985ca6e9fa41c8f58587d37dd01192e4401db416",
+    "Training/test_waypoint_reach.py": "fe12e87002f567af7a8e2146291aae51b0ba2a0b90575af970f3f2fc5bc0e325",
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "f2ffdd7b21bb594f923b983b1aca9df10cb8ec13711ad959f487ea4dca8ba39c",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "fe4ced7382c7c613cbe96f6a98eb42dab63af251ff740e41330c4c6259a39a9d",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de"
+  }
+}

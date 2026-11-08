@@ -1,0 +1,36 @@
+{
+  "navigator_on_clears": 364,
+  "navigator_off_clears": 236,
+  "episodes": 500,
+  "both_clear": 189,
+  "navigator_only_clear": 175,
+  "no_navigator_only_clear": 47,
+  "both_timeout": 89,
+  "navigator_advantage_percentage_points": 25.6,
+  "paired_bootstrap_95_interval_pp": [
+    20.200000000000003,
+    31.0
+  ],
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed": 285000,
+  "exact_paired_p": 1.5545448833466695e-18,
+  "exact_seed_and_placement_match": true,
+  "all_off_assignments_and_waypoint_features_zero": true,
+  "navigator_on_mean_episode_seconds": 31.091800252914428,
+  "navigator_off_mean_episode_seconds": 37.51620011806488,
+  "navigator_on_success_mean_seconds": 20.290934413343994,
+  "navigator_off_success_seconds": {
+    "mean": 12.364830758612035,
+    "median": 9.90000057220459,
+    "p90": 19.80000114440918,
+    "minimum": 7.5,
+    "maximum": 30.80000114440918
+  },
+  "common_success_cases": 189,
+  "common_success_on_mean_seconds": 19.51957700113771,
+  "common_success_off_mean_seconds": 11.74867746817372,
+  "off_timeouts_exit_discovered": 85,
+  "off_timeouts_exit_never_discovered": 179,
+  "off_clears_exit_discovered": 236,
+  "interpretation": "Same waypoint-trained frozen policy, guidance removed; not independently trained policies. Case-bootstrap uncertainty, not independent-training variability; reused on-condition benchmark."
+}

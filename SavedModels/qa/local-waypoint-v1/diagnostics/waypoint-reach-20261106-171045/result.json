@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "episodes": 1,
+  "successes": 1,
+  "elapsed_seconds": 0.9000000357627869,
+  "steps": 9,
+  "initial_distance": 4.0,
+  "final_distance": 0.3999998867511749,
+  "minimum_distance": 0.3999998867511749,
+  "timeout": false,
+  "weight_updates": 0,
+  "policy_tensors_unchanged": true,
+  "checkpoint_unchanged": true,
+  "checkpoint_sha256": "78548d2ca50e90f61b737e9f74a6bf983c7682ea96c2e431b94cf71810076c36"
+}

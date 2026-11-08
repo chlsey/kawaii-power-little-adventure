@@ -1,0 +1,28 @@
+{
+  "checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-waypoint-20261104-170721-train\\final_model.zip",
+  "checkpoint_sha256": "78548d2ca50e90f61b737e9f74a6bf983c7682ea96c2e431b94cf71810076c36",
+  "mode": "frozen deterministic evaluation",
+  "episodes": 1,
+  "reset_seed": 260000,
+  "episode_seconds": 60,
+  "action_seconds": 0.1,
+  "max_actions": 600,
+  "acceptance_radius": 0.5,
+  "waypoint_offset": [
+    2.82842712474619,
+    2.82842712474619
+  ],
+  "exit_disabled": true,
+  "automatic_navigation": false,
+  "initial_model_timesteps": 613364,
+  "initial_optimizer_updates": 23930,
+  "source_sha256": {
+    "Assets/Editor/QaWaypointReachSession.cs": "f0c3bb662cd1bea14a1e7e00ac931f7f1e2cde462037d240eced6ed52dff57d7",
+    "Training/test_waypoint_reach.py": "f652706f18eba83d02b5da4c0f3fba87f46c099b1a246706297a0f88d0d2d1b8",
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "f2ffdd7b21bb594f923b983b1aca9df10cb8ec13711ad959f487ea4dca8ba39c",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "fe4ced7382c7c613cbe96f6a98eb42dab63af251ff740e41330c4c6259a39a9d",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de"
+  }
+}

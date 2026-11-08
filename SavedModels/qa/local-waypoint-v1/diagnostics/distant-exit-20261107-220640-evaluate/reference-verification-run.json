@@ -1,0 +1,27 @@
+{
+  "mode": "verify",
+  "observation_contract": "local-waypoint-v1",
+  "parent_checkpoint_sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+  "parent_lineage_episodes": 7000,
+  "checkpoint_sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+  "source_sha256": {
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Training/run_local_movement.py": "0726c022a71e379da4ddac416082918234add90abdcb5e65fd621e8d2854e8c0",
+    "Assets/Editor/QaLocalMovementSession.cs": "ded6d5a823682d0a8eb3d731ffc567c4331b4bcfd38e03ecc11492656990ac1e",
+    "Assets/Editor/QaWaypointVerification.cs": "0ab381787257e91b4bfa2339fe98b8f4e34a1f1fbe1233c7ecc2756ba6da28d7",
+    "Assets/PCGDungeon/Scripts/QA/QaMapNavigation.cs": "30301f5c6c3a31f6886b6e7841e6f90951d1ff20c805abc022bfcf3ac8d11e5d",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "6515d4c9ccb6c76869cf8c179dcc8283dfc42214f98de40ae6570f42626870d4",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorGrid.cs": "f5ca4b55be65307af7b4ab6b3bce733603ae409b1fdcfd140a4c2d2649e82e3a",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/RL/QaSingleRoomRlEnvironment.cs": "94a360ceec1124b00679f31850e62b085be9d3a9afb193d7cf85f17a83038791"
+  },
+  "manual_advancement": true,
+  "waypoint_inputs_masked": false,
+  "initial_model_timesteps": 63246,
+  "completion_reward": 50.0,
+  "episode_seconds": 60,
+  "parent_training_task": "waypoint-reach-8to12",
+  "parent_training_completion_reward": null
+}

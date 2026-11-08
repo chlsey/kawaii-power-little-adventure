@@ -1,0 +1,43 @@
+{
+  "successful_exit_seconds": {
+    "mean": 20.290934413343994,
+    "median": 17.250000953674316,
+    "p90": 35.289999771118154,
+    "minimum": 7.800000190734863,
+    "maximum": 58.60000228881836
+  },
+  "timeouts_exit_never_discovered": 101,
+  "timeouts_exit_discovered": 35,
+  "clears_with_exit_discovered": 364,
+  "waypoint_assignments": {
+    "mean": 15.296,
+    "median": 12.0,
+    "minimum": 4,
+    "maximum": 38
+  },
+  "total_replans": 1963,
+  "total_abandoned_goals": 1228,
+  "maximum_positive_waypoint_reward": 5.000002758679997,
+  "minimum_positive_waypoint_reward": 0.44160052520000903,
+  "final_status_clears": {
+    "exploring": 128,
+    "exit": 236
+  },
+  "final_status_timeouts": {
+    "exploring": 121,
+    "exit": 15
+  },
+  "arrivals_by_game_seconds": {
+    "10": 47,
+    "20": 220,
+    "30": 311,
+    "45": 350,
+    "60": 364
+  },
+  "initial_exit_distance_range": [
+    30.014379501342773,
+    33.99970245361328
+  ],
+  "all_unique_seeds_and_records_checked": true,
+  "all_source_hashes_match": true
+}
