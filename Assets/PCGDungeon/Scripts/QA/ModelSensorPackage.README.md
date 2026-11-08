@@ -67,6 +67,8 @@ Gameplay callbacks can end an attempt during an action. Reward and terminal-obse
 
 ## Observation contract
 
+The grid-policy encoding below is historical. The current local actor uses the [local waypoint contract](#local-waypoint-policy); sensor memory stays with its deterministic orchestrator.
+
 | Hit identifier | Meaning |
 | --- | --- |
 | `0` | None: no marked target within range |
@@ -82,9 +84,19 @@ Gameplay callbacks can end an attempt during an action. Reward and terminal-obse
 - [QaPlayerRlEnvironment.CollectObservation()](../RL/QaPlayerRlEnvironment.cs) and local inference use the same snapshot encoder in [QaPlayerPolicyMapping](../Policy/QaPlayerPolicyMapping.cs).
 - Snapshot arrays are borrowed read-only buffers. Encode them before the next capture; reading a snapshot does not scan or consume reward.
 
+## Local waypoint policy
+
+The open-room waypoint stage reuses this persistent grid outside the policy. `QaNavigationCoordinator`, `IMapGoalSelector`, and the observed-cell A* planner read sensor knowledge without receiving hidden exit positions or generator layouts. Unknown gaps remain unknown. `CanUseWaypoint` bounds queries by the sensor range and checks current ray visibility plus swept actor clearance against marked walls; it does not populate unsensed map cells.
+
+These components form the deterministic orchestrator; only the local movement actor is learned. The [game system design](../../../../Training/PCG-system-design.md#overall-navigation-and-action-design) defines their retained state, instruction handoff, recovery, action order and reset boundaries.
+
+`QaWaypointPolicyMapping` defines **local-waypoint-v1**: 134 inputs (previous movement, 64 wall/exit channel pairs, assigned waypoint validity/direction/distance), two movement outputs. The map and distant route remain external. Historical `QaLocalMovementPolicyMapping` retains **local-vision-v1** and its visible-exit summary. Matching shapes do not imply matching meanings; the maintained game runner checks config, checkpoint and Editor contract versions. See the [waypoint scene guide](../../../Scenes/QaSingleRoomTraining.README.md#waypoint-navigation).
+
 ## Exploration and exit rewards
 
-`QaPlayerRlEnvironment` and `QaSingleRoomRlEnvironment` use captured exit visibility and `ViewedOpenCellCount` to calculate rewards. The sensor supplies data; it does not award or consume rewards. The environments baseline the spawn scan and consume post-action discoveries once, including suppressed or capped discoveries. Only newly ray-revealed open cells earn exploration bonuses; wall sightings, visited positions, and repeated views do not.
+The historical `QaPlayerRlEnvironment` and non-waypoint `QaSingleRoomRlEnvironment` recipes use captured exit visibility and `ViewedOpenCellCount` to calculate rewards. The sensor supplies data; it does not award or consume rewards. The environments baseline the spawn scan and consume post-action discoveries once, including suppressed or capped discoveries. Only newly ray-revealed open cells earn exploration bonuses; wall sightings, visited positions, and repeated views do not.
+
+The waypoint stage awards zero for discoveries and instead tracks new closest approach and capped arrivals at its assigned waypoint. The sensor remains reward-free.
 
 See [the training reward rules](../../../../Training/README.md#qa-player-training) for magnitudes, caps, and exit priority. Viewed open cells measure new visual coverage; the map does not recognize distinct rooms or plan routes.
 

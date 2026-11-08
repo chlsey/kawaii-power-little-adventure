@@ -2,6 +2,120 @@
 
 This is the game-specific application of the shared RL and QA frameworks. For reusable package setup and contracts, see the [RL package guide](../../unity-reinforcement-learning/README.md) and [QA package guide](../../rein-powered-QA-framework/README.md). [Training/README.md](README.md) provides commands for this game.
 
+## Overall navigation and action design
+
+The QA player has two control levels: a game-owned **orchestrator** maintains observed knowledge and navigation intent, and a **local policy** chooses the next movement action. The orchestrator is currently deterministic C# code, combining map memory, goal selection, A* routing and recovery. Only the local policy is learned: a feed-forward PPO actor with two 64-unit hidden layers. There is no second trained orchestrator model, recurrent policy memory or LLM in this path.
+
+A waypoint carries a higher-level instruction toward a gameplay objective. The local policy receives that instruction alongside current sensors; the game determines whether the actual objective has been completed. The orchestrator never moves the actor directly or completes the objective by declaring a waypoint reached.
+
+```text
++------------------------------------------------------------------+
+| Game world -> sensor rays and observed traces                    |
++------------------------------------------------------------------+
+                              |
+                              v
++------------------------------------------------------------------+
+| Persistent observed map -> reachable goal selector -> A* route   |
+| Prefer a discovered exit; otherwise explore an observed frontier |
++------------------------------------------------------------------+
+                              |
+                              v
++------------------------------------------------------------------+
+| Navigation coordinator: retain goal, route and recovery state    |
+| Assign one currently visible waypoint with actor clearance       |
++------------------------------------------------------------------+
+                              |
+                              v
++------------------------------------------------------------------+
+| Local policy: current rays + previous movement + waypoint        |
+| Choose movement X/Y; no map or distant-route policy inputs       |
++------------------------------------------------------------------+
+                              |
+                              v
++------------------------------------------------------------------+
+| Game controller -> movement -> physics -> new observation        |
+| Actual exit trigger determines room completion                   |
++------------------------------------------------------------------+
+                              |
+                              +-- Continue --> Capture sensors again
+                              |
+                              +-- Ended ----> Record attempt; reset
+```
+
+| Responsibility | Owner and current behavior |
+| --- | --- |
+| Perception and memory | `ModelSensorPackage` and `ModelSensorGrid` retain observed free cells, walls, exits and visits for one attempt. Unknown space remains unknown. The navigator receives no generator layout or hidden exit coordinates. |
+| Objective selection and routing | `IMapGoalSelector` chooses reachable discovered exits or exploration frontiers. `QaObservedRoutePlanner` plans through observed free space; `QaNavigationCoordinator` retains the objective, validates its waypoint and handles route recovery. |
+| Local action decisions | `QaWaypointPolicyMapping` supplies the `local-waypoint-v1` policy with previous movement, current wall/exit ray channels and the assigned waypoint. The current model has two movement outputs. |
+| Reward and completion | `QaWaypointRewardTracker` bounds all positive waypoint shaping. `QaSingleRoomRlEnvironment` combines it with time/stuck costs and actual exit completion. Changing a target earns nothing; waypoint arrival never substitutes for the exit trigger. |
+| Learning and evaluation | The game owns scenes, contracts, rewards, configs and checkpoint lineage. The shared Python/Unity bridge supplies PPO training. Frozen evaluation uses deterministic actions and performs no optimizer updates. |
+| QA evidence | The optional QA framework transports attempt evidence and evaluates developer-defined requirements. It does not choose goals, issue actions or train either control layer. |
+
+### Orchestrator state and decisions
+
+`ModelSensorPackage` casts 64 world-space rays with 12-unit range. `ModelSensorGrid` retains their observed free space, wall/exit hits and visits in 0.25-unit cells for the attempt. The map is external memory for the orchestrator; it is not part of the local policy input. Unknown cells remain blocked to route planning. Placement code knows the sampled exit position for setup and measurement, but navigation uses only sensed knowledge.
+
+`IMapGoalSelector` is the replaceable selection boundary. The current `QaFrontierGoalSelector` first chooses a reachable discovered exit when exit pursuit is allowed; otherwise it selects the nearest reachable exploration frontier at least one unit away. `QaObservedRoutePlanner` uses eight-neighbour A*, blocks diagonal corner cutting and inflates observed walls by actor radius + skin width + 0.05 units. Selection and routing have no learned parameters.
+
+| Retained state | Lifetime and use |
+| --- | --- |
+| Observed grid | Accumulates sensed knowledge for one attempt; survives individual waypoint changes. |
+| Goal cell and goal type | Preserve the navigation intention across local actions and waypoint handoffs. A newly reachable exit can supersede an exploration goal. |
+| Route, active waypoint and assignment version | Choose the furthest usable route point within six units. It must cross known free cells and pass current visibility and actor-clearance checks. A new assignment increments the version; the version is bookkeeping, not a policy input. |
+| Closest approach, stalled actions and replan flag | Detect lack of progress and distinguish the first replan from repeated failure. |
+| Excluded frontiers and deferred-exit flag | Avoid retrying completed/abandoned frontier locations within 0.5 units; allow exploration to seek a new approach after exit pursuit fails. |
+
+The coordinator checks the instruction at each action boundary. Arrival within 0.5 units, invalidated clearance/known space, or a newly selected exit can require a new route/waypoint. Twenty completed actions without at least 0.05 units of new closest approach trigger one replan; repeated failure abandons that goal. Abandoning a frontier excludes it; abandoning an exit defers exit pursuit until an exploration goal is completed. This can temporarily select exploration even when an exit has been observed. With no usable goal it reports `no_reachable_goal` and supplies no instruction; the local policy still runs with zero waypoint features.
+
+### Local policy contract
+
+`QaWaypointPolicyMapping` defines **local-waypoint-v1**, with 134 inputs and two continuous outputs. Rays, direction and movement share world X/Z axes, independent of the actor's facing.
+
+| Input offsets, zero-based | Meaning |
+| --- | --- |
+| 0-1 | Previous movement X/Z. |
+| 2-129 | 64 current ray pairs: separate wall and exit strengths, each `1 - normalized hit distance`; zero for no matching hit. |
+| 130 | Assigned waypoint present: 1 or 0. |
+| 131-132 | Normalized world X/Z direction from actor to assigned waypoint. |
+| 133 | Waypoint distance / 12-unit sensor range, clamped to [0, 1]. |
+
+When there is no assignment, inputs 130-133 are all zero; current exit rays remain available. A direct skill drill can supply an instruction beyond vision, where direction remains meaningful but the distance feature saturates. Normal orchestrator assignments remain visible and within six units.
+
+The actor outputs movement X/Z in [-1, 1]. `QaPlayerController` normalizes movement magnitude above one and applies real controller/physics movement at four units per game second over 0.1-second actions. It receives no whole map, route, hidden exit position, goal type, assignment version, recovery state, health or threat features through this contract. The current model cannot choose attack, defend, interact or ability actions. Its PPO critic estimates training value; it is not an orchestrator.
+
+Historical **local-vision-v1** also has 134 inputs and two outputs, but its final four inputs summarize a currently visible exit. Equal tensor shapes do not make these meanings interchangeable. Config, readiness metadata and checkpoint metadata must agree on the contract.
+
+### Action lifecycle and reset
+
+1. Reset the seeded scenario and player, begin a fresh sensor map, clear the waypoint reward history/budget, then reset navigation and select the first assignment from sensed space.
+2. Encode current rays, previous movement and that assignment; Python selects an action using the local policy. Frozen evaluation uses deterministic actions; training collects transitions for PPO updates.
+3. Apply movement and let Unity physics advance for the action interval, including exit/death callbacks. Simulation continues while the shared host waits for `IsActionRunning()` to become false.
+4. `CalculateReward(out isDone)` captures the resulting sensor state, rewards progress against the **previously assigned** waypoint and checks actual exit completion, death or the deadline. A new assignment itself earns no reward.
+5. If the attempt continues, advance the coordinator using the new observed map, perform any handoff/recovery and assign the next reward baseline. The host then collects the resulting observation. This reward-before-observation order makes the next action see the updated instruction.
+6. On an ended attempt, retain terminal evidence before the next reset. Only a new attempt clears all observed knowledge, exclusions, deferred-exit/replan state and reward history. `ResetNavigation()` alone invalidates/rebuilds navigation while preserving map knowledge and the already consumed reward budget.
+
+### Waypoints and local objective priority
+
+Waypoints express where to pursue the higher-level intention; they are not gameplay achievements. In the real exit task, entering the actual exit trigger sets completion. Arriving at a waypoint only advances navigation. In the isolated `QaWaypointReachRlEnvironment` drill, arrival ends the skill episode while `game_completed` remains false and no exit-completion reward is paid.
+
+New closest approach pays +0.1 per unit and a new arrival pays up to +1. **All positive approach and arrival rewards combined share a +5 budget for the entire attempt**, below the default +50 actual-objective completion reward. Assignment changes and navigation resets never replenish that budget. Arrival must approach from outside the 0.5-unit radius, and a rewarded location within 0.5 units cannot pay again. Retreat does not create repayable progress for the same assignment. The exit environment also charges -0.001 per action, supports a sustained-stuck penalty and pays no exploration reward in waypoint mode; the isolated skill drill omits the stuck penalty too.
+
+The budget must stay strictly below the smallest active local-objective completion reward; introducing smaller-reward objectives requires reducing it. The current exit environment rejects completion rewards at or below the waypoint budget. This constrains reward magnitude across the attempt, but discounting, learned behavior and conflicting tasks still need explicit evaluation. A high waypoint score is not evidence of local-objective priority or successful gameplay.
+
+### Failure evidence and current limits
+
+Record actual completion/death/timeout, game seconds, initial/final distance, observed exit discovery, assignments, replans and abandoned goals. Assignment counts include recovery replacements and are not arrival counts. Terminal navigation status is a snapshot: an exit trigger can complete an attempt before the next coordinator refresh, so `exploring` at completion does not establish that the exit was ignored.
+
+The isolated drill tests following an instruction; full exit attempts test perception, memory, goal selection, routing and local control together. The navigator-disabled control bypasses selection/planning/recovery, keeps sensor rays, and supplies zero waypoint inputs. Merely masking the four inputs while still running navigation is a different ablation. Neither control compares against an independently trained navigator-free policy.
+
+The current bridge reports one `done` flag; `UnityGymEnv.step()` maps every ended attempt to `terminated=True`, `truncated=False`, including time limits. Separating timeout truncation and value bootstrapping remains unresolved training work. The frozen comparisons perform no updates and do not test a correction to that behavior. Empty-room performance also leaves obstacle traversal by the learned policy, competing local objectives and generated-dungeon completion unvalidated.
+
+The [scene guide](../Assets/Scenes/QaSingleRoomTraining.README.md#waypoint-navigation) owns launch/preflight details. The [checkpoint index](../SavedModels/qa/local-waypoint-v1/README.md) and [QA changelog](changelog/qa-player.md) own measured results and checkpoint selection.
+
+**Planned local decision behavior:** local objectives such as survival, combat or interaction should take priority over following a navigation instruction. Future threat/objective observations and an expanded policy must let the bot evade, defend, fight or interact locally before resuming the retained navigation intention. An explicit interruption/resumption contract should preserve the goal, avoid treating the interruption as navigation failure and revalidate the route afterward; the current coordinator still counts stalled actions and has no such pause signal. These decisions require policy and scenario changes, with competing-objective evaluations. A learned orchestrator could later replace goal selection under a versioned contract, but no such model or training loop is implemented.
+
+**Planned PCG connection:** once the QA policy is validated and deployed, freeze it while it attempts each generated candidate. Route actual completion and developer-defined QA requirements into the PCG learner's separate clearability reward. The QA player's waypoint rewards train its own behavior; they are not a generated map's PCG score. Generated-dungeon integration, combat decisions and standalone waypoint ONNX deployment remain deferred. The existing generation-training path and planned QA-to-PCG loop are described below.
+
 ## PCG
 
 The goal is to train a PCG model to generate clearable maps. A trained QA bot will attempt to complete each generated map, and its results will provide feedback for PCG training.
@@ -139,15 +253,35 @@ The game owns scenarios and learning rewards; the shared RL framework supplies t
 3. Review task success and failure reasons, then advance manually only after the requirements pass. Save the checkpoint with its stage, sampling/reward settings, contract, and game revision.
 4. Export a validated policy to ONNX, verify Python/ONNX/Unity action agreement, and evaluate complete QA attempts before selecting it as the fixed PCG evaluator.
 
-Current and later stages:
-- The local movement lineage starts fresh in a 10 x 10 room, then continues in a 20 x 20 room with visible exits 3-6 units away. The current authorized experiment resumes that 20 x 20 checkpoint in a **40 x 40 room with initially unseen exits 14-18 units away**. It retains current vision only, 134 inputs, two movement outputs, 12-unit rays, zero exploration reward, and a 30-second limit. The [hidden-exit config](qa-player-local-movement-hidden-40x40.yaml) owns learning settings and the 500-training/100-evaluation budget; the [QA changelog](changelog/qa-player.md) owns lineage/results. Review results before any further manual advancement.
-- Hidden-exit search is now an experiment with the existing local policy, not an implemented higher-level navigator. Obstacles, earlier-stage replay proportions, and promotion thresholds remain to be specified before use.
+The current curriculum separates local skill from integrated navigation:
+
+| Stage family | Scope and current role |
+| --- | --- |
+| Historical exit curriculum | QA-17's actor transferred into QA-18 with a fresh critic/optimizer; QA-19 trained in an open 20 x 20 room, followed by 40 x 40 exit continuations through QA-24. These retain their original 30-second limit and results. |
+| Isolated instruction following | Empty 40 x 40 room, centre spawn, random fixed waypoint, no exit/coordinator, 60 seconds. The successful branch progresses 3-6 -> 3-7 -> 6-10 -> 8-12 units. Its QA-32 checkpoint is the current skill endpoint. The separate 13-18-unit fork remains archived without promotion. |
+| Frozen distant-exit integration | QA-32 with the real map/frontier/A* coordinator; unseen actual exit 30-34 units away, 12-unit vision, waypoints within six units, 60 seconds. QA-33/34 compare enabled versus physically disabled navigation on 500 matched cases without training. |
+| Deferred capabilities | Obstacles currently have routing/reference verification fixtures, not validated learned traversal. Generated-dungeon integration, local combat/interaction, learned orchestration and standalone waypoint ONNX deployment remain future work. |
+
+The [training guide](README.md#qa-player-training) maps each stage to its runner/config. A config names its exact parent rather than following the latest checkpoint automatically. Actor-only transfer starts a fresh critic, optimizer and model-step counter; full continuation retains them. Keep branch steps distinct from total actor-lineage episodes, and exclude episodes from alternate forks. Neither frozen integration nor a status check advances the curriculum.
 
 ### Policy strategy options
 
-Selected direction: separate memory/navigation from local action decisions, following the [RL design's policy patterns](../../../google-docs/reinforcement-learning-framework-system-design.md#planned-policy-evolution-strategies). Train local target-reaching first; add a higher-level navigator to select destinations from observed map memory later. Movement versus attack/interaction specialists and weight transfer remain separate options.
+Selected direction: the [orchestrator and local policy contract](#overall-navigation-and-action-design), applying the [RL design's developer-owned orchestration pattern](../../../google-docs/reinforcement-learning-framework-system-design.md#orchestrator-and-local-policy-integration).
 
-`QaLocalMovementPolicyMapping` implements the first phase: previous movement, current wall/exit ray channels, and a visible-exit direction/distance summary. It reads no map or remembered goal. `ModelSensorPackage` can retain discovered cells for diagnostics and future navigation, outside this policy's inputs. The waypoint navigator, coordinator, and non-movement specialists remain unimplemented. The [scene guide](../Assets/Scenes/QaSingleRoomTraining.README.md#local-movement-experiment) owns the input encoding and training command.
+```text
+Sensors -> External map -> Goal selector -> Route planner
+                                                |
+                                                v
+                                       Visible waypoint
+                                                |
+                                                v
+                                     Local movement policy
+                                                |
+                                                v
+                                    Move -> Observe -> Repeat
+```
+
+The deterministic orchestrator is already implemented in the game integration; it is not a hierarchical feature supplied or jointly trained by the shared RL framework. Other policy patterns, including specialists and learned memory, remain options for explicit future experiments. Keep their contracts and evaluation separate from the current two-output movement policy.
 
 ### Integration sequence
 
@@ -164,6 +298,8 @@ The examples below use the same shared environment/host and model runner. Their 
 | Room-count generation | `PcgRlEnvironment`, `PcgPolicyMapping`, [pcg.yaml](pcg.yaml) | [Model provenance](../Assets/DemoModels/PCGRoomCount/README.md), [demo scene](../Assets/Scenes/PcgModelDemo.README.md) |
 | Room count and size | `PcgRlEnvironment` with room-size training enabled, `PcgLayoutPolicyMapping`, [pcg-layout.yaml](pcg-layout.yaml) | [Model provenance](../Assets/DemoModels/PCGLayout/README.md), [demo scene](../Assets/Scenes/PcgLayoutModelDemo.README.md) |
 | Player navigation | `QaPlayerRlEnvironment`, `QaPlayerPolicyMapping`, [qa-player-grid.yaml](qa-player-grid.yaml) | [Training and artifacts](README.md#qa-player-training), [sensor contract](../Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.README.md), [model-test scene](../Assets/Scenes/QaPlayerModelTest.README.md) |
+| Local waypoint skill | `QaWaypointReachRlEnvironment`, `QaWaypointPolicyMapping`, [8-12 skill config](qa-player-waypoint-reach-8to12.yaml) | [Skill drill](../Assets/Scenes/QaSingleRoomTraining.README.md#waypoint-reaching-skill-drill), [checkpoint index](../SavedModels/qa/local-waypoint-v1/README.md) |
+| Orchestrated exit navigation | `QaSingleRoomRlEnvironment`, `QaNavigationCoordinator`, [frozen integration config](qa-player-waypoint-distant-exit-test.yaml) | [Distant-exit scenario and control](../Assets/Scenes/QaSingleRoomTraining.README.md#frozen-distant-exit-integration-test), [system contract](#overall-navigation-and-action-design) |
 | Attempt reporting | `DungeonQaAdapter`, game-owned Python recorder | [QA setup, evidence, and logs](../QA/README.md) |
 
 The generation models reward parameter matching, not completion. The player-training scene omits QA recording components; reporting is enabled explicitly in the QA scenes. Completion-based PCG feedback and curriculum scheduling remain planned integrations.

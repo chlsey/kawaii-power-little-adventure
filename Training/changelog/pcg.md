@@ -2,6 +2,8 @@
 
 Updated through 2026-11-02. This log records the two verified generation-control policies. Their success metrics measure matching requested generator controls; they do not establish that generated levels are clearable.
 
+Evidence reviewed on 2026-11-07: these remain the two recorded PCG experiments; no additional PCG run or automatic QA-feedback integration is recorded. The retained PCG-02 evaluation still reports 200/200 joint exact matches. The current deterministic QA orchestrator and learned local policy are documented in the [game design](../PCG-system-design.md#overall-navigation-and-action-design); their waypoint rewards and empty-room evaluations do not change the PCG reward or its results.
+
 ## PCG-01: room-count policy / 2026-10-18
 
 **Change -> result:** connect PPO to the real Unity generator and learn one room-count control -> the training/export/runtime pipeline worked, but exact target matching remained below the goal.

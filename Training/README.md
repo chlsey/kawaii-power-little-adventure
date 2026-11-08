@@ -2,9 +2,28 @@
 
 See the [training change logs](changelog/README.md) for the [QA player's iteration history](changelog/qa-player.md) and [PCG experiments](changelog/pcg.md): changes, checkpoint lineage, measured results, and proposals that have not been tried.
 
+## Checkpoint storage
+
+Use the [saved-model index](../SavedModels/README.md) to find retained weights. QA models are grouped under `SavedModels/qa/<architecture>/<run>/`. The current [waypoint workflow](../SavedModels/qa/local-waypoint-v1/README.md) keeps transfers, periodic snapshots, final checkpoints, episode records and summaries together; frozen integration tests live in that architecture's `diagnostics/`. Historical local-vision and grid architectures have separate folders. Maintained YAML configs and runners stay here; generated Python caches and local `Logs/` stay ignored.
+
+The maintained runner writes periodic snapshots into the retained run folder and saves final weights before frozen evaluation. A `checkpoints.json` manifest records relative filenames, byte sizes and SHA-256 values. `Logs/` continues to hold local diagnostics; historical logs have not been deleted. Run-owned configs/JSON remain unchanged historical evidence, including original paths. Use the templates here, whose checkpoint paths reflect the current layout, when launching a new session.
+
 ## QA player training
 
-The current [local movement experiment](../Assets/Scenes/QaSingleRoomTraining.README.md#local-movement-experiment) uses the maintained `run_local_movement.py` command to train a 134-input policy without map encoding. The [hidden-exit config](qa-player-local-movement-hidden-40x40.yaml) continues the validated 20 x 20 checkpoint in a 40 x 40 room with the exit initially outside vision. The scene guide owns placement and launch details; the changelog owns results. Historical grid/full-dungeon workflows follow below.
+The current system combines a deterministic observed-map/navigation orchestrator with one learned `local-waypoint-v1` movement policy. Read the [ownership and lifecycle contract](PCG-system-design.md#overall-navigation-and-action-design) before changing either layer. Training and frozen evaluation are separate modes; each curriculum change requires an explicit selection.
+
+| Task | Runner and maintained configs | Meaning |
+| --- | --- | --- |
+| Isolated waypoint skill | `run_waypoint_reach.py`; [nearby](qa-player-waypoint-reach-nearby.yaml), [gradual](qa-player-waypoint-reach-gradual.yaml), [medium](qa-player-waypoint-reach-medium.yaml), [8-12](qa-player-waypoint-reach-8to12.yaml) | No exit or navigator. QA-27 -> QA-30 -> QA-31 -> QA-32 follows 3-6 -> 3-7 -> 6-10 -> 8-12 units. Explicit `--mode train` runs 500 training episodes then 100 frozen evaluations. Default mode is verification. |
+| Alternate farther skill branch | `run_waypoint_reach.py`; [farther](qa-player-waypoint-reach-farther.yaml), [farther continuation](qa-player-waypoint-reach-farther-continuation.yaml) | Historical QA-27 -> QA-28 -> QA-29 at 13-18 units. Frozen arrivals fell 51/100 -> 33/100 on the continuation; this branch is separate from QA-32. |
+| Frozen distant-exit integration | `run_local_movement.py`; [navigator enabled](qa-player-waypoint-distant-exit-test.yaml), [navigator disabled](qa-player-waypoint-distant-exit-no-navigator.yaml) | QA-32, 500 matched seeds, real exit 30-34 units away, 60 seconds; use `--mode evaluate --episodes 500`. No training. |
+| Historical exit curriculum | `run_local_movement.py`; [20 x 20](qa-player-waypoint-20x20.yaml), [40 x 40](qa-player-waypoint-40x40.yaml) | QA-18 actor-only transfer from QA-17, then QA-19 and the larger-room exit continuations. These configs preserve their original parents and 30-second task. |
+
+Select the config with `--config Training/<name>.yaml` from the game directory. The [scene guide](../Assets/Scenes/QaSingleRoomTraining.README.md#waypoint-reaching-skill-drill) owns complete launch commands and preflight behavior; the [checkpoint index](../SavedModels/qa/local-waypoint-v1/README.md) and [QA changelog](changelog/qa-player.md) own results and lineage. All positive waypoint rewards share a +5 attempt budget, below the current +50 local-objective reward floor. Skill arrival ends only the drill; the exit environment requires actual game completion. `test_waypoint_reach.py` and `test_waypoint_reach_batch.py` are the earlier frozen diagnostic launchers, not unit tests or the curriculum runner.
+
+### Historical grid and full-dungeon workflows
+
+The historical [local movement experiment](../Assets/Scenes/QaSingleRoomTraining.README.md#local-movement-experiment) uses the maintained `run_local_movement.py` command to train a 134-input policy without map encoding. The [hidden-exit config](qa-player-local-movement-hidden-40x40.yaml) continues the validated 20 x 20 checkpoint in a 40 x 40 room with the exit initially outside vision. The scene guide owns placement and launch details; the changelog owns results. Historical grid/full-dungeon workflows follow below.
 
 For the simpler navigation task, use [the separate single-room training scene](../Assets/Scenes/QaSingleRoomTraining.README.md) and `Training/qa-player-single-room.yaml`. It provides 10 x 10 and 40 x 40 variants with randomized player and exit positions while retaining the current observations, actions, and rewards. The instructions below cover full-dungeon training.
 
