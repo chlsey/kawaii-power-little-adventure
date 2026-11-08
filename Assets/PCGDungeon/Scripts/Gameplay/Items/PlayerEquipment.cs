@@ -57,6 +57,13 @@ public sealed class PlayerEquipment : MonoBehaviour
         }
     }
 
+    // One line per running timed powerup, for the HUD.
+    public IEnumerable<string> DescribeActivePowerups()
+    {
+        foreach (ActivePowerup active in activePowerups)
+            yield return $"{active.Definition.DisplayName} {active.RemainingSeconds:0.#}s";
+    }
+
     public float AttackDamage(float baseDamage)
     {
         float damage = Weapon != null ? Weapon.Damage : baseDamage;

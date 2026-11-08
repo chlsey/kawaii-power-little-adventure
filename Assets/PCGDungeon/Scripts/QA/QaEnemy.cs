@@ -8,8 +8,13 @@ public sealed class QaEnemy : MonoBehaviour
     [SerializeField] private float health = 3f;
     [SerializeField] private float contactDamagePerSecond = 2f;
 
+    private bool hasBrain;
+
     private void Awake()
     {
+        // EnemyBrain deals timed attacks instead, so contact damage would hit twice.
+        hasBrain = GetComponent<EnemyBrain>() != null;
+
         // Contact damage is sensed as a trigger; this prefab has no physical blocking in this POC.
         Collider ownCollider = GetComponent<Collider>();
         if (ownCollider != null)
@@ -29,6 +34,9 @@ public sealed class QaEnemy : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (hasBrain)
+            return;
+
         QaPlayerController player = other.GetComponentInParent<QaPlayerController>();
         if (player != null)
             player.ReportDamage(contactDamagePerSecond * Time.deltaTime);

@@ -4,6 +4,14 @@ using System.Linq;
 using UnityEngine;
 
 
+public enum RoomType
+{
+    Normal,
+    Spawn,
+    Boss,
+    Puzzle
+}
+
 public class Room : MonoBehaviour
 {
     //Use this vectors to make sure there's none connected
@@ -25,6 +33,7 @@ public class Room : MonoBehaviour
 
     public int MaxAmountOfConnections { get => maxAmountOfConnections;}
     public Vector2Int GeneratedSize { get; set; }
+    public RoomType Type { get; set; }
     public List<Room> ConnectedRooms { get => connectedRooms; }
     public List<GameObject> ClosestRooms { get => closestRooms; }
     public Dictionary<int, float> ConnectedRoomsAngles { get => connectedRoomsAngles; }

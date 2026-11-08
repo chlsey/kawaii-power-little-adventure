@@ -41,6 +41,8 @@ public sealed class EnemyBrain : MonoBehaviour
     private float strikeTimer = -1f;
     private float nextPlayerSearch;
 
+    public string StateName { get => state.ToString(); }
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
@@ -52,13 +54,13 @@ public sealed class EnemyBrain : MonoBehaviour
     {
         homePosition = transform.position;
 
-        // The generator parents enemies to their room, which owns a trigger sized to its floor.
+        // The generator parents enemies to their room. Build the leash from the room's size and
+        // position rather than its trigger collider: Collider.bounds can still be empty on the
+        // frame a collider was added, which would make the player look permanently out of reach.
         Room room = GetComponentInParent<Room>();
-        BoxCollider roomCollider = room != null ? room.GetComponent<BoxCollider>() : null;
-        if (roomCollider != null)
+        if (room != null && room.GeneratedSize != Vector2Int.zero)
         {
-            leash = roomCollider.bounds;
-            leash.Expand(new Vector3(-bodyRadius * 2f, 0f, -bodyRadius * 2f));
+            leash = new Bounds(room.transform.position, new Vector3(room.GeneratedSize.x - 1, 4f, room.GeneratedSize.y - 1));
             hasLeash = true;
         }
     }

@@ -23,6 +23,8 @@ public sealed class QaPlayerController : MonoBehaviour
     [SerializeField] private int stuckStepThreshold = 20;
 
     private CharacterController controller;
+    private PlayerEquipment equipment;
+    private float attackCooldownRemaining;
     private float health;
     private int powerupCount;
     private QaAction previousAction;
@@ -33,10 +35,24 @@ public sealed class QaPlayerController : MonoBehaviour
 
     public bool EpisodeActive => episodeActive;
     public QaEpisodeMetrics Metrics => metrics;
+    public PlayerEquipment Equipment => equipment;
+    // Name of the last item used and when, so the HUD can confirm a pickup did something.
+    public string LastPickupName { get; private set; }
+    public float LastPickupTime { get; private set; }
+    public float Health => health;
+    public float MaxHealth => maxHealth;
+    public bool IsDead => health <= 0f;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        equipment = GetComponent<PlayerEquipment>();
+        if (equipment == null)
+            equipment = gameObject.AddComponent<PlayerEquipment>();
+
+        // Health is live from spawn, not only during a QA episode; BeginTest refills it.
+        health = maxHealth;
+        metrics = new QaEpisodeMetrics();
     }
 
     // Resets health, metrics and the previous action, matching QAEnvironment.reset semantics.
@@ -48,6 +64,8 @@ public sealed class QaPlayerController : MonoBehaviour
         metrics = new QaEpisodeMetrics();
         stuckCheckPosition = transform.position;
         stepsSinceStuckCheck = 0;
+        attackCooldownRemaining = 0f;
+        equipment.ResetLoadout();
         episodeActive = true;
     }
 
@@ -64,9 +82,12 @@ public sealed class QaPlayerController : MonoBehaviour
         if (!episodeActive)
             throw new InvalidOperationException("Call BeginTest before applying actions.");
 
+        equipment.Tick(StepDurationSeconds);
+        attackCooldownRemaining -= StepDurationSeconds;
+
         Move(action);
 
-        if (action.Attack)
+        if (action.Attack && attackCooldownRemaining <= 0f)
             PerformAttack();
 
         if (action.Interact)
@@ -87,7 +108,7 @@ public sealed class QaPlayerController : MonoBehaviour
         if (moveInput.sqrMagnitude > 1f)
             moveInput.Normalize();
 
-        Vector3 motion = moveInput * (moveSpeed * StepDurationSeconds);
+        Vector3 motion = moveInput * (equipment.MoveSpeed(moveSpeed) * StepDurationSeconds);
         motion += Physics.gravity * (StepDurationSeconds * StepDurationSeconds);
         controller.Move(motion);
 
@@ -101,12 +122,16 @@ public sealed class QaPlayerController : MonoBehaviour
 
     private void PerformAttack()
     {
-        Vector3 center = transform.position + transform.forward * (attackRange * 0.5f);
-        Collider[] hits = Physics.OverlapSphere(center, attackRange);
+        float range = equipment.AttackRange(attackRange);
+        float damage = equipment.AttackDamage(attackDamage);
+        attackCooldownRemaining = equipment.AttackCooldown;
+
+        Vector3 center = transform.position + transform.forward * (range * 0.5f);
+        Collider[] hits = Physics.OverlapSphere(center, range);
         foreach (Collider hit in hits)
         {
             QaEnemy enemy = hit.GetComponentInParent<QaEnemy>();
-            if (enemy != null && enemy.TakeDamage(attackDamage))
+            if (enemy != null && enemy.TakeDamage(damage))
                 metrics.EnemiesKilled++;
         }
     }
@@ -114,27 +139,50 @@ public sealed class QaPlayerController : MonoBehaviour
     private void PerformInteract()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, interactRange);
+        var used = new System.Collections.Generic.HashSet<IInteractable>();
         foreach (Collider hit in hits)
         {
+            // An object with several colliders is still only used once per Interact.
+            IInteractable interactable = hit.GetComponentInParent<IInteractable>();
+            if (interactable != null && used.Add(interactable))
+                interactable.Interact(this);
+
             QaLootPickup loot = hit.GetComponentInParent<QaLootPickup>();
             if (loot != null && loot.TryCollect())
             {
                 powerupCount++;
                 metrics.PowerupsUsed++;
+                UseItem(loot.Item);
             }
         }
     }
 
-    // Called by QaEnemy contact damage. Marks player death once health reaches zero.
+    private void UseItem(ItemDefinition item)
+    {
+        LastPickupName = item != null ? item.DisplayName : "Plain powerup (no effect)";
+        LastPickupTime = Time.time;
+
+        if (item is PowerupDefinition powerup && powerup.Effect == PowerupEffect.Heal)
+            health = Mathf.Min(maxHealth, health + powerup.Amount);
+        else if (item != null)
+            equipment.Equip(item);
+    }
+
+    // Called by enemy attacks. Shields and powerups reduce the damage first.
+    // Marks player death once health reaches zero.
     public void ReportDamage(float amount)
     {
-        if (!episodeActive || amount <= 0f)
+        amount = equipment.DamageTaken(amount);
+        if (IsDead || amount <= 0f)
             return;
 
         health = Mathf.Max(0f, health - amount);
-        metrics.DamageTaken += amount;
+        if (!episodeActive)
+            return;
 
-        if (health <= 0f)
+        // Metrics only describe QA episodes.
+        metrics.DamageTaken += amount;
+        if (IsDead)
         {
             metrics.PlayerDied = true;
             episodeActive = false;
