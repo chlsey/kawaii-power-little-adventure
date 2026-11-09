@@ -24,5 +24,7 @@ public class PcgGenerationParameters
     // public float EnemyDensity;
     // public float ContentDensity;
 
+    public int PowerupsPerRoom;
+
     public int Seed;
 }

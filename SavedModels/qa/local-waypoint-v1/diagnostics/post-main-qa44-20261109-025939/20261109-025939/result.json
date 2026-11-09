@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "mode": "post-main frozen regression",
+  "episodes": 10,
+  "seed_range": [
+    288000,
+    288009
+  ],
+  "total_arrivals": 466,
+  "all_outcomes_match_qa44": true,
+  "all_episodes_600_actions": true,
+  "weight_updates": 0,
+  "checkpoint_sha256": "1094cd0cea9a3fe2bc183b5bd3a7c1dc2ea6d22f4d5d5939629d7ed7ccafde8e",
+  "model_steps": 328433,
+  "optimizer_updates": 12810
+}

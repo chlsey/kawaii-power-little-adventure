@@ -1,0 +1,9 @@
+# QA-44 verification after merging main
+
+Merged game main `719f872` into the PCG training branch, preserving its current shared QA reporting integration. Resolved generator/scene/player conflicts, kept gameplay camera/manual controls, item equipment and puzzle support, retained player episode events and pre-movement step accounting, and updated active adapters to the new parameterless `BeginTest()` API. Legacy `QaTcpHost`/wire DTO files remain removed because this branch uses the shared report-only framework.
+
+Unity compiled the merged code and passed the existing full-time reference/idle preflight (ten reference episodes: 480 arrivals; one idle episode: zero arrivals). A separate frozen QA-44 replay of seeds 288000-288009 completed 600 actions per case and 466 arrivals in total. **All 6,000 action commands, 134-input observations and X/Z positions match the original QA-44 traces within 1e-6**, as do all per-case outcomes. Model counter remains 328,433 / optimizer updates 12,810, zero updates, final SHA-256 `1094cd0cea9a3fe2bc183b5bd3a7c1dc2ea6d22f4d5d5939629d7ed7ccafde8e` unchanged.
+
+This is compilation and controlled local-movement regression evidence for the merge. It does not re-evaluate PCG model scores, puzzle completion or full-dungeon QA. Original training artifacts/snapshots retain their original source hashes and are not rewritten to represent the new source revision. New recorded snapshots identify the merged source. QA-44 is not retrained or deployed by this check.
+
+[Summary and source hashes](result.json), [full replay traces](20261109-025939/actions.jsonl.gz), [case outcomes](20261109-025939/episodes.jsonl), [source snapshots](source/Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs). Local reference runtime `Logs/qa-waypoint-restart-throughput/20261109-025627-verify/`; replay runtime `Logs/post-main-qa44-smoke/20261109-025939/`. Settings restored and Unity stopped.

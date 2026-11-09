@@ -55,7 +55,7 @@ public static class QaWaypointReachSession
         actor.enabled = false;
         player.transform.SetPositionAndRotation(new Vector3(0f, floor.bounds.max.y + 0.01f, 0f), Quaternion.identity);
         actor.enabled = true;
-        player.BeginTest(null);
+        player.BeginTest();
         Physics.SyncTransforms();
         environment.Sensors.BeginAttempt();
         Vector3 target = player.transform.position + new Vector3(1f, 0f, 1f).normalized * 4f;

@@ -117,7 +117,7 @@ public sealed class QaWaypointReachBatchEnvironment : RlEnvironmentBehaviour
         actor.enabled = false;
         source.Player.transform.SetPositionAndRotation(new Vector3(0f, floor.bounds.max.y + 0.01f, 0f), Quaternion.identity);
         actor.enabled = true;
-        source.Player.BeginTest(null);
+        source.Player.BeginTest();
         target = source.Player.transform.position + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * initialDistance;
         marker.position = target + Vector3.up * 0.25f;
         Physics.SyncTransforms();

@@ -36,6 +36,7 @@ public class Generator : MonoBehaviour
     private int minDistanceBetweenRooms;
     private int wallObjConsequitiveDistance;
     private int amountOfAdjacentRoomsToConnect;
+    private int powerupsPerRoom;
     private const int MaxFailedPlacementsPerRoom = 500;
 
     private List<ObjectList> walls;
@@ -54,6 +55,16 @@ public class Generator : MonoBehaviour
 
     private List<Vector3> wallObjDisplacements;
     private List<Vector3> doorsDisplacements;
+
+    private GameObject lootPickup;
+    private List<LootEntry> lootTable;
+
+    private GameObject exitPrefab;
+    private bool exitRequiresInteract;
+
+    private int puzzleRoomCount;
+    private List<ObjectList> puzzles;
+    private List<Room> puzzleRooms = new List<Room>();
 
     private GameObject boss;
     private GameObject player;
@@ -85,6 +96,8 @@ public class Generator : MonoBehaviour
     public List<ObjectList> Enemies { get => enemies; }
     public int AmountOfAdjacentRoomsToConnect { get => amountOfAdjacentRoomsToConnect; }
     public GenerationSettings GenerationSettings { get => generationSettings; }
+    public List<Room> PuzzleRooms { get => puzzleRooms; }
+    public int RequestedPuzzleRoomCount { get => puzzleRoomCount; }
 
     
     public bool RunProgram(PcgGenerationParameters parameters)
@@ -105,6 +118,8 @@ public class Generator : MonoBehaviour
         minRoomHeight = parameters.MinRoomHeight;
         maxRoomHeight = parameters.MaxRoomHeight;
 
+        powerupsPerRoom = parameters.PowerupsPerRoom;
+
         // amountOfAdjacentRoomsToConnect =
         //     parameters.AdjacentRoomConnections;
 
@@ -122,6 +137,7 @@ public class Generator : MonoBehaviour
         corridors.Clear();
         corridorNumber = 0;
         doorGameObjects.Clear();
+        puzzleRooms.Clear();
         numberOfRooms = 0;
         tempArea.Clear();
 
@@ -236,6 +252,15 @@ public class Generator : MonoBehaviour
         player = settings.player;
         if(player == null)
             Debug.Log("Player is null or nonexistent.");
+
+        lootPickup = settings.lootPickup;
+        lootTable = settings.lootTable;
+
+        exitPrefab = settings.exitPrefab;
+        exitRequiresInteract = settings.exitRequiresInteract;
+
+        puzzleRoomCount = settings.puzzleRoomCount;
+        puzzles = settings.puzzles;
 
         enemies = settings.enemies;
         if (!CheckListObject(Enemies))
@@ -403,6 +428,8 @@ public class Generator : MonoBehaviour
         DoubleCheckCorners();
 
         GenerateDoors();
+
+        AssignRoomTypes();
         
         GenerateContent();
 
@@ -410,7 +437,220 @@ public class Generator : MonoBehaviour
 
         SpawnEntities();
 
+        SpawnQaPlaceholders();
+
+        SpawnPuzzles();
+
         return true;
+    }
+
+    // Marks spawn and boss rooms, then picks puzzleRoomCount of the rest as
+    // puzzle rooms. Random is only consumed when puzzle rooms are requested, so
+    // existing seeds generate the same dungeon as before.
+    private void AssignRoomTypes()
+    {
+        List<Room> candidates = new List<Room>();
+        foreach (Room room in parentRooms)
+        {
+            if (room == null)
+                continue;
+
+            room.Type = room == playerSpawnRoom ? RoomType.Spawn
+                : room == bossSpawnRoom ? RoomType.Boss
+                : RoomType.Normal;
+
+            if (room.Type == RoomType.Normal)
+                candidates.Add(room);
+        }
+
+        for (int i = 0; i < puzzleRoomCount && candidates.Count > 0; i++)
+        {
+            int pick = Random.Range(0, candidates.Count);
+            candidates[pick].Type = RoomType.Puzzle;
+            puzzleRooms.Add(candidates[pick]);
+            candidates.RemoveAt(pick);
+        }
+
+        if (puzzleRooms.Count < puzzleRoomCount)
+            Debug.LogWarning($"Only {puzzleRooms.Count} rooms were available for {puzzleRoomCount} puzzle rooms.");
+    }
+
+    private void SpawnPuzzles()
+    {
+        foreach (Room room in puzzleRooms)
+        {
+            RoomPuzzle puzzle = SpawnPuzzle(room);
+            if (puzzle == null)
+                continue;
+
+            // Doors sit in the doorway just outside the floor, and slide sideways
+            // when open, so search a couple of tiles past the room's edge.
+            Bounds doorSearch = RoomBounds(room, 2f);
+            List<DungeonDoor> roomDoors = new List<DungeonDoor>();
+            foreach (GameObject doorObject in doorGameObjects)
+            {
+                DungeonDoor door = doorObject != null ? doorObject.GetComponent<DungeonDoor>() : null;
+                if (door != null && doorSearch.Contains(door.transform.position))
+                    roomDoors.Add(door);
+            }
+
+            room.gameObject.AddComponent<PuzzleRoom>().Setup(puzzle, roomDoors, RoomBounds(room, -1f));
+        }
+    }
+
+    // Places the puzzle on a floor tile at least one tile in from the walls.
+    private RoomPuzzle SpawnPuzzle(Room room)
+    {
+        Bounds inner = RoomBounds(room, -1f);
+        List<Transform> tiles = new List<Transform>();
+        for (int i = 0; i < room.transform.childCount; i++)
+        {
+            Transform child = room.transform.GetChild(i);
+            if (child.CompareTag("Floor") && !room.MidPoints.Contains(child.gameObject)
+                && !room.Corners.Contains(child.gameObject) && inner.Contains(child.position))
+                tiles.Add(child);
+        }
+
+        if (tiles.Count == 0)
+        {
+            Debug.LogWarning($"{room.name} is too small for a puzzle.");
+            return null;
+        }
+
+        Vector3 floor = tiles[Random.Range(0, tiles.Count)].position;
+        // Entries added in the Inspector without a prefab assigned are skipped.
+        List<GameObject> puzzlePrefabs = new List<GameObject>();
+        if (puzzles != null)
+        {
+            foreach (ObjectList entry in puzzles)
+            {
+                if (entry != null && entry.gameObject != null)
+                    puzzlePrefabs.Add(entry.gameObject);
+            }
+        }
+
+        GameObject puzzleObject;
+        if (puzzlePrefabs.Count > 0)
+        {
+            GameObject prefab = puzzlePrefabs[Random.Range(0, puzzlePrefabs.Count)];
+            puzzleObject = Instantiate(prefab, floor + Vector3.up * prefab.transform.position.y, Quaternion.identity, room.transform);
+        }
+        else
+        {
+            puzzleObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            puzzleObject.name = "Lever (Placeholder)";
+            puzzleObject.transform.SetParent(room.transform);
+            puzzleObject.transform.localScale = new Vector3(0.3f, 0.6f, 0.3f);
+            puzzleObject.transform.position = floor + Vector3.up * 0.6f;
+            puzzleObject.GetComponent<Renderer>().material.color = Color.yellow;
+            puzzleObject.AddComponent<LeverPuzzle>();
+        }
+
+        RoomPuzzle puzzle = puzzleObject.GetComponentInChildren<RoomPuzzle>();
+        if (puzzle == null)
+            Debug.LogWarning($"Puzzle prefab {puzzleObject.name} has no RoomPuzzle component.");
+        return puzzle;
+    }
+
+    // The room's floor-tile centres, grown (or shrunk, if negative) by padding tiles.
+    private static Bounds RoomBounds(Room room, float padding)
+    {
+        Vector2Int size = room.GeneratedSize;
+        return new Bounds(room.transform.position,
+            new Vector3(size.x - 1 + padding * 2f, 10f, size.y - 1 + padding * 2f));
+    }
+
+    // Deliberately standalone from GenerateContent/the wall-object/corner
+    // pipeline: the count comes from powerupsPerRoom and the contents from the
+    // optional loot table, so neither PcgGenerationParameters nor the policy
+    // mappings change when items are added.
+    private void SpawnQaPlaceholders()
+    {
+        for (int i = 0; i < parentRooms.Length; i++)
+        {
+            Room room = parentRooms[i];
+            if (room == null || room == bossSpawnRoom)
+                continue; // The boss room is the QA exit goal, not a loot room.
+
+            for (int p = 0; p < powerupsPerRoom; p++)
+                SpawnPowerupPlaceholder(room);
+        }
+    }
+
+    private void SpawnPowerupPlaceholder(Room room)
+    {
+        ItemDefinition item = RollLoot();
+        GameObject prefab = item != null && item.PickupPrefab != null ? item.PickupPrefab : lootPickup;
+        Vector3 floor = GetRandomFloorPositionInRoom(room);
+
+        GameObject powerup;
+        if (prefab != null)
+        {
+            // Like other generated objects, the prefab's own Y is its height above the floor.
+            powerup = Instantiate(prefab, floor + Vector3.up * prefab.transform.position.y, Quaternion.identity, room.transform);
+        }
+        else
+        {
+            powerup = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            powerup.transform.SetParent(room.transform);
+            // Sized/positioned to straddle QaPlayerController's ray sensor height (0.6);
+            // the previous 0.4-scale cube at y=0.3 topped out at y=0.5, just under the
+            // rays, so it was invisible to Sense() no matter how close the player got.
+            powerup.transform.localScale = Vector3.one * 0.6f;
+            powerup.transform.position = floor + Vector3.up * 0.5f;
+            powerup.GetComponent<Renderer>().material.color = item != null ? item.PickupColor : Color.green;
+        }
+
+        powerup.name = item != null ? item.DisplayName : "QaPowerup (Placeholder)";
+        QaLootPickup pickup = powerup.GetComponent<QaLootPickup>();
+        if (pickup == null)
+            pickup = powerup.AddComponent<QaLootPickup>();
+        pickup.Item = item;
+    }
+
+    // Weighted pick from the loot table; null (a plain QA powerup) when the table is empty.
+    private ItemDefinition RollLoot()
+    {
+        if (lootTable == null)
+            return null;
+
+        int totalWeight = 0;
+        foreach (LootEntry entry in lootTable)
+        {
+            if (entry.item != null)
+                totalWeight += entry.weight;
+        }
+
+        if (totalWeight <= 0)
+            return null;
+
+        int roll = Random.Range(0, totalWeight);
+        foreach (LootEntry entry in lootTable)
+        {
+            if (entry.item == null)
+                continue;
+
+            roll -= entry.weight;
+            if (roll < 0)
+                return entry.item;
+        }
+
+        return null;
+    }
+
+    private Vector3 GetRandomFloorPositionInRoom(Room room)
+    {
+        List<Transform> floorTiles = new List<Transform>();
+        for (int i = 0; i < room.transform.childCount; i++)
+        {
+            Transform child = room.transform.GetChild(i);
+            if (child.CompareTag("Floor"))
+                floorTiles.Add(child);
+        }
+
+        return floorTiles.Count > 0
+            ? floorTiles[Random.Range(0, floorTiles.Count)].position
+            : room.transform.position;
     }
 
     //TODO: Add comments to this function   
@@ -532,12 +772,16 @@ public class Generator : MonoBehaviour
 
         for (int a = 0; a < parentRooms.Length; a++)
         {
+            // Bounded by how many closest rooms were actually recorded above, not just
+            // the configured target - a small dungeon can have fewer than that many.
+            int connectionsToMake = Mathf.Min(parentRooms[a].MaxAmountOfConnections, parentRooms[a].ClosestRooms.Count);
+
             //Chose random rooms between the closest
-            for (int b = 0; b < parentRooms[a].MaxAmountOfConnections; b++)
+            for (int b = 0; b < connectionsToMake; b++)
             {
 
                 //Add all the possible rooms that can be chosen
-                for (int c = 0; c < parentRooms[a].MaxAmountOfConnections; c++)
+                for (int c = 0; c < connectionsToMake; c++)
                 {
                     tempNumbers.Add(c);
                 }
@@ -984,8 +1228,10 @@ public class Generator : MonoBehaviour
                 distances.Sort();
             }
 
-            //Add closest adjacent rooms
-            for (int i = 0; i < AmountOfAdjacentRoomsToConnect; i++)
+            //Add closest adjacent rooms, bounded by how many other rooms actually exist
+            //(a 2-room dungeon only has 1 "other room" per room, regardless of this setting).
+            int adjacentRoomsToAdd = Mathf.Min(AmountOfAdjacentRoomsToConnect, distances.Count);
+            for (int i = 0; i < adjacentRoomsToAdd; i++)
             {
                 parentRooms[a].AddRoom(tempDictionary[distances[i]]);
             }
@@ -1818,9 +2064,15 @@ public class Generator : MonoBehaviour
         }
     }
 
+    // Doors without a matching displacement entry sit centred on their floor tile.
+    private float DoorDisplacement(int door)
+    {
+        return doorsDisplacements != null && door < doorsDisplacements.Count ? doorsDisplacements[door].z : 0f;
+    }
+
     private void GenerateDoors()
     {
-        if(doorGameObjects.Count > 0)
+        if(doors.Count > 0)
         {
             for (int a = 0; a < areaWidth; a++)
             {
@@ -1839,7 +2091,7 @@ public class Generator : MonoBehaviour
                                     {
                                         int randomDoor = Random.Range(0, doors.Count);
 
-                                        Vector3 pos = new Vector3(area[a, b].transform.position.x, area[a, b].transform.position.y, area[a, b].transform.position.z + doorsDisplacements[randomDoor].z);
+                                        Vector3 pos = new Vector3(area[a, b].transform.position.x, area[a, b].transform.position.y + doors[randomDoor].gameObject.transform.position.y, area[a, b].transform.position.z + DoorDisplacement(randomDoor));
                                         doorGameObjects.Add(Instantiate(doors[randomDoor].gameObject, pos, Quaternion.identity, area[a, b].transform.parent)); 
                                     }
                                 }
@@ -1853,7 +2105,7 @@ public class Generator : MonoBehaviour
                                     {
                                         int randomDoor = Random.Range(0, doors.Count);
 
-                                        Vector3 pos = new Vector3(area[a, b].transform.position.x, area[a, b].transform.position.y, area[a, b].transform.position.z - doorsDisplacements[randomDoor].z);
+                                        Vector3 pos = new Vector3(area[a, b].transform.position.x, area[a, b].transform.position.y + doors[randomDoor].gameObject.transform.position.y, area[a, b].transform.position.z - DoorDisplacement(randomDoor));
                                         doorGameObjects.Add(Instantiate(doors[randomDoor].gameObject, pos, Quaternion.identity, area[a, b].transform.parent));
                                     }
                                 }
@@ -1869,7 +2121,7 @@ public class Generator : MonoBehaviour
                                     {
                                         int randomDoor = Random.Range(0, doors.Count);
 
-                                        Vector3 pos = new Vector3(area[a, b].transform.position.x + doorsDisplacements[randomDoor].z, area[a, b].transform.position.y, area[a, b].transform.position.z);
+                                        Vector3 pos = new Vector3(area[a, b].transform.position.x + DoorDisplacement(randomDoor), area[a, b].transform.position.y + doors[randomDoor].gameObject.transform.position.y, area[a, b].transform.position.z);
                                         doorGameObjects.Add(Instantiate(doors[randomDoor].gameObject, pos, Quaternion.Euler(0, 90, 0), area[a, b].transform.parent));
                                     }
                                 }
@@ -1883,7 +2135,7 @@ public class Generator : MonoBehaviour
                                     {
                                         int randomDoor = Random.Range(0, doors.Count);
 
-                                        Vector3 pos = new Vector3(area[a, b].transform.position.x - doorsDisplacements[randomDoor].z, area[a, b].transform.position.y, area[a, b].transform.position.z);
+                                        Vector3 pos = new Vector3(area[a, b].transform.position.x - DoorDisplacement(randomDoor), area[a, b].transform.position.y + doors[randomDoor].gameObject.transform.position.y, area[a, b].transform.position.z);
                                         doorGameObjects.Add(Instantiate(doors[randomDoor].gameObject, pos, Quaternion.Euler(0, -90, 0), area[a, b].transform.parent));
                                     }
                                 }
@@ -1927,15 +2179,62 @@ public class Generator : MonoBehaviour
         if (bossSpawnRoom == null)
             return;
 
-        GameObject exitZone = new GameObject("QaExitZone");
-        exitZone.transform.SetParent(bossSpawnRoom.transform);
-        exitZone.transform.position = bossSpawnRoom.transform.position;
+        GameObject exitZone;
+        if (exitPrefab != null)
+        {
+            exitZone = Instantiate(exitPrefab, bossSpawnRoom.transform.position + Vector3.up * exitPrefab.transform.position.y, Quaternion.identity, bossSpawnRoom.transform);
+        }
+        else
+        {
+            exitZone = new GameObject("QaExitZone");
+            exitZone.transform.SetParent(bossSpawnRoom.transform);
+            exitZone.transform.position = bossSpawnRoom.transform.position;
+            BuildExitPlaceholder(exitZone.transform);
+        }
 
-        BoxCollider exitCollider = exitZone.AddComponent<BoxCollider>();
-        exitCollider.size = new Vector3(2f, 3f, 2f);
+        // The trigger must exist before QaExitZone, which requires a collider.
+        if (exitZone.GetComponent<Collider>() == null)
+            exitZone.AddComponent<BoxCollider>().size = new Vector3(2f, 3f, 2f);
 
-        exitZone.AddComponent<QaExitZone>();
+        QaExitZone exit = exitZone.GetComponent<QaExitZone>();
+        if (exit == null)
+            exit = exitZone.AddComponent<QaExitZone>();
+        exit.RequireInteract = exitRequiresInteract;
         exitZone.AddComponent<ModelSensorTarget>().HitId = QaObjectType.LevelEnd;
+    }
+
+    // A bright pillar over a floor disc with a cyan light, visible from across a room.
+    // Visuals have no colliders, so ray sensors and the player only ever touch the trigger.
+    private static void BuildExitPlaceholder(Transform exit)
+    {
+        Color glow = new Color(0.2f, 0.9f, 1f);
+
+        CreateExitPart(exit, PrimitiveType.Cylinder, "Pillar", new Vector3(0.5f, 2.5f, 0.5f), Vector3.up * 2.5f, glow);
+        CreateExitPart(exit, PrimitiveType.Cylinder, "Base", new Vector3(2f, 0.03f, 2f), Vector3.up * 0.03f, glow);
+
+        GameObject lightObject = new GameObject("Light");
+        lightObject.transform.SetParent(exit);
+        lightObject.transform.localPosition = Vector3.up * 2f;
+        Light exitLight = lightObject.AddComponent<Light>();
+        exitLight.type = LightType.Point;
+        exitLight.color = glow;
+        exitLight.range = 8f;
+        exitLight.intensity = 4f;
+    }
+
+    private static void CreateExitPart(Transform parent, PrimitiveType shape, string partName, Vector3 scale, Vector3 localPosition, Color color)
+    {
+        GameObject part = GameObject.CreatePrimitive(shape);
+        DestroyImmediate(part.GetComponent<Collider>());
+        part.name = partName;
+        part.transform.SetParent(parent);
+        part.transform.localScale = scale;
+        part.transform.localPosition = localPosition;
+
+        Material material = part.GetComponent<Renderer>().material;
+        material.color = color;
+        material.EnableKeyword("_EMISSION");
+        material.SetColor("_EmissionColor", color * 2f);
     }
 
     private void GenerateContent()
@@ -2059,7 +2358,7 @@ public class Generator : MonoBehaviour
             for (int i = 0; i < parentRooms.Length; i++)
             {
 
-                if (PlayerSpawnRoom != parentRooms[i] && bossSpawnRoom != parentRooms[i])
+                if (PlayerSpawnRoom != parentRooms[i] && bossSpawnRoom != parentRooms[i] && parentRooms[i].Type != RoomType.Puzzle)
                 {
                     int area = 0;
 

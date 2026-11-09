@@ -1,8 +1,12 @@
 # PCG training change log
 
-Updated through 2026-11-02. This log records the two verified generation-control policies. Their success metrics measure matching requested generator controls; they do not establish that generated levels are clearable.
+Updated through 2026-11-09. This log records the two verified generation-control policies. Their success metrics measure matching requested generator controls; they do not establish that generated levels are clearable.
 
-Last reconciled: 2026-11-07. No further PCG run is recorded; QA-to-PCG reward feedback remains planned.
+Last reconciled: 2026-11-09. Main gameplay/generator updates merged; no new PCG training/evaluation and no changed model weights. QA-to-PCG reward feedback remains planned.
+
+## Gameplay/generator main integration / 2026-11-09 UTC
+
+**Implementation updated; no new PCG result.** User-requested main merge `719f872` brings door/puzzle placement, loot tables/equipment, exit visuals/optional interaction and structural puzzle-room validation. `PcgGenerationParameters.PowerupsPerRoom` is a placeholder chosen by `1 + seed % 3`; existing trained policies still do not output loot density. `DungeonValidator` now rejects missing/misplaced/doorless/enemy-containing puzzle rooms in addition to existing object/spawn checks; it still does not prove all rooms or the exit are reachable. Merge preserves PCG training parameter/regular-room-size metrics and optional shared QA reporting. Unity compilation and local QA-44 regression checks passed. Historical PCG-01/02 metrics below remain tied to their original runs; no PCG regeneration-score or puzzle-completion regression was run on the merged generator. [Merged-code verification and limits](../../SavedModels/qa/local-waypoint-v1/diagnostics/post-main-qa44-20261109-025939/README.md).
 
 ## PCG-01: room-count policy / 2026-10-18
 

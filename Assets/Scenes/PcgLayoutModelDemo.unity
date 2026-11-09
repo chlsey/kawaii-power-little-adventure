@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 2013417430}
   - component: {fileID: 2013417434}
   - component: {fileID: 2013417435}
+  - component: {fileID: 2013417436}
   m_Layer: 0
   m_Name: PcgDungeonManager
   m_TagString: Untagged
@@ -443,6 +444,7 @@ MonoBehaviour:
     MaxRoomWidth: 0
     MinRoomHeight: 0
     MaxRoomHeight: 0
+    PowerupsPerRoom: 0
     Seed: 0
 --- !u!114 &2013417432
 MonoBehaviour:
@@ -504,6 +506,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PcgModelDemo
   dungeonManager: {fileID: 2013417432}
   policyRunner: {fileID: 2013417431}
+--- !u!114 &2013417436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013417429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5049d836e35548ad9fd45ef98042f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QaTcpHost
+  dungeonManager: {fileID: 2013417432}
+  port: 8800
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

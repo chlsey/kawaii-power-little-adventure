@@ -302,6 +302,8 @@ GameObject:
   - component: {fileID: 1239918675}
   - component: {fileID: 1239918674}
   - component: {fileID: 1239918673}
+  - component: {fileID: 1239918677}
+  - component: {fileID: 1239918676}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -383,6 +385,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1239918676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239918672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a9792927e9644dbac76a6945986f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonCamera
+  pitch: 55
+  yaw: 45
+  distance: 12
+  followSmoothTime: 0.15
+  targetHeight: 1
+--- !u!114 &1239918677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239918672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &2013417429
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,9 +494,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PcgPolicyRunner
   mode: 0
+  parametersMode: 0
   generationSettings: {fileID: 11400000, guid: 1a976e4400faa1644be6c249c2e76f9b, type: 2}
   modelRunner: {fileID: 2013417434}
   targetRoomCount: 12
+  targetRoomWidth: 10
+  targetRoomHeight: 10
   Parameters:
     RoomCount: 0
     AreaWidth: 0
@@ -442,6 +508,7 @@ MonoBehaviour:
     MaxRoomWidth: 0
     MinRoomHeight: 0
     MaxRoomHeight: 0
+    PowerupsPerRoom: 2
     Seed: 0
 --- !u!114 &2013417432
 MonoBehaviour:
@@ -458,10 +525,13 @@ MonoBehaviour:
   dungeonGenerator: {fileID: 1068265557}
   policyRunner: {fileID: 2013417431}
   validator: {fileID: 2013417430}
+  qaPolicyRunner: {fileID: 0}
   generateOnStart: 1
   qaStepIntervalSeconds: 0.1
   maxQaSteps: 1000
   autoResetIntervalSeconds: 120
+  manualControl: 0
+  manualStepIntervalSeconds: 0.1
 --- !u!4 &2013417433
 Transform:
   m_ObjectHideFlags: 0
@@ -487,7 +557,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d88e4bc7fca4e61958c7391c9cbcc40, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Kcccr.UnityReinforcementLearning.Runtime::Kcccr.UnityReinforcementLearning.RlModelRunner
   modelAsset: {fileID: 0}
 --- !u!114 &2013417435

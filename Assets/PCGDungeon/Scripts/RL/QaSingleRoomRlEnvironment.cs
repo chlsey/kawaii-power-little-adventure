@@ -147,7 +147,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
         character.enabled = true;
         exit.gameObject.SetActive(true);
         Physics.SyncTransforms();
-        player.BeginTest(null);
+        player.BeginTest();
         player.EpisodeEnded += OnPlayerEnded;
         sensors.BeginAttempt();
         InitialExitVisible = sensors.ExitVisible;

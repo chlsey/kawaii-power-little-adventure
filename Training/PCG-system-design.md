@@ -129,7 +129,7 @@ The game generates a complete dungeon from a seed and a set of parameters. `PcgP
 - **Rooms:** the generator samples rectangular room positions and sizes, rejects placements that violate boundaries or spacing, and retries failed placements. One room uses the configured boss-room sizes.
 - **Connections:** the generator selects nearby room connections, builds straight or L-shaped corridors, and attempts to connect disconnected room groups.
 - **Layout and content:** the player spawn is selected using distance from the boss room. Walls, corners, and configured content are added, with an exit zone in the boss room. The checked-in settings currently have no enemy, boss, or decoration prefabs assigned.
-- **Validation:** `DungeonValidator` checks that generated objects and a player spawn exist. It does not independently establish that the exit or every room can be reached.
+- **Validation:** `DungeonValidator` checks generated objects/player spawn and structural puzzle-room requirements: requested room count placed, rooms exclude spawn/boss and enemies, puzzle exists inside its room and doors can bound it. These checks do not independently establish that the exit or every room can be reached, or that the local movement-only policy can solve a puzzle.
 
 The trained examples control room count alone or room count plus regular-room width and height. The existing generator chooses individual room positions and corridor routes from those parameters and the seed. Adding QA feedback is the next training objective.
 
@@ -243,6 +243,12 @@ The initial return policy is:
 - A failed QA attempt shows that this bot did not clear the map under those conditions; it does not establish that the map is impossible.
 - The first PCG objective is clearability. Difficulty, pacing and immersion remain later extensions.
 - → Add the positive and negative reward magnitudes, active completion conditions, QA step/time limits, attempt count and rule for combining multiple attempts.
+
+### Main gameplay controls and learning boundaries
+
+The gameplay controller supports equipment/loot, enemies, interactable doors and puzzle rooms, camera-relative keyboard movement and Tab switching between manual and QA control. `BeginTest()` clears episode metrics, previous action and equipment; adapters invoke this parameterless entry point. Preserve the sensor/QA-unit lifecycle around player resets. Movement-only waypoint models keep two outputs and cannot issue interaction or attack commands merely because the controller supports them. Controlled empty-room tests reset equipment, retain four-unit base speed and use touch-completion exits; interactive puzzles/exits require a separate policy/evaluation.
+
+`PcgGenerationParameters.PowerupsPerRoom` currently comes from `1 + seed % 3`, not a learned action. Loot tables and puzzle settings remain game-owned generator controls. Older PCG model scores retain their recorded generator revision; new validation behavior requires its own evaluation before claiming the same generation performance.
 
 ## Planned player curriculum
 

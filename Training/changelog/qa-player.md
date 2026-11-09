@@ -1,10 +1,10 @@
 # QA player training change log
 
-Updated through 2026-11-08. Dates below follow the UTC run records where available. This history tracks the player-control agent used for gameplay QA; the QA report receiver/evaluator is a separate framework.
+Updated through 2026-11-09. Dates below follow the UTC run records where available. This history tracks the player-control agent used for gameplay QA; the QA report receiver/evaluator is a separate framework.
 
 ## Current position
 
-Last reconciled: 2026-11-08 UTC. QA-44 completed all 2,000 requested restart/curriculum episodes; final frozen timed mean 44.43 arrivals/minute, 100/100 reach ten. All sessions are stopped.
+Last reconciled: 2026-11-09 UTC. Latest-main compatibility verification passed without learning. QA-44 completed all 2,000 requested restart/curriculum episodes; final frozen timed mean 44.43 arrivals/minute, 100/100 reach ten. All sessions are stopped.
 
 - **Latest restarted local policy:** QA-44 starts from the pre-waypoint QA-17 actor via zero-step QA-18, completes 500 episodes at each of 3-6 / 6-8 / 8-10 / full-minute continuous targets. Frozen mean arrivals 10.93 (QA-43) -> 38.98 (new pre-timed parent) -> 44.43 (final); ten-target threshold 42 -> 95 -> 100/100. Every final case reaches 37-53. Final 328,433 branch steps / 4,000 lineage episodes; QA-43 backed up unchanged. Most gain precedes timed learning; no causal input claim. [Report](../../SavedModels/qa/local-waypoint-v1/qa-waypoint-throughput-20261108-233001-train/README.md).
 
@@ -28,6 +28,10 @@ Last reconciled: 2026-11-08 UTC. QA-44 completed all 2,000 requested restart/cur
 - **Standalone parent checkpoint:** QA-39 is a direct QA-32 child at 1-10 units: 500/500 training arrivals and 100/100 frozen arrivals, mean 1.594 s versus parent 1.829 s on matched cases. 72,054 model steps / 7,500 lineage episodes, independent of the QA-36 branch. QA-32 remains preserved and preferred on the existing integrated navigation benchmark until QA-39 is evaluated there. [QA-39 report](../../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261108-145257-train/README.md).
 - **Latest complete-task comparison:** QA-33/34 used the same frozen QA-32 weights and 500 exact matched distant-exit placements. Navigator enabled **364/500 (72.8%)**, disabled **236/500 (47.2%)**, advantage **+25.6 percentage points**. Mean episode durations including timeouts: **31.09 / 37.52 s**; on the 189 common successes, disabled was faster **11.75 / 19.52 s**. This is a guidance-removal ablation, not independent policy training. [Paired evidence](../../SavedModels/qa/local-waypoint-v1/diagnostics/no-navigator-20261107-230050-evaluate/README.md).
 - **Scope and open work:** empty rooms only for these learned-policy results. Obstacle traversal, combat/local interruptions, generated-dungeon integration, waypoint ONNX deployment and timeout/truncation correction remain unvalidated or unimplemented. No model promotion or automatic curriculum advancement follows from the audit.
+
+## Main integration after QA-44 / 2026-11-09 UTC
+
+**Implementation merged; frozen compatibility checks passed, no learning.** User authorized pull/merge of latest game main, commit/push and documentation sync. Incoming main `719f872` adds manual camera/control, equipment/loot, enemy and puzzle/door behavior. Preserve the branch's report-only shared QA integration, episode-end events, sensor lifecycle and pre-movement action counters; resolve `BeginTest(Generator)` -> `BeginTest()` callers across active game/training/editor code. Keep incoming exit interaction/visuals and the branch's model-sensor exit marker. Removed legacy command/control transport files remain removed. Initial scene keeps QA recorder readiness, 0.1-second policy cadence, 120-second reset and new optional manual controls. Unity compiles; reference 10 full-minute cases yield 480 arrivals plus idle zero. Frozen QA-44 seeds 288000-288009 match original outcomes/466 arrivals and all 6,000 commands, observations and X/Z positions within 1e-6, with unchanged checkpoint/counters and zero updates. Source snapshots and historical training data remain immutable. [Post-main verification](../../SavedModels/qa/local-waypoint-v1/diagnostics/post-main-qa44-20261109-025939/README.md). No new training, deployment, PCG performance claim or generated-dungeon completion claim.
 
 ## Restart before waypoint training, with a timed throughput stage
 

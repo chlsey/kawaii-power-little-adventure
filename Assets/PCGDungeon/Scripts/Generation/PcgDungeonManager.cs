@@ -14,6 +14,11 @@ public class PcgDungeonManager : MonoBehaviour
     [SerializeField] private float autoResetIntervalSeconds;
     [SerializeField] private int maxQaRuns;
 
+    // Tab toggles between the QA policy and keyboard play (WASD move, Space
+    // attack, E interact). Both drive the same QaPlayerController.ApplyAction.
+    [SerializeField] private bool manualControl;
+    [SerializeField] private float manualStepIntervalSeconds = 0.1f;
+
     private QaPlayerController activePlayer;
     private ModelSensorPackage activeSensors;
     private float qaStepTimer;
@@ -22,6 +27,9 @@ public class PcgDungeonManager : MonoBehaviour
     private PcgGenerationParameters activeParameters;
     private DungeonQaAdapter qaAdapter;
     private int completedQaRuns;
+    private bool manualAttackQueued;
+    private bool manualInteractQueued;
+    private DungeonCamera dungeonCamera;
 
     // The spawned QA player for the current episode, ready for ApplyAction calls. Null until a dungeon is accepted.
     public QaPlayerController ActivePlayer => activePlayer;
@@ -101,8 +109,16 @@ public class PcgDungeonManager : MonoBehaviour
             }
         }
 
-        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard != null && keyboard.rKey.wasPressedThisFrame)
             StartEpisode();
+
+        if (keyboard != null && keyboard.tabKey.wasPressedThisFrame)
+        {
+            manualControl = !manualControl;
+            qaStepTimer = 0f;
+            Debug.Log(manualControl ? "Manual control (WASD, Space attack, E interact)" : "QA policy control");
+        }
 
         DriveQaPlayer();
     }
@@ -114,16 +130,55 @@ public class PcgDungeonManager : MonoBehaviour
         if (activePlayer == null || !activePlayer.EpisodeActive)
             return;
 
+        Keyboard keyboard = Keyboard.current;
+        if (manualControl && keyboard != null)
+        {
+            // Latch presses between steps so a quick tap isn't missed.
+            manualAttackQueued |= keyboard.spaceKey.wasPressedThisFrame;
+            manualInteractQueued |= keyboard.eKey.wasPressedThisFrame;
+        }
+
         qaStepTimer += Time.deltaTime;
-        if (qaStepTimer < qaStepIntervalSeconds)
+        if (qaStepTimer < (manualControl ? manualStepIntervalSeconds : qaStepIntervalSeconds))
             return;
 
         qaStepTimer = 0f;
         ModelSensorPackage sensors = activeSensors;
         sensors.Capture();
-        QaAction action = qaPolicyRunner.Decide(activePlayer.Observe(), sensors.ReadSnapshot());
+        QaAction action;
+        if (manualControl)
+            action = ReadManualAction(keyboard);
+        else
+            action = qaPolicyRunner.Decide(activePlayer.Observe(), sensors.ReadSnapshot());
         activePlayer.ApplyAction(action);
         sensors.Capture();
+    }
+
+    private QaAction ReadManualAction(Keyboard keyboard)
+    {
+        if (keyboard == null)
+            return QaAction.Noop;
+
+        float right = (keyboard.dKey.isPressed ? 1f : 0f) - (keyboard.aKey.isPressed ? 1f : 0f);
+        float forward = (keyboard.wKey.isPressed ? 1f : 0f) - (keyboard.sKey.isPressed ? 1f : 0f);
+
+        // W moves up the screen: rotate input by the follow camera's fixed yaw when there is one.
+        Vector3 move = new Vector3(right, 0f, forward);
+        if (dungeonCamera == null && Camera.main != null)
+            dungeonCamera = Camera.main.GetComponent<DungeonCamera>();
+        if (dungeonCamera != null)
+            move = dungeonCamera.PlanarRight * right + dungeonCamera.PlanarForward * forward;
+        if (move.sqrMagnitude > 1f)
+            move.Normalize();
+
+        float moveX = move.x;
+        float moveY = move.z;
+        bool attack = manualAttackQueued || keyboard.spaceKey.isPressed;
+        bool interact = manualInteractQueued;
+
+        manualAttackQueued = false;
+        manualInteractQueued = false;
+        return new QaAction(moveX, moveY, attack, interact, 0);
     }
 
     [ContextMenu("Start Episode")]
@@ -158,7 +213,7 @@ public class PcgDungeonManager : MonoBehaviour
         activeParameters = parameters;
         activePlayer = SpawnOrReuseQaPlayer();
         activeSensors = activePlayer.GetComponent<ModelSensorPackage>();
-        activePlayer.BeginTest(dungeonGenerator);
+        activePlayer.BeginTest();
         Physics.SyncTransforms();
         activeSensors.BeginAttempt();
         activePlayer.EpisodeEnded += OnPlayerEpisodeEnded;
@@ -221,13 +276,17 @@ public class PcgDungeonManager : MonoBehaviour
         if (playerObject == null)
         {
             playerObject = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-            Vector3 currentScale = playerObject.transform.localScale;
-            currentScale.Scale(new Vector3(0.25f, 1f, 0.25f));
+            playerObject.transform.localScale = new Vector3(0.6f, 1f, 0.6f);
             playerObject.name = "QaPlayer (Placeholder)";
             playerObject.transform.SetParent(dungeonGenerator.transform);
             playerObject.transform.position = dungeonGenerator.PlayerSpawnRoom.transform.position + Vector3.up;
             DestroyImmediate(playerObject.GetComponent<CapsuleCollider>());
-            playerObject.AddComponent<CharacterController>();
+            // CharacterController's radius/height are independent of transform scale and
+            // default to 0.5/2 - exactly a full 1-unit grid tile with no clearance at all.
+            CharacterController controller = playerObject.AddComponent<CharacterController>();
+            controller.radius = 0.3f;
+            controller.height = 1.6f;
+            controller.center = new Vector3(0f, 0.8f, 0f);
         }
 
         QaPlayerController qaPlayer = playerObject.GetComponent<QaPlayerController>();

@@ -57,6 +57,12 @@ For a trained-player batch, follow the [model-test scene guide](../Assets/Scenes
 
 The manual command defaults to `Logs/qa-results/dungeon-runs.jsonl` in the game directory. Use `--output path/to/results.jsonl` for another results file, or `--port` to match the adapter's configured port. Reopening the same file resumes its totals; the launcher supplies a new timestamped filename for each Play session.
 
+## Manual gameplay and current model limits
+
+In a locally controlled dungeon, Tab switches between the QA policy and manual play. Manual controls use WASD relative to the follow camera, Space to attack and E to interact. Both paths use the same player controller; equipment can affect gameplay speed, damage and defense. Reset through `BeginTest()` clears loadout and episode metrics before a recorded attempt. External RL stepping retains ownership while `RemoteControlActive` is set, so the local/manual loop stays idle.
+
+New door/puzzle/loot support does not extend a saved model's action contract. QA-44 still has two movement outputs and is validated on supplied waypoints in an empty room. Interactable puzzles/exits, combat and complete generated-dungeon traversal need their own integration/evaluation. The shared QA recorder reports observed outcomes; the removed legacy `QaTcpHost` command/control protocol is not reintroduced by the main merge.
+
 ## Attempt lifecycle and evidence
 
 - A run starts only after generation succeeds and the player has been spawned/reused and initialized. Generation-only PCG operations and failed generations do not count as player runs.

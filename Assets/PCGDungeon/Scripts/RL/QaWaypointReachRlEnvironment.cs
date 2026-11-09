@@ -47,7 +47,7 @@ public sealed class QaWaypointReachRlEnvironment : RlEnvironmentBehaviour
         actor.enabled = false;
         player.transform.SetPositionAndRotation(new Vector3(0f, roomFloor.bounds.max.y + 0.01f, 0f), Quaternion.identity);
         actor.enabled = true;
-        player.BeginTest(null);
+        player.BeginTest();
         waypoint.position = player.transform.position + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * distance;
         Physics.SyncTransforms();
         sensors.BeginAttempt();

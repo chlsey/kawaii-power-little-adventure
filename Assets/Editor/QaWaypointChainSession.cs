@@ -116,7 +116,7 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
         actor.enabled = false;
         source.Player.transform.SetPositionAndRotation(new Vector3(0f, floor.bounds.max.y + 0.01f, 0f), Quaternion.identity);
         actor.enabled = true;
-        source.Player.BeginTest(null);
+        source.Player.BeginTest();
         previousPosition = source.Player.transform.position;
 
         // Precompute the entire chain independently of policy actions. A half-unit arrival
