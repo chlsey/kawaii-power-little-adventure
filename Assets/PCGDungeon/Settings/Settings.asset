@@ -75,4 +75,6 @@ MonoBehaviour:
     - item: {fileID: 11400000, guid: fe823a012722247b0a8b2fb4d4d098cb, type: 2}
       weight: 2
     puzzleRoomCount: 2
+    lightsOutSpawnRate: 25
+    maxLightsOutRooms: 2
     puzzles: []

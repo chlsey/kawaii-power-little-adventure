@@ -138,6 +138,7 @@ public partial class Generator : MonoBehaviour
         corridorNumber = 0;
         doorGameObjects.Clear();
         puzzleRooms.Clear();
+        lightsOutRooms.Clear();
         numberOfRooms = 0;
         tempArea.Clear();
 
@@ -475,6 +476,7 @@ public partial class Generator : MonoBehaviour
 
         if (puzzleRooms.Count < puzzleRoomCount)
             Debug.LogWarning($"Only {puzzleRooms.Count} rooms were available for {puzzleRoomCount} puzzle rooms.");
+        AssignLightsOutRooms(candidates);
     }
 
     private void SpawnPuzzles()
@@ -503,6 +505,8 @@ public partial class Generator : MonoBehaviour
     // Places the puzzle on a floor tile at least one tile in from the walls.
     private RoomPuzzle SpawnPuzzle(Room room)
     {
+        if (lightsOutRooms.Contains(room))
+            return SpawnLightsOut(room);
         Bounds inner = RoomBounds(room, -1f);
         List<Transform> tiles = new List<Transform>();
         for (int i = 0; i < room.transform.childCount; i++)
@@ -581,9 +585,13 @@ public partial class Generator : MonoBehaviour
 
     private void SpawnPowerupPlaceholder(Room room)
     {
+        SpawnPowerupAt(room, GetRandomFloorPositionInRoom(room));
+    }
+
+    private void SpawnPowerupAt(Room room, Vector3 floor)
+    {
         ItemDefinition item = RollLoot();
         GameObject prefab = item != null && item.PickupPrefab != null ? item.PickupPrefab : lootPickup;
-        Vector3 floor = GetRandomFloorPositionInRoom(room);
 
         GameObject powerup;
         if (prefab != null)

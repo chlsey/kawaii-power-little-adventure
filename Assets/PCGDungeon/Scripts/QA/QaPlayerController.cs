@@ -143,13 +143,18 @@ public sealed class QaPlayerController : MonoBehaviour
     private void PerformInteract()
     {
         Collider[] hits = Physics.OverlapSphere(transform.position, interactRange);
-        var used = new System.Collections.Generic.HashSet<IInteractable>();
+        IInteractable nearest = null;
+        float nearestDistance = float.PositiveInfinity;
         foreach (Collider hit in hits)
         {
-            // An object with several colliders is still only used once per Interact.
+            // Use only the nearest switch: neighboring puzzle controls can share the interaction radius.
             IInteractable interactable = hit.GetComponentInParent<IInteractable>();
-            if (interactable != null && used.Add(interactable))
-                interactable.Interact(this);
+            float distance = (hit.ClosestPoint(transform.position) - transform.position).sqrMagnitude;
+            if (interactable != null && distance < nearestDistance)
+            {
+                nearest = interactable;
+                nearestDistance = distance;
+            }
 
             QaLootPickup loot = hit.GetComponentInParent<QaLootPickup>();
             if (loot != null && loot.TryCollect())
@@ -159,6 +164,7 @@ public sealed class QaPlayerController : MonoBehaviour
                 UseItem(loot.Item);
             }
         }
+        nearest?.Interact(this);
     }
 
     private void UseItem(ItemDefinition item)

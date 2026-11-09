@@ -79,6 +79,11 @@ public class Data
     // Rooms that lock the player in until a puzzle is solved. Never the spawn or boss room.
     [Min(0)]
     [SerializeField] public int puzzleRoomCount;
+    [Header("Lights Out puzzles")]
+    [Tooltip("Chance per remaining normal room, after regular puzzle rooms are assigned.")]
+    [Range(0, 100)] public int lightsOutSpawnRate = 25;
+    [Tooltip("Maximum Lights Out rooms in the whole dungeon. Zero disables them.")]
+    [Min(0)] public int maxLightsOutRooms = 2;
     // Puzzle prefabs (each with a RoomPuzzle component). Empty uses a placeholder lever.
     [SerializeField] public List<ObjectList> puzzles = new List<ObjectList>();
 
