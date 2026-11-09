@@ -1,0 +1,2 @@
+# Preserve retained model evidence and recorded hashes byte for byte.
+/SavedModels/** -text
