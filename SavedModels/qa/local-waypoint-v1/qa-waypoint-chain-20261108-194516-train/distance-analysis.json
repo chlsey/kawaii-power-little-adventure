@@ -1,0 +1,191 @@
+{
+  "analyzed_at_utc": "2026-11-08T22:32:38.528127+00:00",
+  "model": "QA-43",
+  "source": "evaluation/legs.jsonl",
+  "new_training_episodes": 0,
+  "new_evaluation_episodes": 0,
+  "metric": "Timeout on the assigned waypoint before whole-chain deadline, grouped by its actual assignment distance",
+  "attempted_targets": 735,
+  "failed_targets": 58,
+  "coarse": [
+    {
+      "minimum": 1,
+      "maximum_exclusive": 4,
+      "attempted": 268,
+      "failed": 14,
+      "failure_rate": 0.05223880597014925,
+      "failed_leg_mean_seconds": 51.857142857142854
+    },
+    {
+      "minimum": 4,
+      "maximum_exclusive": 7,
+      "attempted": 268,
+      "failed": 18,
+      "failure_rate": 0.06716417910447761,
+      "failed_leg_mean_seconds": 52.42777777777778
+    },
+    {
+      "minimum": 7,
+      "maximum_exclusive": 10,
+      "attempted": 199,
+      "failed": 26,
+      "failure_rate": 0.1306532663316583,
+      "failed_leg_mean_seconds": 50.87307692307692
+    }
+  ],
+  "one_unit": [
+    {
+      "minimum": 1,
+      "maximum_exclusive": 2,
+      "attempted": 45,
+      "failed": 1,
+      "failure_rate": 0.022222222222222223,
+      "failed_leg_mean_seconds": 53.7
+    },
+    {
+      "minimum": 2,
+      "maximum_exclusive": 3,
+      "attempted": 133,
+      "failed": 6,
+      "failure_rate": 0.045112781954887216,
+      "failed_leg_mean_seconds": 53.88333333333333
+    },
+    {
+      "minimum": 3,
+      "maximum_exclusive": 4,
+      "attempted": 90,
+      "failed": 7,
+      "failure_rate": 0.07777777777777778,
+      "failed_leg_mean_seconds": 49.857142857142854
+    },
+    {
+      "minimum": 4,
+      "maximum_exclusive": 5,
+      "attempted": 93,
+      "failed": 4,
+      "failure_rate": 0.043010752688172046,
+      "failed_leg_mean_seconds": 52.075
+    },
+    {
+      "minimum": 5,
+      "maximum_exclusive": 6,
+      "attempted": 79,
+      "failed": 3,
+      "failure_rate": 0.0379746835443038,
+      "failed_leg_mean_seconds": 54.93333333333334
+    },
+    {
+      "minimum": 6,
+      "maximum_exclusive": 7,
+      "attempted": 96,
+      "failed": 11,
+      "failure_rate": 0.11458333333333333,
+      "failed_leg_mean_seconds": 51.872727272727275
+    },
+    {
+      "minimum": 7,
+      "maximum_exclusive": 8,
+      "attempted": 89,
+      "failed": 14,
+      "failure_rate": 0.15730337078651685,
+      "failed_leg_mean_seconds": 50.87857142857143
+    },
+    {
+      "minimum": 8,
+      "maximum_exclusive": 9,
+      "attempted": 83,
+      "failed": 10,
+      "failure_rate": 0.12048192771084337,
+      "failed_leg_mean_seconds": 50.86
+    },
+    {
+      "minimum": 9,
+      "maximum_exclusive": 10,
+      "attempted": 27,
+      "failed": 2,
+      "failure_rate": 0.07407407407407407,
+      "failed_leg_mean_seconds": 50.900000000000006
+    }
+  ],
+  "after_first_target": [
+    {
+      "minimum": 1,
+      "maximum_exclusive": 4,
+      "attempted": 238,
+      "failed": 14,
+      "failure_rate": 0.058823529411764705,
+      "failed_leg_mean_seconds": 51.857142857142854
+    },
+    {
+      "minimum": 4,
+      "maximum_exclusive": 7,
+      "attempted": 229,
+      "failed": 18,
+      "failure_rate": 0.07860262008733625,
+      "failed_leg_mean_seconds": 52.42777777777778
+    },
+    {
+      "minimum": 7,
+      "maximum_exclusive": 10,
+      "attempted": 168,
+      "failed": 26,
+      "failure_rate": 0.15476190476190477,
+      "failed_leg_mean_seconds": 50.87307692307692
+    }
+  ],
+  "failures_reaching_within_1_unit": 15,
+  "failures_reaching_within_2_units": 37,
+  "failures_with_at_least_30_seconds_on_failed_target": 58,
+  "by_chain_position": [
+    {
+      "waypoint": 1,
+      "attempted": 100,
+      "failures": 0
+    },
+    {
+      "waypoint": 2,
+      "attempted": 100,
+      "failures": 3
+    },
+    {
+      "waypoint": 3,
+      "attempted": 97,
+      "failures": 8
+    },
+    {
+      "waypoint": 4,
+      "attempted": 89,
+      "failures": 15
+    },
+    {
+      "waypoint": 5,
+      "attempted": 74,
+      "failures": 8
+    },
+    {
+      "waypoint": 6,
+      "attempted": 66,
+      "failures": 4
+    },
+    {
+      "waypoint": 7,
+      "attempted": 62,
+      "failures": 8
+    },
+    {
+      "waypoint": 8,
+      "attempted": 54,
+      "failures": 6
+    },
+    {
+      "waypoint": 9,
+      "attempted": 48,
+      "failures": 3
+    },
+    {
+      "waypoint": 10,
+      "attempted": 45,
+      "failures": 3
+    }
+  ]
+}

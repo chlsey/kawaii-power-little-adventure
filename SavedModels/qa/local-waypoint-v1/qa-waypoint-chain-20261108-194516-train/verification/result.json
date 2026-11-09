@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "completed_episodes": 100,
+  "complete_chains": 100,
+  "timeouts": 0,
+  "waypoint_arrivals": 548,
+  "planned_waypoints": 548,
+  "successful_seconds_mean": 6.872000106275082,
+  "mean_episode_seconds": 6.872000106275082
+}

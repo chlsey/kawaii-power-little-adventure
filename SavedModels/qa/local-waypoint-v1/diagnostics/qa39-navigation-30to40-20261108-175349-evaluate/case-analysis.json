@@ -1,0 +1,1002 @@
+[
+  {
+    "seed": 287000,
+    "completed": true,
+    "initial_goal_distance": 39.60573959350586,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 7,
+    "assignments": 9,
+    "first_exit_visible_seconds": 7.2,
+    "final_goal_distance": 1.0990588665008545
+  },
+  {
+    "seed": 287001,
+    "completed": false,
+    "initial_goal_distance": 32.53992462158203,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 23,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 39.06608581542969
+  },
+  {
+    "seed": 287002,
+    "completed": false,
+    "initial_goal_distance": 35.4741096496582,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 1,
+    "assignments": 21,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 33.169490814208984
+  },
+  {
+    "seed": 287003,
+    "completed": true,
+    "initial_goal_distance": 38.408294677734375,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 4,
+    "assignments": 20,
+    "first_exit_visible_seconds": 31.0,
+    "final_goal_distance": 1.280289888381958
+  },
+  {
+    "seed": 287004,
+    "completed": true,
+    "initial_goal_distance": 31.34248161315918,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 1,
+    "assignments": 16,
+    "first_exit_visible_seconds": 27.0,
+    "final_goal_distance": 1.3355906009674072
+  },
+  {
+    "seed": 287005,
+    "completed": true,
+    "initial_goal_distance": 34.276668548583984,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 2,
+    "assignments": 12,
+    "first_exit_visible_seconds": 19.8,
+    "final_goal_distance": 0.9905213713645935
+  },
+  {
+    "seed": 287006,
+    "completed": true,
+    "initial_goal_distance": 37.210853576660156,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 3,
+    "assignments": 13,
+    "first_exit_visible_seconds": 29.900000000000002,
+    "final_goal_distance": 1.4972050189971924
+  },
+  {
+    "seed": 287007,
+    "completed": true,
+    "initial_goal_distance": 30.145042419433594,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 3,
+    "assignments": 23,
+    "first_exit_visible_seconds": 49.300000000000004,
+    "final_goal_distance": 1.0288028717041016
+  },
+  {
+    "seed": 287008,
+    "completed": false,
+    "initial_goal_distance": 33.079227447509766,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 4,
+    "assignments": 21,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 23.114147186279297
+  },
+  {
+    "seed": 287009,
+    "completed": true,
+    "initial_goal_distance": 36.01341247558594,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 9,
+    "first_exit_visible_seconds": 28.6,
+    "final_goal_distance": 1.2155451774597168
+  },
+  {
+    "seed": 287010,
+    "completed": true,
+    "initial_goal_distance": 38.94759750366211,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 7,
+    "assignments": 20,
+    "first_exit_visible_seconds": 23.700000000000003,
+    "final_goal_distance": 1.0361729860305786
+  },
+  {
+    "seed": 287011,
+    "completed": true,
+    "initial_goal_distance": 31.881784439086914,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 7,
+    "assignments": 29,
+    "first_exit_visible_seconds": 56.900000000000006,
+    "final_goal_distance": 1.1322582960128784
+  },
+  {
+    "seed": 287012,
+    "completed": true,
+    "initial_goal_distance": 34.81597137451172,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 9,
+    "assignments": 22,
+    "first_exit_visible_seconds": 47.7,
+    "final_goal_distance": 1.3855102062225342
+  },
+  {
+    "seed": 287013,
+    "completed": true,
+    "initial_goal_distance": 37.75015640258789,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 4,
+    "assignments": 28,
+    "first_exit_visible_seconds": 49.400000000000006,
+    "final_goal_distance": 0.8860087394714355
+  },
+  {
+    "seed": 287014,
+    "completed": true,
+    "initial_goal_distance": 30.684343338012695,
+    "arrival_handoffs": 5,
+    "waypoint_arrivals": 5,
+    "assignments": 10,
+    "first_exit_visible_seconds": 15.9,
+    "final_goal_distance": 1.1238715648651123
+  },
+  {
+    "seed": 287015,
+    "completed": true,
+    "initial_goal_distance": 33.6185302734375,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 8,
+    "assignments": 15,
+    "first_exit_visible_seconds": 21.1,
+    "final_goal_distance": 1.234235405921936
+  },
+  {
+    "seed": 287016,
+    "completed": false,
+    "initial_goal_distance": 36.55271530151367,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 1,
+    "assignments": 21,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 35.702857971191406
+  },
+  {
+    "seed": 287017,
+    "completed": false,
+    "initial_goal_distance": 39.486900329589844,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 18,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 49.9210090637207
+  },
+  {
+    "seed": 287018,
+    "completed": true,
+    "initial_goal_distance": 32.42108917236328,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 7,
+    "assignments": 9,
+    "first_exit_visible_seconds": 9.4,
+    "final_goal_distance": 1.2516374588012695
+  },
+  {
+    "seed": 287019,
+    "completed": true,
+    "initial_goal_distance": 35.35527420043945,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 10,
+    "first_exit_visible_seconds": 9.5,
+    "final_goal_distance": 1.0990252494812012
+  },
+  {
+    "seed": 287020,
+    "completed": true,
+    "initial_goal_distance": 38.289459228515625,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 7,
+    "assignments": 8,
+    "first_exit_visible_seconds": 6.6000000000000005,
+    "final_goal_distance": 1.190176248550415
+  },
+  {
+    "seed": 287021,
+    "completed": true,
+    "initial_goal_distance": 31.223648071289062,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 9,
+    "first_exit_visible_seconds": 5.6000000000000005,
+    "final_goal_distance": 1.1033830642700195
+  },
+  {
+    "seed": 287022,
+    "completed": false,
+    "initial_goal_distance": 34.157833099365234,
+    "arrival_handoffs": 9,
+    "waypoint_arrivals": 9,
+    "assignments": 32,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 23.455127716064453
+  },
+  {
+    "seed": 287023,
+    "completed": true,
+    "initial_goal_distance": 37.092018127441406,
+    "arrival_handoffs": 10,
+    "waypoint_arrivals": 10,
+    "assignments": 12,
+    "first_exit_visible_seconds": 9.700000000000001,
+    "final_goal_distance": 1.2637583017349243
+  },
+  {
+    "seed": 287024,
+    "completed": false,
+    "initial_goal_distance": 30.02620506286621,
+    "arrival_handoffs": 9,
+    "waypoint_arrivals": 9,
+    "assignments": 40,
+    "first_exit_visible_seconds": 37.4,
+    "final_goal_distance": 35.23732376098633
+  },
+  {
+    "seed": 287025,
+    "completed": false,
+    "initial_goal_distance": 32.960391998291016,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 3,
+    "assignments": 19,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 39.36384582519531
+  },
+  {
+    "seed": 287026,
+    "completed": true,
+    "initial_goal_distance": 35.89457702636719,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 3,
+    "assignments": 22,
+    "first_exit_visible_seconds": 40.800000000000004,
+    "final_goal_distance": 1.1938940286636353
+  },
+  {
+    "seed": 287027,
+    "completed": true,
+    "initial_goal_distance": 38.828765869140625,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 3,
+    "assignments": 13,
+    "first_exit_visible_seconds": 15.100000000000001,
+    "final_goal_distance": 1.2711015939712524
+  },
+  {
+    "seed": 287028,
+    "completed": true,
+    "initial_goal_distance": 31.762950897216797,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 10,
+    "first_exit_visible_seconds": 18.3,
+    "final_goal_distance": 1.1698259115219116
+  },
+  {
+    "seed": 287029,
+    "completed": true,
+    "initial_goal_distance": 34.697139739990234,
+    "arrival_handoffs": 13,
+    "waypoint_arrivals": 14,
+    "assignments": 21,
+    "first_exit_visible_seconds": 35.2,
+    "final_goal_distance": 1.3798874616622925
+  },
+  {
+    "seed": 287030,
+    "completed": false,
+    "initial_goal_distance": 37.63132095336914,
+    "arrival_handoffs": 5,
+    "waypoint_arrivals": 5,
+    "assignments": 19,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 15.672344207763672
+  },
+  {
+    "seed": 287031,
+    "completed": false,
+    "initial_goal_distance": 30.565507888793945,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 7,
+    "assignments": 21,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 18.401578903198242
+  },
+  {
+    "seed": 287032,
+    "completed": false,
+    "initial_goal_distance": 33.499691009521484,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 17,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 15.163352012634277
+  },
+  {
+    "seed": 287033,
+    "completed": true,
+    "initial_goal_distance": 36.43387985229492,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 9,
+    "assignments": 19,
+    "first_exit_visible_seconds": 23.400000000000002,
+    "final_goal_distance": 1.3903213739395142
+  },
+  {
+    "seed": 287034,
+    "completed": false,
+    "initial_goal_distance": 39.368064880371094,
+    "arrival_handoffs": 12,
+    "waypoint_arrivals": 13,
+    "assignments": 26,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 17.492765426635742
+  },
+  {
+    "seed": 287035,
+    "completed": true,
+    "initial_goal_distance": 32.30225372314453,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 1,
+    "assignments": 5,
+    "first_exit_visible_seconds": 12.100000000000001,
+    "final_goal_distance": 1.156809687614441
+  },
+  {
+    "seed": 287036,
+    "completed": true,
+    "initial_goal_distance": 35.2364387512207,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 5,
+    "assignments": 14,
+    "first_exit_visible_seconds": 38.800000000000004,
+    "final_goal_distance": 1.1371623277664185
+  },
+  {
+    "seed": 287037,
+    "completed": true,
+    "initial_goal_distance": 38.170623779296875,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 8,
+    "assignments": 10,
+    "first_exit_visible_seconds": 14.0,
+    "final_goal_distance": 1.2867037057876587
+  },
+  {
+    "seed": 287038,
+    "completed": true,
+    "initial_goal_distance": 31.104814529418945,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 3,
+    "assignments": 9,
+    "first_exit_visible_seconds": 9.1,
+    "final_goal_distance": 1.1393499374389648
+  },
+  {
+    "seed": 287039,
+    "completed": true,
+    "initial_goal_distance": 34.038997650146484,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 4,
+    "assignments": 8,
+    "first_exit_visible_seconds": 10.700000000000001,
+    "final_goal_distance": 1.2901270389556885
+  },
+  {
+    "seed": 287040,
+    "completed": true,
+    "initial_goal_distance": 36.973182678222656,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 8,
+    "first_exit_visible_seconds": 7.6000000000000005,
+    "final_goal_distance": 1.1259171962738037
+  },
+  {
+    "seed": 287041,
+    "completed": true,
+    "initial_goal_distance": 39.907371520996094,
+    "arrival_handoffs": 5,
+    "waypoint_arrivals": 5,
+    "assignments": 8,
+    "first_exit_visible_seconds": 7.7,
+    "final_goal_distance": 1.2145464420318604
+  },
+  {
+    "seed": 287042,
+    "completed": true,
+    "initial_goal_distance": 32.841556549072266,
+    "arrival_handoffs": 5,
+    "waypoint_arrivals": 5,
+    "assignments": 21,
+    "first_exit_visible_seconds": 33.4,
+    "final_goal_distance": 1.3989973068237305
+  },
+  {
+    "seed": 287043,
+    "completed": false,
+    "initial_goal_distance": 35.77574157714844,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 7,
+    "assignments": 22,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 14.852192878723145
+  },
+  {
+    "seed": 287044,
+    "completed": true,
+    "initial_goal_distance": 38.709930419921875,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 2,
+    "assignments": 11,
+    "first_exit_visible_seconds": 6.800000000000001,
+    "final_goal_distance": 1.203409194946289
+  },
+  {
+    "seed": 287045,
+    "completed": false,
+    "initial_goal_distance": 31.644115447998047,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 3,
+    "assignments": 20,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 31.546932220458984
+  },
+  {
+    "seed": 287046,
+    "completed": false,
+    "initial_goal_distance": 34.57830047607422,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 1,
+    "assignments": 21,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 30.823795318603516
+  },
+  {
+    "seed": 287047,
+    "completed": true,
+    "initial_goal_distance": 37.51248550415039,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 8,
+    "assignments": 17,
+    "first_exit_visible_seconds": 43.800000000000004,
+    "final_goal_distance": 1.2993700504302979
+  },
+  {
+    "seed": 287048,
+    "completed": false,
+    "initial_goal_distance": 30.446674346923828,
+    "arrival_handoffs": 9,
+    "waypoint_arrivals": 9,
+    "assignments": 25,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 38.59685516357422
+  },
+  {
+    "seed": 287049,
+    "completed": true,
+    "initial_goal_distance": 33.380859375,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 4,
+    "assignments": 14,
+    "first_exit_visible_seconds": 38.1,
+    "final_goal_distance": 1.0387614965438843
+  },
+  {
+    "seed": 287050,
+    "completed": true,
+    "initial_goal_distance": 36.31504440307617,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 12,
+    "first_exit_visible_seconds": 18.900000000000002,
+    "final_goal_distance": 1.4131311178207397
+  },
+  {
+    "seed": 287051,
+    "completed": true,
+    "initial_goal_distance": 39.24923324584961,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 3,
+    "assignments": 14,
+    "first_exit_visible_seconds": 27.3,
+    "final_goal_distance": 1.2618110179901123
+  },
+  {
+    "seed": 287052,
+    "completed": false,
+    "initial_goal_distance": 32.18341827392578,
+    "arrival_handoffs": 10,
+    "waypoint_arrivals": 10,
+    "assignments": 30,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 39.94388198852539
+  },
+  {
+    "seed": 287053,
+    "completed": false,
+    "initial_goal_distance": 35.11760711669922,
+    "arrival_handoffs": 12,
+    "waypoint_arrivals": 12,
+    "assignments": 27,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 40.08050537109375
+  },
+  {
+    "seed": 287054,
+    "completed": false,
+    "initial_goal_distance": 38.05179214477539,
+    "arrival_handoffs": 14,
+    "waypoint_arrivals": 14,
+    "assignments": 28,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 39.254173278808594
+  },
+  {
+    "seed": 287055,
+    "completed": true,
+    "initial_goal_distance": 30.985977172851562,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 1,
+    "assignments": 16,
+    "first_exit_visible_seconds": 38.6,
+    "final_goal_distance": 0.9945654273033142
+  },
+  {
+    "seed": 287056,
+    "completed": false,
+    "initial_goal_distance": 33.920162200927734,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 7,
+    "assignments": 37,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 35.97623062133789
+  },
+  {
+    "seed": 287057,
+    "completed": false,
+    "initial_goal_distance": 36.85435104370117,
+    "arrival_handoffs": 9,
+    "waypoint_arrivals": 9,
+    "assignments": 29,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 14.608851432800293
+  },
+  {
+    "seed": 287058,
+    "completed": true,
+    "initial_goal_distance": 39.788536071777344,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 19,
+    "first_exit_visible_seconds": 45.300000000000004,
+    "final_goal_distance": 1.571576476097107
+  },
+  {
+    "seed": 287059,
+    "completed": false,
+    "initial_goal_distance": 32.722721099853516,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 8,
+    "assignments": 32,
+    "first_exit_visible_seconds": 58.6,
+    "final_goal_distance": 7.997239112854004
+  },
+  {
+    "seed": 287060,
+    "completed": true,
+    "initial_goal_distance": 35.65690612792969,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 12,
+    "first_exit_visible_seconds": 23.1,
+    "final_goal_distance": 1.4101766347885132
+  },
+  {
+    "seed": 287061,
+    "completed": true,
+    "initial_goal_distance": 38.591094970703125,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 4,
+    "assignments": 9,
+    "first_exit_visible_seconds": 9.8,
+    "final_goal_distance": 1.1250947713851929
+  },
+  {
+    "seed": 287062,
+    "completed": false,
+    "initial_goal_distance": 31.525278091430664,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 3,
+    "assignments": 19,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 36.259761810302734
+  },
+  {
+    "seed": 287063,
+    "completed": true,
+    "initial_goal_distance": 34.45946502685547,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 8,
+    "assignments": 11,
+    "first_exit_visible_seconds": 6.2,
+    "final_goal_distance": 1.302777647972107
+  },
+  {
+    "seed": 287064,
+    "completed": true,
+    "initial_goal_distance": 37.393653869628906,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 4,
+    "assignments": 23,
+    "first_exit_visible_seconds": 54.5,
+    "final_goal_distance": 1.20193350315094
+  },
+  {
+    "seed": 287065,
+    "completed": false,
+    "initial_goal_distance": 30.327838897705078,
+    "arrival_handoffs": 12,
+    "waypoint_arrivals": 12,
+    "assignments": 27,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 22.49444580078125
+  },
+  {
+    "seed": 287066,
+    "completed": false,
+    "initial_goal_distance": 33.26202392578125,
+    "arrival_handoffs": 7,
+    "waypoint_arrivals": 7,
+    "assignments": 24,
+    "first_exit_visible_seconds": 56.5,
+    "final_goal_distance": 1.9553554058074951
+  },
+  {
+    "seed": 287067,
+    "completed": true,
+    "initial_goal_distance": 36.19621276855469,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 2,
+    "assignments": 10,
+    "first_exit_visible_seconds": 6.4,
+    "final_goal_distance": 1.2574008703231812
+  },
+  {
+    "seed": 287068,
+    "completed": true,
+    "initial_goal_distance": 39.130393981933594,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 11,
+    "first_exit_visible_seconds": 8.5,
+    "final_goal_distance": 0.9606941342353821
+  },
+  {
+    "seed": 287069,
+    "completed": false,
+    "initial_goal_distance": 32.06458282470703,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 2,
+    "assignments": 18,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 24.703033447265625
+  },
+  {
+    "seed": 287070,
+    "completed": true,
+    "initial_goal_distance": 34.9987678527832,
+    "arrival_handoffs": 9,
+    "waypoint_arrivals": 9,
+    "assignments": 23,
+    "first_exit_visible_seconds": 50.400000000000006,
+    "final_goal_distance": 0.9779066443443298
+  },
+  {
+    "seed": 287071,
+    "completed": false,
+    "initial_goal_distance": 37.93295669555664,
+    "arrival_handoffs": 9,
+    "waypoint_arrivals": 9,
+    "assignments": 25,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 38.15974044799805
+  },
+  {
+    "seed": 287072,
+    "completed": true,
+    "initial_goal_distance": 30.867141723632812,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 7,
+    "assignments": 9,
+    "first_exit_visible_seconds": 5.0,
+    "final_goal_distance": 1.2656611204147339
+  },
+  {
+    "seed": 287073,
+    "completed": false,
+    "initial_goal_distance": 33.801326751708984,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 22,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 30.33059310913086
+  },
+  {
+    "seed": 287074,
+    "completed": true,
+    "initial_goal_distance": 36.73551559448242,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 3,
+    "assignments": 11,
+    "first_exit_visible_seconds": 29.400000000000002,
+    "final_goal_distance": 1.1107028722763062
+  },
+  {
+    "seed": 287075,
+    "completed": true,
+    "initial_goal_distance": 39.669700622558594,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 1,
+    "assignments": 15,
+    "first_exit_visible_seconds": 44.2,
+    "final_goal_distance": 1.464165210723877
+  },
+  {
+    "seed": 287076,
+    "completed": true,
+    "initial_goal_distance": 32.603885650634766,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 9,
+    "assignments": 32,
+    "first_exit_visible_seconds": 51.800000000000004,
+    "final_goal_distance": 1.5160460472106934
+  },
+  {
+    "seed": 287077,
+    "completed": false,
+    "initial_goal_distance": 35.53807067871094,
+    "arrival_handoffs": 13,
+    "waypoint_arrivals": 13,
+    "assignments": 25,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 31.0636043548584
+  },
+  {
+    "seed": 287078,
+    "completed": false,
+    "initial_goal_distance": 38.472259521484375,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 19,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 23.689990997314453
+  },
+  {
+    "seed": 287079,
+    "completed": true,
+    "initial_goal_distance": 31.406444549560547,
+    "arrival_handoffs": 5,
+    "waypoint_arrivals": 5,
+    "assignments": 12,
+    "first_exit_visible_seconds": 21.1,
+    "final_goal_distance": 1.1598683595657349
+  },
+  {
+    "seed": 287080,
+    "completed": true,
+    "initial_goal_distance": 34.34062957763672,
+    "arrival_handoffs": 1,
+    "waypoint_arrivals": 1,
+    "assignments": 6,
+    "first_exit_visible_seconds": 22.200000000000003,
+    "final_goal_distance": 1.2480930089950562
+  },
+  {
+    "seed": 287081,
+    "completed": true,
+    "initial_goal_distance": 37.274818420410156,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 8,
+    "assignments": 20,
+    "first_exit_visible_seconds": 40.7,
+    "final_goal_distance": 1.2069268226623535
+  },
+  {
+    "seed": 287082,
+    "completed": true,
+    "initial_goal_distance": 30.209003448486328,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 5,
+    "assignments": 20,
+    "first_exit_visible_seconds": 34.6,
+    "final_goal_distance": 1.103416085243225
+  },
+  {
+    "seed": 287083,
+    "completed": true,
+    "initial_goal_distance": 33.1431884765625,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 13,
+    "first_exit_visible_seconds": 23.400000000000002,
+    "final_goal_distance": 1.2362459897994995
+  },
+  {
+    "seed": 287084,
+    "completed": true,
+    "initial_goal_distance": 36.07737731933594,
+    "arrival_handoffs": 11,
+    "waypoint_arrivals": 11,
+    "assignments": 15,
+    "first_exit_visible_seconds": 15.100000000000001,
+    "final_goal_distance": 1.0182393789291382
+  },
+  {
+    "seed": 287085,
+    "completed": true,
+    "initial_goal_distance": 39.01156234741211,
+    "arrival_handoffs": 5,
+    "waypoint_arrivals": 6,
+    "assignments": 15,
+    "first_exit_visible_seconds": 12.4,
+    "final_goal_distance": 1.2608642578125
+  },
+  {
+    "seed": 287086,
+    "completed": false,
+    "initial_goal_distance": 31.94574737548828,
+    "arrival_handoffs": 5,
+    "waypoint_arrivals": 5,
+    "assignments": 24,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 36.77815628051758
+  },
+  {
+    "seed": 287087,
+    "completed": true,
+    "initial_goal_distance": 34.87993621826172,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 4,
+    "assignments": 8,
+    "first_exit_visible_seconds": 10.4,
+    "final_goal_distance": 1.2201542854309082
+  },
+  {
+    "seed": 287088,
+    "completed": true,
+    "initial_goal_distance": 37.81412124633789,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 7,
+    "assignments": 10,
+    "first_exit_visible_seconds": 12.5,
+    "final_goal_distance": 1.3331032991409302
+  },
+  {
+    "seed": 287089,
+    "completed": true,
+    "initial_goal_distance": 30.748306274414062,
+    "arrival_handoffs": 5,
+    "waypoint_arrivals": 5,
+    "assignments": 14,
+    "first_exit_visible_seconds": 33.9,
+    "final_goal_distance": 1.1062898635864258
+  },
+  {
+    "seed": 287090,
+    "completed": true,
+    "initial_goal_distance": 33.682491302490234,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 2,
+    "assignments": 11,
+    "first_exit_visible_seconds": 6.4,
+    "final_goal_distance": 1.4837571382522583
+  },
+  {
+    "seed": 287091,
+    "completed": true,
+    "initial_goal_distance": 36.61668014526367,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 3,
+    "assignments": 16,
+    "first_exit_visible_seconds": 9.700000000000001,
+    "final_goal_distance": 1.174767255783081
+  },
+  {
+    "seed": 287092,
+    "completed": false,
+    "initial_goal_distance": 39.550865173339844,
+    "arrival_handoffs": 2,
+    "waypoint_arrivals": 2,
+    "assignments": 21,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 35.205345153808594
+  },
+  {
+    "seed": 287093,
+    "completed": false,
+    "initial_goal_distance": 32.485050201416016,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 24,
+    "first_exit_visible_seconds": null,
+    "final_goal_distance": 25.935836791992188
+  },
+  {
+    "seed": 287094,
+    "completed": true,
+    "initial_goal_distance": 35.41923904418945,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 4,
+    "assignments": 14,
+    "first_exit_visible_seconds": 17.0,
+    "final_goal_distance": 1.5267637968063354
+  },
+  {
+    "seed": 287095,
+    "completed": true,
+    "initial_goal_distance": 38.353424072265625,
+    "arrival_handoffs": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 15,
+    "first_exit_visible_seconds": 48.400000000000006,
+    "final_goal_distance": 1.2137291431427002
+  },
+  {
+    "seed": 287096,
+    "completed": true,
+    "initial_goal_distance": 31.287607192993164,
+    "arrival_handoffs": 4,
+    "waypoint_arrivals": 4,
+    "assignments": 16,
+    "first_exit_visible_seconds": 31.400000000000002,
+    "final_goal_distance": 1.21873939037323
+  },
+  {
+    "seed": 287097,
+    "completed": true,
+    "initial_goal_distance": 34.22179412841797,
+    "arrival_handoffs": 6,
+    "waypoint_arrivals": 6,
+    "assignments": 10,
+    "first_exit_visible_seconds": 15.9,
+    "final_goal_distance": 1.0214288234710693
+  },
+  {
+    "seed": 287098,
+    "completed": true,
+    "initial_goal_distance": 37.155982971191406,
+    "arrival_handoffs": 8,
+    "waypoint_arrivals": 8,
+    "assignments": 22,
+    "first_exit_visible_seconds": 40.6,
+    "final_goal_distance": 1.0362087488174438
+  },
+  {
+    "seed": 287099,
+    "completed": true,
+    "initial_goal_distance": 30.090167999267578,
+    "arrival_handoffs": 3,
+    "waypoint_arrivals": 4,
+    "assignments": 7,
+    "first_exit_visible_seconds": 14.100000000000001,
+    "final_goal_distance": 1.3900364637374878
+  }
+]

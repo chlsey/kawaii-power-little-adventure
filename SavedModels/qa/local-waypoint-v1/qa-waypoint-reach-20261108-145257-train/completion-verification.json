@@ -1,0 +1,17 @@
+{
+  "verified_at_utc": "2026-11-08T14:57:08.889363+00:00",
+  "parent_and_backup_files_each_verified": 12,
+  "child_archives_verified": 2,
+  "run_source_hashes_verified": 10,
+  "training_count": 500,
+  "baseline_count": 100,
+  "evaluation_count": 100,
+  "matched_frozen_seed_target_positions": true,
+  "all_game_completed_false": true,
+  "all_player_died_false": true,
+  "model_training_steps": 72054,
+  "model_optimizer_updates": 2800,
+  "evaluation_weight_updates": 0,
+  "checkpoint_sha256": "a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f",
+  "runner_completed_cleanly": true
+}

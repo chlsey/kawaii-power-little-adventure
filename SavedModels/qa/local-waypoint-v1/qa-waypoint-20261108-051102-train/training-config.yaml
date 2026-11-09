@@ -1,0 +1,30 @@
+# QA-36 recovery: 104 retained completed attempts + 396 = 500 unique campaign attempts.
+task: exit-navigation
+model: ppo
+port: 7783
+seed: 9104
+total_timesteps: 237600
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 5000
+output_dir: ../Logs/qa-waypoint-exit-qa36-recovery
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-20261108-032328-train/checkpoints/rl_model_93246_steps.zip
+resume_sha256: 30b40cb8b227de79ba3a90f201381dc29ebd1d46f8ddadb6cb7855ab59583142
+parent_lineage_episodes: 7104
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 396
+evaluation_episodes: 500
+evaluation_seed: 285000
+unity_scene: Assets/Scenes/QaWaypoint40Training.unity
+room_size: [40, 40]
+initial_exit_visible: false
+exit_distance_range: [30, 34]
+completion_reward: 50.0
+episode_seconds: 60
+time_scale: 100

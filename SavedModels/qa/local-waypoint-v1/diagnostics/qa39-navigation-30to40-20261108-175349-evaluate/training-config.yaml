@@ -1,0 +1,32 @@
+# QA-40: frozen QA-39 integrated navigation, goal 30-40 units away, local cap 10.
+task: exit-navigation-30to40
+model: ppo
+port: 7783
+seed: 10000
+total_timesteps: 1
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 0
+output_dir: ../Logs/qa39-navigation-30to40
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261108-145257-train/final_model.zip
+resume_sha256: a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f
+parent_lineage_episodes: 7500
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 0
+evaluation_episodes: 100
+evaluation_seed: 287000
+unity_scene: Assets/Scenes/QaWaypoint50Training.unity
+room_size: [50, 50]
+initial_exit_visible: false
+exit_distance_range: [30, 40]
+completion_reward: 50.0
+episode_seconds: 60
+time_scale: 100
+max_waypoint_distance: 10.0
+trace_exit_decisions: true

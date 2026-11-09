@@ -1,0 +1,12 @@
+{
+  "matched_cases": 10,
+  "seeds": [
+    285311,
+    285320
+  ],
+  "same_outcomes": true,
+  "same_steps": true,
+  "same_placements": true,
+  "same_final_distances": true,
+  "overlap_excluded_from_aggregate": true
+}

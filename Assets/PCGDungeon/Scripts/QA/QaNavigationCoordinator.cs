@@ -5,6 +5,8 @@ using UnityEngine;
 public sealed class QaNavigationCoordinator
 {
     public const float AcceptanceRadius = 0.5f;
+    public const float DefaultMaxWaypointDistance = 10f;
+    public float MaxWaypointDistance { get; set; } = DefaultMaxWaypointDistance;
     private readonly IMapGoalSelector selector;
     private readonly List<Vector3> excluded = new List<Vector3>();
     private QaMapGoal goal;
@@ -111,7 +113,7 @@ public sealed class QaNavigationCoordinator
             for (int i = Route.Count - 1; i >= 0; i--)
             {
                 float distance = Distance(position, Route[i]);
-                if (distance <= AcceptanceRadius || distance > 6f || !planner.SegmentKnown(position, Route[i]) ||
+                if (distance <= AcceptanceRadius || distance > MaxWaypointDistance || !planner.SegmentKnown(position, Route[i]) ||
                     !sensors.CanUseWaypoint(Route[i], actor)) continue;
                 Waypoint = Route[i]; HasWaypoint = true; WaypointVersion++;
                 bestDistance = distance; stalledActions = 0;

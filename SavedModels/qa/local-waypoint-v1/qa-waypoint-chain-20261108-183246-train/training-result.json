@@ -1,0 +1,16 @@
+{
+  "status": "complete",
+  "completed_episodes": 500,
+  "complete_chains": 371,
+  "timeouts": 129,
+  "waypoint_arrivals": 1639,
+  "planned_waypoints": 2011,
+  "successful_seconds_mean": 6.705660473143637,
+  "mean_episode_seconds": 20.455600071072578,
+  "added_training_steps": 102278,
+  "model_steps": 174332,
+  "added_optimizer_updates": 3980,
+  "optimizer_updates": 6780,
+  "total_lineage_episodes": 8000,
+  "final_sha256": "0bd60198d0904f0099c1e19691a1dc553c220b512542576d1c56eff0b2b0025d"
+}

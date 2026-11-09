@@ -1,0 +1,44 @@
+{
+  "completed_episodes": 100,
+  "model": "QA-32",
+  "old_cap": 6,
+  "new_cap": 10,
+  "old_clears": 74,
+  "new_clears": 75,
+  "new_timeouts": 25,
+  "completion_change_percentage_points": 1.0,
+  "paired_outcomes": {
+    "both_clear": 69,
+    "max10_only_clear": 6,
+    "max6_only_clear": 5,
+    "both_timeout": 20
+  },
+  "paired_case_bootstrap_95_interval_points": [
+    -5.0,
+    8.0
+  ],
+  "exact_paired_p_value": 1.0,
+  "old_mean_episode_seconds": 29.967000207901002,
+  "new_mean_episode_seconds": 32.75100022315979,
+  "old_mean_success_seconds": 19.414865145812165,
+  "new_mean_success_seconds": 23.668000297546385,
+  "old_mean_assignments": 14.79,
+  "new_mean_assignments": 14.86,
+  "old_mean_replans": 3.73,
+  "new_mean_replans": 3.26,
+  "new_failures_without_exit_discovery": 17,
+  "new_discovered_exit_failures": 8,
+  "action_records": 32751,
+  "waypoint_arrivals": 387,
+  "assignment_distance": {
+    "count": 1486,
+    "minimum": 0.5668543577194214,
+    "mean": 7.666404413904187,
+    "median": 9.769279479980469,
+    "maximum": 9.999903678894043,
+    "above_six": 1063,
+    "eight_to_ten": 956
+  },
+  "weights_updated": false,
+  "limitation": "Historical matched baseline, reused cases, one frozen model; exploratory case uncertainty, not independent-training variability."
+}

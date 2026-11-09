@@ -1,0 +1,13 @@
+{
+  "verified_at_utc": "2026-11-08T14:46:37.727226+00:00",
+  "original_and_backup_files_each_verified": 12,
+  "source_hashes_verified": 11,
+  "project_settings_restored": true,
+  "unity_finished": true,
+  "checkpoint_sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+  "weight_updates": 0,
+  "model_training_steps": 63246,
+  "all_1486_assignments_within_10": true,
+  "model": "QA-32",
+  "test_episodes": 100
+}

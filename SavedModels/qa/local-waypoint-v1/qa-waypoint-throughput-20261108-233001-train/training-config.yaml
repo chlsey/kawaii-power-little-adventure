@@ -1,0 +1,29 @@
+# QA-44 stage 4: exactly 500 complete 60-second throughput episodes.
+model: ppo
+port: 7783
+seed: 13500
+total_timesteps: 300000
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-waypoint-restart-throughput
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261108-232749-train/final_model.zip
+resume_sha256: 76904d76053c531ec3d192d5d5b6499f83d7d201dcb6bbd3dd3ec85ce54c7e3f
+parent_lineage_episodes: 3500
+comparison_checkpoint: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-chain-20261108-194516-train/final_model.zip
+comparison_sha256: a635f6607dc8fb713051cd3a7e6b40ba800cbc4fbf6d7e2689e6805fbe48b788
+observation_contract: local-waypoint-v1
+max_episodes: 500
+evaluation_seed: 288000
+evaluation_episodes: 100
+episode_seconds: 60
+assigned_waypoint_distance_range: [1, 10]
+nominal_waypoint_distance_range: [1.5, 9.5]
+reward_scale: 0.015
+waypoint_reward_budget: 5
+minimum_local_objective_reward: 50
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+ppo:
+  batch_size: 64
+device: cpu

@@ -1,0 +1,51 @@
+{
+  "mode": "train",
+  "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-waypoint-reach-20261108-145257-train\\final_model.zip",
+  "parent_sha256": "a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f",
+  "parent_lineage_episodes": 7500,
+  "training_seed_range": [
+    11000,
+    11499
+  ],
+  "evaluation_seed_range": [
+    288000,
+    288099
+  ],
+  "full_optimizer_continuation": true,
+  "observation_contract": "local-waypoint-v1",
+  "source_sha256": {
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Assets/Editor/QaWaypointChainSession.cs": "95cc848336533500ea7fba338acc707ec88caf552b075f3f38fb0530b6edfeb1",
+    "Assets/Editor/QaWaypointChainSession.cs.meta": "89787d619b3aeb29c4772dc7193af8be748f22d9844a3e1a71d9608e1f0994a0",
+    "Training/run_waypoint_chain.py": "3efbab17cdf0855a0e0acb999a393c53aa8bc02f4ee166ad59a14db1aaed0756",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "7020df56e643f99ba884f652306a2deaa1862bf84babfc3bba61039fc2f8b533",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "fe4ced7382c7c613cbe96f6a98eb42dab63af251ff740e41330c4c6259a39a9d",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9"
+  },
+  "reward": "(0.1 * new closest approach + 1 * arrival) / chain length; -0.001/action; total positive cap 5",
+  "reset_between_waypoints": false,
+  "trained_chain_lengths": [
+    {
+      "episodes": 100,
+      "min_waypoints": 2,
+      "max_waypoints": 2
+    },
+    {
+      "episodes": 100,
+      "min_waypoints": 3,
+      "max_waypoints": 3
+    },
+    {
+      "episodes": 100,
+      "min_waypoints": 4,
+      "max_waypoints": 4
+    },
+    {
+      "episodes": 200,
+      "min_waypoints": 1,
+      "max_waypoints": 10
+    }
+  ]
+}

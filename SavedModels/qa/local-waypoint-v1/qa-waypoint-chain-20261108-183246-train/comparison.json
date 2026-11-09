@@ -1,0 +1,148 @@
+{
+  "parent_clears": 33,
+  "child_clears": 41,
+  "both_clear": 31,
+  "child_only": 10,
+  "parent_only": 2,
+  "both_fail": 57,
+  "gain_percentage_points": 8.0,
+  "paired_bootstrap_95_percent_points": [
+    2.0,
+    15.0
+  ],
+  "exact_paired_p": 0.03857421875,
+  "parent_mean_seconds": 45.33000012397766,
+  "child_mean_seconds": 44.58900016784668,
+  "mean_seconds_saved": 0.7409999561309815,
+  "paired_time_gain_95_seconds": [
+    -1.741000014781952,
+    3.315025055170057
+  ],
+  "common_success_count": 31,
+  "common_success_parent_mean_seconds": 15.435484270895682,
+  "common_success_child_mean_seconds": 20.91612951217159,
+  "bootstrap_draws": 20000,
+  "bootstrap_seed": 42,
+  "mixed_block_lengths": [
+    {
+      "length": 1,
+      "episodes": 19,
+      "successes": 19
+    },
+    {
+      "length": 2,
+      "episodes": 19,
+      "successes": 17
+    },
+    {
+      "length": 3,
+      "episodes": 21,
+      "successes": 20
+    },
+    {
+      "length": 4,
+      "episodes": 20,
+      "successes": 16
+    },
+    {
+      "length": 5,
+      "episodes": 19,
+      "successes": 13
+    },
+    {
+      "length": 6,
+      "episodes": 21,
+      "successes": 12
+    },
+    {
+      "length": 7,
+      "episodes": 20,
+      "successes": 10
+    },
+    {
+      "length": 8,
+      "episodes": 20,
+      "successes": 6
+    },
+    {
+      "length": 9,
+      "episodes": 20,
+      "successes": 8
+    },
+    {
+      "length": 10,
+      "episodes": 21,
+      "successes": 5
+    }
+  ],
+  "per_waypoint_cumulative": [
+    {
+      "waypoint": 1,
+      "parent": 100,
+      "child": 100
+    },
+    {
+      "waypoint": 2,
+      "parent": 97,
+      "child": 98
+    },
+    {
+      "waypoint": 3,
+      "parent": 89,
+      "child": 91
+    },
+    {
+      "waypoint": 4,
+      "parent": 69,
+      "child": 75
+    },
+    {
+      "waypoint": 5,
+      "parent": 61,
+      "child": 69
+    },
+    {
+      "waypoint": 6,
+      "parent": 53,
+      "child": 61
+    },
+    {
+      "waypoint": 7,
+      "parent": 45,
+      "child": 55
+    },
+    {
+      "waypoint": 8,
+      "parent": 39,
+      "child": 48
+    },
+    {
+      "waypoint": 9,
+      "parent": 34,
+      "child": 43
+    },
+    {
+      "waypoint": 10,
+      "parent": 33,
+      "child": 41
+    }
+  ],
+  "continuity": {
+    "parent-evaluation": {
+      "previous_action_continuity_verified": true,
+      "handoffs": 587,
+      "away_or_perpendicular_commands": 17786,
+      "actions": 45330
+    },
+    "evaluation": {
+      "previous_action_continuity_verified": true,
+      "handoffs": 640,
+      "away_or_perpendicular_commands": 15431,
+      "actions": 44589
+    }
+  },
+  "verified_archives": 24,
+  "training_seed_count": 500,
+  "parent_checkpoint_unchanged": true,
+  "source_hashes_verified": true
+}

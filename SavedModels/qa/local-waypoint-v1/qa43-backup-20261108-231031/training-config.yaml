@@ -1,0 +1,38 @@
+# QA-43: another 500 episodes, full continuation from QA-42 with fresh seeds.
+task: waypoint-chain-continuation
+model: ppo
+port: 7783
+seed: 11500
+total_timesteps: 300000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 5000
+output_dir: ../Logs/qa-waypoint-chain-continuation
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-chain-20261108-183246-train/final_model.zip
+resume_sha256: 0bd60198d0904f0099c1e19691a1dc553c220b512542576d1c56eff0b2b0025d
+parent_lineage_episodes: 8000
+parent_evaluation_dir: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-chain-20261108-183246-train/evaluation
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+curriculum:
+  - {episodes: 100, min_waypoints: 2, max_waypoints: 2}
+  - {episodes: 100, min_waypoints: 3, max_waypoints: 3}
+  - {episodes: 100, min_waypoints: 4, max_waypoints: 4}
+  - {episodes: 200, min_waypoints: 1, max_waypoints: 10}
+evaluation_episodes: 100
+evaluation_seed: 288000
+unity_scene: Assets/Scenes/QaWaypoint40Training.unity
+room_size: [40, 40]
+nominal_waypoint_distance_range: [1.5, 9.5]
+assigned_waypoint_distance_range: [1, 10]
+target_coordinate_bounds: [-15, 15]
+episode_seconds: 60
+waypoint_reward_budget: 5
+minimum_local_objective_reward: 50
+reward_scaling: divide_progress_and_arrival_by_chain_length

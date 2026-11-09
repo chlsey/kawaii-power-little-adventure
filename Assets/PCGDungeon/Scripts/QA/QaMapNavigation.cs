@@ -53,8 +53,16 @@ public sealed class QaFrontierGoalSelector : IMapGoalSelector
 /// <summary>Eight-neighbour A* over observed free cells with conservative wall inflation.</summary>
 public sealed class QaObservedRoutePlanner
 {
+    // Avoid the Mono generic Vector2Int comparer path seen in native navigation crashes.
+    // Keep coordinate equality and Unity's hash unchanged so route ordering is preserved.
+    private sealed class CellEquality : IEqualityComparer<Vector2Int>
+    {
+        public bool Equals(Vector2Int a, Vector2Int b) => a.x == b.x && a.y == b.y;
+        public int GetHashCode(Vector2Int cell) => cell.GetHashCode();
+    }
+    private static readonly IEqualityComparer<Vector2Int> CellComparer = new CellEquality();
     public ModelSensorGrid Grid { get; }
-    private readonly HashSet<Vector2Int> free = new HashSet<Vector2Int>();
+    private readonly HashSet<Vector2Int> free = new HashSet<Vector2Int>(CellComparer);
 
     public QaObservedRoutePlanner(ModelSensorGrid grid, float clearance)
     {
@@ -118,7 +126,7 @@ public sealed class QaObservedRoutePlanner
 
     public HashSet<Vector2Int> Reachable(Vector3 position)
     {
-        var reached = new HashSet<Vector2Int>();
+        var reached = new HashSet<Vector2Int>(CellComparer);
         var queue = new Queue<Vector2Int>();
         Vector2Int start = ModelSensorGrid.WorldToCell(position);
         if (!free.Contains(start)) return reached;
@@ -142,7 +150,7 @@ public sealed class QaObservedRoutePlanner
     {
         Vector2Int start = ModelSensorGrid.WorldToCell(position);
         var open = new List<Vector2Int>();
-        var closed = new HashSet<Vector2Int>();
+        var closed = new HashSet<Vector2Int>(CellComparer);
         var cost = new Dictionary<Vector2Int, float>();
         var parent = new Dictionary<Vector2Int, Vector2Int>();
         if (!free.Contains(start) || !free.Contains(target)) return new List<Vector3>();

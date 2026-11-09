@@ -1,0 +1,23 @@
+{
+  "status": "complete",
+  "campaign": "QA-36",
+  "retained_prefix_episodes": 104,
+  "retained_prefix_successes": 87,
+  "recovery_episodes": 396,
+  "recovery_successes": 316,
+  "completed_unique_campaign_episodes": 500,
+  "successes": 403,
+  "timeouts": 97,
+  "deaths": 0,
+  "success_rate": 0.806,
+  "rolled_back_completed_attempts_excluded": 6,
+  "completed_episode_steps": 151340,
+  "checkpoint_partial_attempt_steps": 101,
+  "retained_campaign_model_steps": 151441,
+  "final_model_timesteps": 214687,
+  "actor_lineage_episodes": 7500,
+  "final_checkpoint_sha256": "7ca386b36041489e06e99e8f1d42612571adbe33f27191e4705e45c7cdd0e3e9",
+  "frozen_evaluation_status": "complete",
+  "frozen_evaluation_successes": 332,
+  "frozen_evaluation_episodes": 500
+}

@@ -1,0 +1,42 @@
+{
+  "failed_chains": 58,
+  "all_failed_chains_timeout_at_600_actions": true,
+  "failed_chain_stuck_events_total": 23,
+  "failed_chain_path_length_range": [
+    237.52154541015625,
+    239.99864196777344
+  ],
+  "failed_chain_path_length_mean": 239.83569941027412,
+  "failed_leg_seconds_range": [
+    35.1,
+    58.0
+  ],
+  "failed_leg_seconds_mean": 51.593103448275855,
+  "failed_leg_path_length_range": [
+    140.29191994359158,
+    232.00000920534004
+  ],
+  "failed_leg_path_length_mean": 206.22076461331903,
+  "failed_leg_actions": 29924,
+  "failed_leg_actions_moving_less_than_point05": 0,
+  "failed_leg_away_perpendicular_commands": 13535,
+  "failed_leg_mean_command_alignment": 0.025655028968360083,
+  "example": {
+    "seed": 288000,
+    "waypoint": 4,
+    "seconds": 57.300000000000004,
+    "initial_distance": 5.822667121887207,
+    "minimum_distance": 3.813241958618164,
+    "final_distance": 4.7596821784973145
+  },
+  "analyzed_at_utc": "2026-11-08T22:34:18.426589+00:00",
+  "source_files": [
+    "evaluation/episodes.jsonl",
+    "evaluation/legs.jsonl",
+    "evaluation/actions.jsonl.gz"
+  ],
+  "new_training_episodes": 0,
+  "new_evaluation_episodes": 0,
+  "failed_chains_with_stuck_events": 2,
+  "stuck_counter_definition": "Net 3D displacement below threshold over the configured check window; closed loops can trigger it despite continuous movement."
+}

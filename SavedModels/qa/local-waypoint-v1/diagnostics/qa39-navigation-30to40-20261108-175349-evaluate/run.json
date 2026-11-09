@@ -1,0 +1,30 @@
+{
+  "mode": "evaluate",
+  "observation_contract": "local-waypoint-v1",
+  "task": "exit-navigation-30to40",
+  "parent_checkpoint_sha256": "a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f",
+  "parent_lineage_episodes": 7500,
+  "checkpoint_sha256": "a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f",
+  "source_sha256": {
+    "Assets/Scenes/QaWaypoint50Training.unity": "a97d2e2f2c7e2dda61f66c8c7ae6cf025eab4f5068c0a6bac926b5b814f3a73b",
+    "Training/run_local_movement.py": "399383791ecf38874b63a978ffedf6d85adcf8939aab1cc54422252ad56d549f",
+    "Assets/Editor/QaLocalMovementSession.cs": "98bc889bf0e98c9ab2a2e4ed9dc39cceecb694f2099081a8fc9f6fbaa8286e02",
+    "Assets/Editor/QaWaypointVerification.cs": "ff108b4c79c444fe6247ac36cc19b555547e59d2967782ed9394c065925fb40a",
+    "Assets/PCGDungeon/Scripts/QA/QaMapNavigation.cs": "cd1dfd9158c5a826bf7faad27844ca361cca58c8d12941508f592dd545c69635",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "7020df56e643f99ba884f652306a2deaa1862bf84babfc3bba61039fc2f8b533",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorGrid.cs": "f5ca4b55be65307af7b4ab6b3bce733603ae409b1fdcfd140a4c2d2649e82e3a",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/RL/QaSingleRoomRlEnvironment.cs": "ce63213425f4a8c68db23bc13d33c5be1d98555c46a9cd90451ea2aac9c1ba30"
+  },
+  "manual_advancement": true,
+  "waypoint_inputs_masked": false,
+  "initial_model_timesteps": 72054,
+  "navigator_disabled": false,
+  "completion_reward": 50.0,
+  "episode_seconds": 60,
+  "max_waypoint_distance": 10.0,
+  "parent_training_task": "waypoint-reach-1to10",
+  "parent_training_completion_reward": null
+}

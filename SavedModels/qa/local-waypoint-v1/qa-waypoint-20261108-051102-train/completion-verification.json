@@ -1,0 +1,16 @@
+{
+  "verified_at_utc": "2026-11-08T06:52:47.408766+00:00",
+  "model_steps": 214687,
+  "model_optimizer_updates": 8370,
+  "checkpoint_sha256": "7ca386b36041489e06e99e8f1d42612571adbe33f27191e4705e45c7cdd0e3e9",
+  "verified_child_archives": 25,
+  "original_and_backup_verified_files_each": 12,
+  "evaluation_recovery_weight_updates": 0,
+  "evaluation_recovery_unity_finished": true,
+  "project_settings_restored": true,
+  "last_runtime_source_hashes_verified": true,
+  "ten_overlap_cases_identical": true,
+  "unique_training_episodes": 500,
+  "unique_evaluation_episodes": 500,
+  "no_promotion": true
+}

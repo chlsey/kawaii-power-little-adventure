@@ -1,0 +1,57 @@
+{
+  "checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-waypoint-reach-20261108-145257-train\\final_model.zip",
+  "checkpoint_sha256": "a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f",
+  "model": "QA-39",
+  "mode": "frozen deterministic evaluation",
+  "episodes": 100,
+  "reference_episodes": 100,
+  "seed_range": [
+    288000,
+    288099
+  ],
+  "waypoints_per_chain": 10,
+  "room_size": [
+    40,
+    40
+  ],
+  "nominal_leg_range": [
+    1.5,
+    9.5
+  ],
+  "assigned_distance_range": [
+    1,
+    10
+  ],
+  "target_xz_bounds": [
+    -15,
+    15
+  ],
+  "sampling": "Predefined bounded random walk: System.Random seed, uniform angle and nominal radius; reject points outside bounds",
+  "spawn_xz": [
+    0,
+    0
+  ],
+  "episode_seconds": 60,
+  "max_actions": 600,
+  "action_seconds": 0.1,
+  "acceptance_radius": 0.5,
+  "vision_range": 12,
+  "exit_disabled": true,
+  "automatic_navigation": false,
+  "reset_between_waypoints": false,
+  "previous_action_preserved": true,
+  "reward": 0,
+  "time_scale": 100,
+  "initial_model_timesteps": 72054,
+  "initial_optimizer_updates": 2800,
+  "source_sha256": {
+    "Assets/Editor/QaWaypointChainSession.cs": "a5a7611bc27a9b56d00f85f3951a43291c76acc2840c5ee1391b45f47bf6b3d0",
+    "Assets/Editor/QaWaypointChainSession.cs.meta": "89787d619b3aeb29c4772dc7193af8be748f22d9844a3e1a71d9608e1f0994a0",
+    "Training/test_waypoint_chain.py": "f5b938c7cf7a9518e9368177f61d4a9006f3d2b7717e565b1918915d8bf32cb5",
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "fe4ced7382c7c613cbe96f6a98eb42dab63af251ff740e41330c4c6259a39a9d",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de"
+  }
+}

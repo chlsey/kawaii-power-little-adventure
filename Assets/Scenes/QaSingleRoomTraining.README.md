@@ -57,7 +57,7 @@ Waypoint navigation uses a deterministic map/goal/route/recovery orchestrator an
 
 The 134 -> 64 -> 64 -> 2 actor receives neither map memory nor the distant route. The existing persistent grid supplies the replaceable goal selector and eight-neighbour A* planner; unknown cells and diagonal corner cutting are blocked. Observed walls are inflated by radius + skin width + 0.05. Reachable discovered exits supersede frontiers. The nearest reachable frontier must be at least one unit away, and completed/abandoned locations within 0.5 units remain excluded for the attempt.
 
-The coordinator keeps each visible, actor-clear waypoint within six units fixed until arrival (0.5 units), obstruction, or exit priority. It validates at action boundaries and replans once after 20 actions without 0.05 units of progress. Repeated failure abandons the frontier or explores around a deferred exit. `no_reachable_goal` reports exhaustion; the real exit trigger alone marks completion. All navigation state resets with the sensor attempt.
+The coordinator keeps each visible, actor-clear waypoint fixed until arrival (0.5 units), obstruction, or exit priority. Its default maximum assignment distance is 10 units; the historical recipes in this subsection use six via the batch runner's legacy fallback. Set `max_waypoint_distance` explicitly in a run config to change it, as in the [100-case 10-unit evaluation](../../Training/qa-player-waypoint-max10-evaluate.yaml). The furthest usable point is selected within that maximum; shorter points remain valid for turns and final approach. It validates at action boundaries and replans once after 20 actions without 0.05 units of progress. Repeated failure abandons the frontier or explores around a deferred exit. `no_reachable_goal` reports exhaustion; the real exit trigger alone marks completion. All navigation state resets with the sensor attempt.
 
 When the sensors discover a reachable exit, the next 0.1-second action boundary replaces the exploration goal and its active waypoint with an exit route. An exit 6-12 units away is visible but still approached through local waypoints within six units; the observed exit cell becomes the waypoint when it is within reach and has usable clearance. The policy keeps the same waypoint inputs throughout and can also identify the visible exit through its ray channels. There is no separate exit-pursuit input flag. A discovered exit remains in map memory when it leaves current vision.
 
@@ -110,6 +110,10 @@ python -B Training/run_waypoint_reach.py --mode train
 python -B Training/run_waypoint_reach.py --config Training/qa-player-waypoint-reach-8to12.yaml --mode verify
 # Reproduce its QA-31 continuation only through an explicit training launch.
 python -B Training/run_waypoint_reach.py --config Training/qa-player-waypoint-reach-8to12.yaml --mode train
+# Frozen original-QA-32 baseline on the configured 1-10-unit evaluation targets.
+python -B Training/run_waypoint_reach.py --config Training/qa-player-waypoint-reach-1to10.yaml --mode evaluate
+# Separate QA-32 -> QA-39 continuation: 500 episodes, then matched frozen child evaluation.
+python -B Training/run_waypoint_reach.py --config Training/qa-player-waypoint-reach-1to10.yaml --mode train
 ```
 
 The [nearby config](../../Training/qa-player-waypoint-reach-nearby.yaml) copies QA-24's actor, action head and log standard deviation into a fresh critic and optimizer; the parent checkpoint is preserved. Architecture, input semantics and PPO settings stay unchanged. Training seeds are 6000-6499, evaluation seeds 280000-280099. The 5,000 parent-lineage episodes remain separate from new training. The runner saves starting, periodic and final models with source/config provenance under `SavedModels/qa/local-waypoint-v1/`, then evaluates frozen weights. Per-episode records distinguish `reached` from `game_completed` and record the positive reward total. Use the [QA changelog](../../Training/changelog/qa-player.md) for measured outcomes.
@@ -121,11 +125,52 @@ The successful skill branch uses explicit full-checkpoint continuations after th
 | 3-6 units | [nearby](../../Training/qa-player-waypoint-reach-nearby.yaml) | QA-24 actor transfer -> QA-27 |
 | 3-7 units | [gradual](../../Training/qa-player-waypoint-reach-gradual.yaml) | QA-27 -> QA-30 |
 | 6-10 units | [medium](../../Training/qa-player-waypoint-reach-medium.yaml) | QA-30 -> QA-31 |
-| 8-12 units | [8-12](../../Training/qa-player-waypoint-reach-8to12.yaml) | QA-31 -> QA-32, the latest trained skill checkpoint |
+| 8-12 units | [8-12](../../Training/qa-player-waypoint-reach-8to12.yaml) | QA-31 -> QA-32, preserved 8-12-unit baseline |
+
+The separate [1-10-unit recipe](../../Training/qa-player-waypoint-reach-1to10.yaml) pins original QA-32 as its parent for QA-39. `--mode evaluate` measures that configured parent without learning; it does not select the latest child automatically. `--mode train` saves and evaluates the new child in its own run folder. This fixed-target drill resets previous movement each episode and does not test changing navigator assignments while moving.
 
 Each stage runs 500 training episodes and 100 frozen evaluations only when explicitly selected. The [checkpoint index](../../SavedModels/qa/local-waypoint-v1/README.md) records results, branch counters and provenance. No config automatically advances or resumes the newest timestamp.
 
 The separate historical [farther config](../../Training/qa-player-waypoint-reach-farther.yaml) resumes the full [QA-27 nearby checkpoint](../../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261107-034515-train/README.md), including critic and optimizer, at 13,718 model steps and 5,500 lineage episodes. It increases target distance to **13-18 units**, keeping rewards, observation/action meanings, PPO settings and the 60-second limit unchanged. Training seeds are 6500-6999, frozen evaluation seeds 281000-281099. These targets begin beyond 12-unit vision, while assigned direction remains available and normalized distance clips at one. This is direct distant-waypoint following, not discovering a hidden objective or testing the normal navigator's six-unit assignments. That QA-28/29 branch remains preserved separately; its episodes are excluded from QA-30/31/32's counters.
+
+### Random waypoint-chain curriculum
+
+The [chain recipe](../../Training/qa-player-waypoint-chain-curriculum.yaml) resumes the full QA-39 checkpoint and explicitly selects four blocks: 100 episodes of two targets, 100 of three, 100 of four, then 200 with uniformly random length 1-10. `QaWaypointChainSession` adapts the existing empty 40 x 40 scene at runtime; it disables the exit and bypasses the navigator. It precomputes a fresh seeded bounded random walk for every episode. Nominal target separations are uniform 1.5-9.5 units, with points constrained to +/-15 X/Z; the 0.5-unit arrival tolerance keeps actual assignments 1-10 units away. The mixed block uses a separate length RNG, and evaluation reuses the exact ten-target benchmark coordinates.
+
+Only chain start resets position, orientation, previous action and sensors. Each arrival immediately selects the next target with those states preserved. There is one 60-second / 600-action deadline for the whole chain, no exit payout and no exploration/replanning. During training, each leg uses the existing +0.1/new closest unit and +1 arrival divided by planned chain length, so every leg retains feedback within the combined +5 limit; action cost remains -0.001. Frozen diagnostics keep zero reward. Input/action semantics and PPO settings match the standalone drill.
+
+From the game directory with other Unity sessions closed:
+
+```powershell
+# Random-length reference checks and reward accounting only; no learning.
+python -B Training/run_waypoint_chain.py --config Training/qa-player-waypoint-chain-curriculum.yaml --mode verify
+# Explicitly selected 500-episode curriculum, parent replay and frozen child comparison.
+python -B Training/run_waypoint_chain.py --config Training/qa-player-waypoint-chain-curriculum.yaml --mode train
+```
+
+The separate [continuation recipe](../../Training/qa-player-waypoint-chain-continuation.yaml) pins QA-42 as parent, starts from 8,000 lineage episodes and selects fresh seeds 11500-11999 with the same four blocks. Launch it by passing that config to the same runner and explicit `--mode train`. It checks QA-42's saved evaluation as the parent replay; it does not resume QA-39 or auto-select a timestamp.
+
+The runner preserves the configured parent, records exact seeds/coordinates and saves periodic plus per-block full checkpoints in a new `SavedModels/qa/local-waypoint-v1/qa-waypoint-chain-<timestamp>-train/` folder. Verification covers lengths 1-10 before learning; parent replay must reproduce that parent's configured 100-case chain outcomes/steps, and final evaluation uses the same cases with unchanged child tensors/counters. The original recipe's training seeds 11000-11499 are separate from benchmark seeds 288000-288099; the reused benchmark is a matched diagnostic, not an untouched test set. Intermediate PPO block stops discard an unfinished rollout rather than starting extra episodes. The [QA history](../../Training/changelog/qa-player.md) and [model index](../../SavedModels/qa/local-waypoint-v1/README.md) own outcomes. No later block beyond this explicit recipe or generated-dungeon stage follows automatically.
+
+### Pre-waypoint restart and timed arrivals
+
+The independent QA-44 branch starts from QA-18's zero-step transfer of the QA-17 local-exit actor, with no assigned-waypoint or navigator training, fresh critic and empty optimizer. It retains the 2,000 historical actor-lineage episodes separately from new learning. The [nearby restart](../../Training/qa-player-waypoint-restart-nearby.yaml), [middle](../../Training/qa-player-waypoint-restart-middle.yaml) and [8-10](../../Training/qa-player-waypoint-restart-8to10.yaml) recipes each run 500 single-target episodes plus 100 frozen cases through `run_waypoint_reach.py`. Bands are 3-6, 6-8 and 8-10 units. Each recipe pins the preceding stage's actual checkpoint/hash; QA-43 remains backed up independently.
+
+The [timed recipe](../../Training/qa-player-waypoint-restart-throughput.yaml) continues that third stage for 500 episodes with `run_waypoint_throughput.py`. Each episode always lasts 60 game seconds / 600 actions. Arrival within 0.5 immediately selects another seeded random target without resetting player state, sensors or previous action. Primary outcome is arrivals per 60 seconds; there is no target-count completion threshold or exit. The bounded random walk has nominal legs 1.5-9.5 units and actual assignments 1-10, within +/-15 X/Z in the empty 40 x 40 room. Precomputing 601 targets exceeds all possible arrivals in 600 actions and preserves matched target sequences.
+
+Timed reward is +0.015 per arrival, +0.0015 per new closest unit and -0.001/action. With minimum assignment one, speed four and 0.5 arrival tolerance, at least two actions are required per target: at most 300 arrivals plus 240 moved units produce <=4.86 positive credit. This fits the unchanged +5 attempt limit below the +50 objective floor while preserving feedback for every arrival. The first three stages retain the original single-target reward scale. Thus this curriculum comparison changes both exposures and timed reward scale; it is not a controlled proof of one input's effect.
+
+With Unity closed, from the game directory:
+
+```powershell
+python -B Training/run_waypoint_reach.py --config Training/qa-player-waypoint-restart-nearby.yaml --mode train
+python -B Training/run_waypoint_reach.py --config Training/qa-player-waypoint-restart-middle.yaml --mode train
+python -B Training/run_waypoint_reach.py --config Training/qa-player-waypoint-restart-8to10.yaml --mode train
+python -B Training/run_waypoint_throughput.py --config Training/qa-player-waypoint-restart-throughput.yaml --mode verify
+python -B Training/run_waypoint_throughput.py --config Training/qa-player-waypoint-restart-throughput.yaml --mode train
+```
+
+These commands reproduce pinned stages rather than select a fresh run's model automatically. Frozen timed comparisons use QA-43, the new third-stage model and final child on the same 100 seeds. QA-43's first-ten arrival outcomes and timing must match its earlier fixed-ten benchmark. Reference and idle checks verify full time budgets and reward accounting before learning. Timed frozen episodes use zero reward and fixed weights. Production navigator/exit integration and causal previous-action ablations remain separate work. The [training history](../../Training/changelog/qa-player.md) owns results and all manually authorized stage counts.
 
 ### Frozen distant-exit integration test
 

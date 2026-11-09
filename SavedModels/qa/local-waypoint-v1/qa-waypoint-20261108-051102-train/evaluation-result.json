@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "phase": "evaluation",
+  "completed_episodes": 500,
+  "successes": 332,
+  "timeouts": 168,
+  "deaths": 0,
+  "success_rate": 0.664,
+  "seed_range": [
+    285000,
+    285499
+  ],
+  "steps": 164981,
+  "mean_successful_exit_seconds": 19.331626804478198,
+  "mean_episode_seconds": 32.996200198173526,
+  "exit_discovered_timeouts": 52,
+  "exit_undiscovered_timeouts": 116,
+  "weight_updates": 0,
+  "model_training_steps": 214687,
+  "checkpoint_sha256": "7ca386b36041489e06e99e8f1d42612571adbe33f27191e4705e45c7cdd0e3e9",
+  "segments": {
+    "prefix_cases": 321,
+    "recovery_cases": 189,
+    "overlap_cases_excluded": 10,
+    "recovery_new_cases": 179
+  },
+  "runtime_workaround": "Explicit Vector2Int coordinate comparer for planner hash sets; ten overlap cases matched exactly"
+}

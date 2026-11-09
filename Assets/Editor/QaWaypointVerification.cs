@@ -64,6 +64,9 @@ public static partial class QaLocalMovementSession
         var exit = (Transform)serialized.FindProperty("exit").objectReferenceValue;
         Require(floor.bounds.size.x == session.room_width && floor.bounds.size.z == session.room_depth, "Configured open-room dimensions");
         Require(environment.Sensors.RayRange == 12f, "12-unit vision");
+        Require(environment.Navigation.MaxWaypointDistance == session.max_waypoint_distance &&
+            session.max_waypoint_distance > QaNavigationCoordinator.AcceptanceRadius &&
+            session.max_waypoint_distance <= environment.Sensors.RayRange, "Configured local waypoint limit");
         Require(serialized.FindProperty("completionReward").floatValue == session.completion_reward, "Configured exit completion reward");
         Require(serialized.FindProperty("minExitDistance").floatValue == session.min_exit_distance &&
             serialized.FindProperty("maxExitDistance").floatValue == session.max_exit_distance, "Configured placement contract");
@@ -84,7 +87,8 @@ public static partial class QaLocalMovementSession
             Require(environment.WaypointCompletionBonus == 0f && environment.Navigation.Replans == 0 &&
                 environment.Navigation.ExcludedCount == 0, "Complete attempt reset");
             float[] observation = environment.CollectObservation();
-            Require(observation[130] == 1f && observation[133] > 0f && observation[133] <= 0.5f, "Local assigned waypoint signal");
+            Require(observation[130] == 1f && observation[133] > 0f &&
+                observation[133] <= session.max_waypoint_distance / environment.Sensors.RayRange + 0.00001f, "Local assigned waypoint signal");
         }
 
         VerifyMapRoutes();
@@ -143,6 +147,7 @@ public static partial class QaLocalMovementSession
 
         // unseen exit -> follow observation-only reference actions -> handoffs and discovery -> actual completion
         int successes = 0, handoffs = 0, discoveries = 0;
+        int referenceActionLimit = Mathf.RoundToInt(session.episode_seconds / QaPlayerController.StepDurationSeconds);
         int minHandoffsBeforeDiscovery = int.MaxValue;
         float bonuses = 0f;
         for (int episode = 0; episode < 10; episode++)
@@ -151,7 +156,7 @@ public static partial class QaLocalMovementSession
             bool done = false, discovered = false;
             int handoffsBeforeDiscovery = 0;
             int version = environment.Navigation.WaypointVersion;
-            for (int step = 0; step < 300 && !done; step++)
+            for (int step = 0; step < referenceActionLimit && !done; step++)
             {
                 float[] observation = environment.CollectObservation();
                 environment.ApplyAction(new[] { observation[131], observation[132] });
@@ -165,7 +170,7 @@ public static partial class QaLocalMovementSession
                 discovered |= environment.Sensors.ExitVisible;
                 Require(environment.WaypointCompletionBonus <= 5f && environment.ExplorationRewardEarned == 0f, "Reward caps in reference episode");
                 if (!environment.Player.Metrics.Completed && environment.WaypointCompletionBonus > 0f)
-                    Require(!done || step == 299, "Waypoint arrival does not complete room");
+                    Require(!done || step == referenceActionLimit - 1, "Waypoint arrival does not complete room");
             }
             if (environment.Player.Metrics.Completed) successes++;
             if (discovered) discoveries++;
@@ -174,7 +179,12 @@ public static partial class QaLocalMovementSession
         }
         Require(successes == 10 && discoveries == 10 && handoffs > 10 && bonuses > 0f, "Reference navigation completes unseen-exit task: " + successes);
         if (session.min_exit_distance > 24f)
-            Require(minHandoffsBeforeDiscovery >= 2, "Distant exits require multiple handoffs before discovery");
+        {
+            // Allow two units for the exit fixture's footprint when bounding discovery distance.
+            int requiredHandoffs = Mathf.FloorToInt((session.min_exit_distance - environment.Sensors.RayRange - 2f) /
+                session.max_waypoint_distance);
+            Require(minHandoffsBeforeDiscovery >= requiredHandoffs, "Distant exits require local handoffs before discovery");
+        }
         File.WriteAllText(Path.Combine(directory, "verification.json"), JsonUtility.ToJson(new WaypointVerification
         {
             reference_successes = successes, reference_episodes = 10, reference_handoffs = handoffs,
@@ -182,7 +192,8 @@ public static partial class QaLocalMovementSession
             reset_seeds = resetSeeds, room_width = session.room_width, room_depth = session.room_depth,
             min_exit_distance = session.min_exit_distance, max_exit_distance = session.max_exit_distance,
             minimum_handoffs_before_exit_discovery = minHandoffsBeforeDiscovery,
-            completion_reward = session.completion_reward
+            reference_action_limit = referenceActionLimit,
+            completion_reward = session.completion_reward, max_waypoint_distance = session.max_waypoint_distance
         }, true));
         environment.ResetEpisode(session.training_seed);
     }
@@ -281,8 +292,10 @@ public static partial class QaLocalMovementSession
         public bool map_barrier_checks = true, unknown_gap_checks = true, recovery_checks = true, reward_checks = true;
         public int reference_episodes, reference_successes, reference_handoffs, reference_exit_discoveries;
         public int minimum_handoffs_before_exit_discovery;
+        public int reference_action_limit;
         public float room_width, room_depth, min_exit_distance, max_exit_distance;
         public float reference_waypoint_bonus;
         public float completion_reward;
+        public float max_waypoint_distance;
     }
 }

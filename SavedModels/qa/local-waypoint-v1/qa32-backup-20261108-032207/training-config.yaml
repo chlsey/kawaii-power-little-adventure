@@ -1,0 +1,28 @@
+# Advance both bounds by two units from QA-31's successful 6-10-unit checkpoint.
+task: waypoint-reach-8to12
+model: ppo
+port: 7783
+seed: 8500
+total_timesteps: 300000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-waypoint-reach-training
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261107-185943-train/final_model.zip
+resume_sha256: 5ed4da94b4ab957a61965163b28d0ae1dbfa45e145b9da8ff0712f120bc89062
+parent_lineage_episodes: 6500
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 120
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 284000
+unity_scene: Assets/Scenes/QaWaypointReachTraining.unity
+waypoint_distance_range: [8, 12]
+episode_seconds: 60
+waypoint_reward_budget: 5
+minimum_local_objective_reward: 50

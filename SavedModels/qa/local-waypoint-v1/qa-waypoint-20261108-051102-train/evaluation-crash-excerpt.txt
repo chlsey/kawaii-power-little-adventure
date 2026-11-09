@@ -1,0 +1,40 @@
+========== OUTPUTTING STACK TRACE ==================
+
+0x000001ACCBF3408B (Mono JIT Code) System.Collections.Generic.GenericEqualityComparer`1<UnityEngine.Vector2Int>:Equals (UnityEngine.Vector2Int,UnityEngine.Vector2Int)
+0x000001ACCBF34C4B (Mono JIT Code) System.Collections.Generic.HashSet`1<UnityEngine.Vector2Int>:Contains (UnityEngine.Vector2Int)
+0x000001ACCBF3561B (Mono JIT Code) [C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Assets\PCGDungeon\Scripts\QA\QaMapNavigation.cs:112] QaObservedRoutePlanner/<Neighbours>d__8:MoveNext () 
+0x000001ACCBF349BA (Mono JIT Code) [C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Assets\PCGDungeon\Scripts\QA\QaMapNavigation.cs:128] QaObservedRoutePlanner:Reachable (UnityEngine.Vector3) 
+0x000001ACCBF3429B (Mono JIT Code) [C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Assets\PCGDungeon\Scripts\QA\QaMapNavigation.cs:26] QaFrontierGoalSelector:TrySelect (QaObservedRoutePlanner,UnityEngine.Vector3,System.Collections.Generic.IList`1<UnityEngine.Vector3>,bool,QaMapGoal&) 
+0x000001ACCBF310B1 (Mono JIT Code) [C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Assets\PCGDungeon\Scripts\QA\QaNavigationCoordinator.cs:96] QaNavigationCoordinator:Advance (ModelSensorPackage,UnityEngine.CharacterController,bool) 
+0x000001ACCBF30783 (Mono JIT Code) [C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Assets\PCGDungeon\Scripts\RL\QaSingleRoomRlEnvironment.cs:68] QaSingleRoomRlEnvironment:AdvanceNavigation (bool) 
+0x000001ACCBF4259B (Mono JIT Code) [C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Assets\PCGDungeon\Scripts\RL\QaSingleRoomRlEnvironment.cs:270] QaSingleRoomRlEnvironment:CalculateReward (bool&) 
+0x000001ACCBF41E4E (Mono JIT Code) [C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\unity-reinforcement-learning\Runtime\RlTrainingHost.cs:295] Kcccr.UnityReinforcementLearning.RlTrainingHost:CompleteActionIfReady () 
+0x000001AA9F09C07B (Mono JIT Code) [C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\unity-reinforcement-learning\Runtime\RlTrainingHost.cs:82] Kcccr.UnityReinforcementLearning.RlTrainingHost:Update () 
+0x000001ACF924CBC8 (Mono JIT Code) (wrapper runtime-invoke) object:runtime_invoke_void__this__ (object,intptr,intptr,intptr)
+0x00007FFFA2CA6BFE (mono-2.0-bdwgc) [C:\build\output\Unity-Technologies\mono\mono\mini\mini-runtime.c:3445] mono_jit_runtime_invoke 
+0x00007FFFA2BE8984 (mono-2.0-bdwgc) [C:\build\output\Unity-Technologies\mono\mono\metadata\object.c:3068] do_runtime_invoke 
+0x00007FFFA2BE8A70 (mono-2.0-bdwgc) [C:\build\output\Unity-Technologies\mono\mono\metadata\object.c:3115] mono_runtime_invoke 
+0x00007FFFA9525064 (Unity) scripting_method_invoke
+0x00007FFFA952BF23 (Unity) ScriptingInvocation::Invoke
+0x00007FFFA9438937 (Unity) MonoBehaviour::CallMethodIfAvailable
+0x00007FFFA9438A62 (Unity) MonoBehaviour::CallUpdateMethod
+0x00007FFFA8FDD7AB (Unity) BaseBehaviourManager::CommonUpdate<BehaviourManager>
+0x00007FFFA8FE463A (Unity) BehaviourManager::Update
+0x00007FFFA93F36BF (Unity) `InitPlayerLoopCallbacks'::`2'::UpdateScriptRunBehaviourUpdateRegistrator::Forward
+0x00007FFFA93D1B5F (Unity) ExecutePlayerLoop
+0x00007FFFA93D1CD5 (Unity) ExecutePlayerLoop
+0x00007FFFA93D6B7F (Unity) PlayerLoop
+0x00007FFFA9D48A4A (Unity) EditorPlayerLoop::Execute
+0x00007FFFA9D5FB8F (Unity) PlayerLoopController::InternalUpdateScene
+0x00007FFFA9D61B6F (Unity) PlayerLoopController::UpdateSceneIfNeededFromMainLoop
+0x00007FFFA9D5BA2D (Unity) Application::TickTimer
+0x00007FFFA9B3E55C (Unity) MainMessageLoop
+0x00007FFFA9B45F66 (Unity) UnityMain
+0x00007FF7ED5D2F2A (Unity) __scrt_common_main_seh
+0x00007FF91C75DDA7 (KERNEL32) BaseThreadInitThunk
+0x00007FF91EA9EE4C (ntdll) RtlUserThreadStart
+
+========== END OF STACKTRACE ===========
+
+A crash has been intercepted by the crash handler. For call stack and other details, see the latest crash report generated in:
+ * C:/Users/chenk/AppData/Local/Temp/Unity/Editor/Crashes

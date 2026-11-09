@@ -1,0 +1,28 @@
+# QA-44 stage 3: 500 single targets at 8-10 units, full stage-2 continuation.
+task: waypoint-restart-8to10
+model: ppo
+port: 7783
+seed: 13000
+total_timesteps: 300000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 5000
+output_dir: ../Logs/qa-waypoint-restart-8to10
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-reach-20261108-232529-train/final_model.zip
+resume_sha256: 629c8af3f872bbaaa533fe6ed2836db1b215aaaf36601b5b6b8218cdf1fb2bc9
+parent_lineage_episodes: 3000
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 292000
+unity_scene: Assets/Scenes/QaWaypointReachTraining.unity
+waypoint_distance_range: [8, 10]
+episode_seconds: 60
+waypoint_reward_budget: 5
+minimum_local_objective_reward: 50

@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "phase": "training-3",
+  "completed_episodes": 100,
+  "complete_chains": 87,
+  "timeouts": 13,
+  "waypoint_arrivals": 370,
+  "planned_waypoints": 400,
+  "successful_seconds_mean": 9.191954160558767,
+  "mean_episode_seconds": 15.797000119686126,
+  "model_steps": 211386,
+  "added_model_steps": 15797,
+  "optimizer_updates": 8210,
+  "added_optimizer_updates": 610,
+  "completed_training_episodes": 300,
+  "total_lineage_episodes": 8300,
+  "frozen": false
+}

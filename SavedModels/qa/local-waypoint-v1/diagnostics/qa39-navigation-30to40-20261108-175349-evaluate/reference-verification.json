@@ -1,0 +1,22 @@
+{
+    "policy_version": "local-waypoint-v1",
+    "reset_seeds": 100,
+    "compass_completions": 8,
+    "map_barrier_checks": true,
+    "unknown_gap_checks": true,
+    "recovery_checks": true,
+    "reward_checks": true,
+    "reference_episodes": 10,
+    "reference_successes": 10,
+    "reference_handoffs": 284,
+    "reference_exit_discoveries": 10,
+    "minimum_handoffs_before_exit_discovery": 7,
+    "reference_action_limit": 600,
+    "room_width": 50.0,
+    "room_depth": 50.0,
+    "min_exit_distance": 30.0,
+    "max_exit_distance": 40.0,
+    "reference_waypoint_bonus": 36.72000503540039,
+    "completion_reward": 50.0,
+    "max_waypoint_distance": 10.0
+}

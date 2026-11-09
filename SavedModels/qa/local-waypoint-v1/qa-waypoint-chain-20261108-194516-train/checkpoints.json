@@ -1,0 +1,105 @@
+{
+  "architecture": "local-waypoint-v1",
+  "checkpoints": [
+    {
+      "path": "checkpoints/training-1_179332_steps.zip",
+      "sha256": "aa948d37a1bc1f1ef91a8a8f74046b0ce7e72693820dc4cedb3693f234d23ffc",
+      "bytes": 352943
+    },
+    {
+      "path": "checkpoints/training-2_187011_steps.zip",
+      "sha256": "f3a189c9d1f95706f07643c9495fbca7bbd234bb8b578ab9626fd04d44bd7084",
+      "bytes": 352923
+    },
+    {
+      "path": "checkpoints/training-2_192011_steps.zip",
+      "sha256": "c38cd0fe8d8b7fe542a78999ab39c507415f4f81f1bf78bb4f3c6d00cba72363",
+      "bytes": 352926
+    },
+    {
+      "path": "checkpoints/training-3_200589_steps.zip",
+      "sha256": "6c90be6ebd1152872ff36791c080ccac658ebe0dd337088ea7730acf61f91de9",
+      "bytes": 352931
+    },
+    {
+      "path": "checkpoints/training-3_205589_steps.zip",
+      "sha256": "c7ff0b530ae6d543903cdf18334bac3edf7ca1eb4cdd4fd8af7d1cb840326679",
+      "bytes": 352935
+    },
+    {
+      "path": "checkpoints/training-3_210589_steps.zip",
+      "sha256": "08158286b4b8833943fde222ef6177b2f0b9fcab3c2e47aab512fb8a40934dab",
+      "bytes": 352935
+    },
+    {
+      "path": "checkpoints/training-4_216386_steps.zip",
+      "sha256": "fbc759ccc6d22425a781e1d2982b9d9a458a67428a8e7715761c5d9a3681d4e2",
+      "bytes": 352943
+    },
+    {
+      "path": "checkpoints/training-4_221386_steps.zip",
+      "sha256": "aedaf06985b637f0b79a5880550a361d3477975e195b3d1cc9b336afc4183672",
+      "bytes": 352946
+    },
+    {
+      "path": "checkpoints/training-4_226386_steps.zip",
+      "sha256": "894b90897aafee3a162da315d314885a7b25bb65b6dc1935bf92f4097ea251c6",
+      "bytes": 352954
+    },
+    {
+      "path": "checkpoints/training-4_231386_steps.zip",
+      "sha256": "e0e1e9ee2e9f3b195146345d79b7d424d47ea37700f0e18995ca6c235f655716",
+      "bytes": 352956
+    },
+    {
+      "path": "checkpoints/training-4_236386_steps.zip",
+      "sha256": "34823f86f4537eac10f5072ef53da142330624d82bb3c656085d3b523fa3f749",
+      "bytes": 352967
+    },
+    {
+      "path": "checkpoints/training-4_241386_steps.zip",
+      "sha256": "0ca220810170d3dc67f041910d401454065ce21f7dd26660c2c78e7349ddf3ff",
+      "bytes": 352966
+    },
+    {
+      "path": "checkpoints/training-4_246386_steps.zip",
+      "sha256": "ae52dae040f60a9c54c9d7130bab04dc5dfde66f7b74eb9216cceee57d8a23ab",
+      "bytes": 352966
+    },
+    {
+      "path": "checkpoints/training-4_251386_steps.zip",
+      "sha256": "eafe7acdc2bc7e527b8f00358228dacccc488095fb80be05641a5ae3a0f5682b",
+      "bytes": 352963
+    },
+    {
+      "path": "checkpoints/training-4_256386_steps.zip",
+      "sha256": "04ab5769fecd33c27863bc518968cd3db6200470203ffecc3bf25a0365efc093",
+      "bytes": 352964
+    },
+    {
+      "path": "final_model.zip",
+      "sha256": "a635f6607dc8fb713051cd3a7e6b40ba800cbc4fbf6d7e2689e6805fbe48b788",
+      "bytes": 352956
+    },
+    {
+      "path": "training-1-model.zip",
+      "sha256": "e3f12bf3e8a4ddd1a0fc56c9a45e623f9b18b215b615bdaac6a31e8506eff32e",
+      "bytes": 352923
+    },
+    {
+      "path": "training-2-model.zip",
+      "sha256": "a1c06c1ff9cf3464292ef5098cca44ebc48850d66ec8b6f0498142eb19196d3a",
+      "bytes": 352935
+    },
+    {
+      "path": "training-3-model.zip",
+      "sha256": "508f66b24dbf34c089887ff1004d5639848e3ec56ee2eaf2902fdf744630d8b8",
+      "bytes": 352935
+    },
+    {
+      "path": "training-4-model.zip",
+      "sha256": "a635f6607dc8fb713051cd3a7e6b40ba800cbc4fbf6d7e2689e6805fbe48b788",
+      "bytes": 352956
+    }
+  ]
+}

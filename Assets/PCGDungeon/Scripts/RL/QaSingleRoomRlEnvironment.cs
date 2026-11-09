@@ -47,6 +47,9 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
     public QaNavigationCoordinator Navigation => navigation;
     public bool NavigatorDisabled => disableWaypointNavigatorForEvaluation;
     public float WaypointCompletionBonus => waypointRewards.CompletionBonus;
+    // Optional evaluation observers read actions before movement and before navigation handoff.
+    public event System.Action<float[]> ActionStarting;
+    public event System.Action<bool> ActionMeasured;
     public string PolicyVersion => waypointNavigation ? QaWaypointPolicyMapping.Version : QaLocalMovementPolicyMapping.Version;
 
     public void ResetNavigation()
@@ -194,6 +197,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
 
     public override void ApplyAction(float[] action)
     {
+        ActionStarting?.Invoke(action);
         movementRequested = false;
         exitVisibleForAction = false;
         sensors.Capture();
@@ -261,6 +265,7 @@ public sealed class QaSingleRoomRlEnvironment : RlEnvironmentBehaviour
             attemptEnded = true;
             sensors.EndAttempt();
         }
+        ActionMeasured?.Invoke(isDone);
         if (waypointNavigation && !isDone) AdvanceNavigation(true);
         return reward;
     }

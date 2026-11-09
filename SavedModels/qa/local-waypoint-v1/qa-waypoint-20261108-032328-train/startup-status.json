@@ -1,0 +1,42 @@
+{
+  "checked_at_utc": "2026-11-08T03:25:23.250872+00:00",
+  "status": "training",
+  "training": {
+    "status": "training",
+    "target_episodes": 500,
+    "steps": 4701,
+    "completed_episodes": 20,
+    "successes": 18,
+    "timeouts": 2,
+    "deaths": 0,
+    "success_rate": 0.9,
+    "mean_successful_exit_seconds": 19.45000018013848,
+    "total_stuck_penalty": 0.0,
+    "total_exploration_reward": 0.0
+  },
+  "ppo_metrics": {
+    "time/time_elapsed": "83",
+    "time/fps": "58",
+    "time/total_timesteps": "68110",
+    "rollout/ep_len_mean": "84.09",
+    "time/iterations": "19",
+    "rollout/ep_rew_mean": "11.30845313",
+    "train/n_updates": "2640",
+    "train/policy_gradient_loss": "-0.016409020777791737",
+    "train/clip_fraction": "0.03515625",
+    "train/loss": "25.90520477294922",
+    "train/clip_range": "0.2",
+    "train/approx_kl": "0.005266456",
+    "train/learning_rate": "0.0002",
+    "train/value_loss": "53.840952491760255",
+    "train/std": "0.8756757378578186",
+    "train/entropy_loss": "-2.571556407213211",
+    "train/explained_variance": "0.5892429649829865"
+  },
+  "preflight_passed": true,
+  "original_and_backup_files_verified": 12,
+  "checkpoint_sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+  "python_pid": 41496,
+  "unity_pid": 49536,
+  "frozen_evaluation_status": "queued_after_training"
+}

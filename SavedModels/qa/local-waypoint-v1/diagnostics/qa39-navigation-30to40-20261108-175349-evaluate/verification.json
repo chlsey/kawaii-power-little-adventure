@@ -1,0 +1,20 @@
+{
+  "verified_at_utc": "2026-11-08T18:12:12.108063+00:00",
+  "model": "QA-39",
+  "model_steps": 72054,
+  "optimizer_updates": 2800,
+  "checkpoint_sha256": "a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f",
+  "weight_updates": 0,
+  "source_hashes_verified": 11,
+  "parent_archives_verified": 2,
+  "historical_40x40_scene_unchanged": true,
+  "all_100_goal_distances_in_30_to_40": true,
+  "all_spawn_goal_positions_inside_1_5_unit_margin": true,
+  "all_observed_assignments_at_most_10": true,
+  "room_size": [
+    50,
+    50
+  ],
+  "project_settings_restored": true,
+  "unity_finished": true
+}

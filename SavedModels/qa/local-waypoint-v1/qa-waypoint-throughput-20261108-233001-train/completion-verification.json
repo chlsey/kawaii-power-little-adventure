@@ -1,0 +1,27 @@
+{
+  "verified_at_utc": "2026-11-08T23:49:36.708111+00:00",
+  "total_new_training_episodes": 2000,
+  "first_three_training_episodes": 1500,
+  "timed_training_episodes": 500,
+  "timed_training_actions": 300000,
+  "timed_phases_finished": 5,
+  "settings_restored": true,
+  "all_experiment_archives_verified": 38,
+  "qa43_backup_files_verified": 91,
+  "qa43_archives_unchanged": true,
+  "qa18_transfer_unchanged": true,
+  "saved_model_predictions_matched": 60,
+  "branch_steps": 328433,
+  "optimizer_updates": 12810,
+  "total_actor_lineage_episodes": 4000,
+  "final_sha256": "1094cd0cea9a3fe2bc183b5bd3a7c1dc2ea6d22f4d5d5939629d7ed7ccafde8e",
+  "actual_continuous_assignment_range": [
+    1.0490951538085938,
+    9.95258903503418
+  ],
+  "max_positive_timed_training_reward": 1.0837658643722534,
+  "discarded_partial_rollout_transitions": 497,
+  "all_unity_sessions_finished": 14,
+  "exact_unique_training_seeds_verified": 2000,
+  "qa43_original_files_verified_unchanged": 91
+}

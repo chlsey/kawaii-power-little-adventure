@@ -1,0 +1,22 @@
+{
+  "parent_successes": 364,
+  "child_successes": 332,
+  "completion_change_percentage_points": -6.4,
+  "both_clear": 274,
+  "child_only_clear": 58,
+  "parent_only_clear": 90,
+  "both_timeout": 78,
+  "paired_case_bootstrap_95_interval_percentage_points": [
+    -11.200000000000001,
+    -1.6
+  ],
+  "bootstrap_replicates": 20000,
+  "bootstrap_seed": 36,
+  "exact_paired_p_value": 0.010582643402853354,
+  "parent_mean_episode_seconds": 31.091800252914428,
+  "child_mean_episode_seconds": 32.996200198173526,
+  "common_successes": 274,
+  "common_success_parent_mean_seconds": 19.379927349786687,
+  "common_success_child_mean_seconds": 18.59014623704618,
+  "interpretation": "Fewer clears in this matched reused benchmark; case-sampling uncertainty is exploratory and is not independent-training variability. Preserve QA-32; no promotion."
+}

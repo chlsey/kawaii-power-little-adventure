@@ -61,6 +61,8 @@ def launch_unity(executable, directory, config, episodes, verify, mode="train"):
          'completion_reward': config.get('completion_reward', 50.0),
          'episode_seconds': config.get('episode_seconds', 30), 'time_scale': config.get('time_scale', 20),
          'navigator_disabled': config.get('navigator_disabled', False),
+         'trace_exit_decisions': config.get('trace_exit_decisions', False),
+         'max_waypoint_distance': config.get('max_waypoint_distance', 6.0),
          'min_exit_distance': config['exit_distance_range'][0], 'max_exit_distance': config['exit_distance_range'][1],
          'training_seed': config['seed'], 'training_episodes': config['max_episodes'],
          'evaluation_seed': config['evaluation_seed'], 'evaluation_episodes': config['evaluation_episodes']})
@@ -115,6 +117,7 @@ class RecordedEnvironment(UnityGymEnv):
         self.exit_distance_range = config['exit_distance_range']
         self.episode_seconds = config.get('episode_seconds', 30)
         self.navigator_disabled = config.get('navigator_disabled', False)
+        self.max_waypoint_distance = config.get('max_waypoint_distance', 6.0)
         self.progress_path, self.phase = progress_path, phase
         self.episodes = []
         self.steps = 0
@@ -131,7 +134,7 @@ class RecordedEnvironment(UnityGymEnv):
         if self.navigator_disabled:
             assert np.all(observation[130:134] == 0)
         elif self.policy_version == 'local-waypoint-v1':
-            assert observation[130] == 1 and 0 < observation[133] <= .5
+            assert observation[130] == 1 and 0 < observation[133] <= self.max_waypoint_distance / 12 + .00001
         else:
             assert observation[130] == int(self.initial_exit_visible)
         if not self.initial_exit_visible and self.policy_version == 'local-vision-v1':
@@ -408,16 +411,19 @@ def run_waypoints(config_path, unity, mode, episodes, without_waypoint=False):
                     'Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs', 'Assets/PCGDungeon/Scripts/RL/QaSingleRoomRlEnvironment.cs']
     sources = {name: checkpoint_hash(GAME / name) for name in source_paths}
     save(directory / 'run.json', dict(mode=mode, observation_contract=model.observation_contract,
+         task=config.get('task', 'exit-navigation'),
          parent_checkpoint_sha256=checkpoint_hash(parent_path), parent_lineage_episodes=config['parent_lineage_episodes'],
          checkpoint_sha256=checkpoint_hash(checkpoint), source_sha256=sources, manual_advancement=True,
          waypoint_inputs_masked=without_waypoint, initial_model_timesteps=initial_model_timesteps,
          navigator_disabled=config.get('navigator_disabled', False),
          completion_reward=completion_reward,
          episode_seconds=config.get('episode_seconds', 30),
+         max_waypoint_distance=config.get('max_waypoint_distance', 6.0),
          parent_training_task=getattr(model, 'training_task', 'exit-navigation'),
          parent_training_completion_reward=getattr(model, 'training_completion_reward', None)))
     destination = None
     if mode == 'train':
+        model.training_task = config.get('task', 'exit-navigation')
         model.parent_checkpoint_sha256 = parent_hash
         model.parent_lineage_episodes = config['parent_lineage_episodes']
         model.training_completion_reward = completion_reward
@@ -449,6 +455,7 @@ def run_waypoints(config_path, unity, mode, episodes, without_waypoint=False):
             assert ready['completion_reward'] == completion_reward
             assert ready['episode_seconds'] == config.get('episode_seconds', 30)
             assert ready['navigator_disabled'] == config.get('navigator_disabled', False)
+            assert ready['max_waypoint_distance'] == config.get('max_waypoint_distance', 6.0)
             environment = RecordedEnvironment(phase_dir, process, config, target, seed, directory / 'progress.json', phase)
             before = {key: value.clone() for key, value in model.policy.state_dict().items()}
             updates = model._n_updates
@@ -490,6 +497,7 @@ def run_waypoints(config_path, unity, mode, episodes, without_waypoint=False):
                           new_model_training_steps=model.num_timesteps,
                           waypoint_inputs_masked=without_waypoint,
                           navigator_disabled=config.get('navigator_disabled', False),
+                          max_waypoint_distance=config.get('max_waypoint_distance', 6.0),
                           completion_reward=completion_reward,
                           checkpoint_sha256=checkpoint_hash(checkpoint), parent_checkpoint_unchanged=True,
                           total_waypoint_bonus=sum(e['waypoint_bonus'] for e in environment.episodes))

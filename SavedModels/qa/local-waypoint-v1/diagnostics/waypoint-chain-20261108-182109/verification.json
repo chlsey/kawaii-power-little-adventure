@@ -1,0 +1,15 @@
+{
+  "verified_at_utc": "2026-11-08T18:25:23.422500+00:00",
+  "all_source_hashes_verified": true,
+  "project_settings_restored": true,
+  "unity_finished": true,
+  "weight_updates": 0,
+  "checkpoint_sha256": "a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f",
+  "matched_reference_chains": 100,
+  "continuous_position_handoffs": 587,
+  "previous_action_continuity_verified": true,
+  "actual_assignment_range": [
+    1.1669353246688843,
+    9.5225191116333
+  ]
+}

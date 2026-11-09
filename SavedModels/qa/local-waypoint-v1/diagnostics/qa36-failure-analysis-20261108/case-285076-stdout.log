@@ -1,0 +1,30 @@
+Run directory: C:\Users\chenk\Documents\GitHub\kevin-ai-repo-csc495\source-code\kawaii-power-little-adventure\Logs\qa36-failure-analysis\case-285076\20261108-083625-evaluate
+{
+  "status": "complete",
+  "phase": "evaluation",
+  "completed_episodes": 1,
+  "successes": 0,
+  "timeouts": 1,
+  "deaths": 0,
+  "success_rate": 0.0,
+  "mean_successful_exit_seconds": null,
+  "total_stuck_penalty": 0.0,
+  "total_exploration_reward": 0.0,
+  "seed_range": [
+    285076,
+    285076
+  ],
+  "steps": 600,
+  "weight_updates": 0,
+  "observation_contract": "local-waypoint-v1",
+  "parent_lineage_episodes": 7500,
+  "initial_model_timesteps": 214687,
+  "new_training_steps": 0,
+  "new_model_training_steps": 214687,
+  "waypoint_inputs_masked": false,
+  "navigator_disabled": false,
+  "completion_reward": 50.0,
+  "checkpoint_sha256": "7ca386b36041489e06e99e8f1d42612571adbe33f27191e4705e45c7cdd0e3e9",
+  "parent_checkpoint_unchanged": true,
+  "total_waypoint_bonus": 3.0
+}

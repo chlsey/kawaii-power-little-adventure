@@ -1,0 +1,125 @@
+{
+  "architecture": "local-waypoint-v1",
+  "checkpoints": [
+    {
+      "path": "checkpoints/training-1_77054_steps.zip",
+      "sha256": "d6a1ee0ba234570fdfc0bc13bae4a49eb81c47df684e2dfd30a5bd71025a44e6",
+      "bytes": 352347
+    },
+    {
+      "path": "checkpoints/training-2_84054_steps.zip",
+      "sha256": "4424980ef28357850217425a9a7114341e47c83f608b4765fc05af349c8082b9",
+      "bytes": 352391
+    },
+    {
+      "path": "checkpoints/training-2_89054_steps.zip",
+      "sha256": "a1787abd1f98a4527dc9ba852bef1652e4da8e1809b90fd4cf1d3794b372c1fe",
+      "bytes": 352394
+    },
+    {
+      "path": "checkpoints/training-3_101623_steps.zip",
+      "sha256": "bc3b4403edb402b555bd761dbffca1fe7fc6cf84b2d19aab0535f3485a39161d",
+      "bytes": 352412
+    },
+    {
+      "path": "checkpoints/training-3_106623_steps.zip",
+      "sha256": "318b7dc4d8af6276753385352b72471edc7c76dd7cc712cfaa5c9bb5828293b0",
+      "bytes": 352416
+    },
+    {
+      "path": "checkpoints/training-3_111623_steps.zip",
+      "sha256": "cb6f11378c7dceec0148b6ba5d28153e22203f161a7a9ac43494bd069d5d3430",
+      "bytes": 352420
+    },
+    {
+      "path": "checkpoints/training-3_116623_steps.zip",
+      "sha256": "5ef6cb52451890be1ffbc6fe57d441d60a44413404208ffb07a191c7b2b8bf0b",
+      "bytes": 352428
+    },
+    {
+      "path": "checkpoints/training-3_96623_steps.zip",
+      "sha256": "ade1e336ee29b7ddb06dc75d82a701b55daae375817e55964506fb0a325f89d3",
+      "bytes": 352403
+    },
+    {
+      "path": "checkpoints/training-4_122975_steps.zip",
+      "sha256": "af178e0be69867e50264177922ec29c214cc2f3c742b1c6a5a22ebf604809ffd",
+      "bytes": 352433
+    },
+    {
+      "path": "checkpoints/training-4_127975_steps.zip",
+      "sha256": "58170a81da2323a778b74148a03334fd3dbc47c65129286182c5f58b78f62787",
+      "bytes": 352441
+    },
+    {
+      "path": "checkpoints/training-4_132975_steps.zip",
+      "sha256": "f153f9b7e0f20ccdef839e40363d4273a21de3dac187355247ddfbaea52da490",
+      "bytes": 352437
+    },
+    {
+      "path": "checkpoints/training-4_137975_steps.zip",
+      "sha256": "0db2e36c56cf55880b6439aa946e985674159ee992a0f1c36d4ab5f13f4acca9",
+      "bytes": 352441
+    },
+    {
+      "path": "checkpoints/training-4_142975_steps.zip",
+      "sha256": "e5ee7056cebda6b7fbc8d158df2b1d9edf86e8915137313605da87daadee439b",
+      "bytes": 352441
+    },
+    {
+      "path": "checkpoints/training-4_147975_steps.zip",
+      "sha256": "eff055e4a02b2e42a9168bf63d0eb4b736898cf67391f28a1e855d300d49abd7",
+      "bytes": 352437
+    },
+    {
+      "path": "checkpoints/training-4_152975_steps.zip",
+      "sha256": "ecfe9e5457234e4783b568603100f2fe720a95c8d55684c67db46423b43bac7b",
+      "bytes": 352429
+    },
+    {
+      "path": "checkpoints/training-4_157975_steps.zip",
+      "sha256": "a8ab8b63d351be1b57fb5b2ab7959a6035c4e0978e6c45a7a293139a2c719417",
+      "bytes": 352429
+    },
+    {
+      "path": "checkpoints/training-4_162975_steps.zip",
+      "sha256": "e311e6ae8ba55c9761e0e2a3663b38ab81d1d37e39750a476d80f9020e42389c",
+      "bytes": 352433
+    },
+    {
+      "path": "checkpoints/training-4_167975_steps.zip",
+      "sha256": "1aa7fafd131db293247ed119260165aeef7a9543c1f9e7b90467e16edab9305a",
+      "bytes": 352429
+    },
+    {
+      "path": "checkpoints/training-4_172975_steps.zip",
+      "sha256": "da5ddd97e053b06b41e15846da913d929f16f4a1325bdffca170dd171afe3c54",
+      "bytes": 352429
+    },
+    {
+      "path": "final_model.zip",
+      "sha256": "0bd60198d0904f0099c1e19691a1dc553c220b512542576d1c56eff0b2b0025d",
+      "bytes": 352433
+    },
+    {
+      "path": "training-1-model.zip",
+      "sha256": "022e00a704e81f422bb496bf844bc0293dc706202bad82f64babf2dd52784d83",
+      "bytes": 352391
+    },
+    {
+      "path": "training-2-model.zip",
+      "sha256": "24bedf27ad5172c33b1ce03ce9f9cb96ac6b48a5bc82cb7147001887b74d3343",
+      "bytes": 352399
+    },
+    {
+      "path": "training-3-model.zip",
+      "sha256": "fcf07154811c1a11f00fadb8f4cef84bdbeefd1c59d355582b229e38a738dfe2",
+      "bytes": 352432
+    },
+    {
+      "path": "training-4-model.zip",
+      "sha256": "0bd60198d0904f0099c1e19691a1dc553c220b512542576d1c56eff0b2b0025d",
+      "bytes": 352433
+    }
+  ]
+}

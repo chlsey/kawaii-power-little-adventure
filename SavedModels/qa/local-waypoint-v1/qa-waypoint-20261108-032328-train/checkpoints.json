@@ -1,0 +1,30 @@
+{
+  "architecture": "local-waypoint-v1",
+  "status": "interrupted; periodic checkpoints only",
+  "checkpoints": [
+    {
+      "path": "checkpoints/rl_model_73246_steps.zip",
+      "sha256": "2063811255dd12a8a72e7dd43fd8b41f2dab201b44ecbecfdac7eff5e1fa1278",
+      "bytes": 351860,
+      "model_timesteps": 73246,
+      "optimizer_updates": 2850,
+      "training_task": "exit-navigation"
+    },
+    {
+      "path": "checkpoints/rl_model_83246_steps.zip",
+      "sha256": "c10f9e7fcfc56dbad4687719e8ccc744aeb53e65b5efc8065f18494edce96bc3",
+      "bytes": 351880,
+      "model_timesteps": 83246,
+      "optimizer_updates": 3240,
+      "training_task": "exit-navigation"
+    },
+    {
+      "path": "checkpoints/rl_model_93246_steps.zip",
+      "sha256": "30b40cb8b227de79ba3a90f201381dc29ebd1d46f8ddadb6cb7855ab59583142",
+      "bytes": 351896,
+      "model_timesteps": 93246,
+      "optimizer_updates": 3630,
+      "training_task": "exit-navigation"
+    }
+  ]
+}

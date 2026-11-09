@@ -1,0 +1,20 @@
+{
+  "verified_at_utc": "2026-11-08T19:55:05.690170+00:00",
+  "project_settings_restored": true,
+  "unity_sessions_finished": 7,
+  "exact_training_episode_count": 500,
+  "total_lineage_episodes": 8500,
+  "parent_archives_verified_unchanged": 24,
+  "child_archives_verified": 20,
+  "saved_model_prediction_samples": 43,
+  "saved_predictions_match_evaluation": true,
+  "model_steps": 260803,
+  "optimizer_updates": 10140,
+  "actual_assignment_range_all_phases": [
+    1.0510811805725098,
+    9.906704902648926
+  ],
+  "final_sha256": "a635f6607dc8fb713051cd3a7e6b40ba800cbc4fbf6d7e2689e6805fbe48b788",
+  "evaluation_weight_updates": 0,
+  "discarded_partial_rollout_transitions": 455
+}

@@ -110,7 +110,7 @@ def run(config_path, mode):
             'Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs', 'Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs',
             'Training/run_waypoint_reach.py', 'Training/run_local_movement.py']
         source_hashes = {name: checkpoint_hash(GAME / name) for name in sources}
-        save(directory / 'run.json', dict(task=config.get('task', 'waypoint-reach-nearby'), observation_contract='local-waypoint-v1',
+        save(directory / 'run.json', dict(mode=mode, task=config.get('task', 'waypoint-reach-nearby'), observation_contract='local-waypoint-v1',
             parent_checkpoint=str(parent), parent_checkpoint_sha256=parent_hash,
             parent_lineage_episodes=config['parent_lineage_episodes'], actor_transfer=actor_transfer,
             fresh_critic=actor_transfer, fresh_optimizer=actor_transfer,
@@ -137,14 +137,19 @@ def run(config_path, mode):
         assert model.ent_coef == config['ent_coef'] and model.n_steps == config['n_steps']
         assert model.batch_size == config['ppo']['batch_size']
         initial_model_steps = model.num_timesteps
-        model.training_task = config.get('task', 'waypoint-reach-nearby')
-        model.waypoint_reward_budget = config['waypoint_reward_budget']
-        destination = GAME / 'SavedModels/qa/local-waypoint-v1' / ('qa-waypoint-reach-' + directory.name)
+        if mode == 'train':
+            model.training_task = config.get('task', 'waypoint-reach-nearby')
+            model.waypoint_reward_budget = config['waypoint_reward_budget']
+            destination = GAME / 'SavedModels/qa/local-waypoint-v1' / ('qa-waypoint-reach-' + directory.name)
+            phases = ['training', 'evaluation']
+        else:
+            destination = GAME / 'SavedModels/qa/local-waypoint-v1/diagnostics' / ('waypoint-reach-' + directory.name)
+            phases = ['evaluation']
         destination.mkdir(parents=True)
         for name in ['training-config.yaml', 'run.json']:
             shutil.copy2(directory / name, destination / name)
         shutil.copy2(verify_dir / 'verification.json', destination / 'verification.json')
-        for phase in ['training', 'evaluation']:
+        for phase in phases:
             training = phase == 'training'
             count = config['max_episodes'] if training else config['evaluation_episodes']
             seed = config['seed'] if training else config['evaluation_seed']
@@ -171,7 +176,10 @@ def run(config_path, mode):
                 save_checkpoint_manifest(destination, 'local-waypoint-v1')
             else:
                 model.policy.set_training_mode(False)
-                frozen_hash = checkpoint_hash(destination / 'final_model.zip')
+                frozen_checkpoint = start
+                if mode == 'train':
+                    frozen_checkpoint = destination / 'final_model.zip'
+                frozen_hash = checkpoint_hash(frozen_checkpoint)
                 for _ in range(count):
                     observation, _ = environment.reset()
                     done = False
@@ -181,12 +189,12 @@ def run(config_path, mode):
                         done = terminated or truncated
                 assert model._n_updates == updates
                 assert all(torch.equal(model.policy.state_dict()[key], value) for key, value in before.items())
-                assert checkpoint_hash(destination / 'final_model.zip') == frozen_hash
+                assert checkpoint_hash(frozen_checkpoint) == frozen_hash
             assert len(environment.records) == count
             result = dict(status='complete', phase=phase, **summary(environment.records),
                 new_model_steps=model.num_timesteps, initial_model_steps=initial_model_steps,
                 new_training_steps=model.num_timesteps - initial_model_steps,
-                total_lineage_episodes=config['parent_lineage_episodes'] + config['max_episodes'],
+                total_lineage_episodes=config['parent_lineage_episodes'] + (config['max_episodes'] if mode == 'train' else 0),
                 weight_updates=model._n_updates - updates, game_completions=0,
                 max_positive_waypoint_reward=max(row['positive_waypoint_reward'] for row in environment.records))
             save(directory / (phase + '-result.json'), result)
@@ -201,7 +209,8 @@ def run(config_path, mode):
             process.wait(timeout=45)
             assert process.returncode == 0 and (phase_dir / 'unity-finished.txt').exists()
             print(json.dumps(result, indent=2), flush=True)
-        save(directory / 'progress.json', dict(status='complete', training_episodes=500, evaluation_episodes=100))
+        save(directory / 'progress.json', dict(status='complete', training_episodes=config['max_episodes'] if mode == 'train' else 0,
+            evaluation_episodes=config['evaluation_episodes']))
         assert all(checkpoint_hash(GAME / name) == digest for name, digest in source_hashes.items())
     except BaseException as error:
         save(directory / 'failure.json', dict(error=str(error)))
@@ -220,6 +229,6 @@ def run(config_path, mode):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', type=Path, default=GAME / 'Training/qa-player-waypoint-reach-nearby.yaml')
-    parser.add_argument('--mode', choices=['verify', 'train'], default='verify')
+    parser.add_argument('--mode', choices=['verify', 'evaluate', 'train'], default='verify')
     args = parser.parse_args()
     run(args.config.resolve(), args.mode)

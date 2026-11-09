@@ -1,0 +1,37 @@
+{
+  "status": "failed",
+  "phase": "training",
+  "checked_at_utc": "2026-11-08T05:08:05.050236+00:00",
+  "failure": "[WinError 10054] An existing connection was forcibly closed by the remote host",
+  "unity_native_crash_recorded": true,
+  "crash_root_cause": "unknown",
+  "target_episodes": 500,
+  "completed_episodes": 110,
+  "successes": 91,
+  "timeouts": 19,
+  "deaths": 0,
+  "success_rate": 0.8272727272727273,
+  "completed_episode_steps": 32196,
+  "completed_seed_range": [
+    9000,
+    9109
+  ],
+  "latest_logged_model_steps": 95758,
+  "latest_logged_optimizer_updates": 3720,
+  "initial_model_steps": 63246,
+  "initial_optimizer_updates": 2460,
+  "completed_episode_lineage_count": 7110,
+  "latest_retained_checkpoint": {
+    "path": "checkpoints/rl_model_93246_steps.zip",
+    "sha256": "30b40cb8b227de79ba3a90f201381dc29ebd1d46f8ddadb6cb7855ab59583142",
+    "bytes": 351896,
+    "model_timesteps": 93246,
+    "optimizer_updates": 3630,
+    "training_task": "exit-navigation"
+  },
+  "final_checkpoint_saved": false,
+  "frozen_evaluation_started": false,
+  "original_and_backup_qa32_unchanged": true,
+  "project_settings_restored": true,
+  "recovery_started": false
+}

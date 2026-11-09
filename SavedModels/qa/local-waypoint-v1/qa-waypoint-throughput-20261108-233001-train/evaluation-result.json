@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "phase": "evaluation",
+  "completed_episodes": 100,
+  "total_arrivals": 4443,
+  "mean_arrivals": 44.43,
+  "median_arrivals": 45.0,
+  "p10_arrivals": 40.9,
+  "p90_arrivals": 48.0,
+  "minimum_arrivals": 37,
+  "maximum_arrivals": 53,
+  "episodes_reaching_ten": 100,
+  "model_steps": 328433,
+  "optimizer_updates": 12810,
+  "added_model_steps": 0,
+  "added_optimizer_updates": 0,
+  "frozen": true
+}

@@ -1,0 +1,3393 @@
+{
+  "selected_case_count": 6,
+  "selection": "Three newly lost undiscovered-exit and three newly lost discovered-exit timeouts; purposive, not prevalence sample",
+  "parent_checkpoint_sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+  "child_checkpoint_sha256": "7ca386b36041489e06e99e8f1d42612571adbe33f27191e4705e45c7cdd0e3e9",
+  "weight_updates": 0,
+  "all_replays_match_original": true,
+  "model_counters_unchanged": true,
+  "cases": [
+    {
+      "seed": 285098,
+      "category": "undiscovered_timeout",
+      "parent_clear_seconds": 28.100000381469727,
+      "child_seconds": 60.0,
+      "replay_matches_original": true,
+      "min_exit_distance": 13.433280944824219,
+      "final_exit_distance": 17.250186920166016,
+      "first_exit_visible_seconds": null,
+      "path_length": 239.48447822520964,
+      "net_displacement": 16.2692289293459,
+      "waypoint_arrivals": 16,
+      "exit_directed_arrivals": 0,
+      "final_waypoint_assigned": false,
+      "final_waypoint_arrivals": 0,
+      "exit_to_exploration_switch_steps": [],
+      "assigned_waypoint_actions": 600,
+      "actions_away_or_perpendicular_to_waypoint": 293,
+      "mean_waypoint_alignment": 0.004093290772289038,
+      "parent_same_state_mean_waypoint_alignment": 0.353803813457489,
+      "parent_same_state_away_actions": 214,
+      "child_zero_previous_action_mean_alignment": 0.7448136210441589,
+      "child_prediction_max_recorded_action_error": 5.960464477539062e-07,
+      "replans": 6,
+      "abandoned_goals": 1,
+      "waypoint_assignments": 32,
+      "assignment_segments": [
+        {
+          "version": 1,
+          "start_step": 1,
+          "end_step": 8,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 8,
+          "start_distance": 2.718719244003296,
+          "closest_distance": 0.3301519751548767,
+          "end_distance": 0.3301519751548767,
+          "arrived": true,
+          "waypoint": {
+            "x": -5.375,
+            "y": 0.009999999776482582,
+            "z": -13.125
+          }
+        },
+        {
+          "version": 2,
+          "start_step": 9,
+          "end_step": 33,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 25,
+          "start_distance": 5.717111587524414,
+          "closest_distance": 5.10068416595459,
+          "end_distance": 10.770445823669434,
+          "arrived": false,
+          "waypoint": {
+            "x": -10.625,
+            "y": 0.029999980702996254,
+            "z": -14.625
+          }
+        },
+        {
+          "version": 3,
+          "start_step": 34,
+          "end_step": 53,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.8145833015441895,
+          "closest_distance": 5.828187465667725,
+          "end_distance": 11.285593032836914,
+          "arrived": false,
+          "waypoint": {
+            "x": -9.875,
+            "y": 0.03000004030764103,
+            "z": -9.125
+          }
+        },
+        {
+          "version": 4,
+          "start_step": 54,
+          "end_step": 66,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 13,
+          "start_distance": 5.6503095626831055,
+          "closest_distance": 0.45302531123161316,
+          "end_distance": 0.45302531123161316,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.625,
+            "y": 0.029999980702996254,
+            "z": 4.875
+          }
+        },
+        {
+          "version": 5,
+          "start_step": 67,
+          "end_step": 69,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 3,
+          "start_distance": 1.5641264915466309,
+          "closest_distance": 0.49827682971954346,
+          "end_distance": 0.49827682971954346,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.125,
+            "y": 0.03000004030764103,
+            "z": 5.875
+          }
+        },
+        {
+          "version": 6,
+          "start_step": 70,
+          "end_step": 83,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.690256595611572,
+          "closest_distance": 0.391009122133255,
+          "end_distance": 0.391009122133255,
+          "arrived": true,
+          "waypoint": {
+            "x": 2.875,
+            "y": 0.03000004030764103,
+            "z": 10.125
+          }
+        },
+        {
+          "version": 7,
+          "start_step": 84,
+          "end_step": 105,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 2.343543767929077,
+          "closest_distance": 1.5668253898620605,
+          "end_distance": 8.04350757598877,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.125,
+            "y": 0.029999980702996254,
+            "z": 11.625
+          }
+        },
+        {
+          "version": 8,
+          "start_step": 106,
+          "end_step": 122,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.767838478088379,
+          "closest_distance": 6.139500141143799,
+          "end_distance": 12.214512825012207,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.875,
+            "y": 0.03000004030764103,
+            "z": 9.375
+          }
+        },
+        {
+          "version": 9,
+          "start_step": 123,
+          "end_step": 142,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.846904754638672,
+          "closest_distance": 6.012057781219482,
+          "end_distance": 12.0427827835083,
+          "arrived": false,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.029999980702996254,
+            "z": 2.875
+          }
+        },
+        {
+          "version": 10,
+          "start_step": 143,
+          "end_step": 162,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.915665626525879,
+          "closest_distance": 0.16890397667884827,
+          "end_distance": 0.16890397667884827,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.875,
+            "y": 0.03000004030764103,
+            "z": -3.375
+          }
+        },
+        {
+          "version": 11,
+          "start_step": 163,
+          "end_step": 180,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.891917705535889,
+          "closest_distance": 0.3005947768688202,
+          "end_distance": 0.3005947768688202,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.03000004030764103,
+            "z": 2.375
+          }
+        },
+        {
+          "version": 12,
+          "start_step": 181,
+          "end_step": 198,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.9242844581604,
+          "closest_distance": 0.3524710536003113,
+          "end_distance": 0.3524710536003113,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.125,
+            "y": 0.03000004030764103,
+            "z": 8.125
+          }
+        },
+        {
+          "version": 13,
+          "start_step": 199,
+          "end_step": 227,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 29,
+          "start_distance": 3.6962413787841797,
+          "closest_distance": 1.946621298789978,
+          "end_distance": 8.366629600524902,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.125,
+            "y": 0.03000004030764103,
+            "z": 11.625
+          }
+        },
+        {
+          "version": 14,
+          "start_step": 228,
+          "end_step": 244,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.831316947937012,
+          "closest_distance": 6.216965198516846,
+          "end_distance": 12.300847053527832,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.875,
+            "y": 0.029999980702996254,
+            "z": 9.125
+          }
+        },
+        {
+          "version": 15,
+          "start_step": 245,
+          "end_step": 264,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.937691688537598,
+          "closest_distance": 6.101490497589111,
+          "end_distance": 12.071378707885742,
+          "arrived": false,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.03000004030764103,
+            "z": 2.625
+          }
+        },
+        {
+          "version": 16,
+          "start_step": 265,
+          "end_step": 284,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.960599422454834,
+          "closest_distance": 0.1374693065881729,
+          "end_distance": 0.1374693065881729,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.875,
+            "y": 0.03000004030764103,
+            "z": -3.625
+          }
+        },
+        {
+          "version": 17,
+          "start_step": 285,
+          "end_step": 301,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.846182346343994,
+          "closest_distance": 0.48718705773353577,
+          "end_distance": 0.48718705773353577,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.625,
+            "y": 0.029999980702996254,
+            "z": 2.125
+          }
+        },
+        {
+          "version": 18,
+          "start_step": 302,
+          "end_step": 319,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.964661121368408,
+          "closest_distance": 0.39303651452064514,
+          "end_distance": 0.39303651452064514,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.03000004030764103,
+            "z": 7.625
+          }
+        },
+        {
+          "version": 19,
+          "start_step": 320,
+          "end_step": 350,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 31,
+          "start_distance": 4.306460380554199,
+          "closest_distance": 1.8822635412216187,
+          "end_distance": 8.356786727905273,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.125,
+            "y": 0.03000004030764103,
+            "z": 11.625
+          }
+        },
+        {
+          "version": 20,
+          "start_step": 351,
+          "end_step": 367,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.821515083312988,
+          "closest_distance": 6.207189559936523,
+          "end_distance": 12.291749000549316,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.875,
+            "y": 0.029999980702996254,
+            "z": 9.125
+          }
+        },
+        {
+          "version": 21,
+          "start_step": 368,
+          "end_step": 387,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.928084373474121,
+          "closest_distance": 6.092039108276367,
+          "end_distance": 12.066003799438477,
+          "arrived": false,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.03000004030764103,
+            "z": 2.625
+          }
+        },
+        {
+          "version": 22,
+          "start_step": 388,
+          "end_step": 407,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.954464912414551,
+          "closest_distance": 0.13013693690299988,
+          "end_distance": 0.13013693690299988,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.875,
+            "y": 0.03000004030764103,
+            "z": -3.625
+          }
+        },
+        {
+          "version": 23,
+          "start_step": 408,
+          "end_step": 424,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.837714195251465,
+          "closest_distance": 0.47746944427490234,
+          "end_distance": 0.47746944427490234,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.625,
+            "y": 0.029999980702996254,
+            "z": 2.125
+          }
+        },
+        {
+          "version": 24,
+          "start_step": 425,
+          "end_step": 442,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.955357551574707,
+          "closest_distance": 0.3896932005882263,
+          "end_distance": 0.3896932005882263,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.03000004030764103,
+            "z": 7.625
+          }
+        },
+        {
+          "version": 25,
+          "start_step": 443,
+          "end_step": 473,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 31,
+          "start_distance": 4.298620223999023,
+          "closest_distance": 1.8951427936553955,
+          "end_distance": 8.382121086120605,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.125,
+            "y": 0.03000004030764103,
+            "z": 11.625
+          }
+        },
+        {
+          "version": 26,
+          "start_step": 474,
+          "end_step": 490,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.84613561630249,
+          "closest_distance": 6.232218265533447,
+          "end_distance": 12.31573486328125,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.875,
+            "y": 0.029999980702996254,
+            "z": 9.125
+          }
+        },
+        {
+          "version": 27,
+          "start_step": 491,
+          "end_step": 510,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.953400135040283,
+          "closest_distance": 6.11694860458374,
+          "end_distance": 12.079902648925781,
+          "arrived": false,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.03000004030764103,
+            "z": 2.625
+          }
+        },
+        {
+          "version": 28,
+          "start_step": 511,
+          "end_step": 530,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.970448970794678,
+          "closest_distance": 0.14913934469223022,
+          "end_distance": 0.14913934469223022,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.875,
+            "y": 0.03000004030764103,
+            "z": -3.625
+          }
+        },
+        {
+          "version": 29,
+          "start_step": 531,
+          "end_step": 548,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.859855651855469,
+          "closest_distance": 0.36072197556495667,
+          "end_distance": 0.36072197556495667,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.625,
+            "y": 0.029999980702996254,
+            "z": 2.125
+          }
+        },
+        {
+          "version": 30,
+          "start_step": 549,
+          "end_step": 565,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.8751420974731445,
+          "closest_distance": 0.47604742646217346,
+          "end_distance": 0.47604742646217346,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.029999980702996254,
+            "z": 7.875
+          }
+        },
+        {
+          "version": 31,
+          "start_step": 566,
+          "end_step": 596,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 31,
+          "start_distance": 4.306448936462402,
+          "closest_distance": 1.871232032775879,
+          "end_distance": 8.285115242004395,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.125,
+            "y": 0.03000004030764103,
+            "z": 11.625
+          }
+        },
+        {
+          "version": 32,
+          "start_step": 597,
+          "end_step": 600,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 4,
+          "start_distance": 5.752011299133301,
+          "closest_distance": 6.136406421661377,
+          "end_distance": 7.313636779785156,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.875,
+            "y": 0.029999980702996254,
+            "z": 9.125
+          }
+        }
+      ]
+    },
+    {
+      "seed": 285228,
+      "category": "undiscovered_timeout",
+      "parent_clear_seconds": 21.100000381469727,
+      "child_seconds": 60.0,
+      "replay_matches_original": true,
+      "min_exit_distance": 15.615211486816406,
+      "final_exit_distance": 16.942171096801758,
+      "first_exit_visible_seconds": null,
+      "path_length": 239.71378093791,
+      "net_displacement": 14.426695189940364,
+      "waypoint_arrivals": 16,
+      "exit_directed_arrivals": 0,
+      "final_waypoint_assigned": false,
+      "final_waypoint_arrivals": 0,
+      "exit_to_exploration_switch_steps": [],
+      "assigned_waypoint_actions": 600,
+      "actions_away_or_perpendicular_to_waypoint": 286,
+      "mean_waypoint_alignment": 0.06694227457046509,
+      "parent_same_state_mean_waypoint_alignment": 0.33366629481315613,
+      "parent_same_state_away_actions": 231,
+      "child_zero_previous_action_mean_alignment": 0.6962568759918213,
+      "child_prediction_max_recorded_action_error": 5.960464477539062e-07,
+      "replans": 5,
+      "abandoned_goals": 0,
+      "waypoint_assignments": 30,
+      "assignment_segments": [
+        {
+          "version": 1,
+          "start_step": 1,
+          "end_step": 27,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 27,
+          "start_distance": 2.9824881553649902,
+          "closest_distance": 0.34765416383743286,
+          "end_distance": 0.34765416383743286,
+          "arrived": true,
+          "waypoint": {
+            "x": -9.375,
+            "y": 0.009999999776482582,
+            "z": -5.875
+          }
+        },
+        {
+          "version": 2,
+          "start_step": 28,
+          "end_step": 42,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 15,
+          "start_distance": 5.720678806304932,
+          "closest_distance": 0.24177759885787964,
+          "end_distance": 0.24177759885787964,
+          "arrived": true,
+          "waypoint": {
+            "x": -7.375,
+            "y": 0.03000004030764103,
+            "z": -0.875
+          }
+        },
+        {
+          "version": 3,
+          "start_step": 43,
+          "end_step": 53,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 11,
+          "start_distance": 4.707548141479492,
+          "closest_distance": 0.3798035979270935,
+          "end_distance": 0.3798035979270935,
+          "arrived": true,
+          "waypoint": {
+            "x": -5.875,
+            "y": 0.03000004030764103,
+            "z": 3.375
+          }
+        },
+        {
+          "version": 4,
+          "start_step": 54,
+          "end_step": 67,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.5918869972229,
+          "closest_distance": 0.32486334443092346,
+          "end_distance": 0.32486334443092346,
+          "arrived": true,
+          "waypoint": {
+            "x": -4.375,
+            "y": 0.029999980702996254,
+            "z": 8.375
+          }
+        },
+        {
+          "version": 5,
+          "start_step": 68,
+          "end_step": 94,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 27,
+          "start_distance": 5.721051216125488,
+          "closest_distance": 4.223801136016846,
+          "end_distance": 8.813217163085938,
+          "arrived": false,
+          "waypoint": {
+            "x": -2.875,
+            "y": 0.03000004030764103,
+            "z": 13.625
+          }
+        },
+        {
+          "version": 6,
+          "start_step": 95,
+          "end_step": 111,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.750943183898926,
+          "closest_distance": 6.134312629699707,
+          "end_distance": 12.228034973144531,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.875,
+            "y": 0.03000004030764103,
+            "z": 10.625
+          }
+        },
+        {
+          "version": 7,
+          "start_step": 112,
+          "end_step": 131,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.860891342163086,
+          "closest_distance": 6.025916576385498,
+          "end_distance": 12.086420059204102,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.375,
+            "y": 0.03000004030764103,
+            "z": 4.125
+          }
+        },
+        {
+          "version": 8,
+          "start_step": 132,
+          "end_step": 155,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 24,
+          "start_distance": 5.947504997253418,
+          "closest_distance": 0.3583584129810333,
+          "end_distance": 0.3583584129810333,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.875,
+            "y": 0.029999980702996254,
+            "z": -2.125
+          }
+        },
+        {
+          "version": 9,
+          "start_step": 156,
+          "end_step": 172,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.828507900238037,
+          "closest_distance": 0.4496634006500244,
+          "end_distance": 0.4496634006500244,
+          "arrived": true,
+          "waypoint": {
+            "x": -1.125,
+            "y": 0.029999980702996254,
+            "z": 3.375
+          }
+        },
+        {
+          "version": 10,
+          "start_step": 173,
+          "end_step": 190,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.923898696899414,
+          "closest_distance": 0.4090798497200012,
+          "end_distance": 0.4090798497200012,
+          "arrived": true,
+          "waypoint": {
+            "x": -1.375,
+            "y": 0.03000004030764103,
+            "z": 8.875
+          }
+        },
+        {
+          "version": 11,
+          "start_step": 191,
+          "end_step": 218,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 28,
+          "start_distance": 5.502787113189697,
+          "closest_distance": 3.455902338027954,
+          "end_distance": 8.654929161071777,
+          "arrived": false,
+          "waypoint": {
+            "x": -2.625,
+            "y": 0.03000004030764103,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 12,
+          "start_step": 219,
+          "end_step": 235,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.873895645141602,
+          "closest_distance": 6.214282035827637,
+          "end_distance": 12.298724174499512,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.875,
+            "y": 0.029999980702996254,
+            "z": 11.375
+          }
+        },
+        {
+          "version": 13,
+          "start_step": 236,
+          "end_step": 255,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.93647575378418,
+          "closest_distance": 6.09993839263916,
+          "end_distance": 12.133562088012695,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.375,
+            "y": 0.03000004030764103,
+            "z": 4.875
+          }
+        },
+        {
+          "version": 14,
+          "start_step": 256,
+          "end_step": 283,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 28,
+          "start_distance": 5.997622489929199,
+          "closest_distance": 0.21099987626075745,
+          "end_distance": 0.21099987626075745,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.875,
+            "y": 0.03000004030764103,
+            "z": -1.375
+          }
+        },
+        {
+          "version": 15,
+          "start_step": 284,
+          "end_step": 301,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.933561325073242,
+          "closest_distance": 0.2910093069076538,
+          "end_distance": 0.2910093069076538,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.875,
+            "y": 0.03000004030764103,
+            "z": 4.375
+          }
+        },
+        {
+          "version": 16,
+          "start_step": 302,
+          "end_step": 318,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.844789028167725,
+          "closest_distance": 0.48835521936416626,
+          "end_distance": 0.48835521936416626,
+          "arrived": true,
+          "waypoint": {
+            "x": -1.125,
+            "y": 0.03000004030764103,
+            "z": 10.125
+          }
+        },
+        {
+          "version": 17,
+          "start_step": 319,
+          "end_step": 343,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 25,
+          "start_distance": 4.57487154006958,
+          "closest_distance": 2.998056173324585,
+          "end_distance": 8.749263763427734,
+          "arrived": false,
+          "waypoint": {
+            "x": -2.625,
+            "y": 0.03000004030764103,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 18,
+          "start_step": 344,
+          "end_step": 359,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 16,
+          "start_distance": 5.942530632019043,
+          "closest_distance": 6.304482936859131,
+          "end_distance": 12.014534950256348,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.625,
+            "y": 0.03000004030764103,
+            "z": 11.375
+          }
+        },
+        {
+          "version": 19,
+          "start_step": 360,
+          "end_step": 379,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.963553428649902,
+          "closest_distance": 6.122953414916992,
+          "end_distance": 12.107921600341797,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.375,
+            "y": 0.029999980702996254,
+            "z": 5.125
+          }
+        },
+        {
+          "version": 20,
+          "start_step": 380,
+          "end_step": 408,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 29,
+          "start_distance": 5.971435070037842,
+          "closest_distance": 0.3894323706626892,
+          "end_distance": 0.3894323706626892,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.875,
+            "y": 0.03000004030764103,
+            "z": -1.125
+          }
+        },
+        {
+          "version": 21,
+          "start_step": 409,
+          "end_step": 425,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.82535457611084,
+          "closest_distance": 0.43600067496299744,
+          "end_distance": 0.43600067496299744,
+          "arrived": true,
+          "waypoint": {
+            "x": -1.125,
+            "y": 0.03000004030764103,
+            "z": 4.375
+          }
+        },
+        {
+          "version": 22,
+          "start_step": 426,
+          "end_step": 443,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.902006149291992,
+          "closest_distance": 0.2532326281070709,
+          "end_distance": 0.2532326281070709,
+          "arrived": true,
+          "waypoint": {
+            "x": -1.375,
+            "y": 0.029999980702996254,
+            "z": 9.875
+          }
+        },
+        {
+          "version": 23,
+          "start_step": 444,
+          "end_step": 468,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 25,
+          "start_distance": 4.40252685546875,
+          "closest_distance": 2.9450297355651855,
+          "end_distance": 8.898805618286133,
+          "arrived": false,
+          "waypoint": {
+            "x": -2.625,
+            "y": 0.029999980702996254,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 24,
+          "start_step": 469,
+          "end_step": 485,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.83428955078125,
+          "closest_distance": 6.215043544769287,
+          "end_distance": 12.305713653564453,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.625,
+            "y": 0.03000004030764103,
+            "z": 11.125
+          }
+        },
+        {
+          "version": 25,
+          "start_step": 486,
+          "end_step": 505,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.94301176071167,
+          "closest_distance": 6.106661319732666,
+          "end_distance": 12.141244888305664,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.125,
+            "y": 0.029999980702996254,
+            "z": 4.625
+          }
+        },
+        {
+          "version": 26,
+          "start_step": 506,
+          "end_step": 531,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 26,
+          "start_distance": 5.683082103729248,
+          "closest_distance": 0.1529218554496765,
+          "end_distance": 0.1529218554496765,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.375,
+            "y": 0.03000004030764103,
+            "z": -1.875
+          }
+        },
+        {
+          "version": 27,
+          "start_step": 532,
+          "end_step": 549,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.914847373962402,
+          "closest_distance": 0.2590577304363251,
+          "end_distance": 0.2590577304363251,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.875,
+            "y": 0.03000004030764103,
+            "z": 3.875
+          }
+        },
+        {
+          "version": 28,
+          "start_step": 550,
+          "end_step": 567,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.939670085906982,
+          "closest_distance": 0.3010779321193695,
+          "end_distance": 0.3010779321193695,
+          "arrived": true,
+          "waypoint": {
+            "x": -1.125,
+            "y": 0.03000004030764103,
+            "z": 9.625
+          }
+        },
+        {
+          "version": 29,
+          "start_step": 568,
+          "end_step": 593,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 26,
+          "start_distance": 4.732479095458984,
+          "closest_distance": 2.959202766418457,
+          "end_distance": 8.886368751525879,
+          "arrived": false,
+          "waypoint": {
+            "x": -2.625,
+            "y": 0.03000004030764103,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 30,
+          "start_step": 594,
+          "end_step": 600,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 7,
+          "start_distance": 5.822919845581055,
+          "closest_distance": 6.201549053192139,
+          "end_distance": 8.553871154785156,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.625,
+            "y": 0.029999980702996254,
+            "z": 11.125
+          }
+        }
+      ]
+    },
+    {
+      "seed": 285304,
+      "category": "undiscovered_timeout",
+      "parent_clear_seconds": 11.90000057220459,
+      "child_seconds": 60.0,
+      "replay_matches_original": true,
+      "min_exit_distance": 13.25222110748291,
+      "final_exit_distance": 18.208633422851562,
+      "first_exit_visible_seconds": null,
+      "path_length": 238.83899620541868,
+      "net_displacement": 13.08252833122835,
+      "waypoint_arrivals": 5,
+      "exit_directed_arrivals": 0,
+      "final_waypoint_assigned": false,
+      "final_waypoint_arrivals": 0,
+      "exit_to_exploration_switch_steps": [],
+      "assigned_waypoint_actions": 600,
+      "actions_away_or_perpendicular_to_waypoint": 315,
+      "mean_waypoint_alignment": -0.009857489727437496,
+      "parent_same_state_mean_waypoint_alignment": 0.375577837228775,
+      "parent_same_state_away_actions": 171,
+      "child_zero_previous_action_mean_alignment": 0.3705079257488251,
+      "child_prediction_max_recorded_action_error": 6.854534149169922e-07,
+      "replans": 10,
+      "abandoned_goals": 8,
+      "waypoint_assignments": 25,
+      "assignment_segments": [
+        {
+          "version": 1,
+          "start_step": 1,
+          "end_step": 20,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 2.969973564147949,
+          "closest_distance": 3.282975912094116,
+          "end_distance": 9.85131549835205,
+          "arrived": false,
+          "waypoint": {
+            "x": 14.125,
+            "y": 0.009999999776482582,
+            "z": 16.875
+          }
+        },
+        {
+          "version": 2,
+          "start_step": 21,
+          "end_step": 40,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.742236614227295,
+          "closest_distance": 6.011015892028809,
+          "end_distance": 6.360782146453857,
+          "arrived": false,
+          "waypoint": {
+            "x": 10.625,
+            "y": 0.029999980702996254,
+            "z": 14.625
+          }
+        },
+        {
+          "version": 3,
+          "start_step": 41,
+          "end_step": 76,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 36,
+          "start_distance": 5.891911029815674,
+          "closest_distance": 0.558861255645752,
+          "end_distance": 5.41324520111084,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.375,
+            "y": 0.03000004030764103,
+            "z": 4.625
+          }
+        },
+        {
+          "version": 4,
+          "start_step": 77,
+          "end_step": 108,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 32,
+          "start_distance": 5.806000232696533,
+          "closest_distance": 1.759466290473938,
+          "end_distance": 1.9247138500213623,
+          "arrived": false,
+          "waypoint": {
+            "x": 13.625,
+            "y": 0.03000004030764103,
+            "z": 5.125
+          }
+        },
+        {
+          "version": 5,
+          "start_step": 109,
+          "end_step": 128,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.741456031799316,
+          "closest_distance": 5.837838172912598,
+          "end_distance": 7.746324062347412,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.875,
+            "y": 0.03000004030764103,
+            "z": 1.625
+          }
+        },
+        {
+          "version": 6,
+          "start_step": 129,
+          "end_step": 157,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 29,
+          "start_distance": 5.6633148193359375,
+          "closest_distance": 3.467803716659546,
+          "end_distance": 5.149367332458496,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.625,
+            "y": 0.029999980702996254,
+            "z": 4.125
+          }
+        },
+        {
+          "version": 7,
+          "start_step": 158,
+          "end_step": 180,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 23,
+          "start_distance": 5.7820658683776855,
+          "closest_distance": 0.29933691024780273,
+          "end_distance": 0.29933691024780273,
+          "arrived": true,
+          "waypoint": {
+            "x": 7.875,
+            "y": 0.03000004030764103,
+            "z": 3.625
+          }
+        },
+        {
+          "version": 8,
+          "start_step": 181,
+          "end_step": 211,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 31,
+          "start_distance": 5.856573581695557,
+          "closest_distance": 3.3324496746063232,
+          "end_distance": 8.567098617553711,
+          "arrived": false,
+          "waypoint": {
+            "x": 2.125,
+            "y": 0.03000004030764103,
+            "z": 2.875
+          }
+        },
+        {
+          "version": 9,
+          "start_step": 212,
+          "end_step": 244,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 33,
+          "start_distance": 5.976274490356445,
+          "closest_distance": 0.3461075723171234,
+          "end_distance": 0.3461075723171234,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.625,
+            "y": 0.03000004030764103,
+            "z": -0.875
+          }
+        },
+        {
+          "version": 10,
+          "start_step": 245,
+          "end_step": 252,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 8,
+          "start_distance": 2.774123191833496,
+          "closest_distance": 0.2734188735485077,
+          "end_distance": 0.2734188735485077,
+          "arrived": true,
+          "waypoint": {
+            "x": -1.875,
+            "y": 0.03000004030764103,
+            "z": 1.375
+          }
+        },
+        {
+          "version": 11,
+          "start_step": 253,
+          "end_step": 265,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 13,
+          "start_distance": 5.668310642242432,
+          "closest_distance": 0.4745924472808838,
+          "end_distance": 0.4745924472808838,
+          "arrived": true,
+          "waypoint": {
+            "x": -6.125,
+            "y": 0.03000004030764103,
+            "z": 5.125
+          }
+        },
+        {
+          "version": 12,
+          "start_step": 266,
+          "end_step": 273,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 8,
+          "start_distance": 3.0086214542388916,
+          "closest_distance": 0.41455456614494324,
+          "end_distance": 0.41455456614494324,
+          "arrived": true,
+          "waypoint": {
+            "x": -7.375,
+            "y": 0.03000004030764103,
+            "z": 7.375
+          }
+        },
+        {
+          "version": 13,
+          "start_step": 274,
+          "end_step": 302,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 29,
+          "start_distance": 5.839940547943115,
+          "closest_distance": 2.407644510269165,
+          "end_distance": 9.795083999633789,
+          "arrived": false,
+          "waypoint": {
+            "x": -11.875,
+            "y": 0.03000004030764103,
+            "z": 11.375
+          }
+        },
+        {
+          "version": 14,
+          "start_step": 303,
+          "end_step": 318,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 16,
+          "start_distance": 5.772767066955566,
+          "closest_distance": 6.077080726623535,
+          "end_distance": 12.003300666809082,
+          "arrived": false,
+          "waypoint": {
+            "x": -10.375,
+            "y": 0.029999980702996254,
+            "z": 7.625
+          }
+        },
+        {
+          "version": 15,
+          "start_step": 319,
+          "end_step": 338,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.95020866394043,
+          "closest_distance": 6.110246658325195,
+          "end_distance": 9.293675422668457,
+          "arrived": false,
+          "waypoint": {
+            "x": -10.125,
+            "y": 0.03000004030764103,
+            "z": 1.375
+          }
+        },
+        {
+          "version": 16,
+          "start_step": 339,
+          "end_step": 372,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 34,
+          "start_distance": 5.679189205169678,
+          "closest_distance": 2.699953317642212,
+          "end_distance": 2.7213878631591797,
+          "arrived": false,
+          "waypoint": {
+            "x": -13.625,
+            "y": 0.029999980702996254,
+            "z": -10.375
+          }
+        },
+        {
+          "version": 17,
+          "start_step": 373,
+          "end_step": 392,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.830772399902344,
+          "closest_distance": 6.025831699371338,
+          "end_distance": 6.6399312019348145,
+          "arrived": false,
+          "waypoint": {
+            "x": -16.875,
+            "y": 0.03000004030764103,
+            "z": -11.125
+          }
+        },
+        {
+          "version": 18,
+          "start_step": 393,
+          "end_step": 425,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 33,
+          "start_distance": 5.734013557434082,
+          "closest_distance": 0.5365886688232422,
+          "end_distance": 7.855714321136475,
+          "arrived": false,
+          "waypoint": {
+            "x": -6.375,
+            "y": 0.029999980702996254,
+            "z": -13.625
+          }
+        },
+        {
+          "version": 19,
+          "start_step": 426,
+          "end_step": 445,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.691078186035156,
+          "closest_distance": 5.789617538452148,
+          "end_distance": 10.761709213256836,
+          "arrived": false,
+          "waypoint": {
+            "x": -0.375,
+            "y": 0.029999980702996254,
+            "z": -11.125
+          }
+        },
+        {
+          "version": 20,
+          "start_step": 446,
+          "end_step": 465,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.913654327392578,
+          "closest_distance": 5.928633213043213,
+          "end_distance": 9.965896606445312,
+          "arrived": false,
+          "waypoint": {
+            "x": 6.375,
+            "y": 0.03000004030764103,
+            "z": -4.875
+          }
+        },
+        {
+          "version": 21,
+          "start_step": 466,
+          "end_step": 485,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.7372260093688965,
+          "closest_distance": 5.755796432495117,
+          "end_distance": 7.500504970550537,
+          "arrived": false,
+          "waypoint": {
+            "x": 11.875,
+            "y": 0.03000004030764103,
+            "z": 0.875
+          }
+        },
+        {
+          "version": 22,
+          "start_step": 486,
+          "end_step": 516,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 31,
+          "start_distance": 5.766499042510986,
+          "closest_distance": 2.3493130207061768,
+          "end_distance": 2.768096923828125,
+          "arrived": false,
+          "waypoint": {
+            "x": 14.375,
+            "y": 0.029999980702996254,
+            "z": 4.125
+          }
+        },
+        {
+          "version": 23,
+          "start_step": 517,
+          "end_step": 536,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.728673934936523,
+          "closest_distance": 6.067631244659424,
+          "end_distance": 7.657386302947998,
+          "arrived": false,
+          "waypoint": {
+            "x": 16.125,
+            "y": 0.03000004030764103,
+            "z": 1.625
+          }
+        },
+        {
+          "version": 24,
+          "start_step": 537,
+          "end_step": 565,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 29,
+          "start_distance": 5.960504531860352,
+          "closest_distance": 3.730776786804199,
+          "end_distance": 5.510043144226074,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.875,
+            "y": 0.029999980702996254,
+            "z": 3.625
+          }
+        },
+        {
+          "version": 25,
+          "start_step": 566,
+          "end_step": 600,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 35,
+          "start_distance": 5.863596439361572,
+          "closest_distance": 3.998469591140747,
+          "end_distance": 4.410615921020508,
+          "arrived": false,
+          "waypoint": {
+            "x": 16.125,
+            "y": 0.03000004030764103,
+            "z": 3.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 285076,
+      "category": "discovered_timeout",
+      "parent_clear_seconds": 41.20000076293945,
+      "child_seconds": 60.0,
+      "replay_matches_original": true,
+      "min_exit_distance": 6.242724418640137,
+      "final_exit_distance": 6.242756366729736,
+      "first_exit_visible_seconds": 57.6,
+      "path_length": 239.55963703793861,
+      "net_displacement": 25.515748517515274,
+      "waypoint_arrivals": 9,
+      "exit_directed_arrivals": 1,
+      "final_waypoint_assigned": false,
+      "final_waypoint_arrivals": 0,
+      "exit_to_exploration_switch_steps": [],
+      "assigned_waypoint_actions": 600,
+      "actions_away_or_perpendicular_to_waypoint": 359,
+      "mean_waypoint_alignment": -0.1191791519522667,
+      "parent_same_state_mean_waypoint_alignment": 0.2179931104183197,
+      "parent_same_state_away_actions": 235,
+      "child_zero_previous_action_mean_alignment": 0.5679075121879578,
+      "child_prediction_max_recorded_action_error": 6.556510925292969e-07,
+      "replans": 9,
+      "abandoned_goals": 7,
+      "waypoint_assignments": 31,
+      "assignment_segments": [
+        {
+          "version": 1,
+          "start_step": 1,
+          "end_step": 20,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 2.729659080505371,
+          "closest_distance": 0.283683180809021,
+          "end_distance": 0.283683180809021,
+          "arrived": true,
+          "waypoint": {
+            "x": 11.875,
+            "y": 0.009999999776482582,
+            "z": 6.625
+          }
+        },
+        {
+          "version": 2,
+          "start_step": 21,
+          "end_step": 49,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 29,
+          "start_distance": 5.947806358337402,
+          "closest_distance": 3.7149813175201416,
+          "end_distance": 5.470641613006592,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.875,
+            "y": 0.029999980702996254,
+            "z": 2.375
+          }
+        },
+        {
+          "version": 3,
+          "start_step": 50,
+          "end_step": 69,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.649088382720947,
+          "closest_distance": 5.9889302253723145,
+          "end_distance": 6.4925360679626465,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.875,
+            "y": 0.03000004030764103,
+            "z": 2.125
+          }
+        },
+        {
+          "version": 4,
+          "start_step": 70,
+          "end_step": 89,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.994075298309326,
+          "closest_distance": 5.967154026031494,
+          "end_distance": 6.034754276275635,
+          "arrived": false,
+          "waypoint": {
+            "x": 16.125,
+            "y": 0.03000004030764103,
+            "z": 11.625
+          }
+        },
+        {
+          "version": 5,
+          "start_step": 90,
+          "end_step": 109,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.791195392608643,
+          "closest_distance": 5.83998441696167,
+          "end_distance": 6.1533331871032715,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.375,
+            "y": 0.029999980702996254,
+            "z": 12.125
+          }
+        },
+        {
+          "version": 6,
+          "start_step": 110,
+          "end_step": 126,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.883609294891357,
+          "closest_distance": 0.44966939091682434,
+          "end_distance": 0.44966939091682434,
+          "arrived": true,
+          "waypoint": {
+            "x": 5.125,
+            "y": 0.03000004030764103,
+            "z": 5.875
+          }
+        },
+        {
+          "version": 7,
+          "start_step": 127,
+          "end_step": 157,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 31,
+          "start_distance": 5.747277736663818,
+          "closest_distance": 3.3923614025115967,
+          "end_distance": 8.755563735961914,
+          "arrived": false,
+          "waypoint": {
+            "x": -0.125,
+            "y": 0.03000004030764103,
+            "z": 5.125
+          }
+        },
+        {
+          "version": 8,
+          "start_step": 158,
+          "end_step": 177,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.746206283569336,
+          "closest_distance": 6.0914435386657715,
+          "end_distance": 10.842456817626953,
+          "arrived": false,
+          "waypoint": {
+            "x": 0.125,
+            "y": 0.03000004030764103,
+            "z": 2.125
+          }
+        },
+        {
+          "version": 9,
+          "start_step": 178,
+          "end_step": 197,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.984060287475586,
+          "closest_distance": 5.994068622589111,
+          "end_distance": 9.950204849243164,
+          "arrived": false,
+          "waypoint": {
+            "x": 6.875,
+            "y": 0.03000004030764103,
+            "z": -12.625
+          }
+        },
+        {
+          "version": 10,
+          "start_step": 198,
+          "end_step": 214,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.853643894195557,
+          "closest_distance": 6.137895107269287,
+          "end_distance": 12.079374313354492,
+          "arrived": false,
+          "waypoint": {
+            "x": 8.375,
+            "y": 0.029999980702996254,
+            "z": -8.625
+          }
+        },
+        {
+          "version": 11,
+          "start_step": 215,
+          "end_step": 234,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.757543563842773,
+          "closest_distance": 6.073185920715332,
+          "end_distance": 11.132497787475586,
+          "arrived": false,
+          "waypoint": {
+            "x": 9.625,
+            "y": 0.03000004030764103,
+            "z": -2.375
+          }
+        },
+        {
+          "version": 12,
+          "start_step": 235,
+          "end_step": 254,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.696242809295654,
+          "closest_distance": 5.719707012176514,
+          "end_distance": 10.254925727844238,
+          "arrived": false,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.03000004030764103,
+            "z": 12.875
+          }
+        },
+        {
+          "version": 13,
+          "start_step": 255,
+          "end_step": 274,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.652590751647949,
+          "closest_distance": 5.654933452606201,
+          "end_distance": 9.971675872802734,
+          "arrived": false,
+          "waypoint": {
+            "x": 2.875,
+            "y": 0.029999980702996254,
+            "z": 6.625
+          }
+        },
+        {
+          "version": 14,
+          "start_step": 275,
+          "end_step": 288,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.9796929359436035,
+          "closest_distance": 0.40191617608070374,
+          "end_distance": 0.40191617608070374,
+          "arrived": true,
+          "waypoint": {
+            "x": 8.625,
+            "y": 0.03000004030764103,
+            "z": -7.375
+          }
+        },
+        {
+          "version": 15,
+          "start_step": 289,
+          "end_step": 302,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.683074474334717,
+          "closest_distance": 0.15025947988033295,
+          "end_distance": 0.15025947988033295,
+          "arrived": true,
+          "waypoint": {
+            "x": 12.375,
+            "y": 0.03000004030764103,
+            "z": -11.125
+          }
+        },
+        {
+          "version": 16,
+          "start_step": 303,
+          "end_step": 322,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 2.912729263305664,
+          "closest_distance": 3.1470608711242676,
+          "end_distance": 10.257508277893066,
+          "arrived": false,
+          "waypoint": {
+            "x": 14.375,
+            "y": 0.029999980702996254,
+            "z": -13.125
+          }
+        },
+        {
+          "version": 17,
+          "start_step": 323,
+          "end_step": 339,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.991655349731445,
+          "closest_distance": 6.346154689788818,
+          "end_distance": 12.324134826660156,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.03000004030764103,
+            "z": -9.125
+          }
+        },
+        {
+          "version": 18,
+          "start_step": 340,
+          "end_step": 356,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.86810827255249,
+          "closest_distance": 6.239685535430908,
+          "end_distance": 12.301387786865234,
+          "arrived": false,
+          "waypoint": {
+            "x": 13.125,
+            "y": 0.03000004030764103,
+            "z": -2.375
+          }
+        },
+        {
+          "version": 19,
+          "start_step": 357,
+          "end_step": 393,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 37,
+          "start_distance": 5.890109062194824,
+          "closest_distance": 0.5982157588005066,
+          "end_distance": 6.1354522705078125,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.375,
+            "y": 0.029999980702996254,
+            "z": 4.125
+          }
+        },
+        {
+          "version": 20,
+          "start_step": 394,
+          "end_step": 418,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 25,
+          "start_distance": 5.6653971672058105,
+          "closest_distance": 3.665482759475708,
+          "end_distance": 9.06293773651123,
+          "arrived": false,
+          "waypoint": {
+            "x": 5.625,
+            "y": 0.03000004030764103,
+            "z": 13.625
+          }
+        },
+        {
+          "version": 21,
+          "start_step": 419,
+          "end_step": 438,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.937966823577881,
+          "closest_distance": 6.007604122161865,
+          "end_distance": 11.005792617797852,
+          "arrived": false,
+          "waypoint": {
+            "x": 3.125,
+            "y": 0.03000004030764103,
+            "z": 9.375
+          }
+        },
+        {
+          "version": 22,
+          "start_step": 439,
+          "end_step": 458,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.7444562911987305,
+          "closest_distance": 5.758240699768066,
+          "end_distance": 10.17860221862793,
+          "arrived": false,
+          "waypoint": {
+            "x": 1.125,
+            "y": 0.03000004030764103,
+            "z": 2.625
+          }
+        },
+        {
+          "version": 23,
+          "start_step": 459,
+          "end_step": 481,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 23,
+          "start_distance": 5.731672763824463,
+          "closest_distance": 0.20558063685894012,
+          "end_distance": 0.20558063685894012,
+          "arrived": true,
+          "waypoint": {
+            "x": -1.375,
+            "y": 0.029999980702996254,
+            "z": -3.375
+          }
+        },
+        {
+          "version": 24,
+          "start_step": 482,
+          "end_step": 497,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 16,
+          "start_distance": 5.903984546661377,
+          "closest_distance": 0.3308200240135193,
+          "end_distance": 0.3308200240135193,
+          "arrived": true,
+          "waypoint": {
+            "x": -5.125,
+            "y": 0.03000004030764103,
+            "z": 1.125
+          }
+        },
+        {
+          "version": 25,
+          "start_step": 498,
+          "end_step": 515,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.878992557525635,
+          "closest_distance": 0.27586010098457336,
+          "end_distance": 0.27586010098457336,
+          "arrived": true,
+          "waypoint": {
+            "x": -5.875,
+            "y": 0.029999980702996254,
+            "z": 6.875
+          }
+        },
+        {
+          "version": 26,
+          "start_step": 516,
+          "end_step": 525,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 10,
+          "start_distance": 3.3191752433776855,
+          "closest_distance": 0.3223763406276703,
+          "end_distance": 0.3223763406276703,
+          "arrived": true,
+          "waypoint": {
+            "x": -7.125,
+            "y": 0.029999980702996254,
+            "z": 9.875
+          }
+        },
+        {
+          "version": 27,
+          "start_step": 526,
+          "end_step": 550,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 25,
+          "start_distance": 5.691620826721191,
+          "closest_distance": 3.8693087100982666,
+          "end_distance": 10.22876262664795,
+          "arrived": false,
+          "waypoint": {
+            "x": -11.375,
+            "y": 0.03000004030764103,
+            "z": 13.625
+          }
+        },
+        {
+          "version": 28,
+          "start_step": 551,
+          "end_step": 569,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 19,
+          "start_distance": 5.988004684448242,
+          "closest_distance": 6.063871383666992,
+          "end_distance": 12.32450008392334,
+          "arrived": false,
+          "waypoint": {
+            "x": -12.125,
+            "y": 0.03000004030764103,
+            "z": 8.625
+          }
+        },
+        {
+          "version": 29,
+          "start_step": 570,
+          "end_step": 576,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 7,
+          "start_distance": 5.956265926361084,
+          "closest_distance": 6.051323413848877,
+          "end_distance": 7.57014799118042,
+          "arrived": false,
+          "waypoint": {
+            "x": -11.625,
+            "y": 0.029999980702996254,
+            "z": 1.875
+          }
+        },
+        {
+          "version": 30,
+          "start_step": 577,
+          "end_step": 593,
+          "status": "exit",
+          "goal_is_exit": true,
+          "final_exit_waypoint": false,
+          "actions": 17,
+          "start_distance": 5.757251262664795,
+          "closest_distance": 0.40602177381515503,
+          "end_distance": 0.40602177381515503,
+          "arrived": true,
+          "waypoint": {
+            "x": -9.375,
+            "y": 0.03000004030764103,
+            "z": -11.125
+          }
+        },
+        {
+          "version": 31,
+          "start_step": 594,
+          "end_step": 600,
+          "status": "exit",
+          "goal_is_exit": true,
+          "final_exit_waypoint": false,
+          "actions": 7,
+          "start_distance": 5.972165107727051,
+          "closest_distance": 4.4295244216918945,
+          "end_distance": 4.4295244216918945,
+          "arrived": false,
+          "waypoint": {
+            "x": -9.125,
+            "y": 0.029999980702996254,
+            "z": -16.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 285363,
+      "category": "discovered_timeout",
+      "parent_clear_seconds": 26.899999618530273,
+      "child_seconds": 60.0,
+      "replay_matches_original": true,
+      "min_exit_distance": 2.355302572250366,
+      "final_exit_distance": 2.3553874492645264,
+      "first_exit_visible_seconds": 32.9,
+      "path_length": 239.63696949637966,
+      "net_displacement": 30.427469459027822,
+      "waypoint_arrivals": 10,
+      "exit_directed_arrivals": 0,
+      "final_waypoint_assigned": false,
+      "final_waypoint_arrivals": 0,
+      "exit_to_exploration_switch_steps": [
+        372
+      ],
+      "assigned_waypoint_actions": 600,
+      "actions_away_or_perpendicular_to_waypoint": 356,
+      "mean_waypoint_alignment": -0.1407250016927719,
+      "parent_same_state_mean_waypoint_alignment": 0.2493656873703003,
+      "parent_same_state_away_actions": 225,
+      "child_zero_previous_action_mean_alignment": 0.500245988368988,
+      "child_prediction_max_recorded_action_error": 5.066394805908203e-07,
+      "replans": 7,
+      "abandoned_goals": 6,
+      "waypoint_assignments": 31,
+      "assignment_segments": [
+        {
+          "version": 1,
+          "start_step": 1,
+          "end_step": 8,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 8,
+          "start_distance": 2.784560203552246,
+          "closest_distance": 0.2665269672870636,
+          "end_distance": 0.2665269672870636,
+          "arrived": true,
+          "waypoint": {
+            "x": 10.375,
+            "y": 0.009999999776482582,
+            "z": 0.375
+          }
+        },
+        {
+          "version": 2,
+          "start_step": 9,
+          "end_step": 23,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 15,
+          "start_distance": 5.724163055419922,
+          "closest_distance": 0.33394086360931396,
+          "end_distance": 0.33394086360931396,
+          "arrived": true,
+          "waypoint": {
+            "x": 11.875,
+            "y": 0.029999980702996254,
+            "z": -4.875
+          }
+        },
+        {
+          "version": 3,
+          "start_step": 24,
+          "end_step": 49,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 26,
+          "start_distance": 2.4342825412750244,
+          "closest_distance": 0.8906036615371704,
+          "end_distance": 5.399542331695557,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.029999980702996254,
+            "z": -6.875
+          }
+        },
+        {
+          "version": 4,
+          "start_step": 50,
+          "end_step": 67,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.399542331695557,
+          "closest_distance": 5.7717461585998535,
+          "end_distance": 12.3159818649292,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.03000004030764103,
+            "z": -6.875
+          }
+        },
+        {
+          "version": 5,
+          "start_step": 68,
+          "end_step": 87,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.920871257781982,
+          "closest_distance": 6.233402252197266,
+          "end_distance": 8.201751708984375,
+          "arrived": false,
+          "waypoint": {
+            "x": 11.375,
+            "y": 0.03000004030764103,
+            "z": -0.625
+          }
+        },
+        {
+          "version": 6,
+          "start_step": 88,
+          "end_step": 121,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 34,
+          "start_distance": 5.8092780113220215,
+          "closest_distance": 0.5826654434204102,
+          "end_distance": 7.1932692527771,
+          "arrived": false,
+          "waypoint": {
+            "x": 6.375,
+            "y": 0.03000004030764103,
+            "z": 11.625
+          }
+        },
+        {
+          "version": 7,
+          "start_step": 122,
+          "end_step": 141,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.911195755004883,
+          "closest_distance": 6.035729885101318,
+          "end_distance": 11.65974235534668,
+          "arrived": false,
+          "waypoint": {
+            "x": 3.875,
+            "y": 0.03000004030764103,
+            "z": 9.625
+          }
+        },
+        {
+          "version": 8,
+          "start_step": 142,
+          "end_step": 155,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.6893815994262695,
+          "closest_distance": 0.14047786593437195,
+          "end_distance": 0.14047786593437195,
+          "arrived": true,
+          "waypoint": {
+            "x": 2.375,
+            "y": 0.03000004030764103,
+            "z": -5.875
+          }
+        },
+        {
+          "version": 9,
+          "start_step": 156,
+          "end_step": 169,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.728936195373535,
+          "closest_distance": 0.41059496998786926,
+          "end_distance": 0.41059496998786926,
+          "arrived": true,
+          "waypoint": {
+            "x": -0.625,
+            "y": 0.029999980702996254,
+            "z": -10.625
+          }
+        },
+        {
+          "version": 10,
+          "start_step": 170,
+          "end_step": 198,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 29,
+          "start_distance": 5.999116897583008,
+          "closest_distance": 2.5690977573394775,
+          "end_distance": 9.664018630981445,
+          "arrived": false,
+          "waypoint": {
+            "x": -3.125,
+            "y": 0.03000004030764103,
+            "z": -15.625
+          }
+        },
+        {
+          "version": 11,
+          "start_step": 199,
+          "end_step": 216,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.736664295196533,
+          "closest_distance": 5.947665214538574,
+          "end_distance": 12.021963119506836,
+          "arrived": false,
+          "waypoint": {
+            "x": -1.875,
+            "y": 0.03000004030764103,
+            "z": -11.875
+          }
+        },
+        {
+          "version": 12,
+          "start_step": 217,
+          "end_step": 236,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.921213150024414,
+          "closest_distance": 5.938455581665039,
+          "end_distance": 11.43288803100586,
+          "arrived": false,
+          "waypoint": {
+            "x": -0.125,
+            "y": 0.03000004030764103,
+            "z": -5.625
+          }
+        },
+        {
+          "version": 13,
+          "start_step": 237,
+          "end_step": 250,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.859315872192383,
+          "closest_distance": 0.2603677809238434,
+          "end_distance": 0.2603677809238434,
+          "arrived": true,
+          "waypoint": {
+            "x": 1.125,
+            "y": 0.029999980702996254,
+            "z": 8.625
+          }
+        },
+        {
+          "version": 14,
+          "start_step": 251,
+          "end_step": 284,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 34,
+          "start_distance": 5.992238521575928,
+          "closest_distance": 2.4772346019744873,
+          "end_distance": 8.409648895263672,
+          "arrived": false,
+          "waypoint": {
+            "x": -4.625,
+            "y": 0.03000004030764103,
+            "z": 9.375
+          }
+        },
+        {
+          "version": 15,
+          "start_step": 285,
+          "end_step": 303,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 19,
+          "start_distance": 5.712608337402344,
+          "closest_distance": 5.994649887084961,
+          "end_distance": 12.320076942443848,
+          "arrived": false,
+          "waypoint": {
+            "x": -4.875,
+            "y": 0.029999980702996254,
+            "z": 6.625
+          }
+        },
+        {
+          "version": 16,
+          "start_step": 304,
+          "end_step": 323,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.940686225891113,
+          "closest_distance": 6.0708794593811035,
+          "end_distance": 7.665805339813232,
+          "arrived": false,
+          "waypoint": {
+            "x": -4.875,
+            "y": 0.03000004030764103,
+            "z": -0.125
+          }
+        },
+        {
+          "version": 17,
+          "start_step": 324,
+          "end_step": 329,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 6,
+          "start_distance": 5.888354778289795,
+          "closest_distance": 4.554014682769775,
+          "end_distance": 4.554014682769775,
+          "arrived": false,
+          "waypoint": {
+            "x": -10.625,
+            "y": 0.029999980702996254,
+            "z": -7.875
+          }
+        },
+        {
+          "version": 18,
+          "start_step": 330,
+          "end_step": 351,
+          "status": "exit",
+          "goal_is_exit": true,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.872046947479248,
+          "closest_distance": 5.814687728881836,
+          "end_distance": 11.602909088134766,
+          "arrived": false,
+          "waypoint": {
+            "x": -11.125,
+            "y": 0.029999980702996254,
+            "z": -9.625
+          }
+        },
+        {
+          "version": 19,
+          "start_step": 352,
+          "end_step": 371,
+          "status": "exit",
+          "goal_is_exit": true,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.659357070922852,
+          "closest_distance": 5.665815353393555,
+          "end_distance": 11.042190551757812,
+          "arrived": false,
+          "waypoint": {
+            "x": -9.625,
+            "y": 0.03000004030764103,
+            "z": -3.375
+          }
+        },
+        {
+          "version": 20,
+          "start_step": 372,
+          "end_step": 385,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.92617130279541,
+          "closest_distance": 0.3311111032962799,
+          "end_distance": 0.3311111032962799,
+          "arrived": true,
+          "waypoint": {
+            "x": -8.625,
+            "y": 0.029999980702996254,
+            "z": 10.625
+          }
+        },
+        {
+          "version": 21,
+          "start_step": 386,
+          "end_step": 407,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.948858261108398,
+          "closest_distance": 5.171013832092285,
+          "end_distance": 11.707818984985352,
+          "arrived": false,
+          "waypoint": {
+            "x": -11.625,
+            "y": 0.03000004030764103,
+            "z": 15.375
+          }
+        },
+        {
+          "version": 22,
+          "start_step": 408,
+          "end_step": 425,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.698374271392822,
+          "closest_distance": 5.905869007110596,
+          "end_distance": 12.337997436523438,
+          "arrived": false,
+          "waypoint": {
+            "x": -9.875,
+            "y": 0.029999980702996254,
+            "z": 9.625
+          }
+        },
+        {
+          "version": 23,
+          "start_step": 426,
+          "end_step": 444,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 19,
+          "start_distance": 5.963627338409424,
+          "closest_distance": 6.131679534912109,
+          "end_distance": 12.36347484588623,
+          "arrived": false,
+          "waypoint": {
+            "x": -9.375,
+            "y": 0.029999980702996254,
+            "z": 3.125
+          }
+        },
+        {
+          "version": 24,
+          "start_step": 445,
+          "end_step": 484,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 40,
+          "start_distance": 5.934849739074707,
+          "closest_distance": 0.2923767566680908,
+          "end_distance": 0.2923767566680908,
+          "arrived": true,
+          "waypoint": {
+            "x": -9.625,
+            "y": 0.03000004030764103,
+            "z": -3.375
+          }
+        },
+        {
+          "version": 25,
+          "start_step": 485,
+          "end_step": 499,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 15,
+          "start_distance": 5.994572639465332,
+          "closest_distance": 0.4111981987953186,
+          "end_distance": 0.4111981987953186,
+          "arrived": true,
+          "waypoint": {
+            "x": -9.875,
+            "y": 0.03000004030764103,
+            "z": 2.375
+          }
+        },
+        {
+          "version": 26,
+          "start_step": 500,
+          "end_step": 514,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 15,
+          "start_distance": 5.93329381942749,
+          "closest_distance": 0.343841016292572,
+          "end_distance": 0.343841016292572,
+          "arrived": true,
+          "waypoint": {
+            "x": -10.375,
+            "y": 0.03000004030764103,
+            "z": 7.875
+          }
+        },
+        {
+          "version": 27,
+          "start_step": 515,
+          "end_step": 541,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 27,
+          "start_distance": 5.847805023193359,
+          "closest_distance": 3.6634767055511475,
+          "end_distance": 11.47035026550293,
+          "arrived": false,
+          "waypoint": {
+            "x": -10.625,
+            "y": 0.03000004030764103,
+            "z": 13.375
+          }
+        },
+        {
+          "version": 28,
+          "start_step": 542,
+          "end_step": 559,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.900454998016357,
+          "closest_distance": 6.061877727508545,
+          "end_distance": 12.253870010375977,
+          "arrived": false,
+          "waypoint": {
+            "x": -10.375,
+            "y": 0.03000004030764103,
+            "z": 7.625
+          }
+        },
+        {
+          "version": 29,
+          "start_step": 560,
+          "end_step": 579,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.881826400756836,
+          "closest_distance": 6.0487518310546875,
+          "end_distance": 10.467144966125488,
+          "arrived": false,
+          "waypoint": {
+            "x": -9.875,
+            "y": 0.03000004030764103,
+            "z": 1.125
+          }
+        },
+        {
+          "version": 30,
+          "start_step": 580,
+          "end_step": 595,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 16,
+          "start_distance": 5.92240571975708,
+          "closest_distance": 0.45299091935157776,
+          "end_distance": 0.45299091935157776,
+          "arrived": true,
+          "waypoint": {
+            "x": -14.375,
+            "y": 0.03000004030764103,
+            "z": -12.625
+          }
+        },
+        {
+          "version": 31,
+          "start_step": 596,
+          "end_step": 600,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 5,
+          "start_distance": 3.223937511444092,
+          "closest_distance": 1.905693769454956,
+          "end_distance": 1.905693769454956,
+          "arrived": false,
+          "waypoint": {
+            "x": -16.875,
+            "y": 0.03000004030764103,
+            "z": -13.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 285455,
+      "category": "discovered_timeout",
+      "parent_clear_seconds": 24.0,
+      "child_seconds": 60.0,
+      "replay_matches_original": true,
+      "min_exit_distance": 3.902514696121216,
+      "final_exit_distance": 3.9025659561157227,
+      "first_exit_visible_seconds": 57.5,
+      "path_length": 235.72473432759523,
+      "net_displacement": 28.635501164445035,
+      "waypoint_arrivals": 3,
+      "exit_directed_arrivals": 1,
+      "final_waypoint_assigned": false,
+      "final_waypoint_arrivals": 0,
+      "exit_to_exploration_switch_steps": [],
+      "assigned_waypoint_actions": 600,
+      "actions_away_or_perpendicular_to_waypoint": 327,
+      "mean_waypoint_alignment": 0.00039380710222758353,
+      "parent_same_state_mean_waypoint_alignment": 0.3352550268173218,
+      "parent_same_state_away_actions": 197,
+      "child_zero_previous_action_mean_alignment": 0.33202558755874634,
+      "child_prediction_max_recorded_action_error": 5.960464477539062e-07,
+      "replans": 12,
+      "abandoned_goals": 11,
+      "waypoint_assignments": 29,
+      "assignment_segments": [
+        {
+          "version": 1,
+          "start_step": 1,
+          "end_step": 24,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 24,
+          "start_distance": 2.694256544113159,
+          "closest_distance": 1.8344502449035645,
+          "end_distance": 7.844025611877441,
+          "arrived": false,
+          "waypoint": {
+            "x": 5.375,
+            "y": 0.009999999776482582,
+            "z": 17.375
+          }
+        },
+        {
+          "version": 2,
+          "start_step": 25,
+          "end_step": 44,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.966220378875732,
+          "closest_distance": 6.359466075897217,
+          "end_distance": 10.77495002746582,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.625,
+            "y": 0.03000004030764103,
+            "z": 15.625
+          }
+        },
+        {
+          "version": 3,
+          "start_step": 45,
+          "end_step": 56,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 12,
+          "start_distance": 5.067454814910889,
+          "closest_distance": 0.34749677777290344,
+          "end_distance": 0.34749677777290344,
+          "arrived": true,
+          "waypoint": {
+            "x": 8.625,
+            "y": 0.029999980702996254,
+            "z": 1.125
+          }
+        },
+        {
+          "version": 4,
+          "start_step": 57,
+          "end_step": 65,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 9,
+          "start_distance": 3.8046932220458984,
+          "closest_distance": 0.3466782867908478,
+          "end_distance": 0.3466782867908478,
+          "arrived": true,
+          "waypoint": {
+            "x": 11.125,
+            "y": 0.029999980702996254,
+            "z": -1.375
+          }
+        },
+        {
+          "version": 5,
+          "start_step": 66,
+          "end_step": 96,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 31,
+          "start_distance": 5.995509624481201,
+          "closest_distance": 3.001660108566284,
+          "end_distance": 4.497122287750244,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.125,
+            "y": 0.029999980702996254,
+            "z": -5.375
+          }
+        },
+        {
+          "version": 6,
+          "start_step": 97,
+          "end_step": 114,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 18,
+          "start_distance": 5.916644096374512,
+          "closest_distance": 6.2495198249816895,
+          "end_distance": 12.321751594543457,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.875,
+            "y": 0.03000004030764103,
+            "z": -6.625
+          }
+        },
+        {
+          "version": 7,
+          "start_step": 115,
+          "end_step": 134,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.987697124481201,
+          "closest_distance": 6.387275695800781,
+          "end_distance": 9.211812019348145,
+          "arrived": false,
+          "waypoint": {
+            "x": 14.375,
+            "y": 0.03000004030764103,
+            "z": -0.375
+          }
+        },
+        {
+          "version": 8,
+          "start_step": 135,
+          "end_step": 162,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 28,
+          "start_distance": 5.692060470581055,
+          "closest_distance": 5.532575607299805,
+          "end_distance": 5.7309160232543945,
+          "arrived": false,
+          "waypoint": {
+            "x": 15.125,
+            "y": 0.029999980702996254,
+            "z": 12.125
+          }
+        },
+        {
+          "version": 9,
+          "start_step": 163,
+          "end_step": 182,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.686405658721924,
+          "closest_distance": 5.701076984405518,
+          "end_distance": 6.383177280426025,
+          "arrived": false,
+          "waypoint": {
+            "x": 13.625,
+            "y": 0.03000004030764103,
+            "z": 14.625
+          }
+        },
+        {
+          "version": 10,
+          "start_step": 183,
+          "end_step": 202,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.67366886138916,
+          "closest_distance": 5.650069236755371,
+          "end_distance": 5.872054100036621,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.029999980702996254,
+            "z": 14.375
+          }
+        },
+        {
+          "version": 11,
+          "start_step": 203,
+          "end_step": 224,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.694460391998291,
+          "closest_distance": 5.5267438888549805,
+          "end_distance": 5.932399272918701,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.03000004030764103,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 12,
+          "start_step": 225,
+          "end_step": 263,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 39,
+          "start_distance": 5.703161716461182,
+          "closest_distance": 5.601000785827637,
+          "end_distance": 5.960169315338135,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.125,
+            "y": 0.029999980702996254,
+            "z": 14.625
+          }
+        },
+        {
+          "version": 13,
+          "start_step": 264,
+          "end_step": 285,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.713741302490234,
+          "closest_distance": 5.071655750274658,
+          "end_distance": 5.188562393188477,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.625,
+            "y": 0.029999980702996254,
+            "z": 13.875
+          }
+        },
+        {
+          "version": 14,
+          "start_step": 286,
+          "end_step": 305,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.662949085235596,
+          "closest_distance": 5.816511154174805,
+          "end_distance": 6.226783275604248,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.375,
+            "y": 0.03000004030764103,
+            "z": 14.875
+          }
+        },
+        {
+          "version": 15,
+          "start_step": 306,
+          "end_step": 327,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.990669250488281,
+          "closest_distance": 5.376097679138184,
+          "end_distance": 5.564130783081055,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.029999980702996254,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 16,
+          "start_step": 328,
+          "end_step": 347,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.6887288093566895,
+          "closest_distance": 5.846805095672607,
+          "end_distance": 6.230120658874512,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.375,
+            "y": 0.03000004030764103,
+            "z": 14.875
+          }
+        },
+        {
+          "version": 17,
+          "start_step": 348,
+          "end_step": 369,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.993809223175049,
+          "closest_distance": 5.381778240203857,
+          "end_distance": 5.565006732940674,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.029999980702996254,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 18,
+          "start_step": 370,
+          "end_step": 389,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.689723968505859,
+          "closest_distance": 5.848386287689209,
+          "end_distance": 6.22979211807251,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.375,
+            "y": 0.03000004030764103,
+            "z": 14.875
+          }
+        },
+        {
+          "version": 19,
+          "start_step": 390,
+          "end_step": 411,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.993639945983887,
+          "closest_distance": 5.382313251495361,
+          "end_distance": 5.565399169921875,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.029999980702996254,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 20,
+          "start_step": 412,
+          "end_step": 431,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.690158367156982,
+          "closest_distance": 5.849721431732178,
+          "end_distance": 6.2295002937316895,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.375,
+            "y": 0.03000004030764103,
+            "z": 14.875
+          }
+        },
+        {
+          "version": 21,
+          "start_step": 432,
+          "end_step": 453,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.993485927581787,
+          "closest_distance": 5.382755279541016,
+          "end_distance": 5.565797805786133,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.029999980702996254,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 22,
+          "start_step": 454,
+          "end_step": 473,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.690669059753418,
+          "closest_distance": 5.849946975708008,
+          "end_distance": 6.229437828063965,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.375,
+            "y": 0.03000004030764103,
+            "z": 14.875
+          }
+        },
+        {
+          "version": 23,
+          "start_step": 474,
+          "end_step": 495,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 22,
+          "start_distance": 5.993457794189453,
+          "closest_distance": 5.382887840270996,
+          "end_distance": 5.5659637451171875,
+          "arrived": false,
+          "waypoint": {
+            "x": 12.875,
+            "y": 0.029999980702996254,
+            "z": 14.125
+          }
+        },
+        {
+          "version": 24,
+          "start_step": 496,
+          "end_step": 516,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 21,
+          "start_distance": 5.77429723739624,
+          "closest_distance": 5.375436305999756,
+          "end_distance": 10.000033378601074,
+          "arrived": false,
+          "waypoint": {
+            "x": 4.375,
+            "y": 0.03000004030764103,
+            "z": 14.875
+          }
+        },
+        {
+          "version": 25,
+          "start_step": 517,
+          "end_step": 536,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 20,
+          "start_distance": 5.942331790924072,
+          "closest_distance": 5.9493865966796875,
+          "end_distance": 6.741204738616943,
+          "arrived": false,
+          "waypoint": {
+            "x": 1.625,
+            "y": 0.03000004030764103,
+            "z": 9.125
+          }
+        },
+        {
+          "version": 26,
+          "start_step": 537,
+          "end_step": 565,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 29,
+          "start_distance": 5.778807640075684,
+          "closest_distance": 4.170594692230225,
+          "end_distance": 4.441569805145264,
+          "arrived": false,
+          "waypoint": {
+            "x": -5.375,
+            "y": 0.029999980702996254,
+            "z": 2.375
+          }
+        },
+        {
+          "version": 27,
+          "start_step": 566,
+          "end_step": 575,
+          "status": "exploring",
+          "goal_is_exit": false,
+          "final_exit_waypoint": false,
+          "actions": 10,
+          "start_distance": 5.689869403839111,
+          "closest_distance": 1.9808149337768555,
+          "end_distance": 1.9808149337768555,
+          "arrived": false,
+          "waypoint": {
+            "x": -8.375,
+            "y": 0.03000004030764103,
+            "z": 3.375
+          }
+        },
+        {
+          "version": 28,
+          "start_step": 576,
+          "end_step": 589,
+          "status": "exit",
+          "goal_is_exit": true,
+          "final_exit_waypoint": false,
+          "actions": 14,
+          "start_distance": 5.8972578048706055,
+          "closest_distance": 0.4697222113609314,
+          "end_distance": 0.4697222113609314,
+          "arrived": true,
+          "waypoint": {
+            "x": -9.125,
+            "y": 0.029999980702996254,
+            "z": -1.625
+          }
+        },
+        {
+          "version": 29,
+          "start_step": 590,
+          "end_step": 600,
+          "status": "exit",
+          "goal_is_exit": true,
+          "final_exit_waypoint": false,
+          "actions": 11,
+          "start_distance": 5.9078688621521,
+          "closest_distance": 2.172041893005371,
+          "end_distance": 2.172041893005371,
+          "arrived": false,
+          "waypoint": {
+            "x": -10.625,
+            "y": 0.03000004030764103,
+            "z": -6.875
+          }
+        }
+      ]
+    }
+  ],
+  "same_state_comparison_limit": "Parent predictions on child states show action differences only; these are not counterfactual world rollouts.",
+  "offline_input_ablation_limit": "Zeroing previous-action inputs measures output sensitivity on modified observations, not a validated behavioural fix."
+}

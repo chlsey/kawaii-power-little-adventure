@@ -1,0 +1,34 @@
+model: ppo
+port: 7783
+seed: 9104
+total_timesteps: 1
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 0
+output_dir: ../../../../../Logs/qa36-failure-analysis/case-285455
+resume_from: ../../qa-waypoint-20261108-051102-train/final_model.zip
+resume_sha256: 7ca386b36041489e06e99e8f1d42612571adbe33f27191e4705e45c7cdd0e3e9
+parent_lineage_episodes: 7500
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 0
+evaluation_episodes: 1
+evaluation_seed: 285455
+unity_scene: Assets/Scenes/QaWaypoint40Training.unity
+room_size:
+- 40
+- 40
+initial_exit_visible: false
+exit_distance_range:
+- 30
+- 34
+completion_reward: 50.0
+episode_seconds: 60
+time_scale: 100
+trace_exit_decisions: true
+task: exit-navigation

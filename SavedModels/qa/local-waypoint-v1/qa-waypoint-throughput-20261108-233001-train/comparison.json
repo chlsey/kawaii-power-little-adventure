@@ -1,0 +1,86 @@
+{
+  "comparisons": {
+    "qa43-evaluation_to_before-continuous": {
+      "parent_mean": 10.93,
+      "child_mean": 38.98,
+      "mean_gain": 28.05,
+      "paired_bootstrap_95_arrival_gain": [
+        25.07,
+        30.94
+      ],
+      "parent_reaching_ten": 42,
+      "child_reaching_ten": 95,
+      "paired_ten_gain_95_percentage_points": [
+        43.0,
+        63.0
+      ],
+      "more_arrivals": 94,
+      "fewer_arrivals": 6,
+      "tied": 0
+    },
+    "before-continuous_to_evaluation": {
+      "parent_mean": 38.98,
+      "child_mean": 44.43,
+      "mean_gain": 5.45,
+      "paired_bootstrap_95_arrival_gain": [
+        3.14,
+        7.9
+      ],
+      "parent_reaching_ten": 95,
+      "child_reaching_ten": 100,
+      "paired_ten_gain_95_percentage_points": [
+        1.0,
+        10.0
+      ],
+      "more_arrivals": 32,
+      "fewer_arrivals": 51,
+      "tied": 17
+    },
+    "qa43-evaluation_to_evaluation": {
+      "parent_mean": 10.93,
+      "child_mean": 44.43,
+      "mean_gain": 33.5,
+      "paired_bootstrap_95_arrival_gain": [
+        31.66,
+        35.25
+      ],
+      "parent_reaching_ten": 42,
+      "child_reaching_ten": 100,
+      "paired_ten_gain_95_percentage_points": [
+        48.0,
+        68.0
+      ],
+      "more_arrivals": 100,
+      "fewer_arrivals": 0,
+      "tied": 0
+    }
+  },
+  "continuity": {
+    "qa43-evaluation": {
+      "actions": 60000,
+      "handoffs": 1092,
+      "previous_action_continuity_verified": true,
+      "position_continuity_verified": true
+    },
+    "before-continuous": {
+      "actions": 60000,
+      "handoffs": 3895,
+      "previous_action_continuity_verified": true,
+      "position_continuity_verified": true
+    },
+    "evaluation": {
+      "actions": 60000,
+      "handoffs": 4438,
+      "previous_action_continuity_verified": true,
+      "position_continuity_verified": true
+    }
+  },
+  "verified_archives": 31,
+  "bootstrap_draws": 20000,
+  "bootstrap_seed": 44,
+  "source_hashes_verified": true,
+  "new_training_episodes": 500,
+  "training_steps": 300000,
+  "total_restart_training_episodes": 2000,
+  "parent_checkpoint_unchanged": true
+}

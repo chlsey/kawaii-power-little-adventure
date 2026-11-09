@@ -1,0 +1,6 @@
+{
+  "min_waypoints": 2,
+  "max_waypoints": 2,
+  "training_rewards": true,
+  "trace_actions": false
+}

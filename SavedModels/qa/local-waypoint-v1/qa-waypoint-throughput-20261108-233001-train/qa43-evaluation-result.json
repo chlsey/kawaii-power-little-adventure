@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "phase": "qa43-evaluation",
+  "completed_episodes": 100,
+  "total_arrivals": 1093,
+  "mean_arrivals": 10.93,
+  "median_arrivals": 7.0,
+  "p10_arrivals": 2.0,
+  "p90_arrivals": 28.0,
+  "minimum_arrivals": 1,
+  "maximum_arrivals": 35,
+  "episodes_reaching_ten": 42,
+  "model_steps": 260803,
+  "optimizer_updates": 10140,
+  "added_model_steps": 0,
+  "added_optimizer_updates": 0,
+  "frozen": true
+}

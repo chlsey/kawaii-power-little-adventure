@@ -1,0 +1,12 @@
+{
+  "completed_at_utc": "2026-11-08T08:41:53.304758+00:00",
+  "frozen_replay_cases": 6,
+  "all_match_original_outcome_steps_and_final_distance": true,
+  "all_actions_verified_against_frozen_policy": true,
+  "parent_checkpoint_sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+  "child_checkpoint_sha256": "7ca386b36041489e06e99e8f1d42612571adbe33f27191e4705e45c7cdd0e3e9",
+  "weight_updates": 0,
+  "model_counters_unchanged": true,
+  "analysis_only_input_probes": true,
+  "no_production_fix": true
+}

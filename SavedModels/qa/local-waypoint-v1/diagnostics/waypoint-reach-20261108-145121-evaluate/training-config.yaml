@@ -1,0 +1,28 @@
+# QA-39: new 500-episode skill branch directly from original QA-32, no exit or navigator.
+task: waypoint-reach-1to10
+model: ppo
+port: 7783
+seed: 9500
+total_timesteps: 300000
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 5000
+output_dir: ../Logs/qa-waypoint-reach-1to10
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa32-backup-20261108-032207/final_model.zip
+resume_sha256: 0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0
+parent_lineage_episodes: 7000
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+ppo:
+  batch_size: 64
+max_episodes: 500
+evaluation_episodes: 100
+evaluation_seed: 286000
+unity_scene: Assets/Scenes/QaWaypointReachTraining.unity
+waypoint_distance_range: [1, 10]
+episode_seconds: 60
+waypoint_reward_budget: 5
+minimum_local_objective_reward: 50

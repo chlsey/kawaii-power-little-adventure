@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "reference_episodes": 10,
+  "idle_episodes": 1,
+  "completed_episodes": 10,
+  "total_arrivals": 480,
+  "mean_arrivals": 48.0,
+  "median_arrivals": 48.0,
+  "p10_arrivals": 45.0,
+  "p90_arrivals": 50.1,
+  "minimum_arrivals": 45,
+  "maximum_arrivals": 51,
+  "episodes_reaching_ten": 10
+}

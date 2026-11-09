@@ -1,0 +1,33 @@
+{
+  "mode": "train",
+  "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-waypoint-reach-20261108-232749-train\\final_model.zip",
+  "parent_sha256": "76904d76053c531ec3d192d5d5b6499f83d7d201dcb6bbd3dd3ec85ce54c7e3f",
+  "parent_lineage_episodes": 3500,
+  "observation_contract": "local-waypoint-v1",
+  "training_seed_range": [
+    13500,
+    13999
+  ],
+  "evaluation_seed_range": [
+    288000,
+    288099
+  ],
+  "episode_seconds": 60,
+  "action_limit": 600,
+  "no_waypoint_count_termination": true,
+  "reward_scale": 0.015,
+  "reward": "0.015 arrival + 0.0015/new closest unit - 0.001/action",
+  "positive_budget": 5,
+  "theoretical_positive_maximum": 4.86,
+  "source_sha256": {
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Assets/Editor/QaWaypointChainSession.cs": "08d664af7007f8179c8d6e78cb1afbd8372ed8f51df1b0074db4b3c19fc8bc12",
+    "Training/run_waypoint_throughput.py": "b2fe16e0229d2f0b5f3b86da70774b0e5ec6420f6e5e25a3748dbd8ef7189c93",
+    "Training/run_waypoint_chain.py": "b5b68e718c7a483f2eba588ee9ab67772bb75496b930d7b4fda216b22bc241e5",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "fe4ced7382c7c613cbe96f6a98eb42dab63af251ff740e41330c4c6259a39a9d",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "7020df56e643f99ba884f652306a2deaa1862bf84babfc3bba61039fc2f8b533"
+  }
+}

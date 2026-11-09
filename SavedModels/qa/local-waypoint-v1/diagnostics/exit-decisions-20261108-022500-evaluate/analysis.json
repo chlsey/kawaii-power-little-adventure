@@ -1,0 +1,66 @@
+{
+  "episodes": 500,
+  "action_records": 155459,
+  "counts": {
+    "clear": 364,
+    "exit_discovered": 399,
+    "exit_discovered_clear": 364,
+    "any_waypoint_arrival": 479,
+    "any_waypoint_arrival_clear": 347,
+    "waypoint_arrival_with_exit_visible": 321,
+    "waypoint_arrival_with_exit_visible_clear": 306,
+    "exit_directed_arrival": 325,
+    "exit_directed_arrival_clear": 306,
+    "final_exit_waypoint_assigned": 221,
+    "final_exit_waypoint_assigned_clear": 217,
+    "final_exit_waypoint_arrival": 151,
+    "final_exit_waypoint_arrival_clear": 151,
+    "final_arrival_then_exploring": 85,
+    "final_arrival_then_exploring_clear": 85,
+    "timeout": 136,
+    "any_waypoint_arrival_timeout": 132,
+    "timeout_never_discovered_exit": 101,
+    "visible_follows_away_guidance": 40,
+    "visible_follows_away_guidance_clear": 36,
+    "exit_discovered_timeout": 35,
+    "waypoint_arrival_with_exit_visible_timeout": 15,
+    "exit_directed_arrival_timeout": 19,
+    "visible_moves_away_despite_exit_guidance": 58,
+    "visible_moves_away_despite_exit_guidance_timeout": 30,
+    "timeout_exit_directed_arrival_without_final_arrival": 19,
+    "timeout_discovered_without_exit_directed_arrival": 16,
+    "visible_moves_away_despite_exit_guidance_clear": 28,
+    "final_exit_waypoint_assigned_timeout": 4,
+    "visible_follows_away_guidance_timeout": 4,
+    "final_exit_waypoint_arrival_timeout": 0,
+    "timeout_after_final_exit_waypoint_arrival": 0
+  },
+  "final_arrival_event_counts": {
+    "total": 151,
+    "completed_on_arrival": 66,
+    "next_action_toward_exit": 85,
+    "next_action_away_or_perpendicular": 0,
+    "next_instruction_exploring": 85,
+    "next_instruction_exit": 0,
+    "no_following_action": 66
+  },
+  "seconds_from_first_final_arrival_to_clear": {
+    "mean": 0.05761629824606697,
+    "median": 0.0999998092651353,
+    "minimum": 0.0,
+    "maximum": 0.20000114440917827
+  },
+  "matched_baseline": {
+    "same_completion": 500,
+    "same_steps": 500,
+    "same_final_distance": 500
+  },
+  "distinct_final_arrival_events": 151,
+  "distinct_exit_directed_arrival_events": 669,
+  "definitions": {
+    "arrival": "Active assigned waypoint crossed from >0.5 to <=0.5 units during an action, before navigator handoff.",
+    "exit_directed": "Navigator goal was an observed exit cell before this action; intermediate route points included.",
+    "final": "Assigned waypoint equals last route point to observed exit cell; not necessarily exit centre.",
+    "away": "Next commanded movement has nonpositive dot product toward actual exit centre; descriptive, not proof of intentional refusal."
+  }
+}

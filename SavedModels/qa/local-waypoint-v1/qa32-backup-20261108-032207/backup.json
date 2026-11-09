@@ -1,0 +1,73 @@
+{
+  "created_at_utc": "2026-11-08T03:22:48.326938+00:00",
+  "experiment": "QA-36",
+  "purpose": "Preserve complete QA-32 run before integrated exit-navigation continuation",
+  "original_run": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-waypoint-reach-20261107-214655-train",
+  "original_checkpoint_sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+  "copied_checkpoint_sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+  "model_timesteps": 63246,
+  "actor_lineage_episodes": 7000,
+  "checkpoint_training_task": "waypoint-reach-8to12",
+  "copied_files": [
+    {
+      "path": "checkpoints.json",
+      "sha256": "6a47c014e0cc0864b917978cfaacfc9bdfd87c20dc8b2c61642b0d842eef464b",
+      "bytes": 581
+    },
+    {
+      "path": "evaluation-episodes.json",
+      "sha256": "16f5ea133cb023ff89055e8ee7760f3afdbbeb38c6fd96c15586c4387080582f",
+      "bytes": 44108
+    },
+    {
+      "path": "evaluation-result.json",
+      "sha256": "1b06e6f119978e962f4fcf07a8d0ae321836ef5f4aa4f424d3836204f2a626c8",
+      "bytes": 572
+    },
+    {
+      "path": "final_model.zip",
+      "sha256": "0ca5d55955bf6ea7489e2495c1a1cbd9c3be773154981483096dd17d4b4479e0",
+      "bytes": 351273
+    },
+    {
+      "path": "README.md",
+      "sha256": "a5da2b79870e82022da90f89636755c8d96af4952648f60875f1f25a6422d462",
+      "bytes": 4398
+    },
+    {
+      "path": "run.json",
+      "sha256": "50905e6effe06e99f757422421eb6e535a1a33c48aed0dd2859971161e050100",
+      "bytes": 2144
+    },
+    {
+      "path": "training-config.yaml",
+      "sha256": "782972ec7758588891b202d25b89cbe33f5d51ad093b43d447949e91324b4e1b",
+      "bytes": 852
+    },
+    {
+      "path": "training-episodes.json",
+      "sha256": "9edfabb96c4138ed54c53b08fbbd09f59521e97c7a90356efc06046540d0f886",
+      "bytes": 219605
+    },
+    {
+      "path": "training-result.json",
+      "sha256": "285f6e3ae0ee67fc3384d4c1aeff262e2254351f319db88948140cbfab994992",
+      "bytes": 591
+    },
+    {
+      "path": "verification.json",
+      "sha256": "0495f628b67ceee7432614fc28f3181d806f69c61bd56de81ac9921f2420ce99",
+      "bytes": 203
+    },
+    {
+      "path": "checkpoints/rl_model_50668_steps.zip",
+      "sha256": "0f1c3e5b8be637c268efdf3692ece1cc1712baf4b95c441434f8e7012303290b",
+      "bytes": 351273
+    },
+    {
+      "path": "checkpoints/rl_model_60668_steps.zip",
+      "sha256": "335e00f46f7153a450017541f0a7b965f832be04c38708bf6a977a03b2199c6c",
+      "bytes": 351273
+    }
+  ]
+}

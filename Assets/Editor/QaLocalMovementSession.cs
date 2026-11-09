@@ -56,6 +56,7 @@ public static partial class QaLocalMovementSession
         serialized.FindProperty("maxEpisodeSeconds").floatValue = session.episode_seconds;
         serialized.FindProperty("disableWaypointNavigatorForEvaluation").boolValue = session.navigator_disabled;
         serialized.ApplyModifiedPropertiesWithoutUndo();
+        environment.Navigation.MaxWaypointDistance = session.max_waypoint_distance;
         var host = environment.GetComponent<RlTrainingHost>();
         Require(host.Port == session.port && host.IsListening, "Training host readiness");
         Require(environment.ObservationSize == 134 && environment.ActionSize == 2, "Local movement contract");
@@ -81,8 +82,16 @@ public static partial class QaLocalMovementSession
             "{\"observation_contract\":\"" + environment.PolicyVersion + "\",\"completion_reward\":" +
             serialized.FindProperty("completionReward").floatValue.ToString(System.Globalization.CultureInfo.InvariantCulture) +
             ",\"episode_seconds\":" + serialized.FindProperty("maxEpisodeSeconds").floatValue.ToString(System.Globalization.CultureInfo.InvariantCulture) +
-            ",\"navigator_disabled\":" + environment.NavigatorDisabled.ToString().ToLowerInvariant() + "}");
+            ",\"navigator_disabled\":" + environment.NavigatorDisabled.ToString().ToLowerInvariant() +
+            ",\"max_waypoint_distance\":" + environment.Navigation.MaxWaypointDistance.ToString(System.Globalization.CultureInfo.InvariantCulture) + "}");
         File.WriteAllText(Path.Combine(directory, "unity-ready.txt"), "134 observations; 2 movement actions\n");
+
+        ExitDecisionTrace trace = null;
+        if (session.trace_exit_decisions)
+        {
+            Require(session.mode == "evaluate", "Exit tracing is frozen evaluation only");
+            trace = new ExitDecisionTrace(environment, directory);
+        }
 
         QaEpisodeMetrics previous = null;
         int captured = 0;
@@ -124,6 +133,7 @@ public static partial class QaLocalMovementSession
             yield return null;
         }
         Require(captured == session.episodes, "Requested complete episode count");
+        trace?.Dispose();
         host.StopTraining();
         SessionState.SetString(SessionKey, "");
         EditorApplication.UnlockReloadAssemblies();
@@ -263,8 +273,9 @@ public static partial class QaLocalMovementSession
         public string scene, mode, policy_version = "local-vision-v1";
         public int port, episodes;
         public int training_seed = 2000, training_episodes = 500, evaluation_seed = 200000, evaluation_episodes = 100;
-        public bool verify, initial_exit_visible, navigator_disabled;
+        public bool verify, initial_exit_visible, navigator_disabled, trace_exit_decisions;
         public float completion_reward = 50f;
+        public float max_waypoint_distance = 6f;
         public float episode_seconds = 30f, time_scale = 20f;
         public float room_width, room_depth, min_exit_distance, max_exit_distance;
     }
@@ -276,5 +287,93 @@ public static partial class QaLocalMovementSession
         public string end_reason, navigation_status;
         public float waypoint_bonus;
         public int waypoint_assignments, replans, abandoned_goals;
+    }
+
+    // Diagnostics never feed true exit positions or trace fields into the policy/navigation.
+    private sealed class ExitDecisionTrace : IDisposable
+    {
+        private readonly QaSingleRoomRlEnvironment environment;
+        private readonly StreamWriter writer;
+        private readonly BoxCollider exitCollider;
+        private Decision record;
+        private Vector3 before, waypoint;
+
+        public ExitDecisionTrace(QaSingleRoomRlEnvironment environment, string directory)
+        {
+            this.environment = environment;
+            var serialized = new SerializedObject(environment);
+            exitCollider = ((Transform)serialized.FindProperty("exit").objectReferenceValue).GetComponent<BoxCollider>();
+            Bounds bounds = exitCollider.bounds;
+            File.WriteAllText(Path.Combine(directory, "exit-trace-contract.json"),
+                JsonUtility.ToJson(new TraceContract { exit_size = bounds.size,
+                    acceptance_radius = QaNavigationCoordinator.AcceptanceRadius }));
+            writer = new StreamWriter(Path.Combine(directory, "exit-decisions.jsonl"));
+            environment.ActionStarting += Before;
+            environment.ActionMeasured += After;
+        }
+
+        private void Before(float[] action)
+        {
+            var nav = environment.Navigation;
+            before = environment.Player.transform.position;
+            waypoint = nav.Waypoint;
+            bool final = nav.HasWaypoint && nav.GoalIsExit && nav.Route.Count > 0 &&
+                QaNavigationCoordinator.Distance(waypoint, nav.Route[nav.Route.Count - 1]) < 0.001f;
+            record = new Decision
+            {
+                seed = environment.ActiveSeed, step = environment.Player.Metrics.StepCount + 1,
+                before = before, waypoint = waypoint, exit = environment.ExitPosition,
+                action_x = action[0], action_z = action[1],
+                active = environment.Player.EpisodeActive,
+                has_waypoint = nav.HasWaypoint, goal_is_exit = nav.GoalIsExit,
+                final_exit_waypoint = final, waypoint_version = nav.WaypointVersion,
+                status = nav.Status, exit_visible_before = environment.Sensors.ExitVisible,
+                waypoint_distance_before = QaNavigationCoordinator.Distance(before, waypoint),
+                exit_distance_before = QaNavigationCoordinator.Distance(before, environment.ExitPosition),
+                seconds_before = environment.Player.Metrics.ElapsedSeconds
+            };
+            // Retain exact policy inputs for comparing steering on identical replay states.
+            record.observation = environment.CollectObservation();
+        }
+
+        private void After(bool done)
+        {
+            record.after = environment.Player.transform.position;
+            record.done = done;
+            record.completed = environment.Player.Metrics.Completed;
+            record.exit_visible_after = environment.Sensors.ExitVisible;
+            record.waypoint_distance_after = QaNavigationCoordinator.Distance(record.after, waypoint);
+            record.exit_distance_after = QaNavigationCoordinator.Distance(record.after, environment.ExitPosition);
+            record.arrived = record.active && record.has_waypoint &&
+                record.waypoint_distance_before > QaNavigationCoordinator.AcceptanceRadius &&
+                record.waypoint_distance_after <= QaNavigationCoordinator.AcceptanceRadius;
+            writer.WriteLine(JsonUtility.ToJson(record));
+            if (done) writer.Flush();
+        }
+
+        public void Dispose()
+        {
+            environment.ActionStarting -= Before;
+            environment.ActionMeasured -= After;
+            writer.Dispose();
+        }
+    }
+
+    [Serializable] private class TraceContract
+    {
+        public Vector3 exit_size;
+        public float acceptance_radius;
+    }
+
+    [Serializable] private class Decision
+    {
+        public int seed, step, waypoint_version;
+        public Vector3 before, after, waypoint, exit;
+        public float action_x, action_z, seconds_before;
+        public float waypoint_distance_before, waypoint_distance_after, exit_distance_before, exit_distance_after;
+        public bool active, has_waypoint, goal_is_exit, final_exit_waypoint, arrived;
+        public bool exit_visible_before, exit_visible_after, done, completed;
+        public string status;
+        public float[] observation;
     }
 }

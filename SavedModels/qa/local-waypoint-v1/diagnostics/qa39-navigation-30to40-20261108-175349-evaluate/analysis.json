@@ -1,0 +1,64 @@
+{
+  "model": "QA-39",
+  "cases": 100,
+  "clears": 67,
+  "timeouts": 33,
+  "deaths": 0,
+  "goal_distance_min": 30.02620506286621,
+  "goal_distance_max": 39.907371520996094,
+  "all_spawns_and_exits_within_1_5_unit_floor_margin": true,
+  "mean_successful_goal_seconds": 27.871642169667712,
+  "median_successful_goal_seconds": 24.5,
+  "p90_successful_goal_seconds": 51.30000076293945,
+  "mean_capped_episode_seconds": 38.47400025367737,
+  "failures_without_goal_discovery": 30,
+  "failures_after_goal_discovery": 3,
+  "mean_assignments_per_episode": 17.52,
+  "mean_replans_per_episode": 3.65,
+  "observed_assignments": 1752,
+  "assignment_distance_min": 0.5203517079353333,
+  "assignment_distance_mean": 7.504736101994776,
+  "assignment_distance_max": 9.999810218811035,
+  "assignments_eight_to_ten": 1074,
+  "total_waypoint_arrivals": 525,
+  "total_arrival_handoffs": 505,
+  "successful_cases_with_two_or_more_arrival_handoffs": 55,
+  "min_arrival_handoffs_in_success": 0,
+  "median_arrival_handoffs_in_success": 4,
+  "distance_bands": [
+    {
+      "goal_distance_band": [
+        30,
+        35
+      ],
+      "cases": 51,
+      "clears": 31,
+      "timeouts": 20
+    },
+    {
+      "goal_distance_band": [
+        35,
+        40
+      ],
+      "cases": 49,
+      "clears": 36,
+      "timeouts": 13
+    }
+  ],
+  "room_size": [
+    50,
+    50
+  ],
+  "vision_range": 12,
+  "max_waypoint_distance": 10,
+  "episode_seconds": 60,
+  "seed_range": [
+    287000,
+    287099
+  ],
+  "weight_updates": 0,
+  "model_training_steps": 72054,
+  "total_lineage_episodes": 7500,
+  "checkpoint_sha256": "a90f3a238b4d6e6b236db357467edafd97b89c5b2dc57bccba50263c72102d2f",
+  "limitation": "New 50x50 room, longer goal-distance band and fresh cases; earlier 75/100 QA-32 result is not a matched control. No PCG dungeon/obstacles/combat."
+}
