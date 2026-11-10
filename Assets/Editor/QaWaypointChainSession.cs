@@ -87,6 +87,8 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
     private Vector3 previousPosition;
     private bool recorded;
     private float[] observation;
+    private int lowMovementActions, awayActions;
+    private Vector3 spawn;
 
     public override int ObservationSize => 134;
     public override int ActionSize => 2;
@@ -113,15 +115,28 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
         recorded = false;
         pathLength = 0f;
         positiveReward = 0f;
+        lowMovementActions = awayActions = 0;
+        var random = new System.Random(seed);
+        spawn = new Vector3(0f, floor.bounds.max.y + 0.01f, 0f);
+        if (settings.recovery)
+        {
+            // Alternate real perimeter walls and inside corners, in all four orientations.
+            // Every target remains in the same convex free-space patch, so no route switching
+            // is needed: local control must turn away from the wall and follow one target.
+            float clearance = (float)(0.4 + random.NextDouble() * 0.3);
+            spawn.x = 20f - clearance;
+            if (seed % 2 == 0) spawn.z = (float)(-8 + random.NextDouble() * 16);
+            else spawn.z = 20f - clearance;
+            spawn = RotateRecovery(spawn);
+        }
         actor.enabled = false;
-        source.Player.transform.SetPositionAndRotation(new Vector3(0f, floor.bounds.max.y + 0.01f, 0f), Quaternion.identity);
+        source.Player.transform.SetPositionAndRotation(spawn, Quaternion.identity);
         actor.enabled = true;
         source.Player.BeginTest();
         previousPosition = source.Player.transform.position;
 
         // Precompute the entire chain independently of policy actions. A half-unit arrival
         // tolerance leaves actual handoff distances in [1,10] for nominal [1.5,9.5] legs.
-        var random = new System.Random(seed);
         int length = settings.min_waypoints;
         if (settings.min_waypoints != settings.max_waypoints)
             length = new System.Random(seed + 100000).Next(settings.min_waypoints, settings.max_waypoints + 1);
@@ -138,14 +153,34 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
                 float angle = (float)(random.NextDouble() * Math.PI * 2);
                 float distance = (float)(1.5 + random.NextDouble() * 8);
                 point = origin + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * distance;
-            } while (Mathf.Abs(point.x) > 15f || Mathf.Abs(point.z) > 15f);
+            } while (!InsideTargetArea(point));
             targets[i] = origin = point;
         }
         Physics.SyncTransforms();
         source.Sensors.BeginAttempt();
-        File.AppendAllText(Path.Combine(directory, "chains.jsonl"),
-            JsonUtility.ToJson(new Chain { seed = seed, targets = targets }) + "\n");
+        string chain;
+        if (settings.recovery)
+            chain = JsonUtility.ToJson(new RecoveryChain { seed = seed, targets = targets, spawn = spawn });
+        else
+            chain = JsonUtility.ToJson(new Chain { seed = seed, targets = targets });
+        File.AppendAllText(Path.Combine(directory, "chains.jsonl"), chain + "\n");
         Assign();
+    }
+
+    private Vector3 RotateRecovery(Vector3 point)
+    {
+        for (int i = 0; i < (seed / 2) % 4; i++) point = new Vector3(-point.z, point.y, point.x);
+        return point;
+    }
+
+    private bool InsideTargetArea(Vector3 point)
+    {
+        if (!settings.recovery) return Mathf.Abs(point.x) <= 15f && Mathf.Abs(point.z) <= 15f;
+        // Undo the seeded rotation to sample wall strips or corner patches consistently.
+        int turns = (4 - (seed / 2) % 4) % 4;
+        for (int i = 0; i < turns; i++) point = new Vector3(-point.z, point.y, point.x);
+        if (seed % 2 == 0) return point.x >= 10f && point.x <= 19.4f && Mathf.Abs(point.z) <= 14f;
+        return point.x >= 10f && point.x <= 19.4f && point.z >= 10f && point.z <= 19.4f;
     }
 
     private void Assign()
@@ -175,6 +210,8 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
     public override void ApplyAction(float[] action)
     {
         Vector3 position = source.Player.transform.position;
+        Vector3 delta = targets[leg] - position;
+        if (delta.x * action[0] + delta.z * action[1] <= 0f) awayActions++;
         if (settings.trace_actions) File.AppendAllText(Path.Combine(directory, "actions.jsonl"), JsonUtility.ToJson(new ActionRecord
         {
             seed = seed, leg = leg, step = source.Player.Metrics.StepCount + 1,
@@ -191,6 +228,7 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
         Vector3 position = source.Player.transform.position;
         float distance = QaNavigationCoordinator.Distance(position, targets[leg]);
         minimumDistance = Mathf.Min(minimumDistance, distance);
+        if (QaNavigationCoordinator.Distance(previousPosition, position) < 0.02f) lowMovementActions++;
         pathLength += QaNavigationCoordinator.Distance(previousPosition, position);
         previousPosition = position;
         bool reached = distance <= QaNavigationCoordinator.AcceptanceRadius;
@@ -231,7 +269,9 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
                 planned_waypoints = settings.continuous ? 0 : targets.Length,
                 continuous = settings.continuous, positive_waypoint_reward = positiveReward,
                 steps = source.Player.Metrics.StepCount, elapsed_seconds = source.Player.Metrics.ElapsedSeconds,
-                path_length = pathLength, stuck_events = source.Player.Metrics.StuckEvents
+                path_length = pathLength, stuck_events = source.Player.Metrics.StuckEvents,
+                recovery = settings.recovery, corner = settings.recovery && seed % 2 != 0,
+                low_movement_actions = lowMovementActions, away_actions = awayActions
             }) + "\n");
             recorded = true;
             source.Sensors.EndAttempt();
@@ -245,8 +285,10 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
         public bool training_rewards;
         public bool trace_actions = true;
         public bool continuous;
+        public bool recovery;
     }
     [Serializable] private class Chain { public int seed; public Vector3[] targets; }
+    [Serializable] private class RecoveryChain { public int seed; public Vector3[] targets; public Vector3 spawn; }
     [Serializable] private class ActionRecord
     {
         public int seed, leg, step;
@@ -263,6 +305,8 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
     {
         public int seed, steps, reached_waypoints, planned_waypoints, stuck_events;
         public bool reached, continuous;
+        public bool recovery, corner;
+        public int low_movement_actions, away_actions;
         public float elapsed_seconds, path_length, positive_waypoint_reward;
     }
 }

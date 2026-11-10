@@ -40,6 +40,30 @@ The [QA-33 navigator-enabled test](diagnostics/distant-exit-20261107-220640-eval
 
 [QA-44](qa-waypoint-throughput-20261108-233001-train/README.md) restarts from the QA-17 actor via zero-step QA-18, excluding later waypoint/navigation learning; [QA-43 is fully backed up](qa43-backup-20261108-231031/BACKUP.md). Four authorized 500-episode stages: single targets 3-6, 6-8 and 8-10 (each 500/500 training, 100/100 frozen), then full-60-second continuous targets. On matched timed cases, mean arrivals **10.93 (QA-43) -> 38.98 (new parent before timed training) -> 44.43 (final)**; ten-target threshold **42 -> 95 -> 100/100**, final range 37-53. The timed stage adds +5.45 arrivals/minute, primarily improving the low tail; most overall gain precedes it. No causal input ablation. Final **328,433 branch steps / 4,000 actor-lineage episodes**. Empty-room local control only; no actual navigator/exit deployment.
 
+## QA-45 simple generated two-room navigation
+
+[Frozen QA-44 through the dungeon manager](diagnostics/two-room-navigation-20261109-044803-evaluate/README.md) reaches **48/100 actual exits**, versus **100/100** for matched direct waypoint steering. Each layout has two empty 20 x 20 rooms and generated corridors; test-only A* knows floor geometry/exit and supplies clear waypoints up to ten units away. Fifty-two timeouts end in starting room / corridor / exit room: 32 / 19 / 1; 23 reach no waypoint. This exposes steering/wall/recovery weaknesses beyond empty-room drills. It does not test unseen-exit discovery, combat or puzzles. Same QA-44 weights/counters, no new checkpoint or deployment.
+
+## QA-46 100 two-room training episodes
+
+[QA-46](qa-two-room-20261109-063812-train/README.md) continues full QA-44 for exactly 100 two-room episodes: 69 training exits / 31 timeouts. Fresh matched frozen exits **29/100 parent -> 31/100 child**, 19 gained / 17 lost, no clear improvement. The earlier 48/100 used different layouts. Fixed oracle planner, real generator/player/exit, no enemies/puzzles; empty-room matched mean 44.43 -> 44.17 arrivals/minute, both 100/100 reach ten but minimum 37 -> 11. Final **360,928 steps / 14,070 updates / 4,100 lineage episodes**, parent unchanged, child retained without deployment or general promotion.
+
+## QA-47 another 200 two-room episodes
+
+[QA-47](qa-two-room-20261109-070143-train/README.md) continues QA-46 with exactly 200 fresh episodes (300 total two-room), training 145 exits / 55 timeouts. Matched frozen actual exits **31 -> 54/100**, 28 gained / five lost; capped mean time 45.302 -> 34.884 s. All 100 now reach at least one waypoint. Same fixed oracle route heuristic and game geometry; no gameplay/navigation redesign. Empty-room matched throughput **44.17 -> 44.85/minute**, both 100/100 reach ten, minimum 11 -> 37. Final **416,793 steps / 16,250 updates / 4,300 actor-lineage episodes**. Clear gain on this reused two-room benchmark; 46 timeouts remain, no unknown-exit/larger-dungeon validation or deployment. Parents preserved.
+
+## QA-48 finite eight-room throughput
+
+[QA-48](qa-room-throughput-20261109-072306-train/README.md) trains 300 full-minute episodes for distinct new rooms in an eight-room dungeon. Training averages 1.70 new rooms; matched frozen mean regresses **1.22 -> 0.54**, zero-progress cases 38 -> 64/100. Two-room exits 54 -> 30/100 and empty-waypoint mean 44.85 -> 34.61 also regress. Final 596,793 steps / 23,280 updates / 4,600 actor-lineage episodes. Failed alternative retained; QA-47 remains preferred. This finite run preceded the user's endless-sequence selection and is not an endless result.
+
+## Continuous room-sequence setup (no additional training)
+
+[Verified sequence setup](diagnostics/room-sequence-setup-20261109-075536-verify/README.md) prepares sixteen ordered connected rooms, with a prefix that cannot be exhausted during sixty seconds. Targets advance without resetting movement/history/sensors; direct controls visit 6 / 5 / 6 new rooms, idle zero, all 600 actions. Legacy generation replay matches three QA-47 cases exactly. QA-47 remains the proposed parent; zero additional training has run. The user selected this after finite QA-48 had already used 300 episodes, so a new 300-episode budget awaits clarification.
+
+## QA-50 lower-rate refresh and wall/corner recovery
+
+[QA-50](qa-waypoint-recovery-20261109-224625-train/README.md) continues preserved QA-47 at learning rate 0.00002 for exactly 100 continuous waypoint episodes then 300 wall/corner episodes. One active target until arrival, same timed shaping, no navigator replanning in the drills. Matched frozen empty-room arrivals **44.85 -> 45.41/minute**, recovery **47.78 -> 52.29** (+9.44%), recovery low-motion actions **3,154 -> 927** (-70.61%). One recovery case still fails. Two-room exits **54 -> 57/100**, eleven gained / eight lost, not a clear reliability gain; integrated navigation remains limited. Final **656,793 steps / 25,610 optimizer epochs / 4,700 lineage episodes**, all twenty-nine archives verified. QA-47 remains the established reference; QA-50 is a retained recovery-improved candidate, without deployment or further training.
+
 ## Historical exit-task baselines
 
 [QA-19](qa-waypoint-20261103-163554-train/README.md) remains the 20 x 20 baseline with 100/100 frozen exit clears. QA-21 through QA-24 cover the separate 40 x 40, 30-second exit task; they do not establish consistent improvement from further training or larger exit rewards. Their checkpoints and full comparisons remain linked in the inventory and [training history](../../../Training/changelog/qa-player.md).
@@ -48,6 +72,9 @@ The [QA-33 navigator-enabled test](diagnostics/distant-exit-20261107-220640-eval
 
 | Checkpoint | Model steps in this workflow | Role |
 | --- | --- | --- |
+| [QA-50 targeted recovery candidate](qa-waypoint-recovery-20261109-224625-train/README.md) | 656,793, direct QA-47 continuation | 100 refresh + 300 wall/corner episodes, LR tenfold lower. Frozen recovery 47.78 -> 52.29/min, empty 44.85 -> 45.41, two-room exits 54 -> 57/100 (uncertain gain). No deployment. |
+| [QA-47 200-episode two-room continuation](qa-two-room-20261109-070143-train/README.md) | 416,793, full QA-46 continuation | 200 more episodes (300 total); frozen exits 31 -> 54/100, capped time improves, empty-room throughput 44.17 -> 44.85/min and minimum restored. No deployment. |
+| [QA-46 two-room child](qa-two-room-20261109-063812-train/README.md) | 360,928, full QA-44 continuation | Exactly 100 training episodes; matched fresh exits 29 -> 31/100, no clear improvement. Empty-room mean 44.43 -> 44.17, lower tail worse; retained separately without promotion. |
 | [QA-44 restarted timed policy](qa-waypoint-throughput-20261108-233001-train/README.md) | 328,433, new QA-17 actor branch via QA-18 | Four 500-episode stages; final 44.43 targets/minute, 100/100 reach ten versus QA-43 10.93 / 42/100. Strong before timed stage too (38.98 / 95/100); no causal or deployment claim. |
 | [QA-43 continued chain skill](qa-waypoint-chain-20261108-194516-train/README.md) | 260,803, full QA-42 continuation | Another 500 chain episodes; frozen ten-target completion 42/100 versus 41/100, common successes faster; no clear reliability gain. |
 | [QA-42 chain continuation](qa-waypoint-chain-20261108-183246-train/README.md) | 174,332, full QA-39 continuation | 500 requested chain episodes, 371 training completions; frozen ten-target chains 41/100 versus parent 33/100, slower common successes; no exit/navigation evaluation. |

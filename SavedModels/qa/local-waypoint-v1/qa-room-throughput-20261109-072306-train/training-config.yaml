@@ -1,0 +1,29 @@
+# QA-48: 300 full-minute episodes, as many distinct new rooms as possible.
+model: ppo
+port: 7784
+seed: 16300
+max_episodes: 300
+total_timesteps: 180000
+checkpoint_freq: 10000
+output_dir: ../Logs/qa-room-throughput
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-two-room-20261109-070143-train/final_model.zip
+resume_sha256: 2eafa17b18b59271d93ac2d0a4a3f95240788296f5c8132d9f20b33740c7477d
+parent_lineage_episodes: 4300
+observation_contract: local-waypoint-v1
+evaluation_seed: 453000
+evaluation_episodes: 100
+episode_seconds: 60
+room_count: 8
+room_size: [20, 20]
+area_size: [160, 160]
+max_waypoint_distance: 10
+new_room_reward: 10
+waypoint_reward_budget: 5
+time_cost_per_action: 0.001
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+ppo:
+  batch_size: 64
+device: cpu

@@ -1,0 +1,20 @@
+{
+  "failed_episodes": 52,
+  "counts": {
+    "zero_waypoint_arrivals": 23,
+    "last100_majority_low_motion": 16,
+    "last100_majority_away_when_guided": 6,
+    "any_no_waypoint_actions": 12,
+    "last100_majority_no_waypoint": 9
+  },
+  "tail_actions": 100,
+  "majority_threshold": 50,
+  "categories_overlap": true,
+  "initial_exit_distance": {
+    "minimum": 21.0,
+    "mean": 33.33239738916617,
+    "maximum": 54.67174773134658
+  },
+  "initial_routes_available": 100,
+  "unique_layouts": 100
+}

@@ -1,0 +1,83 @@
+{
+  "status": "complete",
+  "reference": {
+    "episodes": 3,
+    "exits_reached": 3,
+    "success_rate": 1.0,
+    "timeouts": 0,
+    "successful_seconds_mean": 11.600000381469727,
+    "all_attempt_seconds_mean": 11.600000381469727,
+    "failures_by_final_phase": {},
+    "failures_entering_exit_room": 0,
+    "waypoint_arrivals": 18,
+    "assignments": 21,
+    "replans": 0,
+    "actions": 348,
+    "low_movement_actions": 0,
+    "no_waypoint_actions": 0,
+    "away_or_perpendicular_actions": 0
+  },
+  "idle": {
+    "episodes": 1,
+    "exits_reached": 0,
+    "success_rate": 0.0,
+    "timeouts": 1,
+    "successful_seconds_mean": null,
+    "all_attempt_seconds_mean": 60.0,
+    "failures_by_final_phase": {
+      "spawn_room": 1
+    },
+    "failures_entering_exit_room": 0,
+    "waypoint_arrivals": 0,
+    "assignments": 30,
+    "replans": 29,
+    "actions": 600,
+    "low_movement_actions": 600,
+    "no_waypoint_actions": 0,
+    "away_or_perpendicular_actions": 600
+  },
+  "evaluation": {
+    "episodes": 100,
+    "exits_reached": 48,
+    "success_rate": 0.48,
+    "timeouts": 52,
+    "successful_seconds_mean": 15.36666696270307,
+    "all_attempt_seconds_mean": 38.57600014209747,
+    "failures_by_final_phase": {
+      "spawn_room": 32,
+      "corridor": 19,
+      "exit_room": 1
+    },
+    "failures_entering_exit_room": 1,
+    "waypoint_arrivals": 3321,
+    "assignments": 8169,
+    "replans": 4761,
+    "actions": 38576,
+    "low_movement_actions": 7726,
+    "no_waypoint_actions": 4831,
+    "away_or_perpendicular_actions": 8817
+  },
+  "weight_updates": 0,
+  "model_steps": 328433,
+  "optimizer_updates": 12810,
+  "checkpoint_sha256": "1094cd0cea9a3fe2bc183b5bd3a7c1dc2ea6d22f4d5d5939629d7ed7ccafde8e",
+  "all_weights_unchanged": true,
+  "matched_reference": {
+    "episodes": 100,
+    "exits_reached": 100,
+    "success_rate": 1.0,
+    "timeouts": 0,
+    "successful_seconds_mean": 10.145000100135803,
+    "all_attempt_seconds_mean": 10.145000100135803,
+    "failures_by_final_phase": {},
+    "failures_entering_exit_room": 0,
+    "waypoint_arrivals": 469,
+    "assignments": 568,
+    "replans": 0,
+    "actions": 10145,
+    "low_movement_actions": 0,
+    "no_waypoint_actions": 0,
+    "away_or_perpendicular_actions": 0
+  },
+  "all_100_layouts_match_reference": true
+}

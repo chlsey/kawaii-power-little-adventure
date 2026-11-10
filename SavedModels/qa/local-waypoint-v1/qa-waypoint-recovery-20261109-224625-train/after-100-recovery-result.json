@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "frozen": true,
+  "completed_episodes": 100,
+  "total_arrivals": 3625,
+  "mean_arrivals": 36.25,
+  "median_arrivals": 45.0,
+  "p10_arrivals": 0.0,
+  "p90_arrivals": 56.0,
+  "minimum_arrivals": 0,
+  "maximum_arrivals": 62,
+  "episodes_reaching_ten": 78,
+  "actions": 60000,
+  "low_movement_actions": 14499,
+  "away_actions": 16530,
+  "wall_episodes": 50,
+  "corner_episodes": 50,
+  "model_steps": 476793,
+  "optimizer_updates": 18590,
+  "added_model_steps": 0,
+  "added_optimizer_updates": 0
+}

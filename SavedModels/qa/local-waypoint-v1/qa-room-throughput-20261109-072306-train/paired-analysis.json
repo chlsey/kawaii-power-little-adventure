@@ -1,0 +1,12 @@
+{
+  "mean_gain_new_rooms": -0.68,
+  "bootstrap_95": [
+    -0.9,
+    -0.48
+  ],
+  "better_cases": 3,
+  "worse_cases": 43,
+  "tied_cases": 54,
+  "draws": 20000,
+  "seed": 48
+}

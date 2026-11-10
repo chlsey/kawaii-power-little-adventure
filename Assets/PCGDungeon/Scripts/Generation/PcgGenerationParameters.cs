@@ -27,4 +27,7 @@ public class PcgGenerationParameters
     public int PowerupsPerRoom;
 
     public int Seed;
+
+    // Training-only ordered room chain; ordinary PCG layouts leave this false.
+    public bool TrainingRoomSequence;
 }

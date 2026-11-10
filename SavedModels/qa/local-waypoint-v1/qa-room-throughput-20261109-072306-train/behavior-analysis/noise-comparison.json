@@ -1,0 +1,72 @@
+{
+  "status": "complete",
+  "trials": [
+    {
+      "level_seed": 453043,
+      "action_mode": "mean",
+      "action_seed": 501043,
+      "new_rooms": 0,
+      "low_movement_actions": 559,
+      "no_waypoint_actions": 1,
+      "away_actions": 561,
+      "path_length": 14.437838554382324
+    },
+    {
+      "level_seed": 453043,
+      "action_mode": "sampled",
+      "action_seed": 501043,
+      "new_rooms": 0,
+      "low_movement_actions": 548,
+      "no_waypoint_actions": 0,
+      "away_actions": 555,
+      "path_length": 16.281295776367188
+    },
+    {
+      "level_seed": 453093,
+      "action_mode": "mean",
+      "action_seed": 501093,
+      "new_rooms": 1,
+      "low_movement_actions": 371,
+      "no_waypoint_actions": 1,
+      "away_actions": 374,
+      "path_length": 69.84038543701172
+    },
+    {
+      "level_seed": 453093,
+      "action_mode": "sampled",
+      "action_seed": 501093,
+      "new_rooms": 1,
+      "low_movement_actions": 358,
+      "no_waypoint_actions": 3,
+      "away_actions": 379,
+      "path_length": 75.260986328125
+    },
+    {
+      "level_seed": 453045,
+      "action_mode": "mean",
+      "action_seed": 501045,
+      "new_rooms": 0,
+      "low_movement_actions": 0,
+      "no_waypoint_actions": 0,
+      "away_actions": 0,
+      "path_length": 181.51206970214844
+    },
+    {
+      "level_seed": 453045,
+      "action_mode": "sampled",
+      "action_seed": 501045,
+      "new_rooms": 1,
+      "low_movement_actions": 333,
+      "no_waypoint_actions": 1,
+      "away_actions": 408,
+      "path_length": 70.83964538574219
+    }
+  ],
+  "weight_updates": 0,
+  "model_counters": [
+    596793,
+    23280
+  ],
+  "deterministic_outcomes_and_motion_match_original": true,
+  "limit": "Three diagnosed layouts and one sampled-action seed each; not a general stochastic evaluation."
+}

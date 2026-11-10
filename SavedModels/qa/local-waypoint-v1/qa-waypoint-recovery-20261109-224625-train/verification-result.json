@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "training_episodes": 400,
+  "refresh_episodes": 100,
+  "recovery_episodes": 300,
+  "wall_episodes": 150,
+  "corner_episodes": 150,
+  "training_steps": 240000,
+  "verified_archives": 29,
+  "parent_unchanged": true,
+  "settings_restored": true,
+  "sources_unchanged": true,
+  "lr": 2e-05,
+  "final_steps": 656793,
+  "final_updates": 25610,
+  "final_lineage_episodes": 4700,
+  "final_sha256": "acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64",
+  "paired": {
+    "empty": {
+      "mean_change": 0.56,
+      "improve": 49,
+      "worsen": 4,
+      "tie": 47,
+      "exploratory_paired_bootstrap95": [
+        0.41,
+        0.72
+      ]
+    },
+    "recovery": {
+      "mean_change": 4.51,
+      "improve": 62,
+      "worsen": 17,
+      "tie": 21,
+      "exploratory_paired_bootstrap95": [
+        2.74,
+        6.540249999999978
+      ]
+    },
+    "two-room": {
+      "mean_change": 0.03,
+      "improve": 11,
+      "worsen": 8,
+      "tie": 81,
+      "exploratory_paired_bootstrap95": [
+        -0.05,
+        0.12
+      ]
+    }
+  },
+  "training_total_arrivals": 17373,
+  "training_recovery_arrivals": 13198,
+  "unity_processes_stopped": true
+}

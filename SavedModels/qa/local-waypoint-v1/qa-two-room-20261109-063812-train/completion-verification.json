@@ -1,0 +1,36 @@
+{
+  "status": "verified",
+  "verified_at_utc": "2026-11-09T06:50:09.223521+00:00",
+  "phase_counts": {
+    "reward-verification": {
+      "episodes": 4,
+      "actions": 816,
+      "saved_policy_prediction_checks": 0
+    },
+    "training": {
+      "episodes": 100,
+      "actions": 32495,
+      "saved_policy_prediction_checks": 0
+    },
+    "parent-evaluation": {
+      "episodes": 100,
+      "actions": 46305,
+      "saved_policy_prediction_checks": 0
+    },
+    "child-evaluation": {
+      "episodes": 100,
+      "actions": 45302,
+      "saved_policy_prediction_checks": 100
+    },
+    "empty-room-regression": {
+      "episodes": 100,
+      "actions": 60000,
+      "saved_policy_prediction_checks": 0
+    }
+  },
+  "archives_verified": 7,
+  "parent_sha256_unchanged": true,
+  "source_snapshots_match": true,
+  "child_predictions_match_all_100_initial_observations": true,
+  "final_model_sha256": "494027e711eeece9a87a41fdb7d0f81ab32eaeb9c150dbf6727b667a5ba3ce80"
+}

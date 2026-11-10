@@ -1,0 +1,21 @@
+{
+  "phase": "legacy-exit-smoke",
+  "target": 3,
+  "episodes": 1,
+  "exits_reached": 0,
+  "success_rate": 0.0,
+  "timeouts": 1,
+  "successful_seconds_mean": null,
+  "all_attempt_seconds_mean": 60.0,
+  "failures_by_final_phase": {
+    "spawn_room": 1
+  },
+  "failures_entering_exit_room": 0,
+  "waypoint_arrivals": 31,
+  "assignments": 78,
+  "replans": 46,
+  "actions": 600,
+  "low_movement_actions": 0,
+  "no_waypoint_actions": 0,
+  "away_or_perpendicular_actions": 206
+}

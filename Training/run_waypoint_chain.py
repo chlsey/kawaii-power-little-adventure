@@ -83,7 +83,7 @@ def launch(directory, stage, training_rewards, trace_actions, continuous=False):
     directory.mkdir(parents=True)
     save(directory / 'session.json', dict(min_waypoints=stage['min_waypoints'],
         max_waypoints=stage['max_waypoints'], training_rewards=training_rewards,
-        trace_actions=trace_actions, continuous=continuous))
+        trace_actions=trace_actions, continuous=continuous, recovery=stage.get('recovery', False)))
     process = subprocess.Popen([str(UNITY), '-batchmode', '-nographics', '-projectPath', str(GAME),
         '-executeMethod', 'QaWaypointChainSession.Run', '-trainingRunDirectory', str(directory),
         '-logFile', str(directory / 'unity.log')], cwd=GAME, creationflags=subprocess.CREATE_NO_WINDOW)

@@ -37,6 +37,7 @@ public class Generator : MonoBehaviour
     private int wallObjConsequitiveDistance;
     private int amountOfAdjacentRoomsToConnect;
     private int powerupsPerRoom;
+    private bool trainingRoomSequence;
     private const int MaxFailedPlacementsPerRoom = 500;
 
     private List<ObjectList> walls;
@@ -119,6 +120,7 @@ public class Generator : MonoBehaviour
         maxRoomHeight = parameters.MaxRoomHeight;
 
         powerupsPerRoom = parameters.PowerupsPerRoom;
+        trainingRoomSequence = parameters.TrainingRoomSequence;
 
         // amountOfAdjacentRoomsToConnect =
         //     parameters.AdjacentRoomConnections;
@@ -366,15 +368,26 @@ public class Generator : MonoBehaviour
     //TODO: Add comments to this function
     private bool Generate()
     {
-        int randomBossRoom = Random.Range(0, rooms);
+        int randomBossRoom;
+        if (trainingRoomSequence) randomBossRoom = rooms - 1;
+        else randomBossRoom = Random.Range(0, rooms);
         bool isBossRoom = false;
         int failedPlacements = 0;
+        int sequenceZ = 80;
         
         for (int i = 0; i < rooms; i++)
         {
             //Set temp area to area of room
-            roomPos[i].x = Random.Range(0, areaWidth);
-            roomPos[i].y = Random.Range(0, areaHeight);
+            if (trainingRoomSequence)
+            {
+                if (i > 0) sequenceZ = Mathf.Clamp(sequenceZ + Random.Range(-1, 2) * 24, 32, 128);
+                roomPos[i] = new Vector2Int(30 + i * 24, sequenceZ);
+            }
+            else
+            {
+                roomPos[i].x = Random.Range(0, areaWidth);
+                roomPos[i].y = Random.Range(0, areaHeight);
+            }
 
             if (i == randomBossRoom)
             {
@@ -411,17 +424,24 @@ public class Generator : MonoBehaviour
             }
         }
 
-        int randomRoom = Random.Range(0, parentRooms.Length);
-
-        CalculateCorridors();
-
-        List<Room> tempList = new List<Room>();
-
-        Room tempRoom = parentRooms[0];
-
-        AddConnectedRoom(tempRoom, ref tempList, true);
-
-        CheckConnectedRoom(tempRoom, tempList);
+        if (trainingRoomSequence)
+        {
+            playerSpawnRoom = parentRooms[0];
+            bossSpawnRoom = parentRooms[rooms - 1];
+            // Connect consecutive rooms only; later goals continue the same physical journey.
+            for (int i = 0; i < rooms - 1; i++)
+                parentRooms[i].AddConnectedRooms(parentRooms[i + 1]);
+            CreateCorridors();
+        }
+        else
+        {
+            int randomRoom = Random.Range(0, parentRooms.Length);
+            CalculateCorridors();
+            List<Room> tempList = new List<Room>();
+            Room tempRoom = parentRooms[0];
+            AddConnectedRoom(tempRoom, ref tempList, true);
+            CheckConnectedRoom(tempRoom, tempList);
+        }
 
         GenerateWalls();
 

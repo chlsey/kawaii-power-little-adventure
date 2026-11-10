@@ -1,0 +1,20 @@
+{
+  "paired_completion_gain_points": 2.0,
+  "bootstrap_95_completion_points": [
+    -10.0,
+    14.000000000000002
+  ],
+  "paired_capped_seconds_saved": 1.0030000066757203,
+  "bootstrap_95_seconds_saved": [
+    -4.560999970793724,
+    6.424025001168249
+  ],
+  "bootstrap_draws": 20000,
+  "bootstrap_seed": 46,
+  "paired_exact_p": 0.8679394004284404,
+  "common_successes": 12,
+  "common_success_parent_seconds": 11.80833343664805,
+  "common_success_child_seconds": 11.641667008399963,
+  "zero_waypoint_failures_parent": 33,
+  "zero_waypoint_failures_child": 9
+}

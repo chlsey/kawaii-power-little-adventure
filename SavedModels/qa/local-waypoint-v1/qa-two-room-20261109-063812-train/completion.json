@@ -1,0 +1,84 @@
+{
+  "status": "complete",
+  "training_episodes": 100,
+  "training_steps": 32495,
+  "final_model_steps": 360928,
+  "final_optimizer_updates": 14070,
+  "final_lineage_episodes": 4100,
+  "final_sha256": "494027e711eeece9a87a41fdb7d0f81ab32eaeb9c150dbf6727b667a5ba3ce80",
+  "parent_unchanged": true,
+  "exit_comparison": {
+    "parent": {
+      "episodes": 100,
+      "exits_reached": 29,
+      "success_rate": 0.29,
+      "timeouts": 71,
+      "successful_seconds_mean": 12.775862282720105,
+      "all_attempt_seconds_mean": 46.30500006198883,
+      "failures_by_final_phase": {
+        "spawn_room": 45,
+        "corridor": 26
+      },
+      "failures_entering_exit_room": 0,
+      "waypoint_arrivals": 5334,
+      "assignments": 12920,
+      "replans": 7498,
+      "actions": 46305,
+      "low_movement_actions": 6097,
+      "no_waypoint_actions": 918,
+      "away_or_perpendicular_actions": 12232
+    },
+    "child": {
+      "episodes": 100,
+      "exits_reached": 31,
+      "success_rate": 0.31,
+      "timeouts": 69,
+      "successful_seconds_mean": 12.587096952622936,
+      "all_attempt_seconds_mean": 45.30200005531311,
+      "failures_by_final_phase": {
+        "spawn_room": 49,
+        "corridor": 20
+      },
+      "failures_entering_exit_room": 0,
+      "waypoint_arrivals": 3759,
+      "assignments": 9587,
+      "replans": 5752,
+      "actions": 45302,
+      "low_movement_actions": 7509,
+      "no_waypoint_actions": 10651,
+      "away_or_perpendicular_actions": 11192
+    },
+    "paired": {
+      "both_clear": 12,
+      "gained": 19,
+      "lost": 17,
+      "both_fail": 52
+    }
+  },
+  "empty_room": {
+    "parent": {
+      "completed_episodes": 100,
+      "total_arrivals": 4443,
+      "mean_arrivals": 44.43,
+      "median_arrivals": 45.0,
+      "p10_arrivals": 40.9,
+      "p90_arrivals": 48.0,
+      "minimum_arrivals": 37,
+      "maximum_arrivals": 53,
+      "episodes_reaching_ten": 100
+    },
+    "child": {
+      "completed_episodes": 100,
+      "total_arrivals": 4417,
+      "mean_arrivals": 44.17,
+      "median_arrivals": 45.0,
+      "p10_arrivals": 40.9,
+      "p90_arrivals": 48.0,
+      "minimum_arrivals": 11,
+      "maximum_arrivals": 53,
+      "episodes_reaching_ten": 100
+    },
+    "all_target_sequences_identical": true,
+    "weight_updates": 0
+  }
+}

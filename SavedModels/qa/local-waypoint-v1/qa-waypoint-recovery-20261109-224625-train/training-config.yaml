@@ -1,0 +1,21 @@
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-two-room-20261109-070143-train/final_model.zip
+resume_sha256: 2eafa17b18b59271d93ac2d0a4a3f95240788296f5c8132d9f20b33740c7477d
+parent_lineage_episodes: 4300
+learning_rate: 0.00002
+model: ppo
+total_timesteps: 240000
+checkpoint_freq: 10000
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+ppo: {batch_size: 64}
+device: cpu
+seed: 18000
+evaluation_seed: 466000
+port: 7783
+max_episodes: 400
+episode_seconds: 60
+output_dir: ../Logs/qa-recovery
+curriculum:
+  - {episodes: 100, recovery: false}
+  - {episodes: 300, recovery: true}

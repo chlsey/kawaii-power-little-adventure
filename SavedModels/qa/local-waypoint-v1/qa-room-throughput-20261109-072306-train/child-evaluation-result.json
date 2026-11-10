@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "episodes": 100,
+  "total_new_rooms": 54,
+  "mean_new_rooms": 0.54,
+  "median_new_rooms": 0.0,
+  "minimum_new_rooms": 0,
+  "maximum_new_rooms": 4,
+  "episodes_no_new_room": 64,
+  "episodes_all_seven_new_rooms": 0,
+  "actions": 60000,
+  "mean_episode_seconds": 60.0,
+  "no_waypoint_actions": 1656,
+  "low_movement_actions": 25062,
+  "frozen": true,
+  "model_steps": 596793,
+  "optimizer_updates": 23280,
+  "added_model_steps": 0,
+  "added_optimizer_updates": 0
+}

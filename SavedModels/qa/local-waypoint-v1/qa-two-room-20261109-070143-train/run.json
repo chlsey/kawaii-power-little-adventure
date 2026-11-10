@@ -1,0 +1,43 @@
+{
+  "status": "complete",
+  "mode": "train",
+  "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-two-room-20261109-063812-train\\final_model.zip",
+  "parent_sha256": "494027e711eeece9a87a41fdb7d0f81ab32eaeb9c150dbf6727b667a5ba3ce80",
+  "parent_model_steps": 360928,
+  "parent_optimizer_updates": 14070,
+  "parent_lineage_episodes": 4100,
+  "new_training_episodes": 200,
+  "training_seed_range": [
+    16100,
+    16299
+  ],
+  "evaluation_seed_range": [
+    451000,
+    451099
+  ],
+  "observation_contract": "local-waypoint-v1",
+  "full_actor_critic_optimizer_continuation": true,
+  "navigator_unchanged_from_qa45": true,
+  "reward": "+50 actual exit, +0.1/new closest waypoint unit and +1/new waypoint arrival, shared +5 positive cap, -0.001/action",
+  "source_sha256": {
+    "Assets/Editor/QaTwoRoomNavigationSession.cs": "39a312fa0994d6697b3ebb0cf391a17c6bb3f5bee0e8e61193b48cf10def2f16",
+    "Assets/PCGDungeon/Scripts/Generation/PcgDungeonManager.cs": "a1e58d4ebecb36695e35c37f7b6abdd8c2a7823c1fc00b1cee401cb4313d46b9",
+    "Assets/PCGDungeon/Scripts/Generation/Generator.cs": "39dc563643ffe1ba5fa491135260e78d3bd56a13f5913932b6af5b3dee33f050",
+    "Assets/PCGDungeon/Scripts/Generation/Room.cs": "51c6ff0a26781a636f77a2b06d74300e9b4dd8977056b998f251aa785d66b692",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/QA/QaMapNavigation.cs": "cd1dfd9158c5a826bf7faad27844ca361cca58c8d12941508f592dd545c69635",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "447fe9c37a0d6ef5ac299c48ee6ce4ff8bdf5288f706dac7da25bd062210dc46",
+    "Assets/PCGDungeon/Scripts/QA/QaExitZone.cs": "7a0a2200e11b37d17b39b5f197fb71626de3373773f7c8b1b0735bea65c98d34",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/Scenes/QaPlayerTraining.unity": "f3914cb7a06a120fcc20bc76fc826f79646fce1f71f0994f2062cb24c5e2d8d6",
+    "Assets/PCGDungeon/Settings/Settings.asset": "4bfb45fa25de6c5eb19e0d5f4915b29497a90998a56180321cd8f4142a057e71",
+    "Training/evaluate_two_room_navigation.py": "8519a54ed0fa22d479c22591e74690d82b82b30c138301cd65ae95b513b3af38",
+    "Training/train_two_room_navigation.py": "3164f72c7feda3c19a52ec8db7fa30da969b14aaffddf432901674f1fcda3706",
+    "Training/run_waypoint_throughput.py": "b2fe16e0229d2f0b5f3b86da70774b0e5ec6420f6e5e25a3748dbd8ef7189c93",
+    "Training/run_waypoint_chain.py": "b5b68e718c7a483f2eba588ee9ab67772bb75496b930d7b4fda216b22bc241e5",
+    "Assets/Editor/QaWaypointChainSession.cs": "a131df5b496689d9c238ba4d99754f7f14d91d68d77bc106126a19a6d75014cc",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "7020df56e643f99ba884f652306a2deaa1862bf84babfc3bba61039fc2f8b533"
+  },
+  "actual_training_episodes": 200,
+  "completion_record": "completion.json"
+}

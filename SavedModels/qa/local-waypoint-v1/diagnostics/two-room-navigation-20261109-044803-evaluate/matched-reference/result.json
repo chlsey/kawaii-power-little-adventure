@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "initial_route_available": 100,
+  "episodes": 100,
+  "exits_reached": 100,
+  "success_rate": 1.0,
+  "timeouts": 0,
+  "successful_seconds_mean": 10.145000100135803,
+  "all_attempt_seconds_mean": 10.145000100135803,
+  "failures_by_final_phase": {},
+  "failures_entering_exit_room": 0,
+  "waypoint_arrivals": 469,
+  "assignments": 568,
+  "replans": 0,
+  "actions": 10145,
+  "low_movement_actions": 0,
+  "no_waypoint_actions": 0,
+  "away_or_perpendicular_actions": 0
+}

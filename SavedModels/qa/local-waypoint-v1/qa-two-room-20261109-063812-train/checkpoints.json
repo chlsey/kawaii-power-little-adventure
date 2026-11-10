@@ -1,0 +1,40 @@
+{
+  "architecture": "local-waypoint-v1",
+  "checkpoints": [
+    {
+      "path": "checkpoints/rl_model_333433_steps.zip",
+      "sha256": "3b1ae07737fe4633666d19f23ab27bfe9d5732830c457cdcc193850c6e0b2f19",
+      "bytes": 351981
+    },
+    {
+      "path": "checkpoints/rl_model_338433_steps.zip",
+      "sha256": "70dcb287751c9861d9e6179e6c7828009af708cb1762ffaaa909ab9d5b8398d5",
+      "bytes": 351972
+    },
+    {
+      "path": "checkpoints/rl_model_343433_steps.zip",
+      "sha256": "c75c2a07816d2446bcb79e08e6aefda51c8c37b7cafa0177f9c8fd2d25892077",
+      "bytes": 351969
+    },
+    {
+      "path": "checkpoints/rl_model_348433_steps.zip",
+      "sha256": "c37ea118d67d25cd0154193f59635bc6b5aa3bbc9df886434bd5f96c09c73870",
+      "bytes": 351957
+    },
+    {
+      "path": "checkpoints/rl_model_353433_steps.zip",
+      "sha256": "cd510877f443f48d5c198b50f20d6c321f1273a32cf0aeb920ed549e2bd8c503",
+      "bytes": 351937
+    },
+    {
+      "path": "checkpoints/rl_model_358433_steps.zip",
+      "sha256": "91e0e4c98b55f0f82934ce62b6a7b88ff529e519106b82bdf12c9b116ab53141",
+      "bytes": 351929
+    },
+    {
+      "path": "final_model.zip",
+      "sha256": "494027e711eeece9a87a41fdb7d0f81ab32eaeb9c150dbf6727b667a5ba3ce80",
+      "bytes": 351917
+    }
+  ]
+}

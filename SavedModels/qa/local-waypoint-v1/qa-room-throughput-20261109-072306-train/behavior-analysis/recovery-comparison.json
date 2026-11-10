@@ -1,0 +1,59 @@
+{
+  "status": "complete",
+  "trials": [
+    {
+      "seed": 453043,
+      "replayed_QA48_actions": 120,
+      "then_controller": "QA47",
+      "prefix_observations_match": true,
+      "new_rooms": 1,
+      "low_movement_actions": 79,
+      "no_waypoint_actions": 1,
+      "assignments": 442,
+      "replans": 221,
+      "waypoint_arrivals": 220,
+      "path_length": 201.81094360351562
+    },
+    {
+      "seed": 453043,
+      "replayed_QA48_actions": 120,
+      "then_controller": "reference",
+      "prefix_observations_match": true,
+      "new_rooms": 3,
+      "low_movement_actions": 79,
+      "no_waypoint_actions": 1,
+      "assignments": 37,
+      "replans": 5,
+      "waypoint_arrivals": 29,
+      "path_length": 206.43751525878906
+    },
+    {
+      "seed": 453045,
+      "replayed_QA48_actions": 100,
+      "then_controller": "reference",
+      "prefix_observations_match": true,
+      "new_rooms": 5,
+      "low_movement_actions": 0,
+      "no_waypoint_actions": 0,
+      "assignments": 95,
+      "replans": 32,
+      "waypoint_arrivals": 57,
+      "path_length": 233.2603302001953
+    },
+    {
+      "seed": 453045,
+      "replayed_QA48_actions": 0,
+      "then_controller": "reference",
+      "prefix_observations_match": true,
+      "new_rooms": 6,
+      "low_movement_actions": 0,
+      "no_waypoint_actions": 0,
+      "assignments": 35,
+      "replans": 0,
+      "waypoint_arrivals": 28,
+      "path_length": 239.99957275390625
+    }
+  ],
+  "weight_updates": 0,
+  "limit": "Two diagnosed layouts and exact-prefix counterfactuals; not an aggregate policy benchmark."
+}

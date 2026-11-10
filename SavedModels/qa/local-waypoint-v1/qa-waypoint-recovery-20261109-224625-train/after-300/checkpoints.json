@@ -1,0 +1,10 @@
+{
+  "architecture": "local-waypoint-v1",
+  "checkpoints": [
+    {
+      "path": "final_model.zip",
+      "sha256": "9e9234af6ce5935427b5b2510548ab9e412ce32d85c5487c1b44a740b3cd8a04",
+      "bytes": 353424
+    }
+  ]
+}

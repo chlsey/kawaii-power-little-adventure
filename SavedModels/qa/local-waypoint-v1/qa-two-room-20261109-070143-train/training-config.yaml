@@ -1,0 +1,31 @@
+# QA-47: exactly 200 more two-room episodes, full QA-46 continuation.
+model: ppo
+port: 7784
+seed: 16100
+max_episodes: 200
+total_timesteps: 120000
+checkpoint_freq: 5000
+output_dir: ../Logs/qa-two-room-training
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-two-room-20261109-063812-train/final_model.zip
+resume_sha256: 494027e711eeece9a87a41fdb7d0f81ab32eaeb9c150dbf6727b667a5ba3ce80
+parent_lineage_episodes: 4100
+parent_evaluation_phase: child-evaluation
+throughput_phase: empty-room-regression
+observation_contract: local-waypoint-v1
+evaluation_seed: 451000
+evaluation_episodes: 100
+episode_seconds: 60
+room_count: 2
+room_size: [20, 20]
+area_size: [100, 100]
+max_waypoint_distance: 10
+completion_reward: 50
+waypoint_reward_budget: 5
+time_cost_per_action: 0.001
+learning_rate: 0.0002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+ppo:
+  batch_size: 64
+device: cpu

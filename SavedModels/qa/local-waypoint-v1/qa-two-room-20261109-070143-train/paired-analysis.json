@@ -1,0 +1,80 @@
+{
+  "paired_completion_gain_points": 23.0,
+  "bootstrap_95_completion_points": [
+    13.0,
+    33.0
+  ],
+  "paired_capped_seconds_saved": 10.41799991130829,
+  "bootstrap_95_seconds_saved": [
+    5.783999952554703,
+    15.058049881815906
+  ],
+  "bootstrap_draws": 20000,
+  "bootstrap_seed": 47,
+  "paired_exact_p": 6.618769839406013e-05,
+  "common_successes": 26,
+  "common_success_parent_seconds": 11.907692505763126,
+  "common_success_child_seconds": 11.60000019807082,
+  "zero_waypoint_failures_parent": 9,
+  "zero_waypoint_failures_child": 0,
+  "exit_room_failures": [
+    {
+      "seed": 451017,
+      "steps": 600,
+      "waypoint_arrivals": 4,
+      "assignments": 5,
+      "replans": 1,
+      "no_waypoint_actions": 498,
+      "low_movement_actions": 92,
+      "away_actions": 0,
+      "stuck_events": 8,
+      "completed": false,
+      "entered_exit_room": true,
+      "training_rewards": false,
+      "reason": "timeout",
+      "final_phase": "exit_room",
+      "elapsed_seconds": 60.0,
+      "path_length": 64.37260437011719,
+      "final_exit_distance": 10.434723854064941,
+      "minimum_exit_distance": 10.179734230041504,
+      "final_waypoint_distance": -1.0,
+      "closest_final_waypoint_distance": 0.5812101364135742,
+      "position": {
+        "x": 44.76335525512695,
+        "y": 0.1799999326467514,
+        "z": 49.317562103271484
+      },
+      "positive_waypoint_reward": 0.0,
+      "total_reward": 0.0
+    },
+    {
+      "seed": 451033,
+      "steps": 600,
+      "waypoint_arrivals": 3,
+      "assignments": 4,
+      "replans": 1,
+      "no_waypoint_actions": 516,
+      "low_movement_actions": 207,
+      "away_actions": 0,
+      "stuck_events": 17,
+      "completed": false,
+      "entered_exit_room": true,
+      "training_rewards": false,
+      "reason": "timeout",
+      "final_phase": "exit_room",
+      "elapsed_seconds": 60.0,
+      "path_length": 51.39704895019531,
+      "final_exit_distance": 10.590420722961426,
+      "minimum_exit_distance": 10.476879119873047,
+      "final_waypoint_distance": -1.0,
+      "closest_final_waypoint_distance": 1.1300115585327148,
+      "position": {
+        "x": 43.673431396484375,
+        "y": 0.17999999225139618,
+        "z": 64.31065368652344
+      },
+      "positive_waypoint_reward": 0.0,
+      "total_reward": 0.0
+    }
+  ]
+}

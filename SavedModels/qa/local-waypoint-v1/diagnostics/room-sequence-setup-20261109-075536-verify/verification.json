@@ -1,0 +1,12 @@
+{
+  "status": "verified",
+  "actual_training_episodes": 0,
+  "weights_unchanged": true,
+  "legacy_three_case_replay_exact": true,
+  "previous_action_continuity_checks": 2396,
+  "room_visit_order_verified": true,
+  "prepared_prefix_entry_distance": 351,
+  "commanded_distance_budget": 240,
+  "settings_restored": true,
+  "verified_at_utc": "2026-11-09T08:03:26.453197+00:00"
+}

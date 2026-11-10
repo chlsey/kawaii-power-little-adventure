@@ -1,0 +1,23 @@
+{
+  "phase": "evaluation",
+  "target": 100,
+  "episodes": 100,
+  "exits_reached": 48,
+  "success_rate": 0.48,
+  "timeouts": 52,
+  "successful_seconds_mean": 15.36666696270307,
+  "all_attempt_seconds_mean": 38.57600014209747,
+  "failures_by_final_phase": {
+    "spawn_room": 32,
+    "corridor": 19,
+    "exit_room": 1
+  },
+  "failures_entering_exit_room": 1,
+  "waypoint_arrivals": 3321,
+  "assignments": 8169,
+  "replans": 4761,
+  "actions": 38576,
+  "low_movement_actions": 7726,
+  "no_waypoint_actions": 4831,
+  "away_or_perpendicular_actions": 8817
+}

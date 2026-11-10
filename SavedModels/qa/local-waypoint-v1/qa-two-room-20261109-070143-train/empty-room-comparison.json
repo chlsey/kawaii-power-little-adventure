@@ -1,0 +1,26 @@
+{
+  "parent": {
+    "completed_episodes": 100,
+    "total_arrivals": 4417,
+    "mean_arrivals": 44.17,
+    "median_arrivals": 45.0,
+    "p10_arrivals": 40.9,
+    "p90_arrivals": 48.0,
+    "minimum_arrivals": 11,
+    "maximum_arrivals": 53,
+    "episodes_reaching_ten": 100
+  },
+  "child": {
+    "completed_episodes": 100,
+    "total_arrivals": 4485,
+    "mean_arrivals": 44.85,
+    "median_arrivals": 45.0,
+    "p10_arrivals": 41.0,
+    "p90_arrivals": 48.0,
+    "minimum_arrivals": 37,
+    "maximum_arrivals": 53,
+    "episodes_reaching_ten": 100
+  },
+  "all_target_sequences_identical": true,
+  "weight_updates": 0
+}

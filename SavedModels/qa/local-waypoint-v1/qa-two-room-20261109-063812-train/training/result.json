@@ -1,0 +1,25 @@
+{
+  "episodes": 100,
+  "exits_reached": 69,
+  "success_rate": 0.69,
+  "timeouts": 31,
+  "successful_seconds_mean": 20.137681366740793,
+  "all_attempt_seconds_mean": 32.49500014305115,
+  "failures_by_final_phase": {
+    "spawn_room": 27,
+    "corridor": 4
+  },
+  "failures_entering_exit_room": 0,
+  "waypoint_arrivals": 952,
+  "assignments": 2550,
+  "replans": 1504,
+  "actions": 32495,
+  "low_movement_actions": 452,
+  "no_waypoint_actions": 1041,
+  "away_or_perpendicular_actions": 10677,
+  "mean_return": 38.90185195224973,
+  "max_positive_waypoint_reward": 5.0,
+  "added_model_steps": 32495,
+  "added_optimizer_updates": 1260,
+  "discarded_partial_rollout_transitions": 239
+}

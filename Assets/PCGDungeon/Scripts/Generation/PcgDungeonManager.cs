@@ -200,14 +200,23 @@ public class PcgDungeonManager : MonoBehaviour
         PcgGenerationParameters parameters =
             policyRunner.Decide(seed);
 
+        return StartPlayerEpisode(parameters);
+    }
+
+    // Controlled evaluations can supply layout parameters without invoking the PCG policy.
+    public bool StartPlayerEpisode(PcgGenerationParameters parameters)
+    {
+        if (QaTestingComplete)
+            return false;
+
         if (!GenerateDungeon(parameters))
         {
             if (!QaTestingComplete)
-                Debug.Log("Dungeon generation failed for seed " + seed);
+                Debug.Log("Dungeon generation failed for seed " + parameters.Seed);
             return false;
         }
 
-        Debug.Log("Dungeon accepted (seed " + seed + ", policy rooms " + parameters.RoomCount
+        Debug.Log("Dungeon accepted (seed " + parameters.Seed + ", policy rooms " + parameters.RoomCount
             + ", generated rooms " + GeneratedRoomCount + ")");
 
         activeParameters = parameters;
@@ -221,8 +230,8 @@ public class PcgDungeonManager : MonoBehaviour
         // QA reporting is opt-in: developers attach the adapter in the scenes that record it.
         qaAdapter = GetComponent<DungeonQaAdapter>();
         if (qaAdapter != null)
-            qaAdapter.StartUnit("dungeon-" + seed);
-        qaPolicyRunner.BeginEpisode(seed);
+            qaAdapter.StartUnit("dungeon-" + parameters.Seed);
+        qaPolicyRunner.BeginEpisode(parameters.Seed);
         qaStepTimer = 0f;
         return true;
     }

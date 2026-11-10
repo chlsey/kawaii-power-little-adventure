@@ -1,0 +1,51 @@
+{
+  "parent": {
+    "episodes": 100,
+    "exits_reached": 31,
+    "success_rate": 0.31,
+    "timeouts": 69,
+    "successful_seconds_mean": 12.587096952622936,
+    "all_attempt_seconds_mean": 45.30200005531311,
+    "failures_by_final_phase": {
+      "spawn_room": 49,
+      "corridor": 20
+    },
+    "failures_entering_exit_room": 0,
+    "waypoint_arrivals": 3759,
+    "assignments": 9587,
+    "replans": 5752,
+    "actions": 45302,
+    "low_movement_actions": 7509,
+    "no_waypoint_actions": 10651,
+    "away_or_perpendicular_actions": 11192
+  },
+  "child": {
+    "episodes": 100,
+    "exits_reached": 54,
+    "success_rate": 0.54,
+    "timeouts": 46,
+    "successful_seconds_mean": 13.488889155564484,
+    "all_attempt_seconds_mean": 34.88400014400482,
+    "failures_by_final_phase": {
+      "spawn_room": 27,
+      "corridor": 17,
+      "exit_room": 2
+    },
+    "failures_entering_exit_room": 2,
+    "waypoint_arrivals": 3368,
+    "assignments": 7180,
+    "replans": 3735,
+    "actions": 34884,
+    "low_movement_actions": 5671,
+    "no_waypoint_actions": 6439,
+    "away_or_perpendicular_actions": 8324
+  },
+  "paired": {
+    "both_clear": 26,
+    "gained": 28,
+    "lost": 5,
+    "both_fail": 41
+  },
+  "all_layouts_identical": true,
+  "evaluation_weight_updates": 0
+}

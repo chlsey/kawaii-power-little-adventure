@@ -1,0 +1,42 @@
+{
+  "status": "verified",
+  "verified_at_utc": "2026-11-09T07:49:19.847721+00:00",
+  "phases": {
+    "verification": {
+      "episodes": 4,
+      "actions": 2400,
+      "saved_model_probes": 0
+    },
+    "parent-evaluation": {
+      "episodes": 100,
+      "actions": 60000,
+      "saved_model_probes": 0
+    },
+    "training": {
+      "episodes": 300,
+      "actions": 180000,
+      "saved_model_probes": 0
+    },
+    "child-evaluation": {
+      "episodes": 100,
+      "actions": 60000,
+      "saved_model_probes": 100
+    },
+    "two-room-regression": {
+      "episodes": 100,
+      "actions": 46349,
+      "saved_model_probes": 0
+    },
+    "empty-room-regression": {
+      "episodes": 100,
+      "actions": 60000,
+      "saved_model_probes": 0
+    }
+  },
+  "parent_unchanged": true,
+  "source_snapshots_match": true,
+  "distinct_visits_exclude_spawn": true,
+  "all_room_visits_grounded": true,
+  "archives_verified": 19,
+  "settings_restored": true
+}
