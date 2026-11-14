@@ -97,6 +97,9 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
     private float episodeReward;
     private bool roomThroughput;
     private bool roomSequence;
+    private bool mixedRooms;
+    private QaMixedRoomLayout mixedLayout;
+    private Vector3 ExitPosition => mixedRooms ? mixedLayout.Exit : manager.ExitPosition;
     private Room[] rooms;
     private readonly HashSet<Room> visitedRooms = new HashSet<Room>();
     private int newRooms, goalRoom, roomHandoffs;
@@ -115,6 +118,7 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
             trainingRewards = options.training_rewards;
             roomThroughput = options.room_throughput;
             roomSequence = options.room_sequence;
+            mixedRooms = options.mixed_rooms;
         }
         generator = Object.FindFirstObjectByType<Generator>();
         // Clone the asset so the normal game scene/settings remain unchanged.
@@ -122,12 +126,20 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         var data = settings.generation;
         int roomCount = roomThroughput ? 8 : 2;
         if (roomSequence) roomCount = 16;
+        if (mixedRooms) roomCount = 3;
         data.minRooms = data.maxRooms = roomCount;
         data.amountOfAdjacentRoomsToConnect = 1;
         data.minRoomWidth = data.maxRoomWidth = data.minRoomHeight = data.maxRoomHeight = 20;
         data.minBossRoomWidth = data.maxBossRoomWidth = data.minBossRoomHeight = data.maxBossRoomHeight = 20;
         data.areaWidth = data.areaHeight = roomThroughput ? 160 : 100;
         if (roomSequence) { data.areaWidth = 480; data.areaHeight = 200; }
+        if (mixedRooms)
+        {
+            data.areaWidth = 120; data.areaHeight = 160; data.minRooms = 1;
+            // The ordered training chain supplies its connections explicitly, including
+            // the valid single-room case that has no adjacent room to connect.
+            data.amountOfAdjacentRoomsToConnect = 0;
+        }
         data.minEnemiesPerRoom = data.maxEnemiesPerRoom = data.puzzleRoomCount = 0;
         data.enemies.Clear(); data.bosses.Clear(); data.breakables.Clear();
         data.staticObjects.Clear(); data.wallObjects.Clear(); data.middleObjects.Clear();
@@ -143,29 +155,39 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
     public override void ResetEpisode(int episodeSeed)
     {
         seed = episodeSeed;
+        int requestedRooms = roomSequence ? 16 : (roomThroughput ? 8 : 2);
+        if (mixedRooms) requestedRooms = 1 + seed % 3;
         if (!manager.StartPlayerEpisode(new PcgGenerationParameters
         {
-            Seed = seed, RoomCount = roomSequence ? 16 : (roomThroughput ? 8 : 2),
-            AreaWidth = roomSequence ? 480 : (roomThroughput ? 160 : 100),
-            AreaHeight = roomSequence ? 200 : (roomThroughput ? 160 : 100),
+            Seed = seed, RoomCount = requestedRooms,
+            AreaWidth = mixedRooms ? 120 : (roomSequence ? 480 : (roomThroughput ? 160 : 100)),
+            AreaHeight = mixedRooms ? 160 : (roomSequence ? 200 : (roomThroughput ? 160 : 100)),
             MinRoomWidth = 20, MaxRoomWidth = 20, MinRoomHeight = 20, MaxRoomHeight = 20,
-            PowerupsPerRoom = 0, TrainingRoomSequence = roomSequence
+            PowerupsPerRoom = 0, TrainingRoomSequence = roomSequence || mixedRooms
         })) throw new InvalidOperationException("Two-room generation failed for seed " + seed);
-        if (manager.GeneratedRoomCount != (roomSequence ? 16 : (roomThroughput ? 8 : 2))) throw new InvalidOperationException("Unexpected room count");
+        if (manager.GeneratedRoomCount != requestedRooms) throw new InvalidOperationException("Unexpected room count");
         player = manager.ActivePlayer;
         actor = player.GetComponent<CharacterController>();
         sensors = player.GetComponent<ModelSensorPackage>();
+        rooms = generator.GetComponentsInChildren<Room>();
+        if (mixedRooms)
+        {
+            Array.Sort(rooms, (a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
+            mixedLayout = new QaMixedRoomLayout();
+            mixedLayout.Build(generator, rooms, player, seed);
+        }
         // Room throughput keeps running after visiting the boss room; no exit trigger ends it.
         if (roomThroughput)
             foreach (QaExitZone exit in generator.GetComponentsInChildren<QaExitZone>()) exit.gameObject.SetActive(false);
         // Align the controller's feet with the generated floor's 0.1-unit top.
         actor.enabled = false;
+        if (mixedRooms) player.transform.position = mixedLayout.Spawn;
         player.transform.position += Vector3.up * 0.11f;
         actor.enabled = true;
+        if (mixedRooms) player.BeginTest();
         Physics.SyncTransforms();
         sensors.BeginAttempt();
-        navigation = new QaDungeonExitHeuristic(generator, actor, sensors, manager.ExitPosition);
-        rooms = generator.GetComponentsInChildren<Room>();
+        navigation = new QaDungeonExitHeuristic(generator, actor, sensors, ExitPosition, mixedRooms);
         visitedRooms.Clear();
         visitedRooms.Add(generator.PlayerSpawnRoom);
         newRooms = roomHandoffs = 0;
@@ -177,16 +199,17 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         episodeReward = 0f;
         arrivals = collisionActions = awayActions = noWaypointActions = 0;
         pathLength = 0f;
-        minimumExitDistance = QaNavigationCoordinator.Distance(player.transform.position, manager.ExitPosition);
+        minimumExitDistance = QaNavigationCoordinator.Distance(player.transform.position, ExitPosition);
         previousPosition = player.transform.position;
         recorded = enteredExitRoom = false;
         bestWaypointDistance = navigation.HasWaypoint ? QaNavigationCoordinator.Distance(previousPosition, navigation.Waypoint) : -1f;
         Append("layouts.jsonl", new Layout
         {
-            seed = seed, spawn = player.transform.position, exit = manager.ExitPosition,
+            seed = seed, spawn = player.transform.position, exit = ExitPosition,
             rooms = manager.GeneratedRoomCount, floors = navigation.Floors,
             room_centers = Array.ConvertAll(rooms, room => room.transform.position),
-            initial_route = navigation.InitialRoute.ToArray(), route_available = navigation.HasWaypoint
+            initial_route = navigation.InitialRoute.ToArray(), route_available = navigation.HasWaypoint,
+            mixed_rooms = mixedRooms, room_details = mixedRooms ? mixedLayout.Rooms : null
         });
     }
 
@@ -229,6 +252,11 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         if (moved < 0.02f) collisionActions++;
         previousPosition = position;
         int newRoomCount = 0;
+        if (mixedRooms)
+        {
+            int index = mixedLayout.RoomIndex(position);
+            if (index >= 0 && visitedRooms.Add(rooms[index])) newRooms++;
+        }
         if (roomThroughput)
         {
             // One unit inside the room bounds counts entry; spawn and revisits never pay.
@@ -243,7 +271,7 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
                     room = i, new_rooms = newRooms, position = position });
             }
         }
-        minimumExitDistance = Mathf.Min(minimumExitDistance, QaNavigationCoordinator.Distance(position, manager.ExitPosition));
+        minimumExitDistance = Mathf.Min(minimumExitDistance, QaNavigationCoordinator.Distance(position, ExitPosition));
         if (Phase(position) == "exit_room") enteredExitRoom = true;
         if (navigation.HasWaypoint)
         {
@@ -282,7 +310,7 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
             {
                 seed = seed, completed = player.Metrics.Completed, reason = reason,
                 steps = player.Metrics.StepCount, elapsed_seconds = player.Metrics.ElapsedSeconds,
-                path_length = pathLength, final_exit_distance = QaNavigationCoordinator.Distance(position, manager.ExitPosition),
+                path_length = pathLength, final_exit_distance = QaNavigationCoordinator.Distance(position, ExitPosition),
                 minimum_exit_distance = minimumExitDistance, waypoint_arrivals = arrivals,
                 assignments = navigation.Version, replans = navigation.Replans,
                 no_waypoint_actions = noWaypointActions, low_movement_actions = collisionActions,
@@ -293,7 +321,8 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
                 training_rewards = trainingRewards, positive_waypoint_reward = rewards.PositiveRewardTotal,
                 total_reward = episodeReward,
                 new_rooms = newRooms, room_handoffs = roomHandoffs, room_throughput = roomThroughput,
-                room_count = rooms.Length, room_sequence = roomSequence
+                room_count = rooms.Length, room_sequence = roomSequence, mixed_rooms = mixedRooms,
+                room_types = mixedRooms ? Array.ConvertAll(mixedLayout.Rooms, room => room.type) : null
             });
             actions.Flush();
             recorded = true;
@@ -304,6 +333,13 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
 
     private string Phase(Vector3 point)
     {
+        if (mixedRooms)
+        {
+            int index = mixedLayout.RoomIndex(point);
+            if (index < 0) return "corridor";
+            if (index == rooms.Length - 1) return "exit_room";
+            return "room_" + index;
+        }
         foreach (Room room in generator.GetComponentsInChildren<Room>())
         {
             Vector3 delta = point - room.transform.position;
@@ -335,7 +371,7 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         else { navigation.SetGoal(rooms[goalRoom].transform.position); roomHandoffs++; }
     }
 
-    [Serializable] private class Settings { public bool training_rewards, room_throughput, room_sequence; }
+    [Serializable] private class Settings { public bool training_rewards, room_throughput, room_sequence, mixed_rooms; }
     [Serializable] private class RoomVisit { public int seed, step, room, new_rooms; public Vector3 position; }
 
     [Serializable] private class Layout
@@ -344,6 +380,8 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         public bool route_available;
         public Vector3 spawn, exit;
         public Vector3[] floors, initial_route, room_centers;
+        public bool mixed_rooms;
+        public QaMixedRoomLayout.RoomData[] room_details;
     }
     [Serializable] private class ActionRecord
     {
@@ -366,6 +404,8 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         public bool room_throughput;
         public int room_count;
         public bool room_sequence;
+        public bool mixed_rooms;
+        public string[] room_types;
     }
 }
 
@@ -377,6 +417,7 @@ public sealed class QaDungeonExitHeuristic
     private readonly HashSet<Vector2Int> floorCells = new HashSet<Vector2Int>();
     private Vector3 exit;
     private bool hasGoal = true;
+    private readonly bool retainArrivedWaypoint;
     private float closest;
     private int stalled;
     public bool HasWaypoint { get; private set; }
@@ -386,9 +427,11 @@ public sealed class QaDungeonExitHeuristic
     public Vector3[] Floors { get; }
     public List<Vector3> InitialRoute { get; private set; }
 
-    public QaDungeonExitHeuristic(Generator generator, CharacterController actor, ModelSensorPackage sensors, Vector3 exit)
+    public QaDungeonExitHeuristic(Generator generator, CharacterController actor, ModelSensorPackage sensors, Vector3 exit,
+        bool retainArrivedWaypoint = false)
     {
         this.actor = actor; this.sensors = sensors; this.exit = exit;
+        this.retainArrivedWaypoint = retainArrivedWaypoint;
         var floors = new List<Vector3>();
         foreach (Transform tile in generator.GetComponentsInChildren<Transform>())
         {
@@ -403,6 +446,8 @@ public sealed class QaDungeonExitHeuristic
     {
         if (!hasGoal) return;
         Vector3 position = actor.transform.position;
+        bool keepArrival = retainArrivedWaypoint && HasWaypoint &&
+            QaNavigationCoordinator.Distance(position, Waypoint) <= QaNavigationCoordinator.AcceptanceRadius;
         if (HasWaypoint && QaNavigationCoordinator.Distance(position, Waypoint) > QaNavigationCoordinator.AcceptanceRadius)
         {
             float distance = QaNavigationCoordinator.Distance(position, Waypoint);
@@ -421,6 +466,10 @@ public sealed class QaDungeonExitHeuristic
             Waypoint = route[i]; HasWaypoint = true; Version++; stalled = 0; closest = distance;
             return;
         }
+        // At a tight turn, entering the arrival radius can precede a clear line to the
+        // next route point. Keep the same single instruction so the actor can finish
+        // approaching the bend instead of dropping guidance and waiting indefinitely.
+        if (keepArrival && CanUseWaypoint(Waypoint)) HasWaypoint = true;
     }
 
     private static Vector2Int Cell(Vector3 point) => new Vector2Int(Mathf.RoundToInt(point.x), Mathf.RoundToInt(point.z));

@@ -1,0 +1,27 @@
+model: ppo
+port: 7784
+seed: 18800
+max_episodes: 500
+total_timesteps: 300000
+checkpoint_freq: 5000
+output_dir: ../Logs/qa-mixed-exit
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-recovery-20261109-224625-train/final_model.zip
+resume_sha256: acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64
+parent_lineage_episodes: 4700
+observation_contract: local-waypoint-v1
+evaluation_seed: 481000
+evaluation_episodes: 150
+verification_seed: 480000
+episode_seconds: 60
+room_count_range: [1, 3]
+room_types: [regular, winding, middle_walls, sharp_corners, L_shape]
+max_waypoint_distance: 10
+completion_reward: 50
+waypoint_reward_budget: 5
+time_cost_per_action: 0.001
+learning_rate: 0.000002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+ppo: {batch_size: 64}
+device: cpu

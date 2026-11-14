@@ -1,0 +1,65 @@
+{
+  "status": "complete",
+  "qa_id": "QA-56",
+  "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-mixed-exit-20261111-070142-train\\final_model.zip",
+  "parent_sha256": "dc478e543bb4574692f2fe022663bd3382bcbee963f33699b199424aa81d9116",
+  "parent_model_steps": 1380479,
+  "parent_optimizer_epochs": 53860,
+  "parent_lineage_episodes": 8700,
+  "learning_rate": 2e-06,
+  "previous_learning_rate": 2e-06,
+  "full_actor_critic_optimizer_continuation": true,
+  "training_episodes": 3000,
+  "training_seed_range": [
+    22800,
+    25799
+  ],
+  "evaluation_seed_range": [
+    481000,
+    481149
+  ],
+  "one_active_waypoint": true,
+  "waypoint_cap": 10,
+  "seconds_limit": 60,
+  "rooms": [
+    1,
+    3
+  ],
+  "room_types": [
+    "regular",
+    "winding",
+    "middle_walls",
+    "sharp_corners",
+    "L_shape"
+  ],
+  "sampling": "Stratified room count and first-room type by seed; seeded random geometry, orientation, connectors and later-room types",
+  "actual_exit_in_final_room": true,
+  "room_resets": false,
+  "reward": "+50 actual exit, shared +5 waypoint progress/arrival cap, -0.001/action",
+  "source_sha256": {
+    "Assets/Editor/QaTwoRoomNavigationSession.cs": "3d75f0e58e4441b5c3cc6f9a35f681ee5d7d4ad476deb7873405f55c1c4d5796",
+    "Assets/PCGDungeon/Scripts/Generation/PcgDungeonManager.cs": "a1e58d4ebecb36695e35c37f7b6abdd8c2a7823c1fc00b1cee401cb4313d46b9",
+    "Assets/PCGDungeon/Scripts/Generation/Generator.cs": "127fa1029c561c37a2106909bab7cf010a1e8a4db265f24d9d602ca883947d1e",
+    "Assets/PCGDungeon/Scripts/Generation/Room.cs": "51c6ff0a26781a636f77a2b06d74300e9b4dd8977056b998f251aa785d66b692",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "4f421ec74649cb313d685896d958081839f358647c31130ec6ffaf0103b831de",
+    "Assets/PCGDungeon/Scripts/QA/QaMapNavigation.cs": "cd1dfd9158c5a826bf7faad27844ca361cca58c8d12941508f592dd545c69635",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "447fe9c37a0d6ef5ac299c48ee6ce4ff8bdf5288f706dac7da25bd062210dc46",
+    "Assets/PCGDungeon/Scripts/QA/QaExitZone.cs": "7a0a2200e11b37d17b39b5f197fb71626de3373773f7c8b1b0735bea65c98d34",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/Scenes/QaPlayerTraining.unity": "f3914cb7a06a120fcc20bc76fc826f79646fce1f71f0994f2062cb24c5e2d8d6",
+    "Assets/PCGDungeon/Settings/Settings.asset": "4bfb45fa25de6c5eb19e0d5f4915b29497a90998a56180321cd8f4142a057e71",
+    "Training/evaluate_two_room_navigation.py": "8519a54ed0fa22d479c22591e74690d82b82b30c138301cd65ae95b513b3af38",
+    "Assets/Editor/QaMixedRoomLayout.cs": "77887076f251f22ab6a548e3515246ffc83ba1cac7af583e9019748062a83211",
+    "Assets/Editor/QaMixedRoomLayout.cs.meta": "19ee979109c548fe4868f8fb4c8ae9ad500875d0ca8967fde26ee27187718560",
+    "Training/train_mixed_room_exit.py": "4a08948f602c3cf8a7dbbb3888428a95b5ddb84fa3cedc53167e60d3bba0c0d0",
+    "Training/train_two_room_navigation.py": "dfb820cde9c86508b273549d49514b97335a2d23bc2b1cca926edf1f50aaa530",
+    "Training/run_waypoint_chain.py": "6a17fc9e28d5f09cabcc60245374be2705076f1787fa76e61f76a80952157633",
+    "Training/run_waypoint_throughput.py": "b2fe16e0229d2f0b5f3b86da70774b0e5ec6420f6e5e25a3748dbd8ef7189c93",
+    "Assets/Editor/QaWaypointChainSession.cs": "02520afa4801226e3ac1440a3d72b05218add5ccd59c56d5928d908180b5575c",
+    "Assets/Editor/QaTwistingRoomDrill.cs": "7580223633dadddb47015edb505afcf35457f9e2d00f571942c0181ef9526cb8",
+    "Assets/Scenes/QaWaypoint40Training.unity": "c2449868e812d8c1a9d12e27da55b322a4431293023c43cce141465a6c83bae4",
+    "Assets/PCGDungeon/Scripts/Generation/PcgGenerationParameters.cs": "00655f674a7c36e74547a1d95bb5fcfc1b1815b0386d855600447b328e5157ef",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "7020df56e643f99ba884f652306a2deaa1862bf84babfc3bba61039fc2f8b533"
+  }
+}

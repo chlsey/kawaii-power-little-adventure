@@ -1,0 +1,112 @@
+{
+    "minRooms": 1,
+    "maxRooms": 3,
+    "amountOfAdjacentRoomsToConnect": 1,
+    "minRoomWidth": 20,
+    "maxRoomWidth": 20,
+    "minRoomHeight": 20,
+    "maxRoomHeight": 20,
+    "minBossRoomWidth": 20,
+    "maxBossRoomWidth": 20,
+    "minBossRoomHeight": 20,
+    "maxBossRoomHeight": 20,
+    "areaWidth": 120,
+    "areaHeight": 160,
+    "minDistanceBetweenRooms": 1,
+    "walls": [
+        {
+            "gameObject": {
+                "instanceID": 52674
+            },
+            "name": "Wall"
+        }
+    ],
+    "outerCorners": [
+        {
+            "gameObject": {
+                "instanceID": 52676
+            },
+            "name": "Outer Corner"
+        }
+    ],
+    "innerCorners": [],
+    "deleteInnerCorners": false,
+    "uCorners": [
+        {
+            "gameObject": {
+                "instanceID": 52678
+            },
+            "name": "Square"
+        }
+    ],
+    "squareCorners": [
+        {
+            "gameObject": {
+                "instanceID": 52680
+            },
+            "name": "Square Corner"
+        }
+    ],
+    "doors": [
+        {
+            "gameObject": {
+                "instanceID": 52682
+            },
+            "name": "Door"
+        }
+    ],
+    "doorsDisplacements": [],
+    "flooring": [
+        {
+            "gameObject": {
+                "instanceID": 52684
+            },
+            "name": "Floor"
+        }
+    ],
+    "player": {
+        "instanceID": 52686
+    },
+    "minEnemiesPerRoom": 0,
+    "maxEnemiesPerRoom": 0,
+    "enemies": [],
+    "bosses": [],
+    "breakables": [],
+    "staticObjects": [],
+    "wallObjects": [],
+    "wallObjConsequitiveDistance": 0,
+    "wallObjDisplacements": [],
+    "cornerObjectsRate": 0,
+    "destroyablesRate": 0,
+    "middleObjects": [],
+    "middleObjectsRate": 0,
+    "lootPickup": {
+        "instanceID": 0
+    },
+    "lootTable": [
+        {
+            "item": {
+                "instanceID": 50916
+            },
+            "weight": 1
+        },
+        {
+            "item": {
+                "instanceID": 51024
+            },
+            "weight": 1
+        },
+        {
+            "item": {
+                "instanceID": 51732
+            },
+            "weight": 2
+        }
+    ],
+    "puzzleRoomCount": 0,
+    "puzzles": [],
+    "exitPrefab": {
+        "instanceID": 0
+    },
+    "exitRequiresInteract": false
+}

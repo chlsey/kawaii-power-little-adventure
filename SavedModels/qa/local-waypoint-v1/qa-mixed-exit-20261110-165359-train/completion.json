@@ -1,0 +1,339 @@
+{
+  "status": "complete",
+  "training_episodes": 500,
+  "training_actions": 91850,
+  "final_model_steps": 843714,
+  "final_optimizer_epochs": 32900,
+  "final_lineage_episodes": 5700,
+  "final_sha256": "9f9a2d0754ad86e271187fb74373aabf641ee67334f2d115ec8d6473717fec22",
+  "results": {
+    "verification": {
+      "status": "complete",
+      "frozen": true,
+      "episodes": 16,
+      "exits_reached": 15,
+      "success_rate": 0.9375,
+      "timeouts": 1,
+      "successful_seconds_mean": 14.013333559036255,
+      "all_attempt_seconds_mean": 16.88750021159649,
+      "failures_by_final_phase": {
+        "exit_room": 1
+      },
+      "failures_entering_exit_room": 1,
+      "waypoint_arrivals": 155,
+      "assignments": 182,
+      "replans": 29,
+      "actions": 2702,
+      "low_movement_actions": 600,
+      "no_waypoint_actions": 0,
+      "away_or_perpendicular_actions": 600,
+      "by_room_count": {
+        "1": {
+          "episodes": 6,
+          "exits": 5
+        },
+        "2": {
+          "episodes": 5,
+          "exits": 5
+        },
+        "3": {
+          "episodes": 5,
+          "exits": 5
+        }
+      },
+      "by_first_room_type": {
+        "regular": {
+          "episodes": 4,
+          "exits": 3
+        },
+        "winding": {
+          "episodes": 3,
+          "exits": 3
+        },
+        "middle_walls": {
+          "episodes": 3,
+          "exits": 3
+        },
+        "sharp_corners": {
+          "episodes": 3,
+          "exits": 3
+        },
+        "L_shape": {
+          "episodes": 3,
+          "exits": 3
+        }
+      },
+      "generated_room_types": {
+        "regular": 5,
+        "middle_walls": 5,
+        "L_shape": 10,
+        "winding": 6,
+        "sharp_corners": 5
+      },
+      "model_steps": 751864,
+      "optimizer_epochs": 29320,
+      "added_model_steps": 0,
+      "added_optimizer_epochs": 0
+    },
+    "parent-two-room": {
+      "episodes": 100,
+      "exits_reached": 30,
+      "success_rate": 0.3,
+      "timeouts": 70,
+      "successful_seconds_mean": 11.673333517710368,
+      "all_attempt_seconds_mean": 45.50200005531311,
+      "failures_by_final_phase": {
+        "spawn_room": 17,
+        "corridor": 53
+      },
+      "failures_entering_exit_room": 0,
+      "waypoint_arrivals": 5965,
+      "assignments": 12288,
+      "replans": 6266,
+      "actions": 45502,
+      "low_movement_actions": 9897,
+      "no_waypoint_actions": 21251,
+      "away_or_perpendicular_actions": 943
+    },
+    "parent-evaluation": {
+      "status": "complete",
+      "frozen": true,
+      "episodes": 150,
+      "exits_reached": 111,
+      "success_rate": 0.74,
+      "timeouts": 39,
+      "successful_seconds_mean": 15.54774808883667,
+      "all_attempt_seconds_mean": 27.105333585739135,
+      "failures_by_final_phase": {
+        "room_0": 15,
+        "corridor": 9,
+        "exit_room": 11,
+        "room_1": 4
+      },
+      "failures_entering_exit_room": 15,
+      "waypoint_arrivals": 2045,
+      "assignments": 3167,
+      "replans": 1241,
+      "actions": 40658,
+      "low_movement_actions": 4995,
+      "no_waypoint_actions": 16392,
+      "away_or_perpendicular_actions": 23,
+      "by_room_count": {
+        "1": {
+          "episodes": 50,
+          "exits": 46
+        },
+        "2": {
+          "episodes": 50,
+          "exits": 36
+        },
+        "3": {
+          "episodes": 50,
+          "exits": 29
+        }
+      },
+      "by_first_room_type": {
+        "regular": {
+          "episodes": 30,
+          "exits": 19
+        },
+        "winding": {
+          "episodes": 30,
+          "exits": 21
+        },
+        "middle_walls": {
+          "episodes": 30,
+          "exits": 23
+        },
+        "sharp_corners": {
+          "episodes": 30,
+          "exits": 22
+        },
+        "L_shape": {
+          "episodes": 30,
+          "exits": 26
+        }
+      },
+      "generated_room_types": {
+        "sharp_corners": 61,
+        "L_shape": 60,
+        "winding": 71,
+        "regular": 57,
+        "middle_walls": 51
+      },
+      "model_steps": 751864,
+      "optimizer_epochs": 29320,
+      "added_model_steps": 0,
+      "added_optimizer_epochs": 0
+    },
+    "training": {
+      "status": "complete",
+      "frozen": false,
+      "episodes": 500,
+      "exits_reached": 500,
+      "success_rate": 1.0,
+      "timeouts": 0,
+      "successful_seconds_mean": 18.370000304222106,
+      "all_attempt_seconds_mean": 18.370000304222106,
+      "failures_by_final_phase": {},
+      "failures_entering_exit_room": 0,
+      "waypoint_arrivals": 5511,
+      "assignments": 6603,
+      "replans": 1225,
+      "actions": 91850,
+      "low_movement_actions": 175,
+      "no_waypoint_actions": 2145,
+      "away_or_perpendicular_actions": 2255,
+      "by_room_count": {
+        "1": {
+          "episodes": 166,
+          "exits": 166
+        },
+        "2": {
+          "episodes": 167,
+          "exits": 167
+        },
+        "3": {
+          "episodes": 167,
+          "exits": 167
+        }
+      },
+      "by_first_room_type": {
+        "regular": {
+          "episodes": 99,
+          "exits": 99
+        },
+        "winding": {
+          "episodes": 99,
+          "exits": 99
+        },
+        "middle_walls": {
+          "episodes": 99,
+          "exits": 99
+        },
+        "sharp_corners": {
+          "episodes": 101,
+          "exits": 101
+        },
+        "L_shape": {
+          "episodes": 102,
+          "exits": 102
+        }
+      },
+      "generated_room_types": {
+        "sharp_corners": 197,
+        "L_shape": 204,
+        "winding": 184,
+        "regular": 209,
+        "middle_walls": 207
+      },
+      "model_steps": 843714,
+      "optimizer_epochs": 32900,
+      "added_model_steps": 91850,
+      "added_optimizer_epochs": 3580,
+      "discarded_partial_rollout_transitions": 202
+    },
+    "child-evaluation": {
+      "status": "complete",
+      "frozen": true,
+      "episodes": 150,
+      "exits_reached": 109,
+      "success_rate": 0.7266666666666667,
+      "timeouts": 41,
+      "successful_seconds_mean": 15.250458966701403,
+      "all_attempt_seconds_mean": 27.482000182469687,
+      "failures_by_final_phase": {
+        "room_0": 15,
+        "exit_room": 14,
+        "corridor": 9,
+        "room_1": 3
+      },
+      "failures_entering_exit_room": 15,
+      "waypoint_arrivals": 2053,
+      "assignments": 3200,
+      "replans": 1368,
+      "actions": 41223,
+      "low_movement_actions": 5533,
+      "no_waypoint_actions": 15022,
+      "away_or_perpendicular_actions": 607,
+      "by_room_count": {
+        "1": {
+          "episodes": 50,
+          "exits": 46
+        },
+        "2": {
+          "episodes": 50,
+          "exits": 35
+        },
+        "3": {
+          "episodes": 50,
+          "exits": 28
+        }
+      },
+      "by_first_room_type": {
+        "regular": {
+          "episodes": 30,
+          "exits": 22
+        },
+        "winding": {
+          "episodes": 30,
+          "exits": 17
+        },
+        "middle_walls": {
+          "episodes": 30,
+          "exits": 20
+        },
+        "sharp_corners": {
+          "episodes": 30,
+          "exits": 28
+        },
+        "L_shape": {
+          "episodes": 30,
+          "exits": 22
+        }
+      },
+      "generated_room_types": {
+        "sharp_corners": 61,
+        "L_shape": 60,
+        "winding": 71,
+        "regular": 57,
+        "middle_walls": 51
+      },
+      "model_steps": 843714,
+      "optimizer_epochs": 32900,
+      "added_model_steps": 0,
+      "added_optimizer_epochs": 0
+    },
+    "child-two-room": {
+      "episodes": 100,
+      "exits_reached": 35,
+      "success_rate": 0.35,
+      "timeouts": 65,
+      "successful_seconds_mean": 12.12571439743042,
+      "all_attempt_seconds_mean": 43.24400003910065,
+      "failures_by_final_phase": {
+        "spawn_room": 23,
+        "corridor": 42
+      },
+      "failures_entering_exit_room": 0,
+      "waypoint_arrivals": 8431,
+      "assignments": 17109,
+      "replans": 8627,
+      "actions": 43244,
+      "low_movement_actions": 8917,
+      "no_waypoint_actions": 16647,
+      "away_or_perpendicular_actions": 43
+    },
+    "empty-room-retention": {
+      "completed_episodes": 100,
+      "total_arrivals": 4538,
+      "mean_arrivals": 45.38,
+      "median_arrivals": 45.0,
+      "p10_arrivals": 42.0,
+      "p90_arrivals": 49.0,
+      "minimum_arrivals": 38,
+      "maximum_arrivals": 53,
+      "episodes_reaching_ten": 100
+    }
+  }
+}

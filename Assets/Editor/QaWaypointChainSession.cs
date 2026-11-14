@@ -89,6 +89,8 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
     private float[] observation;
     private int lowMovementActions, awayActions;
     private Vector3 spawn;
+    private QaTwistingRoomDrill twistingRoom;
+    private int endpointArrivals;
 
     public override int ObservationSize => 134;
     public override int ActionSize => 2;
@@ -116,9 +118,16 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
         pathLength = 0f;
         positiveReward = 0f;
         lowMovementActions = awayActions = 0;
+        endpointArrivals = 0;
         var random = new System.Random(seed);
         spawn = new Vector3(0f, floor.bounds.max.y + 0.01f, 0f);
-        if (settings.recovery)
+        if (settings.twisting)
+        {
+            if (twistingRoom == null) twistingRoom = new QaTwistingRoomDrill();
+            twistingRoom.Generate(seed, spawn.y);
+            spawn = twistingRoom.Nodes[0];
+        }
+        else if (settings.recovery)
         {
             // Alternate real perimeter walls and inside corners, in all four orientations.
             // Every target remains in the same convex free-space patch, so no route switching
@@ -147,6 +156,11 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
         Vector3 origin = previousPosition;
         for (int i = 0; i < targets.Length; i++)
         {
+            if (settings.twisting)
+            {
+                targets[i] = twistingRoom.Target(i);
+                continue;
+            }
             Vector3 point;
             do
             {
@@ -159,7 +173,10 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
         Physics.SyncTransforms();
         source.Sensors.BeginAttempt();
         string chain;
-        if (settings.recovery)
+        if (settings.twisting)
+            chain = JsonUtility.ToJson(new TwistingChain { seed = seed, targets = targets, spawn = spawn,
+                nodes = twistingRoom.Nodes, floor_cells = twistingRoom.FloorCells, spacing = twistingRoom.Spacing });
+        else if (settings.recovery)
             chain = JsonUtility.ToJson(new RecoveryChain { seed = seed, targets = targets, spawn = spawn });
         else
             chain = JsonUtility.ToJson(new Chain { seed = seed, targets = targets });
@@ -257,7 +274,11 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
                 target_x = targets[leg].x, target_z = targets[leg].z,
                 final_x = position.x, final_z = position.z
             }) + "\n");
-            if (reached) leg++;
+            if (reached)
+            {
+                if (settings.twisting && twistingRoom.IsEndpoint(leg)) endpointArrivals++;
+                leg++;
+            }
             if (leg < targets.Length && !timeout) Assign();
         }
         isDone = (!settings.continuous && leg == targets.Length) || timeout;
@@ -271,7 +292,8 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
                 steps = source.Player.Metrics.StepCount, elapsed_seconds = source.Player.Metrics.ElapsedSeconds,
                 path_length = pathLength, stuck_events = source.Player.Metrics.StuckEvents,
                 recovery = settings.recovery, corner = settings.recovery && seed % 2 != 0,
-                low_movement_actions = lowMovementActions, away_actions = awayActions
+                low_movement_actions = lowMovementActions, away_actions = awayActions,
+                twisting = settings.twisting, endpoint_arrivals = endpointArrivals
             }) + "\n");
             recorded = true;
             source.Sensors.EndAttempt();
@@ -286,9 +308,16 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
         public bool trace_actions = true;
         public bool continuous;
         public bool recovery;
+        public bool twisting;
     }
     [Serializable] private class Chain { public int seed; public Vector3[] targets; }
     [Serializable] private class RecoveryChain { public int seed; public Vector3[] targets; public Vector3 spawn; }
+    [Serializable] private class TwistingChain
+    {
+        public int seed, spacing;
+        public Vector3[] targets, nodes, floor_cells;
+        public Vector3 spawn;
+    }
     [Serializable] private class ActionRecord
     {
         public int seed, leg, step;
@@ -305,7 +334,8 @@ public sealed class QaWaypointChainEnvironment : RlEnvironmentBehaviour
     {
         public int seed, steps, reached_waypoints, planned_waypoints, stuck_events;
         public bool reached, continuous;
-        public bool recovery, corner;
+        public bool recovery, corner, twisting;
+        public int endpoint_arrivals;
         public int low_movement_actions, away_actions;
         public float elapsed_seconds, path_length, positive_waypoint_reward;
     }

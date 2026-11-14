@@ -1,0 +1,11 @@
+{
+  "completed_episodes": 100,
+  "total_arrivals": 4558,
+  "mean_arrivals": 45.58,
+  "median_arrivals": 45.5,
+  "p10_arrivals": 42.0,
+  "p90_arrivals": 49.0,
+  "minimum_arrivals": 38,
+  "maximum_arrivals": 53,
+  "episodes_reaching_ten": 100
+}

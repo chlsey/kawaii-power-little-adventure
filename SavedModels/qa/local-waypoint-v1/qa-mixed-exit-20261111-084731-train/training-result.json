@@ -1,0 +1,74 @@
+{
+  "status": "complete",
+  "frozen": false,
+  "episodes": 3000,
+  "exits_reached": 2993,
+  "success_rate": 0.9976666666666667,
+  "timeouts": 7,
+  "successful_seconds_mean": 17.58506544377945,
+  "all_attempt_seconds_mean": 17.684033624410628,
+  "failures_by_final_phase": {
+    "exit_room": 4,
+    "corridor": 1,
+    "room_1": 1,
+    "room_0": 1
+  },
+  "failures_entering_exit_room": 4,
+  "waypoint_arrivals": 34994,
+  "assignments": 43955,
+  "replans": 9521,
+  "actions": 530521,
+  "low_movement_actions": 3373,
+  "no_waypoint_actions": 13829,
+  "away_or_perpendicular_actions": 3889,
+  "by_room_count": {
+    "1": {
+      "episodes": 1000,
+      "exits": 999
+    },
+    "2": {
+      "episodes": 1000,
+      "exits": 997
+    },
+    "3": {
+      "episodes": 1000,
+      "exits": 997
+    }
+  },
+  "by_first_room_type": {
+    "regular": {
+      "episodes": 600,
+      "exits": 597
+    },
+    "winding": {
+      "episodes": 600,
+      "exits": 599
+    },
+    "middle_walls": {
+      "episodes": 600,
+      "exits": 600
+    },
+    "sharp_corners": {
+      "episodes": 600,
+      "exits": 599
+    },
+    "L_shape": {
+      "episodes": 600,
+      "exits": 598
+    }
+  },
+  "generated_room_types": {
+    "regular": 1201,
+    "middle_walls": 1188,
+    "L_shape": 1192,
+    "winding": 1205,
+    "sharp_corners": 1214
+  },
+  "model_steps": 2433864,
+  "optimizer_epochs": 94990,
+  "added_model_steps": 526270,
+  "added_optimizer_epochs": 20540,
+  "recovered": true,
+  "discarded_partial_rollout_transitions": 238,
+  "interrupted_checkpoint_pending_rollout_transitions_discarded": 208
+}

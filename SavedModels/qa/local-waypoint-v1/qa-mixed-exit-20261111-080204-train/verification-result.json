@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "training_episodes": 3000,
+  "mixed_task_total_episodes": 7000,
+  "training_exits": 2997,
+  "training_actions": 527115,
+  "final_steps": 1907594,
+  "final_optimizer_epochs": 74450,
+  "final_lineage_episodes": 11700,
+  "final_sha256": "c389391ac7b22484d93d779fb9aa8a86fadf7b8f911f5b9666162fae3f29a796",
+  "lr": 2e-06,
+  "verified_archives": 106,
+  "discarded_partial_rollout_transitions": 11,
+  "parent_unchanged": true,
+  "qa50_unchanged": true,
+  "sources_unchanged": true,
+  "settings_restored": true,
+  "all_successes_traverse_rooms_and_enter_actual_final_exit": true,
+  "training_room_counts": {
+    "1": {
+      "episodes": 1000,
+      "exits": 999
+    },
+    "2": {
+      "episodes": 1000,
+      "exits": 1000
+    },
+    "3": {
+      "episodes": 1000,
+      "exits": 998
+    }
+  },
+  "training_room_types": {
+    "regular": 1201,
+    "winding": 1208,
+    "L_shape": 1189,
+    "sharp_corners": 1211,
+    "middle_walls": 1191
+  },
+  "paired": {
+    "mixed": {
+      "cases": 150,
+      "gain": 16,
+      "loss": 36,
+      "tie": 98,
+      "mean_change": -0.13333333333333333,
+      "exploratory_paired_bootstrap95": [
+        -0.22666666666666666,
+        -0.04
+      ]
+    },
+    "legacy_two_room": {
+      "cases": 100,
+      "gain": 19,
+      "loss": 13,
+      "tie": 68,
+      "mean_change": 0.06,
+      "exploratory_paired_bootstrap95": [
+        -0.05,
+        0.17
+      ]
+    }
+  },
+  "unique_training_floorplans": 2742,
+  "unique_evaluation_floorplans": 150,
+  "shared_current_training_evaluation_floorplans": 21,
+  "cumulative_unique_training_floorplans": 5973,
+  "shared_cumulative_training_evaluation_floorplans": 40,
+  "unity_processes_stopped": true,
+  "source_changes_vs_parent": []
+}

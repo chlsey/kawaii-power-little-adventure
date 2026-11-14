@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "training_episodes": 3000,
+  "mixed_task_total_episodes": 10000,
+  "training_exits": 2993,
+  "training_actions": 530521,
+  "final_steps": 2433864,
+  "final_optimizer_epochs": 94990,
+  "final_lineage_episodes": 14700,
+  "final_sha256": "5ed80b880d2cff680c2a4e104d309c08bfdd5c7178a4b37921f69dad9f2ffb80",
+  "lr": 2e-06,
+  "verified_archives": 106,
+  "discarded_partial_rollout_transitions": 238,
+  "recovered": true,
+  "checkpoint_pending_rollout_transitions_discarded": 208,
+  "retained_model_actions": 526270,
+  "recorded_training_actions_including_interruption": 530551,
+  "completed_episode_actions_beyond_retained_counter": 4251,
+  "completed_episodes_after_checkpoint_not_repeated": 26,
+  "parent_unchanged": true,
+  "qa50_unchanged": true,
+  "sources_unchanged": true,
+  "settings_restored": true,
+  "all_successes_traverse_rooms_and_enter_actual_final_exit": true,
+  "training_room_counts": {
+    "1": {
+      "episodes": 1000,
+      "exits": 999
+    },
+    "2": {
+      "episodes": 1000,
+      "exits": 997
+    },
+    "3": {
+      "episodes": 1000,
+      "exits": 997
+    }
+  },
+  "training_room_types": {
+    "regular": 1201,
+    "middle_walls": 1188,
+    "L_shape": 1192,
+    "winding": 1205,
+    "sharp_corners": 1214
+  },
+  "paired": {
+    "mixed": {
+      "cases": 150,
+      "gain": 26,
+      "loss": 7,
+      "tie": 117,
+      "mean_change": 0.12666666666666668,
+      "exploratory_paired_bootstrap95": [
+        0.05333333333333334,
+        0.2
+      ]
+    },
+    "legacy_two_room": {
+      "cases": 100,
+      "gain": 3,
+      "loss": 14,
+      "tie": 83,
+      "mean_change": -0.11,
+      "exploratory_paired_bootstrap95": [
+        -0.19,
+        -0.03
+      ]
+    }
+  },
+  "unique_training_floorplans": 2725,
+  "unique_evaluation_floorplans": 150,
+  "shared_current_training_evaluation_floorplans": 32,
+  "cumulative_unique_training_floorplans": 8249,
+  "shared_cumulative_training_evaluation_floorplans": 45,
+  "unity_processes_stopped": true,
+  "source_changes_vs_parent": []
+}

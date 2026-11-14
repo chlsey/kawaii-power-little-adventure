@@ -1,0 +1,208 @@
+{
+  "status": "passed",
+  "training_episodes": 500,
+  "training_successes": 497,
+  "training_actions": 95071,
+  "final_steps": 751864,
+  "final_optimizer_epochs": 29320,
+  "final_lineage_episodes": 5200,
+  "final_sha256": "85acc6ac355b86a3916dd85f60b12139bd4408e78bdfd99e12ea03a0698aaac0",
+  "lr": 2e-06,
+  "verified_archives": 20,
+  "discarded_partial_rollout_transitions": 95,
+  "parent_unchanged": true,
+  "sources_unchanged": true,
+  "settings_restored": true,
+  "all_successes_traverse_rooms_and_enter_actual_final_exit": true,
+  "training_room_count": {
+    "1": {
+      "episodes": 167,
+      "exits": 167
+    },
+    "2": {
+      "episodes": 166,
+      "exits": 164
+    },
+    "3": {
+      "episodes": 167,
+      "exits": 166
+    }
+  },
+  "training_room_types": {
+    "winding": 212,
+    "middle_walls": 195,
+    "regular": 195,
+    "L_shape": 196,
+    "sharp_corners": 202
+  },
+  "parent_mixed": {
+    "status": "complete",
+    "frozen": true,
+    "episodes": 150,
+    "exits_reached": 117,
+    "success_rate": 0.78,
+    "timeouts": 33,
+    "successful_seconds_mean": 15.357265278824375,
+    "all_attempt_seconds_mean": 25.17866691748301,
+    "failures_by_final_phase": {
+      "room_1": 7,
+      "exit_room": 6,
+      "corridor": 8,
+      "room_0": 12
+    },
+    "failures_entering_exit_room": 6,
+    "waypoint_arrivals": 3235,
+    "assignments": 4305,
+    "replans": 1641,
+    "actions": 37768,
+    "low_movement_actions": 11408,
+    "no_waypoint_actions": 14472,
+    "away_or_perpendicular_actions": 109,
+    "by_room_count": {
+      "1": {
+        "episodes": 50,
+        "exits": 47
+      },
+      "2": {
+        "episodes": 50,
+        "exits": 41
+      },
+      "3": {
+        "episodes": 50,
+        "exits": 29
+      }
+    },
+    "by_first_room_type": {
+      "regular": {
+        "episodes": 30,
+        "exits": 22
+      },
+      "winding": {
+        "episodes": 30,
+        "exits": 23
+      },
+      "middle_walls": {
+        "episodes": 30,
+        "exits": 28
+      },
+      "sharp_corners": {
+        "episodes": 30,
+        "exits": 19
+      },
+      "L_shape": {
+        "episodes": 30,
+        "exits": 25
+      }
+    },
+    "generated_room_types": {
+      "sharp_corners": 61,
+      "L_shape": 60,
+      "winding": 71,
+      "regular": 57,
+      "middle_walls": 51
+    },
+    "model_steps": 656793,
+    "optimizer_epochs": 25610,
+    "added_model_steps": 0,
+    "added_optimizer_epochs": 0
+  },
+  "child_mixed": {
+    "status": "complete",
+    "frozen": true,
+    "episodes": 150,
+    "exits_reached": 111,
+    "success_rate": 0.74,
+    "timeouts": 39,
+    "successful_seconds_mean": 15.54774808883667,
+    "all_attempt_seconds_mean": 27.105333585739135,
+    "failures_by_final_phase": {
+      "room_0": 15,
+      "corridor": 9,
+      "exit_room": 11,
+      "room_1": 4
+    },
+    "failures_entering_exit_room": 15,
+    "waypoint_arrivals": 2045,
+    "assignments": 3167,
+    "replans": 1241,
+    "actions": 40658,
+    "low_movement_actions": 4995,
+    "no_waypoint_actions": 16392,
+    "away_or_perpendicular_actions": 23,
+    "by_room_count": {
+      "1": {
+        "episodes": 50,
+        "exits": 46
+      },
+      "2": {
+        "episodes": 50,
+        "exits": 36
+      },
+      "3": {
+        "episodes": 50,
+        "exits": 29
+      }
+    },
+    "by_first_room_type": {
+      "regular": {
+        "episodes": 30,
+        "exits": 19
+      },
+      "winding": {
+        "episodes": 30,
+        "exits": 21
+      },
+      "middle_walls": {
+        "episodes": 30,
+        "exits": 23
+      },
+      "sharp_corners": {
+        "episodes": 30,
+        "exits": 22
+      },
+      "L_shape": {
+        "episodes": 30,
+        "exits": 26
+      }
+    },
+    "generated_room_types": {
+      "sharp_corners": 61,
+      "L_shape": 60,
+      "winding": 71,
+      "regular": 57,
+      "middle_walls": 51
+    },
+    "model_steps": 751864,
+    "optimizer_epochs": 29320,
+    "added_model_steps": 0,
+    "added_optimizer_epochs": 0
+  },
+  "paired": {
+    "mixed": {
+      "cases": 150,
+      "gain": 25,
+      "loss": 31,
+      "tie": 94,
+      "mean_change": -0.04,
+      "exploratory_paired_bootstrap95": [
+        -0.13333333333333333,
+        0.06
+      ]
+    },
+    "legacy_two_room": {
+      "cases": 100,
+      "gain": 1,
+      "loss": 28,
+      "tie": 71,
+      "mean_change": -0.27,
+      "exploratory_paired_bootstrap95": [
+        -0.36,
+        -0.18
+      ]
+    }
+  },
+  "unique_training_floorplans": 498,
+  "unique_evaluation_floorplans": 150,
+  "shared_floorplans": 13,
+  "unity_processes_stopped": true
+}

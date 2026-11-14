@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "training_episodes": 400,
+  "wall_corner_episodes": 200,
+  "twisting_episodes": 200,
+  "training_steps": 240000,
+  "verified_archives": 27,
+  "parent_unchanged": true,
+  "sources_unchanged": true,
+  "settings_restored": true,
+  "matched_layouts": true,
+  "final_steps": 896793,
+  "final_updates": 34970,
+  "final_lineage_episodes": 5100,
+  "final_sha256": "95c4cffad40ab07463fe442033db7a147dddbddd0344fac207ebb4290a165fe4",
+  "lr": 2e-05,
+  "paired": {
+    "empty": {
+      "mean_change": -0.55,
+      "improve": 1,
+      "worsen": 49,
+      "tie": 50,
+      "exploratory_paired_bootstrap95": [
+        -0.68,
+        -0.42
+      ]
+    },
+    "recovery": {
+      "mean_change": -7.77,
+      "improve": 0,
+      "worsen": 87,
+      "tie": 13,
+      "exploratory_paired_bootstrap95": [
+        -10.78,
+        -5.14
+      ]
+    },
+    "twisting": {
+      "mean_change": -33.93,
+      "improve": 0,
+      "worsen": 100,
+      "tie": 0,
+      "exploratory_paired_bootstrap95": [
+        -35.22,
+        -32.64
+      ]
+    },
+    "two-room": {
+      "mean_change": -0.28,
+      "improve": 4,
+      "worsen": 32,
+      "tie": 64,
+      "exploratory_paired_bootstrap95": [
+        -0.38,
+        -0.18
+      ]
+    }
+  },
+  "training_unique_winding_shapes": 112,
+  "evaluation_unique_winding_shapes": 77,
+  "shared_training_evaluation_shapes": 67,
+  "unity_processes_stopped": true
+}

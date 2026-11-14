@@ -1,0 +1,10 @@
+Amount of Adjacent Rooms to connect needs to be smaller than minimum of rooms
+UnityEngine.Debug:LogError (object)
+Generator:GetGenerationSettings () (at Assets/PCGDungeon/Scripts/Generation/Generator.cs:173)
+Generator:RunProgram (PcgGenerationParameters) (at Assets/PCGDungeon/Scripts/Generation/Generator.cs:110)
+PcgDungeonManager:GenerateDungeon (PcgGenerationParameters) (at Assets/PCGDungeon/Scripts/Generation/PcgDungeonManager.cs:272)
+PcgDungeonManager:StartPlayerEpisode (PcgGenerationParameters) (at Assets/PCGDungeon/Scripts/Generation/PcgDungeonManager.cs:212)
+QaTwoRoomNavigationEnvironment:ResetEpisode (int) (at Assets/Editor/QaTwoRoomNavigationSession.cs:154)
+Kcccr.UnityReinforcementLearning.RlTrainingHost:ProcessRequest (Kcccr.UnityReinforcementLearning.RlTrainingHost/BridgeRequest) (at C:/Users/chenk/Documents/GitHub/kevin-ai-repo-csc495/source-code/unity-reinforcement-learning/Runtime/RlTrainingHost.cs:246)
+Kcccr.UnityReinforcementLearning.RlTrainingHost:Update () (at C:/Users/chenk/Documents/GitHub/kevin-ai-repo-csc495/source-code/unity-reinforcement-learning/Runtime/RlTrainingHost.cs:87)
+

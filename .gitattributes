@@ -1,2 +1,6 @@
 # Preserve retained model evidence and recorded hashes byte for byte.
 /SavedModels/** -text
+SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261111-080204-train/training/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261111-070142-train/training/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261111-084731-train/segments/training/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261111-084731-train/segments/training-recovery-01/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text

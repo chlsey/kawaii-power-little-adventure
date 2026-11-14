@@ -107,6 +107,7 @@ public class Generator : MonoBehaviour
 
         ClearChildren();
 
+        trainingRoomSequence = parameters.TrainingRoomSequence;
         GetGenerationSettings(); // Still obtains prefabs and fixed theme data.
 
         rooms = parameters.RoomCount;
@@ -120,7 +121,6 @@ public class Generator : MonoBehaviour
         maxRoomHeight = parameters.MaxRoomHeight;
 
         powerupsPerRoom = parameters.PowerupsPerRoom;
-        trainingRoomSequence = parameters.TrainingRoomSequence;
 
         // amountOfAdjacentRoomsToConnect =
         //     parameters.AdjacentRoomConnections;
@@ -166,10 +166,10 @@ public class Generator : MonoBehaviour
 
         amountOfAdjacentRoomsToConnect = settings.amountOfAdjacentRoomsToConnect;
 
-        if (AmountOfAdjacentRoomsToConnect == 0)
+        if (!trainingRoomSequence && AmountOfAdjacentRoomsToConnect == 0)
             Debug.LogError("Amount of AdjacentRoomsToConnect can not equal zero for generation to work.");
 
-        if (AmountOfAdjacentRoomsToConnect >= minRooms)
+        if (!trainingRoomSequence && AmountOfAdjacentRoomsToConnect >= minRooms)
             Debug.LogError("Amount of Adjacent Rooms to connect needs to be smaller than minimum of rooms");
 
         minRoomWidth = settings.minRoomWidth;

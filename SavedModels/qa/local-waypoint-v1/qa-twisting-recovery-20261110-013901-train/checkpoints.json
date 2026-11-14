@@ -1,0 +1,140 @@
+{
+  "architecture": "local-waypoint-v1",
+  "checkpoints": [
+    {
+      "path": "after-200/final_model.zip",
+      "sha256": "03409ed7f7c0c0bb39c2964afc4b088929fbbd3c1adbce62d833b1a9aef0d45f",
+      "bytes": 354204
+    },
+    {
+      "path": "after-400/final_model.zip",
+      "sha256": "056b4ba274134b184e26dc7fbd956f39705fe5676181ca4c68ef0c9828bb55f2",
+      "bytes": 354206
+    },
+    {
+      "path": "checkpoints/training-01_666793_steps.zip",
+      "sha256": "8b160a759244d18e634ce05be214b96ce5aa6b760818c926b8e40421c58849ba",
+      "bytes": 354201
+    },
+    {
+      "path": "checkpoints/training-01_676793_steps.zip",
+      "sha256": "6a724046a9b98d893a9f2ffbb4e134f9d3337f063dd1f1cc19fe0f82950954f6",
+      "bytes": 354201
+    },
+    {
+      "path": "checkpoints/training-01_686793_steps.zip",
+      "sha256": "bf72d3cdcfecd28f9d3e30a015d2875bc2361c850f90e49f42fa0851616cc222",
+      "bytes": 354202
+    },
+    {
+      "path": "checkpoints/training-01_696793_steps.zip",
+      "sha256": "2f771796dc4d106c647ba22379c32f8e19aac7b2573a10b32b82c02820243644",
+      "bytes": 354202
+    },
+    {
+      "path": "checkpoints/training-01_706793_steps.zip",
+      "sha256": "d70480ef3bc4d68226eb4be42e106f8e6f5de3234bf284c4149c3bc2aeef79f8",
+      "bytes": 354202
+    },
+    {
+      "path": "checkpoints/training-01_716793_steps.zip",
+      "sha256": "7f764c90bdedc7657c1aa621bedd85d782f98691fb536679928fe7a36747b520",
+      "bytes": 354202
+    },
+    {
+      "path": "checkpoints/training-01_726793_steps.zip",
+      "sha256": "d1dea4ab2c944291df2b2111c9948745ab4330cc6b223eec6756714cf01d25e7",
+      "bytes": 354202
+    },
+    {
+      "path": "checkpoints/training-01_736793_steps.zip",
+      "sha256": "63c8dbb4b36f86c042300bdbc77c80f85dc721fddb0e3fcde9421b6dd5421655",
+      "bytes": 354202
+    },
+    {
+      "path": "checkpoints/training-01_746793_steps.zip",
+      "sha256": "a37a617bdff03fb4df2d32500b2de48bb2cd8b262e7016b964e685634d4d2181",
+      "bytes": 354202
+    },
+    {
+      "path": "checkpoints/training-01_756793_steps.zip",
+      "sha256": "a99f1cc7a35d953a5f059d1d93ce196190a5eeae82bfe54708cf7244f893d58c",
+      "bytes": 354202
+    },
+    {
+      "path": "checkpoints/training-01_766793_steps.zip",
+      "sha256": "a41fafca0b2eb465866c43e98a9f977e29d1135ff65c3b1fb846626fa7021f7b",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-01_776793_steps.zip",
+      "sha256": "9c4471f8dfb4817aa06dd355f08f85c41bda6d132bc74ce12da4829c2d806260",
+      "bytes": 354204
+    },
+    {
+      "path": "checkpoints/training-02_786793_steps.zip",
+      "sha256": "c02f387f88c1793272aea057c9da2b0f74d480b7b9a6ed94aaf123470f3b10ec",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-02_796793_steps.zip",
+      "sha256": "8760cb7def9467beb8a45d6830e15f5a764503d67181790d3be920269fa9563c",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-02_806793_steps.zip",
+      "sha256": "db097a1dee373f679200a359c307f74d323a470b950defb97376cebf95a3a851",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-02_816793_steps.zip",
+      "sha256": "eee32f9d440f4d894105fb36d24a7c959d60b472da760b831e14b6260aa8b414",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-02_826793_steps.zip",
+      "sha256": "1cb14ac13049ddd72de6103234e7ca9b4fd556c22774997b193b0dd4cba047ec",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-02_836793_steps.zip",
+      "sha256": "6654ba45a192d70e5737037559b9db3c44ba7ff8835ee475c6905174f4421206",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-02_846793_steps.zip",
+      "sha256": "6b5fecf7dc5a5d0453fe26cfc4870a607a25eac817f50b86033fcafcb86ffbbb",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-02_856793_steps.zip",
+      "sha256": "dc07738126b7e117379053420933b56625f2eff195562825f6147b69148902a1",
+      "bytes": 354204
+    },
+    {
+      "path": "checkpoints/training-02_866793_steps.zip",
+      "sha256": "7124532eb996c9878fe5487d650d6fbcca2b77d358cfe51979f2636049bd9a96",
+      "bytes": 354203
+    },
+    {
+      "path": "checkpoints/training-02_876793_steps.zip",
+      "sha256": "8c38305d65c662edc819d2e9dc51a9c48a2c8c5a47b36a230a9c6064ea0a3826",
+      "bytes": 354204
+    },
+    {
+      "path": "checkpoints/training-02_886793_steps.zip",
+      "sha256": "c0b1803933e790e8ee2487efb8533637f1bebc06271d21260b95b89ee3e40b67",
+      "bytes": 354204
+    },
+    {
+      "path": "checkpoints/training-02_896793_steps.zip",
+      "sha256": "99432962d4d51403674bee2d92b7a347526e975ccf7ff086c8a93ea1989599fc",
+      "bytes": 354206
+    },
+    {
+      "path": "final_model.zip",
+      "sha256": "95c4cffad40ab07463fe442033db7a147dddbddd0344fac207ebb4290a165fe4",
+      "bytes": 354206
+    }
+  ]
+}

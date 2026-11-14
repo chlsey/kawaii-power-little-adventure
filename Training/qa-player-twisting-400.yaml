@@ -1,0 +1,26 @@
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-recovery-20261109-224625-train/final_model.zip
+resume_sha256: acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64
+parent_lineage_episodes: 4700
+parent_learning_rate: 0.00002
+parent_evaluation_prefix: after-400
+twisting_curriculum: true
+learning_rate: 0.00002
+model: ppo
+total_timesteps: 240000
+checkpoint_freq: 10000
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+ppo: {batch_size: 64}
+device: cpu
+seed: 18400
+evaluation_seed: 466000
+twisting_evaluation_seed: 467000
+verification_seed: 469000
+port: 7783
+max_episodes: 400
+episode_seconds: 60
+output_dir: ../Logs/qa-twisting
+curriculum:
+  - {episodes: 200, recovery: true, twisting: false}
+  - {episodes: 200, recovery: false, twisting: true}
