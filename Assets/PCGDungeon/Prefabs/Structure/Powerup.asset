@@ -16,6 +16,5 @@ MonoBehaviour:
   icon: {fileID: 0}
   pickupColor: {r: 0.9772253, g: 1, b: 0, a: 1}
   pickupPrefab: {fileID: 0}
-  effect: 0
-  amount: 3
-  durationSeconds: 10
+  speedMultiplier: 1.5
+  durationSeconds: 5

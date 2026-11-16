@@ -36,8 +36,8 @@ public sealed class PlayerHud : MonoBehaviour
         string text = player == null ? "HUD: no QaPlayerController in the scene (press R)" : Describe();
         int lines = text.Split('\n').Length;
 
-        GUI.Box(new Rect(10, 10, 520, 14 + lines * 26), GUIContent.none);
-        GUI.Label(new Rect(20, 16, 500, lines * 26), text, style);
+        GUI.Box(new Rect(10, 10, 660, 14 + lines * 26), GUIContent.none);
+        GUI.Label(new Rect(20, 16, 640, lines * 26), text, style);
     }
 
     private string Describe()
@@ -49,19 +49,22 @@ public sealed class PlayerHud : MonoBehaviour
             : player.EpisodeActive ? "" : "   (no QA episode - press R)";
         text.AppendLine($"HP {player.Health:0.#} / {player.MaxHealth:0.#}{status}");
 
+        // Totals with everything applied, then where each point comes from.
+        text.AppendLine($"Attack {player.AttackDamage:0.#}   Defense {player.Defense:0.#}   Speed {player.MoveSpeed:0.#}");
+
         PlayerEquipment equipment = player.Equipment;
         WeaponDefinition weapon = equipment.Weapon;
         text.AppendLine(weapon != null
-            ? $"Weapon: {weapon.DisplayName} (dmg {weapon.Damage:0.#}, range {weapon.Range:0.#}, {weapon.CooldownSeconds:0.#}s)"
+            ? $"Weapon: {weapon.DisplayName} (+{weapon.AttackBonus:0.#} attack, range {weapon.Range:0.#}, {weapon.CooldownSeconds:0.#}s cooldown)"
             : "Weapon: none");
 
         ShieldDefinition shield = equipment.Shield;
         text.AppendLine(shield != null
-            ? $"Shield: {shield.DisplayName} (-{shield.DamageReduction * 100f:0}% damage)"
+            ? $"Shield: {shield.DisplayName} (+{shield.Defense:0.#} defense)"
             : "Shield: none");
 
         string powerups = string.Join(", ", equipment.DescribeActivePowerups());
-        text.AppendLine($"Powerups: {(powerups.Length > 0 ? powerups : "none")}");
+        text.AppendLine($"Powerup: {(powerups.Length > 0 ? powerups : "none")}");
 
         if (Time.time - player.LastPickupTime < PickupMessageSeconds && !string.IsNullOrEmpty(player.LastPickupName))
             text.AppendLine($"Picked up: {player.LastPickupName}");

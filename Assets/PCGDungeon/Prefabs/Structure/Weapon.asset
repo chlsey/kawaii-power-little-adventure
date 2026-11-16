@@ -16,6 +16,6 @@ MonoBehaviour:
   icon: {fileID: 0}
   pickupColor: {r: 0, g: 1, b: 0, a: 1}
   pickupPrefab: {fileID: 6517533851264700591, guid: da4ff98da386d4a31a4dd5e154789477, type: 3}
-  damage: 2
+  attackBonus: 10
   range: 1.25
   cooldownSeconds: 0.5

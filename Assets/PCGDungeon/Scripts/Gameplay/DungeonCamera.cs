@@ -8,13 +8,17 @@ public sealed class DungeonCamera : MonoBehaviour
 {
     [SerializeField] private float pitch = 55f;
     [SerializeField] private float yaw = 45f;
+    // Perspective cameras zoom by moving closer (distance); orthographic ones, as in
+    // this scene, ignore distance and zoom by size, which is half the visible height in units.
     [SerializeField] private float distance = 12f;
+    [SerializeField] private float orthographicSize = 7f;
     [SerializeField] private float followSmoothTime = 0.15f;
     // Aim at the player's chest rather than their feet.
     [SerializeField] private float targetHeight = 1f;
 
     private const float PlayerSearchInterval = 0.5f;
 
+    private Camera cam;
     private Transform target;
     private Vector3 velocity;
     private float nextPlayerSearch;
@@ -23,8 +27,16 @@ public sealed class DungeonCamera : MonoBehaviour
     public Vector3 PlanarForward { get => Quaternion.Euler(0f, yaw, 0f) * Vector3.forward; }
     public Vector3 PlanarRight { get => Quaternion.Euler(0f, yaw, 0f) * Vector3.right; }
 
+    private void Awake()
+    {
+        cam = GetComponent<Camera>();
+    }
+
     private void LateUpdate()
     {
+        if (cam.orthographic)
+            cam.orthographicSize = orthographicSize;
+
         if (target == null && Time.unscaledTime >= nextPlayerSearch)
         {
             nextPlayerSearch = Time.unscaledTime + PlayerSearchInterval;

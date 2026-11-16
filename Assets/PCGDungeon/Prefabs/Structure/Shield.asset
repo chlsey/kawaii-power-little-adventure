@@ -16,4 +16,4 @@ MonoBehaviour:
   icon: {fileID: 0}
   pickupColor: {r: 0.08962262, g: 0.19561724, b: 1, a: 1}
   pickupPrefab: {fileID: 4099614258647102033, guid: 7199925d7aef34c2cb7618b26e1383b7, type: 3}
-  damageReduction: 0.3
+  defense: 10

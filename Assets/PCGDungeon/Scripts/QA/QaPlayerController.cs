@@ -36,6 +36,10 @@ public sealed class QaPlayerController : MonoBehaviour
     public bool EpisodeActive => episodeActive;
     public QaEpisodeMetrics Metrics => metrics;
     public PlayerEquipment Equipment => equipment;
+    // Current effective stats, with equipment and powerups applied.
+    public float AttackDamage => equipment.AttackDamage(attackDamage);
+    public float Defense => equipment.Defense;
+    public float MoveSpeed => equipment.MoveSpeed(moveSpeed);
     // Name of the last item used and when, so the HUD can confirm a pickup did something.
     public string LastPickupName { get; private set; }
     public float LastPickupTime { get; private set; }
@@ -172,9 +176,7 @@ public sealed class QaPlayerController : MonoBehaviour
         LastPickupName = item != null ? item.DisplayName : "Plain powerup (no effect)";
         LastPickupTime = Time.time;
 
-        if (item is PowerupDefinition powerup && powerup.Effect == PowerupEffect.Heal)
-            health = Mathf.Min(maxHealth, health + powerup.Amount);
-        else if (item != null)
+        if (item != null)
             equipment.Equip(item);
     }
 

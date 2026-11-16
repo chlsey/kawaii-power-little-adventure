@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// The player's weapon and shield slots plus any timed powerups. QaPlayerController
+// The player's weapon and shield slots plus any timed speed powerups. QaPlayerController
 // asks this for its combat and movement stats; with nothing equipped every stat
 // falls back to the controller's own values, so trained models see no change.
 public sealed class PlayerEquipment : MonoBehaviour
@@ -20,6 +20,21 @@ public sealed class PlayerEquipment : MonoBehaviour
     public WeaponDefinition Weapon { get; private set; }
     public ShieldDefinition Shield { get; private set; }
 
+    public float AttackCooldown { get => Weapon != null ? Weapon.CooldownSeconds : 0f; }
+    public float Defense { get => Shield != null ? Shield.Defense : 0f; }
+
+    // Product of all running speed powerups; 1 when none are active.
+    public float SpeedMultiplier
+    {
+        get
+        {
+            float multiplier = 1f;
+            foreach (ActivePowerup active in activePowerups)
+                multiplier *= active.Definition.SpeedMultiplier;
+            return multiplier;
+        }
+    }
+
     // Restores the starting loadout at the start of each episode.
     public void ResetLoadout()
     {
@@ -28,8 +43,7 @@ public sealed class PlayerEquipment : MonoBehaviour
         activePowerups.Clear();
     }
 
-    // Equips a weapon or shield, or starts a timed powerup. Instant powerups
-    // (heals) are applied by the controller, which owns health.
+    // Equips a weapon or shield, or starts (or restarts) a speed powerup.
     public void Equip(ItemDefinition item)
     {
         switch (item)
@@ -40,8 +54,12 @@ public sealed class PlayerEquipment : MonoBehaviour
             case ShieldDefinition shield:
                 Shield = shield;
                 break;
-            case PowerupDefinition powerup when !powerup.IsInstant:
-                activePowerups.Add(new ActivePowerup { Definition = powerup, RemainingSeconds = powerup.DurationSeconds });
+            case PowerupDefinition powerup:
+                ActivePowerup running = activePowerups.Find(active => active.Definition == powerup);
+                if (running != null)
+                    running.RemainingSeconds = powerup.DurationSeconds;
+                else
+                    activePowerups.Add(new ActivePowerup { Definition = powerup, RemainingSeconds = powerup.DurationSeconds });
                 break;
         }
     }
@@ -57,17 +75,16 @@ public sealed class PlayerEquipment : MonoBehaviour
         }
     }
 
-    // One line per running timed powerup, for the HUD.
+    // One line per running powerup, for the HUD.
     public IEnumerable<string> DescribeActivePowerups()
     {
         foreach (ActivePowerup active in activePowerups)
-            yield return $"{active.Definition.DisplayName} {active.RemainingSeconds:0.#}s";
+            yield return $"{active.Definition.DisplayName} x{active.Definition.SpeedMultiplier:0.#} speed, {active.RemainingSeconds:0.#}s";
     }
 
     public float AttackDamage(float baseDamage)
     {
-        float damage = Weapon != null ? Weapon.Damage : baseDamage;
-        return damage * Multiplier(PowerupEffect.DamageBoost);
+        return baseDamage + (Weapon != null ? Weapon.AttackBonus : 0f);
     }
 
     public float AttackRange(float baseRange)
@@ -75,35 +92,13 @@ public sealed class PlayerEquipment : MonoBehaviour
         return Weapon != null ? Weapon.Range : baseRange;
     }
 
-    public float AttackCooldown { get => Weapon != null ? Weapon.CooldownSeconds : 0f; }
-
     public float MoveSpeed(float baseSpeed)
     {
-        return baseSpeed * Multiplier(PowerupEffect.SpeedBoost);
+        return baseSpeed * SpeedMultiplier;
     }
 
-    // Shield and damage-reduction powerups stack multiplicatively.
     public float DamageTaken(float amount)
     {
-        float kept = Shield != null ? 1f - Shield.DamageReduction : 1f;
-        foreach (ActivePowerup active in activePowerups)
-        {
-            if (active.Definition.Effect == PowerupEffect.DamageReduction)
-                kept *= 1f - Mathf.Clamp01(active.Definition.Amount);
-        }
-
-        return amount * kept;
-    }
-
-    private float Multiplier(PowerupEffect effect)
-    {
-        float multiplier = 1f;
-        foreach (ActivePowerup active in activePowerups)
-        {
-            if (active.Definition.Effect == effect)
-                multiplier *= active.Definition.Amount;
-        }
-
-        return multiplier;
+        return Mathf.Max(0f, amount - Defense);
     }
 }

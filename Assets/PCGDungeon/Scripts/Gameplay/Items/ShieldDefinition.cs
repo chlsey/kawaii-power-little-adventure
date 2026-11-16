@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Shield", menuName = "PCG Dungeon/Items/Shield")]
 public sealed class ShieldDefinition : ItemDefinition
 {
-    // Fraction of incoming damage removed while equipped.
-    [SerializeField, Range(0f, 1f)] private float damageReduction = 0.3f;
+    // Subtracted from every hit the player takes while equipped (never below zero).
+    [SerializeField, Min(0f)] private float defense = 10f;
 
-    public float DamageReduction { get => damageReduction; }
+    public float Defense { get => defense; }
 }
