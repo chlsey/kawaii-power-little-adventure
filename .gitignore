@@ -26,6 +26,8 @@
 *.a
 *.lib
 
+Training/watch_local_movement.py
+
 # Executables
 *.exe
 *.out

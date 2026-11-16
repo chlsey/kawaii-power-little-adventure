@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 1239918673}
   - component: {fileID: 1239918677}
   - component: {fileID: 1239918676}
+  - component: {fileID: 1239918678}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -354,7 +355,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 58
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -399,7 +400,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DungeonCamera
   pitch: 55
   yaw: 45
-  distance: 12
+  distance: 15
+  orthographicSize: 7
   followSmoothTime: 0.15
   targetHeight: 1
 --- !u!114 &1239918677
@@ -446,6 +448,18 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1239918678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239918672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8faecc4ca2e984e1080cb95151ad87dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHud
 --- !u!1 &2013417429
 GameObject:
   m_ObjectHideFlags: 0
