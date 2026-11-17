@@ -9,9 +9,21 @@ public class GenerationSettings : ScriptableObject
     [SerializeField] public Data generation;
 }
 
+// Which predungeon generator lays out the level. Add a value here and a case in
+// Generator.CreatePredungeonGenerator for each new dungeon type.
+public enum DungeonType
+{
+    RoomsAndCorridors,
+    Cathedral
+}
+
 [Serializable]
 public class Data
 {
+    [SerializeField] public DungeonType dungeonType;
+    // Parameters for the Cathedral dungeon type. Empty uses the CathedralParameters defaults.
+    [SerializeField] public CathedralSettings cathedral;
+
     [SerializeField] public int minRooms;
     [SerializeField] public int maxRooms;
 

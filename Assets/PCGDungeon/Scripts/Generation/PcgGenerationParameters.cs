@@ -26,5 +26,8 @@ public class PcgGenerationParameters
 
     public int PowerupsPerRoom;
 
+    // Only used by the cathedral dungeon type. Null uses the CathedralSettings asset.
+    public CathedralParameters Cathedral;
+
     public int Seed;
 }

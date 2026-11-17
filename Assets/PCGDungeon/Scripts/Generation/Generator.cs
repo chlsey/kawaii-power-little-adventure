@@ -12,6 +12,9 @@ public class Generator : MonoBehaviour
 
     [SerializeField] private GenerationSettings generationSettings;
 
+    private DungeonType dungeonType;
+    private CathedralParameters cathedralParameters;
+    private CathedralSettings cathedralSettings;
     private bool deleteInnerCorners;
 
     private int rooms;
@@ -23,7 +26,6 @@ public class Generator : MonoBehaviour
     private int maxRoomWidth;
     private int minRoomHeight;
     private int maxRoomHeight;
-    private int corridorNumber;
     private int destroyablesRate;
     private int minBossRoomWidth;
     private int maxBossRoomWidth;
@@ -37,7 +39,6 @@ public class Generator : MonoBehaviour
     private int wallObjConsequitiveDistance;
     private int amountOfAdjacentRoomsToConnect;
     private int powerupsPerRoom;
-    private const int MaxFailedPlacementsPerRoom = 500;
 
     private List<ObjectList> walls;
     private List<ObjectList> doors;
@@ -80,12 +81,10 @@ public class Generator : MonoBehaviour
     private Room bossSpawnRoom;
     private Room playerSpawnRoom;
 
-    private List<Vector2Int> tempArea = new List<Vector2Int>();
-
     private List<GameObject> corridors = new List<GameObject>();
+    // Tiles under columns and arches, which loot, enemies and puzzles keep off.
+    private HashSet<Vector2Int> occupiedTiles = new HashSet<Vector2Int>();
     private List<GameObject> doorGameObjects = new List<GameObject>();
-
-    private static int numberOfRooms;
 
     private string[] floorRemovables = { "Floor", "(", ")", "", " ", "," };
 
@@ -108,6 +107,9 @@ public class Generator : MonoBehaviour
 
         GetGenerationSettings(); // Still obtains prefabs and fixed theme data.
 
+        if (parameters.Cathedral != null)
+            cathedralParameters = parameters.Cathedral;
+
         rooms = parameters.RoomCount;
         areaWidth = parameters.AreaWidth;
         areaHeight = parameters.AreaHeight;
@@ -123,7 +125,6 @@ public class Generator : MonoBehaviour
         // amountOfAdjacentRoomsToConnect =
         //     parameters.AdjacentRoomConnections;
 
-        Initialise();
         InitialiseEmptyObjects();
         return Generate();
     }
@@ -135,11 +136,9 @@ public class Generator : MonoBehaviour
         if (emptyObject != null) DestroyImmediate(emptyObject);
         if (emptyParentRoom != null) DestroyImmediate(emptyParentRoom);
         corridors.Clear();
-        corridorNumber = 0;
         doorGameObjects.Clear();
         puzzleRooms.Clear();
-        numberOfRooms = 0;
-        tempArea.Clear();
+        occupiedTiles.Clear();
 
         if(transform.childCount > 0)
         {
@@ -154,6 +153,10 @@ public class Generator : MonoBehaviour
     {
         Data settings;
         settings = GenerationSettings.generation;
+
+        dungeonType = settings.dungeonType;
+        cathedralSettings = settings.cathedral;
+        cathedralParameters = cathedralSettings != null ? cathedralSettings.parameters : new CathedralParameters();
 
         minRooms = settings.minRooms;
         maxRooms = settings.maxRooms;
@@ -338,20 +341,6 @@ public class Generator : MonoBehaviour
         return false;
     }
 
-    private void Initialise()
-    {
-
-        area = new GameObject[areaWidth, areaHeight];
-
-        // rooms = Random.Range(minRooms, maxRooms);
-        
-        parents = new GameObject[rooms];
-        parentRooms = new Room[rooms];
-
-        roomArea = new Vector2Int[rooms];
-        roomPos = new Vector2Int[rooms];
-    }
-
     private void InitialiseEmptyObjects()
     {
         emptyObject = new GameObject();
@@ -363,65 +352,19 @@ public class Generator : MonoBehaviour
         emptyParentRoom.tag = "Room";
     }
 
-    //TODO: Add comments to this function
+    // Stage one decides which tiles are walkable; stage two builds them. The
+    // wall, corner and door passes after that still scan the built floor tiles.
     private bool Generate()
     {
-        int randomBossRoom = Random.Range(0, rooms);
-        bool isBossRoom = false;
-        int failedPlacements = 0;
-        
-        for (int i = 0; i < rooms; i++)
+        Predungeon predungeon = CreatePredungeonGenerator().Generate();
+
+        if (predungeon == null)
         {
-            //Set temp area to area of room
-            roomPos[i].x = Random.Range(0, areaWidth);
-            roomPos[i].y = Random.Range(0, areaHeight);
-
-            if (i == randomBossRoom)
-            {
-                isBossRoom = true;
-                roomArea[i].x = Random.Range(minBossRoomWidth, maxBossRoomWidth);
-                roomArea[i].y = Random.Range(minBossRoomHeight, maxBossRoomHeight);
-            }
-            else
-            {
-                isBossRoom = false;
-                roomArea[i].x = Random.Range(minRoomWidth, maxRoomWidth);
-                roomArea[i].y = Random.Range(minRoomHeight, maxRoomHeight);
-            }
-
-            if (CreateRooms(i, ref isBossRoom) == false)
-            {
-                i--;
-                failedPlacements++;
-                if (failedPlacements > MaxFailedPlacementsPerRoom * rooms)
-                {
-                    Debug.LogError($"Could not fit {rooms} rooms into {areaWidth}x{areaHeight}. Aborting generation.");
-                    return false;
-                }
-            }
-            else
-            {
-                parentRooms[i] = parents[i].GetComponent<Room>();
-                parentRooms[i].GeneratedSize = roomArea[i];
-
-                parentRooms[i].AddMidPoint();
-
-                if (isBossRoom)
-                    bossSpawnRoom = parentRooms[i];
-            }
+            Debug.LogError($"Could not generate a {dungeonType} dungeon. Aborting generation.");
+            return false;
         }
 
-        int randomRoom = Random.Range(0, parentRooms.Length);
-
-        CalculateCorridors();
-
-        List<Room> tempList = new List<Room>();
-
-        Room tempRoom = parentRooms[0];
-
-        AddConnectedRoom(tempRoom, ref tempList, true);
-
-        CheckConnectedRoom(tempRoom, tempList);
+        BuildTiles(predungeon);
 
         GenerateWalls();
 
@@ -435,6 +378,8 @@ public class Generator : MonoBehaviour
 
         DoubleCheckRoomCorners();
 
+        PlaceFeatures(predungeon);
+
         SpawnEntities();
 
         SpawnQaPlaceholders();
@@ -442,6 +387,103 @@ public class Generator : MonoBehaviour
         SpawnPuzzles();
 
         return true;
+    }
+
+    private IPredungeonGenerator CreatePredungeonGenerator()
+    {
+        switch (dungeonType)
+        {
+            case DungeonType.RoomsAndCorridors:
+                return new RoomsAndCorridorsGenerator
+                {
+                    AreaWidth = areaWidth,
+                    AreaHeight = areaHeight,
+                    RoomCount = rooms,
+                    MinRoomWidth = minRoomWidth,
+                    MaxRoomWidth = maxRoomWidth,
+                    MinRoomHeight = minRoomHeight,
+                    MaxRoomHeight = maxRoomHeight,
+                    MinBossRoomWidth = minBossRoomWidth,
+                    MaxBossRoomWidth = maxBossRoomWidth,
+                    MinBossRoomHeight = minBossRoomHeight,
+                    MaxBossRoomHeight = maxBossRoomHeight,
+                    MinDistanceBetweenRooms = minDistanceBetweenRooms,
+                    AdjacentRoomsToConnect = amountOfAdjacentRoomsToConnect,
+                };
+            case DungeonType.Cathedral:
+                return new CathedralGenerator(cathedralParameters);
+            default:
+                throw new System.NotSupportedException($"No predungeon generator for dungeon type {dungeonType}.");
+        }
+    }
+
+    // Turns the predungeon's floor into room and corridor objects. A room's
+    // floor tiles must stay its first children, in x-then-y order, because the
+    // corner and enemy placement below index into them.
+    private void BuildTiles(Predungeon predungeon)
+    {
+        int roomCount = predungeon.Rooms.Count;
+        area = new GameObject[predungeon.Width, predungeon.Height];
+        parents = new GameObject[roomCount];
+        parentRooms = new Room[roomCount];
+        roomArea = new Vector2Int[roomCount];
+        roomPos = new Vector2Int[roomCount];
+
+        for (int i = 0; i < predungeon.Rooms.Count; i++)
+        {
+            PreRoom preRoom = predungeon.Rooms[i];
+            roomPos[i] = preRoom.Rect.position;
+            roomArea[i] = preRoom.Rect.size;
+
+            Vector2 center = CalculateCenterPoint(roomArea[i], roomPos[i]);
+
+            parents[i] = Instantiate(emptyParentRoom, new Vector3(center.x, 0, center.y), Quaternion.identity, gameObject.transform);
+            parents[i].name = "Room" + (i + 1) + "(" + roomPos[i].x + ", " + roomPos[i].y + ")";
+
+            BoxCollider collider = parents[i].AddComponent<BoxCollider>();
+            collider.size = new Vector3(roomArea[i].x - 1, 3, roomArea[i].y - 1);
+            collider.isTrigger = true;
+
+            for (int a = 0; a < roomArea[i].x; a++)
+            {
+                for (int b = 0; b < roomArea[i].y; b++)
+                {
+                    CreateFloor(roomPos[i].x + a, roomPos[i].y + b, parents[i].transform);
+                }
+            }
+
+            parentRooms[i] = parents[i].GetComponent<Room>();
+            parentRooms[i].GeneratedSize = roomArea[i];
+
+            foreach (Vector2Int midPoint in preRoom.MidPoints)
+            {
+                parentRooms[i].MidPoints.Add(area[midPoint.x, midPoint.y]);
+            }
+        }
+
+        bossSpawnRoom = parentRooms[predungeon.BossRoom];
+        playerSpawnRoom = predungeon.SpawnRoom >= 0 ? parentRooms[predungeon.SpawnRoom] : null;
+
+        foreach (PreCorridor preCorridor in predungeon.Corridors)
+        {
+            GameObject corridor = Instantiate(emptyObject);
+            corridor.transform.SetParent(parents[preCorridor.StartRoom].transform);
+            corridor.name = "Corridor " + corridors.Count;
+            corridors.Add(corridor);
+
+            foreach (Vector2Int cell in preCorridor.Cells)
+            {
+                CreateFloor(cell.x, cell.y, corridor.transform);
+            }
+        }
+    }
+
+    private void CreateFloor(int x, int y, Transform parent)
+    {
+        int randomFlooring = Random.Range(0, flooring.Count);
+
+        area[x, y] = Instantiate(flooring[randomFlooring].gameObject, new Vector3(x, 0, y), Quaternion.identity, parent);
+        area[x, y].name = "Floor" + " (" + x + ", " + y + ")";
     }
 
     // Marks spawn and boss rooms, then picks puzzleRoomCount of the rest as
@@ -507,7 +549,7 @@ public class Generator : MonoBehaviour
         {
             Transform child = room.transform.GetChild(i);
             if (child.CompareTag("Floor") && !room.MidPoints.Contains(child.gameObject)
-                && !room.Corners.Contains(child.gameObject) && inner.Contains(child.position))
+                && !room.Corners.Contains(child.gameObject) && inner.Contains(child.position) && !IsOccupied(child))
                 tiles.Add(child);
         }
 
@@ -644,610 +686,13 @@ public class Generator : MonoBehaviour
         for (int i = 0; i < room.transform.childCount; i++)
         {
             Transform child = room.transform.GetChild(i);
-            if (child.CompareTag("Floor"))
+            if (child.CompareTag("Floor") && !IsOccupied(child))
                 floorTiles.Add(child);
         }
 
         return floorTiles.Count > 0
             ? floorTiles[Random.Range(0, floorTiles.Count)].position
             : room.transform.position;
-    }
-
-    //TODO: Add comments to this function   
-    private bool CreateRooms(int i, ref bool isBossRoom)
-    {
-        for (int a = 0; a < roomArea[i].x; a++)
-        {
-            for (int b = 0; b < roomArea[i].y; b++)
-            {
-                //Check bounds
-                if (roomPos[i].x + roomArea[i].x > areaWidth - (roomArea[i].x / 2) - 2|| roomPos[i].y + roomArea[i].y > areaHeight - (roomArea[i].y / 2) - 2 
-                    || roomPos[i].x - roomArea[i].x < 2 || roomPos[i].y - roomArea[i].y < 2)
-                {
-                    return false;
-                }
-                else
-                {
-                    if(tempArea.Count < 1)
-                    {
-                        for (int d = - minDistanceBetweenRooms; d < roomArea[i].x + (minDistanceBetweenRooms); d++)
-                        {
-                            for (int e = -minDistanceBetweenRooms; e < roomArea[i].y + (minDistanceBetweenRooms); e++)
-                            {
-                                if(roomPos[i].x + d < areaWidth || roomPos[i].x + d > 0 || roomPos[i].y + e < areaHeight || roomPos[i].y + e > 0)
-                                {
-                                    if (area[roomPos[i].x + d, roomPos[i].y + e] != null)
-                                    {
-                                        return false;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    //Check if there is a room at the position
-                    if (area[roomPos[i].x + a, roomPos[i].y + b] == null)
-                    {
-                        //Do only once per room
-                        if(tempArea.Count == 0)
-                        {
-                            numberOfRooms++;
-                            
-                            Vector2 tempArea = CalculateCenterPoint(roomArea[i], roomPos[i]);
-                            
-                            parents[i] = Instantiate(emptyParentRoom, new Vector3(tempArea.x, 0, tempArea.y), Quaternion.identity, gameObject.transform);
-                            parents[i].name = "Room" + numberOfRooms + "(" + roomPos[i].x + ", " + roomPos[i].y + ")";
-
-                            BoxCollider collider = parents[i].AddComponent<BoxCollider>();
-                            collider.size = new Vector3(roomArea[i].x - 1 , 3, roomArea[i].y - 1);
-                            collider.isTrigger = true;
-                        }
-
-                        int randomFLooring = Random.Range(0, flooring.Count);
-                        //Instantiate Floor
-                        area[roomPos[i].x + a, roomPos[i].y + b] = Instantiate(flooring[randomFLooring].gameObject, new Vector3(roomPos[i].x + a, 0, roomPos[i].y + b), Quaternion.identity, parents[i].transform);
-
-                        int tempX = roomPos[i].x + a;
-                        int tempY = roomPos[i].y + b;
-
-                        area[roomPos[i].x + a, roomPos[i].y + b].name = "Floor" + " (" + tempX + ", " + tempY + ")";
-
-                        //Add cords to list
-                        tempArea.Add(new Vector2Int(roomPos[i].x + a, roomPos[i].y + b));
-                    }
-                    else
-                    {
-                        //If it is not null, delete the whole room that was just instatiated with i and the room area
-                        if (tempArea.Count > 0)
-                        {
-                            for (int e = 0; e < tempArea.Count; e++)
-                            {
-                                DestroyImmediate(area[tempArea[e].x, tempArea[e].y]);
-                                area[tempArea[e].x, tempArea[e].y] = null;
-                            }
-
-                            //Delete parent
-                            DestroyImmediate(parents[i]);
-                            DestroyImmediate(parentRooms[i]);
-                            parentRooms[i] = null;
-                            parents[i] = null;
-                            numberOfRooms--;
-
-                            tempArea.Clear();
-                        }
-
-                        //Restart iteneration so this is done again
-                        return false;
-                    }
-
-                    //If a and b both Max Area reset counter for room[]
-                    if (a >= roomArea[i].x - 1  && b >= roomArea[i].y - 1)
-                    { 
-                        tempArea.Clear();
-                    }
-                }
-            }
-        }
-
-        return true;
-    }
-
-    public void CalculateCorridors()
-    {
-        for (int i = 0; i < parentRooms.Length; i++)
-        {
-            parentRooms[i].CalculateConnections();
-        }
-
-        CalculateClosestRooms();
-
-        AddRoomConnections();
-
-        CreateCorridors();
-    }
-
-    private void AddRoomConnections()
-    {
-        List<int> tempNumbers = new List<int>();
-
-        for (int a = 0; a < parentRooms.Length; a++)
-        {
-            // Bounded by how many closest rooms were actually recorded above, not just
-            // the configured target - a small dungeon can have fewer than that many.
-            int connectionsToMake = Mathf.Min(parentRooms[a].MaxAmountOfConnections, parentRooms[a].ClosestRooms.Count);
-
-            //Chose random rooms between the closest
-            for (int b = 0; b < connectionsToMake; b++)
-            {
-
-                //Add all the possible rooms that can be chosen
-                for (int c = 0; c < connectionsToMake; c++)
-                {
-                    tempNumbers.Add(c);
-                }
-
-                int tempRandomInt = tempNumbers[Random.Range(0, tempNumbers.Count)];
-
-                parentRooms[a].AddConnectedRooms(parentRooms[a].ClosestRooms[tempRandomInt].GetComponent<Room>());
-                parentRooms[a].SavedConnectedRooms = parentRooms[a].ConnectedRooms;
-
-                //Delete number from list so it doesn't appear again
-                tempNumbers.Remove(tempRandomInt);
-
-            }
-
-            //Clear list for the next room
-            tempNumbers.Clear();
-        }
-    }
-
-    private void CreateCorridors()
-    {
-        for (int a = 0; a < parentRooms.Length; a++)
-        {
-            for (int b = 0; b < parentRooms[a].ConnectedRooms.Count; b++)
-            {
-                int randomPoint;
-
-                if (parentRooms[a].ConnectedRooms[b].MidPoints.Count > 1)
-                {
-                    randomPoint = Random.Range(0, parentRooms[a].ConnectedRooms[b].MidPoints.Count - 1);
-                }
-                else
-                {
-                    randomPoint = 0;
-                }
-
-                bool isXEqual = false;
-                bool isYEqual = false;
-
-
-                GameObject targetPoint = parentRooms[a].ConnectedRooms[b].MidPoints[randomPoint];
-
-                randomPoint = Random.Range(0, parentRooms[a].MidPoints.Count);
-
-                Transform startPoint = parentRooms[a].MidPoints[randomPoint].transform;
-
-                CompareRoomXOrYPos(startPoint, targetPoint.transform, ref isXEqual, ref isYEqual);
-                ChooseDirection(isXEqual, isYEqual, targetPoint.transform, startPoint);
-            }
-        }
-    }     
-
-    private void CompareRoomXOrYPos(Transform self, Transform target, ref bool boolx, ref bool booly)
-    {
-        if (Mathf.RoundToInt(target.position.x) == Mathf.RoundToInt(self.position.x))
-            boolx = true;
-
-        if (Mathf.RoundToInt(target.position.z) == Mathf.RoundToInt(self.position.z))
-            booly = true;
-    }
-
-
-    private void AddConnectedRoom(Room room, ref List<Room> roomList, bool firstCheck)
-    {
-        for (int i = 0; i < room.ConnectedRooms.Count; i++)
-        {
-            if(!roomList.Contains(room))
-            {
-                roomList.Add(room);
-            }
-
-            //If connected rooms are more than 0 of connected room
-            //And if the list does not already contain that room
-            //Call this function again with the specified connected room
-            if(room.ConnectedRooms[i].ConnectedRooms.Count != 0 && !roomList.Contains(room.ConnectedRooms[i]))
-            {
-                AddConnectedRoom(room.ConnectedRooms[i], ref roomList, false);
-            }
-
-            if (room.ConnectedRooms[i].ConnectedRooms.Count == 0 && !roomList.Contains(room.ConnectedRooms[i]))
-            {
-                roomList.Add(room.ConnectedRooms[i]);
-            }
-        }
-
-        //If the first check is true
-        //Which should only happen at the end of the first iteration
-        //Check if count of rooms is equal to count of list
-        if (firstCheck == true && roomList.Count != rooms)
-        {
-            //Check if all rooms are actually connected, and add the missing ones
-            CheckForConnections(ref roomList);
-        }
-    }
-
-    private void CheckForConnections(ref List<Room> roomList)
-    {
-        //Loop through all the parents rooms
-        for (int i = 0; i < parentRooms.Length; i++)
-        {
-            //Loop through all the roomlist rooms
-            for (int z = 0; z < roomList.Count; z++)
-            {
-                //Check if the room is already added to the roomList
-                if (!roomList.Contains(parentRooms[i]))
-                {
-                    Room tempRoom;
-
-                    //Create local list to work around the lamda function which doesn't take ref Lists
-                    List<Room> tempLambdaWorkAround = roomList;
-
-                    //Make local room equal to the parents room iterated connected room if it finds the iterated roomList z room, but only if it contains it.
-                    tempRoom = parentRooms[i].ConnectedRooms.Find(x => x.ConnectedRooms.Contains(tempLambdaWorkAround[z]));
-
-                    if (tempRoom != null)
-                    {
-                        //If the room is found, and doesn't equal to null call the add connected room function
-                        //So it can look for it
-                        AddConnectedRoom(parentRooms[i], ref roomList, true);
-                    }
-
-                    //This double checks it, and makes the bug of where one room is missing not happen anymore.
-                    for (int j = 0; j < parentRooms[i].ConnectedRooms.Count; j++)
-                    {
-                        if (parentRooms[i].ConnectedRooms[j] == roomList[z])
-                        {
-                            AddConnectedRoom(parentRooms[i], ref roomList, true);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void CheckConnectedRoom(Room room, List<Room> roomList)
-    {
-        //Check if all the paths are already connected or not
-        if(roomList.Count != rooms)
-        { 
-            do
-            {
-                Room targetRoom = null;
-                List<Room> targetList = new List<Room>();
-
-                //Compare this list and check which rooms are closer between both lists connect those
-                for (int a = 0; a < parentRooms.Length; a++)
-                {
-                    for (int b = 0; b < roomList.Count; b++)
-                    {
-                        //Whatever is first on the list is the closest to the room
-                        for (int c = 0; c < parentRooms[a].ClosestRooms.Count; c++)
-                        {
-                            //Make sure room is not in the connected ones list
-                            if (!roomList.Contains(parentRooms[a]))
-                            {
-                                targetRoom = parentRooms[a];
-                                break;
-                            }
-                        }
-
-                        break;
-                    }
-
-                    if (targetRoom != null)
-                    {
-                        Vector3Int vector3Int;
-                        bool isXEqual = false;
-                        bool isYEqual = false;
-
-
-                        //Get the closes rooms to connect them
-                        //x = distance, y = first list item wanted, z = second list item wanted
-                        vector3Int = CheckClosestRooms(ref roomList, ref targetList);
-
-                        //Get the start Mid Point
-                        Transform startPoint = roomList[vector3Int.y].MidPoints[0].transform;
-
-                        //Get the targetPoint
-                        GameObject targetPoint = targetList[vector3Int.z].MidPoints[0];
-
-                        //Compare x and y to see if they are both different
-                        CompareRoomXOrYPos(startPoint, targetPoint.transform, ref isXEqual, ref isYEqual);
-
-                        //Chose random direction and create corridor
-                        ChooseDirection(isXEqual, isYEqual, startPoint, targetPoint.transform);
-
-                        //Add all the members from target list to roomList
-                        for (int i = 0; i < targetList.Count; i++)
-                        {
-                            roomList.Add(targetList[i]);
-                        }
-
-                        break;
-                    }
-                }
-
-            } while (roomList.Count != rooms);
-        }
-    }
-
-    //Keep calling this function until the roomListNumber is equal to the rooms
-    //Makes sure all rooms are connected
-    private Vector3Int CheckClosestRooms(ref List<Room> roomList, ref List<Room> targetList)
-    {
-        Vector3Int distanceIterations = new Vector3Int();
-
-        //Compare between the roomlist and parents list
-        for (int a = 0; a < roomList.Count; a++)
-        {
-            for (int b = 0; b < parentRooms.Length; b++)
-            {
-                //Create a list with the first room which is not on the list
-                if(!roomList.Contains(parentRooms[b]))
-                {
-                    //Add to that list all of it's connected rooms in total
-                    AddConnectedRoom(parentRooms[b], ref targetList, true);
-
-                    //Calculate between which of the rooms is closest to any of the roomList
-                    distanceIterations = CalculateDistanceBetweenTwoLists(ref roomList, ref targetList);
-
-                    return distanceIterations;
-                }
-            }
-        }
-
-        return distanceIterations;
-    }
-
-    //First value of vector3 int would be Distance, second the startPoint in number of iteration, third the targetPoint in number of iteration
-    //This functiton will retrieve a vector 3 int of the lowest distance
-    Vector3Int CalculateDistanceBetweenTwoLists(ref List<Room> listOne, ref List<Room> listTwo)
-    {
-        List<Vector3Int> tempVector3Int = new List<Vector3Int>();
-
-        for (int a = 0; a < listOne.Count; a++)
-        {
-            for (int b = 0; b < listTwo.Count; b++)
-            {
-                float distance = Vector3.Distance(listOne[a].transform.position, listTwo[b].transform.position);
-
-                tempVector3Int.Add(new Vector3Int((int)distance, a, b));
-            }
-        }
-
-        tempVector3Int.Sort((a, b) => a.x.CompareTo(b.x));
-
-        //Store the vector with the least distance
-        //And then return it.
-        Vector3Int tempVec3Int = tempVector3Int[0];
-
-        return tempVec3Int;
-    }
-  
-    private void ChooseDirection(bool equalx, bool equalY, Transform target, Transform startPoint)
-    {
-        int dir;
-        bool calculateNext = false;
-        bool isFirstTime = true;
-        if (equalx == true && equalY == false)
-        {
-            dir = 0;
-        }
-        else if(equalY == true && equalx == false)
-        {
-            dir = 1;
-        }
-        else
-        {
-            dir = Random.Range(0, 2);
-            calculateNext = true;
-        }
-
-        CreateCorridor(dir, calculateNext, isFirstTime, target, startPoint);
-    }
-
-    private void CreateCorridor(int corridor, bool calculateNext, bool isFirstTime, Transform target, Transform startPoint)
-    {
-        GameObject corridorFloor;
-
-        //Only does this the first time
-        if (isFirstTime)
-        {
-            Room tempTarget = target.transform.parent.gameObject.GetComponent<Room>();
-            Room tempStart = startPoint.transform.parent.gameObject.GetComponent<Room>();
-
-            //If the targeted room contains start room, remove it from the connected rooms of target
-            if (tempTarget.ConnectedRooms.Contains(tempStart))
-            {
-                tempTarget.SavedConnectedRooms = tempTarget.ConnectedRooms;
-                tempTarget.ConnectedRooms.Remove(tempStart);
-            }
-
-            corridors.Add(Instantiate(emptyObject));
-            corridors[corridorNumber].transform.SetParent(startPoint.parent);
-            corridors[corridorNumber].name = "Corridor " + corridorNumber;
-        }
-
-        //Do X Corridor
-        if (corridor == 0)
-        {
-            int additive = 0;
-
-            do
-            {
-                if(startPoint.position.z < target.position.z)
-                {
-                    additive++;
-                }
-                else
-                {
-                    additive--;
-                }
-
-                //Get string from the self
-                string tempString = startPoint.gameObject.name;
-                string[] tempStringArray = tempString.Split(floorRemovables, System.StringSplitOptions.RemoveEmptyEntries);
-
-                //Make a parent object for corridor which is child of room
-                int tempIntY = int.Parse(tempStringArray[1]) + additive;
-                int tempIntX = int.Parse(tempStringArray[0]);
-
-                int randomFloor = Random.Range(0, flooring.Count);
-                corridorFloor = Instantiate(flooring[randomFloor].gameObject, new Vector3(startPoint.position.x, 0, startPoint.position.z + additive), Quaternion.identity); 
-                //Name corridor floor
-                corridorFloor.name = "Floor (" + tempIntX + ", " + tempIntY + ")";
-
-                //Set parent to be corridor parent object
-                corridorFloor.transform.SetParent(corridors[corridorNumber].transform);
-
-                if (area[tempIntX, tempIntY] != null)
-                {
-                    DestroyImmediate(corridorFloor);
-                    corridorFloor = area[tempIntX, tempIntY];
-                }
-                else
-                {
-                    area[tempIntX, tempIntY] = corridorFloor;
-                }
-
-            } while (Mathf.RoundToInt(corridorFloor.transform.position.z) != Mathf.RoundToInt(target.position.z));
-
-
-
-            if (calculateNext)
-            {
-                CreateCorridor(1, false, false, target, corridorFloor.transform);
-            }
-        }
-        else if(corridor == 1) // Do Y corridor
-        {
-            int additive = 0;
-
-            do
-            {
-                if (startPoint.position.x < target.position.x)
-                {
-                    additive++;
-                }
-                else
-                {
-                    additive--;
-                }
-
-
-                string tempString = startPoint.gameObject.name;
-                string[] tempStringArray = tempString.Split(floorRemovables, System.StringSplitOptions.RemoveEmptyEntries);
-                tempStringArray[0].Remove(0);
-
-
-                //Make a parent object for corridor which is child of room
-                int tempIntY = int.Parse(tempStringArray[1]);
-                int tempIntX = int.Parse(tempStringArray[0]) + additive;
-
-                int randomFloor = Random.Range(0, flooring.Count);
-                corridorFloor = Instantiate(flooring[randomFloor].gameObject, new Vector3(startPoint.position.x + additive, 0, startPoint.position.z), Quaternion.identity);
-
-                //Name corridor floor
-                corridorFloor.name = "Floor" + " (" + tempIntX + ", " + tempStringArray[1] + ")";
-
-                //Set parent to be corridor parent object
-                corridorFloor.transform.SetParent(corridors[corridorNumber].transform);
-
-                if (area[tempIntX, tempIntY] != null)
-                {
-                    DestroyImmediate(corridorFloor);
-                    corridorFloor = area[tempIntX, tempIntY];
-                }
-                else
-                {
-                    area[tempIntX, tempIntY] = corridorFloor;
-                }
-
-
-            } while (Mathf.RoundToInt(corridorFloor.transform.position.x) != Mathf.RoundToInt(target.position.x));
-
-
-            if (calculateNext)
-            {
-                CreateCorridor(0, false, false, target, corridorFloor.transform);
-            }
-        }
-        else
-        {
-            Debug.LogError("Create Corridor Function's int passed non available to create corridor in specific axis");
-        }
-
-        if (isFirstTime)
-        {
-            //Increase corridor number
-            corridorNumber++;
-        }
-    }
-
-    private void CalculateClosestRooms()
-    {
-        int maxDistance = 0;
-
-        List<float> distances;
-
-        Dictionary<float, GameObject> tempDictionary;
-
-        for (int a = 0; a < parents.Length; a++)
-        {
-            distances = new List<float>();
-            tempDictionary = new Dictionary<float, GameObject>();
-
-            for (int b = 0; b < parents.Length; b++)
-            {
-                //Make sure they are not equal cus distance otherwise will be 0
-                if(a != b)
-                {
-                    if(!tempDictionary.ContainsKey(Vector3.Distance(parents[a].transform.position, parents[b].transform.position)))
-                    {
-                        //Calculate distances and add them to containers
-                        distances.Add(Vector3.Distance(parents[a].transform.position, parents[b].transform.position));
-
-                        tempDictionary.Add(Vector3.Distance(parents[a].transform.position, parents[b].transform.position), parents[b]);
-                    }               
-                }
-            }
-
-            if(distances.Count > 0)
-            {
-                distances.Sort();
-            }
-
-            //Add closest adjacent rooms, bounded by how many other rooms actually exist
-            //(a 2-room dungeon only has 1 "other room" per room, regardless of this setting).
-            int adjacentRoomsToAdd = Mathf.Min(AmountOfAdjacentRoomsToConnect, distances.Count);
-            for (int i = 0; i < adjacentRoomsToAdd; i++)
-            {
-                parentRooms[a].AddRoom(tempDictionary[distances[i]]);
-            }
-
-            for (int i = tempDictionary.Count - 1; i >= 0; i--)
-            {
-                if (bossSpawnRoom == parents[a].GetComponent<Room>())
-                {
-                    if (distances[i] > maxDistance)
-                    {
-                        maxDistance = (int)distances[i];
-                        playerSpawnRoom = tempDictionary[distances[i]].GetComponent<Room>();
-                    }
-                }
-            }
-        }
     }
 
     private Vector2 CalculateCenterPoint(Vector2Int area, Vector2Int pos)
@@ -1273,9 +718,9 @@ public class Generator : MonoBehaviour
     {
         //Loop through the whole area
         //check each object, and then check all 8 blocks around if there is something
-        for (int a = 0; a < areaWidth; a++)
+        for (int a = 0; a < area.GetLength(0); a++)
         {
-            for (int b = 0; b < areaHeight; b++)
+            for (int b = 0; b < area.GetLength(1); b++)
             {
                 if(CheckNullAndTag("Floor", true, area[a, b]))
                 {
@@ -2074,9 +1519,9 @@ public class Generator : MonoBehaviour
     {
         if(doors.Count > 0)
         {
-            for (int a = 0; a < areaWidth; a++)
+            for (int a = 0; a < area.GetLength(0); a++)
             {
-                for (int b = 0; b < areaHeight; b++)
+                for (int b = 0; b < area.GetLength(1); b++)
                 {
                     if(CheckNullAndTag("Floor", true, area[a, b]))
                     {
@@ -2145,6 +1590,83 @@ public class Generator : MonoBehaviour
                 }
             }
         }
+    }
+
+    // Columns and arches the layout asked for. They go in after the walls and content,
+    // like the other decoration passes, and mark their tiles as taken.
+    private void PlaceFeatures(Predungeon predungeon)
+    {
+        foreach (PreFeature feature in predungeon.Features)
+        {
+            GameObject prefab = null;
+            if (cathedralSettings != null)
+                prefab = feature.Kind == PreFeatureKind.Column ? cathedralSettings.columnPrefab : cathedralSettings.archPrefab;
+
+            if (prefab == null)
+                continue;
+
+            Transform room = parentRooms[feature.Room].transform;
+            Vector3 position = new Vector3(feature.Position.x, 0, feature.Position.y);
+
+            if (feature.Kind == PreFeatureKind.Column)
+            {
+                // Like other generated objects, the prefab's own Y is its height above the floor.
+                GameObject column = Instantiate(prefab, new Vector3(position.x, prefab.transform.position.y, position.z), Quaternion.identity, room);
+                column.name = "Column";
+            }
+            else
+            {
+                PlaceArch(prefab, room, position, feature.Span, feature.AlongX);
+            }
+
+            foreach (Vector2Int cell in feature.Cells)
+            {
+                occupiedTiles.Add(cell);
+            }
+        }
+    }
+
+    // The arch model can be authored at any size and orientation, so it is scaled and
+    // turned from its bounds to span the requested tiles, and set down on the floor.
+    private void PlaceArch(GameObject prefab, Transform room, Vector3 position, float span, bool alongX)
+    {
+        GameObject arch = Instantiate(prefab, position, Quaternion.identity, room);
+        arch.name = "Arch";
+
+        Renderer[] renderers = arch.GetComponentsInChildren<Renderer>();
+        if (renderers.Length == 0)
+            return;
+
+        Bounds bounds = CombinedBounds(renderers);
+        bool modelAlongX = bounds.size.x >= bounds.size.z;
+
+        float scale = span / Mathf.Max(bounds.size.x, bounds.size.z);
+        float maxHeight = cathedralSettings.archMaxHeight;
+        if (maxHeight > 0f && bounds.size.y * scale > maxHeight)
+            scale = maxHeight / bounds.size.y;
+
+        arch.transform.localScale *= scale;
+        if (modelAlongX != alongX)
+            arch.transform.Rotate(0f, 90f, 0f, Space.World);
+
+        bounds = CombinedBounds(renderers);
+        arch.transform.position += new Vector3(position.x - bounds.center.x, -bounds.min.y, position.z - bounds.center.z);
+    }
+
+    private static Bounds CombinedBounds(Renderer[] renderers)
+    {
+        Bounds bounds = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++)
+        {
+            bounds.Encapsulate(renderers[i].bounds);
+        }
+
+        return bounds;
+    }
+
+    private bool IsOccupied(Transform tile)
+    {
+        return occupiedTiles.Contains(new Vector2Int(Mathf.RoundToInt(tile.position.x), Mathf.RoundToInt(tile.position.z)));
     }
 
     private void SpawnEntities()
@@ -2369,6 +1891,11 @@ public class Generator : MonoBehaviour
                         }
                     }
 
+                    // Small rooms can be all midpoints and corners, which would leave the loop below
+                    // searching forever.
+                    if (!HasEnemySpot(parentRooms[i]))
+                        continue;
+
                     int enem = Random.Range(minEnemiesPerRoom, maxEnemiesPerRoom);
 
                     for (int a = 0; a < enem; a++)
@@ -2381,7 +1908,7 @@ public class Generator : MonoBehaviour
 
                             GameObject tempChild = parentRooms[i].transform.GetChild(randomChild).gameObject;
 
-                            if(tempChild.CompareTag("Floor") && !parentRooms[i].MidPoints.Contains(tempChild) && !parentRooms[i].Corners.Contains(tempChild))
+                            if(tempChild.CompareTag("Floor") && !parentRooms[i].MidPoints.Contains(tempChild) && !parentRooms[i].Corners.Contains(tempChild) && !IsOccupied(tempChild.transform))
                             {
                                 Vector3 pos = tempChild.transform.position;
 
@@ -2399,6 +1926,18 @@ public class Generator : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool HasEnemySpot(Room room)
+    {
+        for (int i = 0; i < room.transform.childCount; i++)
+        {
+            GameObject child = room.transform.GetChild(i).gameObject;
+            if (child.CompareTag("Floor") && !room.MidPoints.Contains(child) && !room.Corners.Contains(child) && !IsOccupied(child.transform))
+                return true;
+        }
+
+        return false;
     }
 
     private Vector3Int CheckSidesCorridor(GameObject obj, int maxSurroundings)
