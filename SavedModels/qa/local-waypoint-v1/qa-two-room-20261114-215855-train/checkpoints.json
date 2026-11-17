@@ -1,0 +1,130 @@
+{
+  "architecture": "local-waypoint-v1",
+  "checkpoints": [
+    {
+      "path": "checkpoints/rl_model_2615165_steps.zip",
+      "sha256": "8bec80eb80992d621f658691e752d126eb99da3b62910cc306d6afd3e3f5837c",
+      "bytes": 357936
+    },
+    {
+      "path": "checkpoints/rl_model_2620165_steps.zip",
+      "sha256": "a8c31da32165619807a9533b73089042425a3454fe3e3506907a0a4aa1ae9f3c",
+      "bytes": 357925
+    },
+    {
+      "path": "checkpoints/rl_model_2625165_steps.zip",
+      "sha256": "94f6f52681dc69256dcd7f499b1f43217d7fdba011ac5df91cceba9bf74690f3",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2630165_steps.zip",
+      "sha256": "25388ca7fd4549319e5623e623533c4dbb42e66133bb715d20fa7f69b6ec019e",
+      "bytes": 357916
+    },
+    {
+      "path": "checkpoints/rl_model_2635165_steps.zip",
+      "sha256": "0c3a8645de00a098fb62e4e1162cdbfb4dd8037f3c91aa447dd19a44234fce85",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2640165_steps.zip",
+      "sha256": "1ce9eb5c03a328cc1075e3c64844624c12cb568e238bdcc80ab07e558600aa80",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2645165_steps.zip",
+      "sha256": "a9e6e1d70668f7ad0f064f3a005f81d88b84bcfa63468d26b41efc7b3b98a0de",
+      "bytes": 357916
+    },
+    {
+      "path": "checkpoints/rl_model_2650165_steps.zip",
+      "sha256": "172341b64927fc4a648eee0042d7bc6c3579b0d800a31a46a47c5db8f490f418",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2655165_steps.zip",
+      "sha256": "aed68a2d14efd8d4e46afa5373be1f7d4b498386555e0a3a9f7bdd13da3dec9f",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2660165_steps.zip",
+      "sha256": "7b7bf3a5d36cc1fa2cb80eeb04affc00842be11f5d8f3e5ca1cce968d5dfa6a4",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2665165_steps.zip",
+      "sha256": "c969a580050df504cafaf2208102fd2dbb3202d05e7c933060e1199581608cae",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2670165_steps.zip",
+      "sha256": "70e4e7103b504a48db6fb3209a1cb6e6230bbd1abd2a11e545ff6b58a1feff2f",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2675165_steps.zip",
+      "sha256": "36aaa54535b83d5ecaf1e4ee5639110fc65404cb030b4157ba49115e545e372e",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2680165_steps.zip",
+      "sha256": "0a9bd5b88e718e73b66e8cd971c685ff128c97735466226a723d48e472d24d2d",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2685165_steps.zip",
+      "sha256": "18ba216de77c73487ffb6b5b989ebe130c116d7320761d2e973c38f03f2af47b",
+      "bytes": 357921
+    },
+    {
+      "path": "checkpoints/rl_model_2690165_steps.zip",
+      "sha256": "4c2bf1169e4c5e8c614199b6d89fb9685622bb4baf7df80bd4d6784a5f426f2e",
+      "bytes": 357921
+    },
+    {
+      "path": "checkpoints/rl_model_2695165_steps.zip",
+      "sha256": "d0ee4bf56bdd7145d7737153e043bd23f0d46cf113ebcb00b4cac6f43e2f2d0d",
+      "bytes": 357920
+    },
+    {
+      "path": "checkpoints/rl_model_2700165_steps.zip",
+      "sha256": "7455e397ffdadfcdeab2ac1cfd5705fcc081b59f0b589184728903168008f29a",
+      "bytes": 357921
+    },
+    {
+      "path": "checkpoints/rl_model_2705165_steps.zip",
+      "sha256": "cbaa28a9213ba4a8f3d647cc8c10f2bb78c51a36f03682020991c4ac1417ce8a",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2710165_steps.zip",
+      "sha256": "b83ded2dd4bc2e5ce8da852128eec1151c1cdb5406f1fd3a4ac4a2adc7830776",
+      "bytes": 357920
+    },
+    {
+      "path": "checkpoints/rl_model_2715165_steps.zip",
+      "sha256": "dcfe84dc977cc1df0118ac49a0e5f706c430979f80d13d2556396643ef94df87",
+      "bytes": 357921
+    },
+    {
+      "path": "checkpoints/rl_model_2720165_steps.zip",
+      "sha256": "eadef6fe3b6a284f428104a9d195dd8ae1841a46384a0c89ae55aa072ff37b5b",
+      "bytes": 357917
+    },
+    {
+      "path": "checkpoints/rl_model_2725165_steps.zip",
+      "sha256": "feb5da4ae4d45174cfecbb93ea91102fcb1c35c6e4115ba1fd62e340c62e1820",
+      "bytes": 357915
+    },
+    {
+      "path": "checkpoints/rl_model_2730165_steps.zip",
+      "sha256": "7560f4c1061361b085d0a25a86e5200783221593e6667873d5d0b91025adf59f",
+      "bytes": 357917
+    },
+    {
+      "path": "final_model.zip",
+      "sha256": "d039b40d8d87fc142314e47daa76aa97f145aabad29f0f955c97fa6a24ffa6d4",
+      "bytes": 357917
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "current_source": "QA-68",
+  "rejected_source": "QA-69",
+  "pilots": {
+    "QA-68": {
+      "cases": 12,
+      "actions": 4126,
+      "events": 3099,
+      "all_instructions_accounted": true,
+      "owned_unity_ended": true,
+      "source_snapshots_verified": true
+    },
+    "QA-69": {
+      "cases": 12,
+      "actions": 5476,
+      "events": 3657,
+      "all_instructions_accounted": true,
+      "owned_unity_ended": true,
+      "source_snapshots_verified": true
+    }
+  },
+  "current_sources_match_qa68": true,
+  "settings_restored": true,
+  "checkpoint_unchanged": true,
+  "training_authorized": false
+}

@@ -1,0 +1,155 @@
+{
+  "status": "complete-policy-audit; see campaign for reference status",
+  "cases": 4,
+  "actions": 2400,
+  "actions_with_waypoint": 1048,
+  "actions_without_waypoint": 1352,
+  "no_waypoint_percent": 56.333333333333336,
+  "assignments": 160,
+  "assignments_per_100_actions": 6.666666666666667,
+  "assignments_per_100_guided_actions": 15.267175572519085,
+  "assignment_arrivals": 74,
+  "assignments_replaced_before_arrival": 85,
+  "assignment_end_reasons": {
+    "waypoint_arrived": 26,
+    "goal_cell_invalid": 9,
+    "start_cell_blocked": 36,
+    "escape_arrived_free": 48,
+    "oscillation_detected": 20,
+    "escape_stalled": 16,
+    "episode_ended": 1,
+    "goal_reached": 1,
+    "waypoint_segment_invalid": 3
+  },
+  "median_instruction_seconds": 0.3000006675720215,
+  "median_assignments_per_case": 38.0,
+  "max_assignments_per_case": 70,
+  "event_counts": {
+    "select_frontier": 111,
+    "route_assigned": 75,
+    "waypoint_arrived": 26,
+    "goal_reached": 17,
+    "goal_cell_invalid": 17,
+    "start_cell_blocked": 58,
+    "exploration_blocked": 9,
+    "escape_assigned": 85,
+    "escape_arrived_free": 48,
+    "abandon_frontier": 77,
+    "no_reachable_goal": 1343,
+    "oscillation_detected": 20,
+    "escape_stalled": 16,
+    "recovery_exhausted": 12,
+    "waypoint_segment_invalid": 3
+  },
+  "broader_recovery_return_states": 206,
+  "cases_with_recovery_returns": 1,
+  "recovery_returns": [
+    {
+      "seed": 530001,
+      "return_states": 206,
+      "nearest_lags": {
+        "2": 45,
+        "25": 1,
+        "27": 3,
+        "12": 17,
+        "14": 11,
+        "22": 9,
+        "23": 15,
+        "41": 7,
+        "83": 3,
+        "66": 1,
+        "67": 1,
+        "84": 1,
+        "68": 1,
+        "26": 2,
+        "59": 12,
+        "100": 1,
+        "15": 2,
+        "99": 2,
+        "57": 14,
+        "39": 50,
+        "38": 6,
+        "78": 2
+      }
+    }
+  ],
+  "exits": 0,
+  "discoveries": 0,
+  "entered_exit_room": 0,
+  "final_phase": {
+    "corridor": 2,
+    "spawn_room": 2
+  },
+  "final_navigation_status": {
+    "no_reachable_goal": 3,
+    "recovering": 1
+  },
+  "low_movement_actions_under_0_02": 1219,
+  "stuck_windows": 44,
+  "cases_with_stuck_windows": 4,
+  "away_or_perpendicular_guided_actions": 463,
+  "total_path_length": 306.6161766052246,
+  "cases_below_floor": 0,
+  "per_case": [
+    {
+      "seed": 530000,
+      "assignments": 14,
+      "end_reasons": {
+        "waypoint_arrived": 9,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 2,
+        "escape_arrived_free": 2
+      },
+      "no_waypoint_actions": 478,
+      "stuck_windows": 23,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530001,
+      "assignments": 70,
+      "end_reasons": {
+        "waypoint_arrived": 2,
+        "start_cell_blocked": 16,
+        "escape_arrived_free": 15,
+        "oscillation_detected": 20,
+        "escape_stalled": 16,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 1,
+      "stuck_windows": 2,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530002,
+      "assignments": 52,
+      "end_reasons": {
+        "waypoint_arrived": 10,
+        "goal_cell_invalid": 7,
+        "start_cell_blocked": 17,
+        "escape_arrived_free": 17,
+        "goal_reached": 1
+      },
+      "no_waypoint_actions": 377,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530003,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 1,
+        "waypoint_segment_invalid": 3,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 14
+      },
+      "no_waypoint_actions": 496,
+      "stuck_windows": 5,
+      "exit_discovered": false,
+      "completed": false
+    }
+  ]
+}

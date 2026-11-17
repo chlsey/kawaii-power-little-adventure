@@ -1,0 +1,2166 @@
+{
+  "status": "complete",
+  "method": "Read-only analysis of saved QA-61 action traces plus the unchanged scene and planner source. Each missing-waypoint state has a directly observed cardinal wall ray proving that wall inflation excludes its current grid cell; a full grid replay was not required.",
+  "scene_wall_inner_bounds": [
+    -25,
+    25
+  ],
+  "grid_cell_size": 0.25,
+  "actor_radius": 0.3,
+  "actor_skin_width": 0.03,
+  "safety_margin": 0.05,
+  "planner_clearance": 0.38,
+  "nearest_excluded_cell_center_wall_gap": 0.375,
+  "wall_ray_distance_match_tolerance": 0.001,
+  "missing_waypoint_status": "no_reachable_goal",
+  "missing_waypoint_actions": 28407,
+  "current_cell_excluded_by_observed_wall": 28407,
+  "loss_transitions": 89,
+  "affected_episodes": 70,
+  "affected_episodes_eventually_completing": 15,
+  "timeouts_ending_without_waypoint": 55,
+  "events": [
+    {
+      "seed": 510001,
+      "step": 295,
+      "position": {
+        "x": -24.51163673400879,
+        "y": 0.029999980702996254,
+        "z": -2.365879774093628
+      },
+      "current_cell": [
+        -99,
+        -10
+      ],
+      "nearest_wall_distance": 0.48836326599121094,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -10
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510002,
+      "step": 52,
+      "position": {
+        "x": -24.67906379699707,
+        "y": 0.03000004030764103,
+        "z": 19.18077850341797
+      },
+      "current_cell": [
+        -99,
+        76
+      ],
+      "nearest_wall_distance": 0.3209362030029297,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            76
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510003,
+      "step": 118,
+      "position": {
+        "x": -24.53842544555664,
+        "y": 0.03000004030764103,
+        "z": 12.000914573669434
+      },
+      "current_cell": [
+        -99,
+        48
+      ],
+      "nearest_wall_distance": 0.4615745544433594,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            48
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510004,
+      "step": 76,
+      "position": {
+        "x": 24.587255477905273,
+        "y": 0.03000004030764103,
+        "z": 6.69900369644165
+      },
+      "current_cell": [
+        98,
+        26
+      ],
+      "nearest_wall_distance": 0.41274452209472656,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            26
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510004,
+      "step": 165,
+      "position": {
+        "x": 23.794357299804688,
+        "y": 0.029999980702996254,
+        "z": 24.66009521484375
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.33990478515625,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510004,
+      "step": 312,
+      "position": {
+        "x": -24.678787231445312,
+        "y": 0.03000004030764103,
+        "z": 21.656137466430664
+      },
+      "current_cell": [
+        -99,
+        86
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            86
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510007,
+      "step": 253,
+      "position": {
+        "x": -24.505054473876953,
+        "y": 0.029999980702996254,
+        "z": 2.2211458683013916
+      },
+      "current_cell": [
+        -99,
+        8
+      ],
+      "nearest_wall_distance": 0.4949455261230469,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            8
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510008,
+      "step": 43,
+      "position": {
+        "x": -24.63505744934082,
+        "y": 0.029999980702996254,
+        "z": 4.776299953460693
+      },
+      "current_cell": [
+        -99,
+        19
+      ],
+      "nearest_wall_distance": 0.3649425506591797,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            19
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510009,
+      "step": 9,
+      "position": {
+        "x": 24.561853408813477,
+        "y": 0.029999980702996254,
+        "z": -18.14907455444336
+      },
+      "current_cell": [
+        98,
+        -73
+      ],
+      "nearest_wall_distance": 0.43814659118652344,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -73
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510010,
+      "step": 83,
+      "position": {
+        "x": 24.502901077270508,
+        "y": 0.029999980702996254,
+        "z": 10.973627090454102
+      },
+      "current_cell": [
+        98,
+        43
+      ],
+      "nearest_wall_distance": 0.4970989227294922,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            43
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510010,
+      "step": 153,
+      "position": {
+        "x": 23.751981735229492,
+        "y": 0.029999980702996254,
+        "z": 24.68326759338379
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.31673240661621094,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510010,
+      "step": 300,
+      "position": {
+        "x": -24.678787231445312,
+        "y": 0.029999980702996254,
+        "z": 21.65266990661621
+      },
+      "current_cell": [
+        -99,
+        86
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            86
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510011,
+      "step": 193,
+      "position": {
+        "x": -24.553333282470703,
+        "y": 0.029999980702996254,
+        "z": -20.450374603271484
+      },
+      "current_cell": [
+        -99,
+        -82
+      ],
+      "nearest_wall_distance": 0.4466667175292969,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -82
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510012,
+      "step": 33,
+      "position": {
+        "x": -24.602697372436523,
+        "y": 0.029999980702996254,
+        "z": 10.697507858276367
+      },
+      "current_cell": [
+        -99,
+        42
+      ],
+      "nearest_wall_distance": 0.39730262756347656,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            42
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510013,
+      "step": 156,
+      "position": {
+        "x": -24.555545806884766,
+        "y": 0.03000004030764103,
+        "z": -3.5325260162353516
+      },
+      "current_cell": [
+        -99,
+        -15
+      ],
+      "nearest_wall_distance": 0.4444541931152344,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -15
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510014,
+      "step": 84,
+      "position": {
+        "x": -16.230627059936523,
+        "y": 0.03000004030764103,
+        "z": -24.55201530456543
+      },
+      "current_cell": [
+        -65,
+        -99
+      ],
+      "nearest_wall_distance": 0.4479846954345703,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -65,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510015,
+      "step": 175,
+      "position": {
+        "x": -9.245197296142578,
+        "y": 0.029999980702996254,
+        "z": -24.518117904663086
+      },
+      "current_cell": [
+        -37,
+        -99
+      ],
+      "nearest_wall_distance": 0.48188209533691406,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -37,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510016,
+      "step": 163,
+      "position": {
+        "x": 24.678787231445312,
+        "y": 0.029999980702996254,
+        "z": -12.625438690185547
+      },
+      "current_cell": [
+        98,
+        -51
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -51
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510018,
+      "step": 38,
+      "position": {
+        "x": -17.92808723449707,
+        "y": 0.03000004030764103,
+        "z": -24.5450439453125
+      },
+      "current_cell": [
+        -72,
+        -99
+      ],
+      "nearest_wall_distance": 0.4549560546875,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -72,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510019,
+      "step": 16,
+      "position": {
+        "x": 24.639333724975586,
+        "y": 0.03000004030764103,
+        "z": 12.288394927978516
+      },
+      "current_cell": [
+        98,
+        49
+      ],
+      "nearest_wall_distance": 0.36066627502441406,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            49
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510019,
+      "step": 80,
+      "position": {
+        "x": 23.754777908325195,
+        "y": 0.029999980702996254,
+        "z": 24.682279586791992
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.3177204132080078,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510019,
+      "step": 227,
+      "position": {
+        "x": -24.678787231445312,
+        "y": 0.029999980702996254,
+        "z": 21.652875900268555
+      },
+      "current_cell": [
+        -99,
+        86
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            86
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510020,
+      "step": 91,
+      "position": {
+        "x": -19.5030574798584,
+        "y": 0.029999980702996254,
+        "z": -24.636764526367188
+      },
+      "current_cell": [
+        -79,
+        -99
+      ],
+      "nearest_wall_distance": 0.3632354736328125,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -79,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510021,
+      "step": 135,
+      "position": {
+        "x": 12.411331176757812,
+        "y": 0.029999980702996254,
+        "z": -24.520063400268555
+      },
+      "current_cell": [
+        49,
+        -99
+      ],
+      "nearest_wall_distance": 0.4799365997314453,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            49,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510022,
+      "step": 55,
+      "position": {
+        "x": -24.571853637695312,
+        "y": 0.029999980702996254,
+        "z": -0.24533182382583618
+      },
+      "current_cell": [
+        -99,
+        -1
+      ],
+      "nearest_wall_distance": 0.4281463623046875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -1
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510024,
+      "step": 105,
+      "position": {
+        "x": -6.871185779571533,
+        "y": 0.029999980702996254,
+        "z": -24.6517276763916
+      },
+      "current_cell": [
+        -28,
+        -99
+      ],
+      "nearest_wall_distance": 0.34827232360839844,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -28,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510025,
+      "step": 209,
+      "position": {
+        "x": 18.147451400756836,
+        "y": 0.029999980702996254,
+        "z": -24.588777542114258
+      },
+      "current_cell": [
+        72,
+        -99
+      ],
+      "nearest_wall_distance": 0.4112224578857422,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            72,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510026,
+      "step": 59,
+      "position": {
+        "x": 24.519695281982422,
+        "y": 0.029999980702996254,
+        "z": -9.803502082824707
+      },
+      "current_cell": [
+        98,
+        -40
+      ],
+      "nearest_wall_distance": 0.4803047180175781,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -40
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510027,
+      "step": 62,
+      "position": {
+        "x": 24.6553897857666,
+        "y": 0.03000004030764103,
+        "z": 9.314435958862305
+      },
+      "current_cell": [
+        98,
+        37
+      ],
+      "nearest_wall_distance": 0.34461021423339844,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            37
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510027,
+      "step": 139,
+      "position": {
+        "x": 23.80677604675293,
+        "y": 0.029999980702996254,
+        "z": 24.652921676635742
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.3470783233642578,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510027,
+      "step": 286,
+      "position": {
+        "x": -24.678787231445312,
+        "y": 0.029999980702996254,
+        "z": 21.657121658325195
+      },
+      "current_cell": [
+        -99,
+        86
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            86
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510031,
+      "step": 155,
+      "position": {
+        "x": 24.604854583740234,
+        "y": 0.029999980702996254,
+        "z": 17.05891227722168
+      },
+      "current_cell": [
+        98,
+        68
+      ],
+      "nearest_wall_distance": 0.3951454162597656,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            68
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510032,
+      "step": 184,
+      "position": {
+        "x": -4.076298236846924,
+        "y": 0.03000004030764103,
+        "z": 24.522480010986328
+      },
+      "current_cell": [
+        -17,
+        98
+      ],
+      "nearest_wall_distance": 0.4775199890136719,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            -17,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510032,
+      "step": 258,
+      "position": {
+        "x": -24.528274536132812,
+        "y": 0.029999980702996254,
+        "z": 21.431612014770508
+      },
+      "current_cell": [
+        -99,
+        85
+      ],
+      "nearest_wall_distance": 0.4717254638671875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            85
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510034,
+      "step": 99,
+      "position": {
+        "x": 24.55281639099121,
+        "y": 0.029999980702996254,
+        "z": -18.409109115600586
+      },
+      "current_cell": [
+        98,
+        -74
+      ],
+      "nearest_wall_distance": 0.44718360900878906,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -74
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510035,
+      "step": 154,
+      "position": {
+        "x": 24.540767669677734,
+        "y": 0.03000004030764103,
+        "z": 12.566282272338867
+      },
+      "current_cell": [
+        98,
+        50
+      ],
+      "nearest_wall_distance": 0.4592323303222656,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            50
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510038,
+      "step": 79,
+      "position": {
+        "x": 13.176023483276367,
+        "y": 0.029999980702996254,
+        "z": -24.54651641845703
+      },
+      "current_cell": [
+        52,
+        -99
+      ],
+      "nearest_wall_distance": 0.45348358154296875,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            52,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510039,
+      "step": 204,
+      "position": {
+        "x": 24.67878532409668,
+        "y": 0.03000004030764103,
+        "z": 4.705873489379883
+      },
+      "current_cell": [
+        98,
+        18
+      ],
+      "nearest_wall_distance": 0.3212146759033203,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            18
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510041,
+      "step": 30,
+      "position": {
+        "x": -19.63568687438965,
+        "y": 0.029999980702996254,
+        "z": -24.680688858032227
+      },
+      "current_cell": [
+        -79,
+        -99
+      ],
+      "nearest_wall_distance": 0.31931114196777344,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -79,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510043,
+      "step": 71,
+      "position": {
+        "x": -17.820499420166016,
+        "y": 0.029999980702996254,
+        "z": -24.576656341552734
+      },
+      "current_cell": [
+        -72,
+        -99
+      ],
+      "nearest_wall_distance": 0.4233436584472656,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -72,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510044,
+      "step": 237,
+      "position": {
+        "x": -24.50360107421875,
+        "y": 0.029999980702996254,
+        "z": -16.427011489868164
+      },
+      "current_cell": [
+        -99,
+        -66
+      ],
+      "nearest_wall_distance": 0.49639892578125,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -66
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510045,
+      "step": 104,
+      "position": {
+        "x": -24.521533966064453,
+        "y": 0.03000004030764103,
+        "z": 16.562808990478516
+      },
+      "current_cell": [
+        -99,
+        66
+      ],
+      "nearest_wall_distance": 0.4784660339355469,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            66
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510047,
+      "step": 42,
+      "position": {
+        "x": -3.3540642261505127,
+        "y": 0.03000004030764103,
+        "z": -24.585500717163086
+      },
+      "current_cell": [
+        -14,
+        -99
+      ],
+      "nearest_wall_distance": 0.41449928283691406,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -14,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510048,
+      "step": 54,
+      "position": {
+        "x": -24.529869079589844,
+        "y": 0.03000004030764103,
+        "z": 16.205432891845703
+      },
+      "current_cell": [
+        -99,
+        64
+      ],
+      "nearest_wall_distance": 0.47013092041015625,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            64
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510049,
+      "step": 160,
+      "position": {
+        "x": -24.579364776611328,
+        "y": 0.03000004030764103,
+        "z": -15.828922271728516
+      },
+      "current_cell": [
+        -99,
+        -64
+      ],
+      "nearest_wall_distance": 0.4206352233886719,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -64
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510050,
+      "step": 112,
+      "position": {
+        "x": -24.560382843017578,
+        "y": 0.03000004030764103,
+        "z": 3.3128089904785156
+      },
+      "current_cell": [
+        -99,
+        13
+      ],
+      "nearest_wall_distance": 0.4396171569824219,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            13
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510051,
+      "step": 53,
+      "position": {
+        "x": -24.53272247314453,
+        "y": 0.029999980702996254,
+        "z": -16.565710067749023
+      },
+      "current_cell": [
+        -99,
+        -67
+      ],
+      "nearest_wall_distance": 0.46727752685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -67
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510054,
+      "step": 106,
+      "position": {
+        "x": 24.575685501098633,
+        "y": 0.03000004030764103,
+        "z": 17.0203914642334
+      },
+      "current_cell": [
+        98,
+        68
+      ],
+      "nearest_wall_distance": 0.4243144989013672,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            68
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510054,
+      "step": 164,
+      "position": {
+        "x": 24.566423416137695,
+        "y": 0.029999980702996254,
+        "z": 19.01508903503418
+      },
+      "current_cell": [
+        98,
+        76
+      ],
+      "nearest_wall_distance": 0.4335765838623047,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            76
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510055,
+      "step": 184,
+      "position": {
+        "x": -24.610126495361328,
+        "y": 0.03000004030764103,
+        "z": 23.272174835205078
+      },
+      "current_cell": [
+        -99,
+        93
+      ],
+      "nearest_wall_distance": 0.3898735046386719,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            93
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510056,
+      "step": 154,
+      "position": {
+        "x": -24.567142486572266,
+        "y": 0.03000004030764103,
+        "z": -10.772378921508789
+      },
+      "current_cell": [
+        -99,
+        -44
+      ],
+      "nearest_wall_distance": 0.4328575134277344,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -44
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510057,
+      "step": 39,
+      "position": {
+        "x": 24.678775787353516,
+        "y": 0.029999980702996254,
+        "z": -6.291686058044434
+      },
+      "current_cell": [
+        98,
+        -26
+      ],
+      "nearest_wall_distance": 0.3212242126464844,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -26
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510057,
+      "step": 187,
+      "position": {
+        "x": 23.78373146057129,
+        "y": 0.029999980702996254,
+        "z": 24.66611099243164
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.3338890075683594,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510057,
+      "step": 334,
+      "position": {
+        "x": -24.678787231445312,
+        "y": 0.02999992109835148,
+        "z": 21.655261993408203
+      },
+      "current_cell": [
+        -99,
+        86
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            86
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510058,
+      "step": 40,
+      "position": {
+        "x": -24.51089859008789,
+        "y": 0.03000004030764103,
+        "z": 8.705639839172363
+      },
+      "current_cell": [
+        -99,
+        34
+      ],
+      "nearest_wall_distance": 0.4891014099121094,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            34
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510060,
+      "step": 56,
+      "position": {
+        "x": -18.377729415893555,
+        "y": 0.03000004030764103,
+        "z": -24.65065574645996
+      },
+      "current_cell": [
+        -74,
+        -99
+      ],
+      "nearest_wall_distance": 0.34934425354003906,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            -74,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510063,
+      "step": 246,
+      "position": {
+        "x": -24.59992027282715,
+        "y": 0.03000004030764103,
+        "z": -5.9275078773498535
+      },
+      "current_cell": [
+        -99,
+        -24
+      ],
+      "nearest_wall_distance": 0.40007972717285156,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -24
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510064,
+      "step": 244,
+      "position": {
+        "x": 24.61432647705078,
+        "y": 0.03000004030764103,
+        "z": 17.043094635009766
+      },
+      "current_cell": [
+        98,
+        68
+      ],
+      "nearest_wall_distance": 0.38567352294921875,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            68
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510066,
+      "step": 95,
+      "position": {
+        "x": 24.53416633605957,
+        "y": 0.029999980702996254,
+        "z": -15.894031524658203
+      },
+      "current_cell": [
+        98,
+        -64
+      ],
+      "nearest_wall_distance": 0.4658336639404297,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -64
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510068,
+      "step": 54,
+      "position": {
+        "x": -24.557687759399414,
+        "y": 0.03000004030764103,
+        "z": -16.14923095703125
+      },
+      "current_cell": [
+        -99,
+        -65
+      ],
+      "nearest_wall_distance": 0.44231224060058594,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -65
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510072,
+      "step": 17,
+      "position": {
+        "x": 24.552927017211914,
+        "y": 0.029999980702996254,
+        "z": -18.198041915893555
+      },
+      "current_cell": [
+        98,
+        -73
+      ],
+      "nearest_wall_distance": 0.44707298278808594,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -73
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510073,
+      "step": 56,
+      "position": {
+        "x": 24.59195327758789,
+        "y": 0.03000004030764103,
+        "z": 10.167793273925781
+      },
+      "current_cell": [
+        98,
+        40
+      ],
+      "nearest_wall_distance": 0.4080467224121094,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            40
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510073,
+      "step": 129,
+      "position": {
+        "x": 23.824356079101562,
+        "y": 0.029999980702996254,
+        "z": 24.642047882080078
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.3579521179199219,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510073,
+      "step": 276,
+      "position": {
+        "x": -24.678787231445312,
+        "y": 0.029999980702996254,
+        "z": 21.658466339111328
+      },
+      "current_cell": [
+        -99,
+        86
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            86
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510074,
+      "step": 79,
+      "position": {
+        "x": 24.607913970947266,
+        "y": 0.029999980702996254,
+        "z": -14.837329864501953
+      },
+      "current_cell": [
+        98,
+        -60
+      ],
+      "nearest_wall_distance": 0.3920860290527344,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -60
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510074,
+      "step": 267,
+      "position": {
+        "x": 23.789894104003906,
+        "y": 0.029999980702996254,
+        "z": 24.662635803222656
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.33736419677734375,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510074,
+      "step": 414,
+      "position": {
+        "x": -24.67878532409668,
+        "y": 0.03000004030764103,
+        "z": 21.65574836730957
+      },
+      "current_cell": [
+        -99,
+        86
+      ],
+      "nearest_wall_distance": 0.3212146759033203,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            86
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510075,
+      "step": 168,
+      "position": {
+        "x": 24.536619186401367,
+        "y": 0.03000004030764103,
+        "z": 13.644745826721191
+      },
+      "current_cell": [
+        98,
+        54
+      ],
+      "nearest_wall_distance": 0.4633808135986328,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            54
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510075,
+      "step": 397,
+      "position": {
+        "x": 24.521268844604492,
+        "y": 0.029999980702996254,
+        "z": -19.222999572753906
+      },
+      "current_cell": [
+        98,
+        -77
+      ],
+      "nearest_wall_distance": 0.4787311553955078,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -77
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510076,
+      "step": 145,
+      "position": {
+        "x": -24.501754760742188,
+        "y": 0.029999980702996254,
+        "z": -5.97171688079834
+      },
+      "current_cell": [
+        -99,
+        -24
+      ],
+      "nearest_wall_distance": 0.4982452392578125,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -24
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510077,
+      "step": 38,
+      "position": {
+        "x": -24.643205642700195,
+        "y": 0.03000004030764103,
+        "z": 21.257827758789062
+      },
+      "current_cell": [
+        -99,
+        85
+      ],
+      "nearest_wall_distance": 0.3567943572998047,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            85
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510078,
+      "step": 200,
+      "position": {
+        "x": -24.625547409057617,
+        "y": 0.03000004030764103,
+        "z": 21.039779663085938
+      },
+      "current_cell": [
+        -99,
+        84
+      ],
+      "nearest_wall_distance": 0.3744525909423828,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            84
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510080,
+      "step": 163,
+      "position": {
+        "x": -24.53990936279297,
+        "y": 0.029999980702996254,
+        "z": -13.962569236755371
+      },
+      "current_cell": [
+        -99,
+        -56
+      ],
+      "nearest_wall_distance": 0.46009063720703125,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -56
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510083,
+      "step": 202,
+      "position": {
+        "x": 19.247600555419922,
+        "y": 0.03000004030764103,
+        "z": 24.503652572631836
+      },
+      "current_cell": [
+        76,
+        98
+      ],
+      "nearest_wall_distance": 0.49634742736816406,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            76,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510085,
+      "step": 96,
+      "position": {
+        "x": 4.731934547424316,
+        "y": 0.03000004030764103,
+        "z": -24.64388084411621
+      },
+      "current_cell": [
+        18,
+        -99
+      ],
+      "nearest_wall_distance": 0.35611915588378906,
+      "observed_wall_proof": [
+        {
+          "ray": 32,
+          "observed_wall_cell": [
+            18,
+            -101
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510086,
+      "step": 233,
+      "position": {
+        "x": -24.5390682220459,
+        "y": 0.029999980702996254,
+        "z": -11.335514068603516
+      },
+      "current_cell": [
+        -99,
+        -46
+      ],
+      "nearest_wall_distance": 0.46093177795410156,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -46
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510087,
+      "step": 259,
+      "position": {
+        "x": 24.678787231445312,
+        "y": 0.029999980702996254,
+        "z": 10.488069534301758
+      },
+      "current_cell": [
+        98,
+        41
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            41
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510088,
+      "step": 127,
+      "position": {
+        "x": -24.678787231445312,
+        "y": 0.029999980702996254,
+        "z": 20.834299087524414
+      },
+      "current_cell": [
+        -99,
+        83
+      ],
+      "nearest_wall_distance": 0.3212127685546875,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            83
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510089,
+      "step": 249,
+      "position": {
+        "x": -24.67878532409668,
+        "y": 0.029999980702996254,
+        "z": -18.061132431030273
+      },
+      "current_cell": [
+        -99,
+        -73
+      ],
+      "nearest_wall_distance": 0.3212146759033203,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -73
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510090,
+      "step": 145,
+      "position": {
+        "x": -24.57301902770996,
+        "y": 0.029999980702996254,
+        "z": -11.042182922363281
+      },
+      "current_cell": [
+        -99,
+        -45
+      ],
+      "nearest_wall_distance": 0.42698097229003906,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -45
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510091,
+      "step": 54,
+      "position": {
+        "x": -24.554683685302734,
+        "y": 0.03000004030764103,
+        "z": 7.48939323425293
+      },
+      "current_cell": [
+        -99,
+        29
+      ],
+      "nearest_wall_distance": 0.4453163146972656,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            29
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510093,
+      "step": 65,
+      "position": {
+        "x": 24.524532318115234,
+        "y": 0.029999980702996254,
+        "z": -13.323790550231934
+      },
+      "current_cell": [
+        98,
+        -54
+      ],
+      "nearest_wall_distance": 0.4754676818847656,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -54
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510093,
+      "step": 245,
+      "position": {
+        "x": 23.779260635375977,
+        "y": 0.029999980702996254,
+        "z": 24.66863441467285
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.33136558532714844,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510094,
+      "step": 71,
+      "position": {
+        "x": -24.61918830871582,
+        "y": 0.029999980702996254,
+        "z": 6.29434871673584
+      },
+      "current_cell": [
+        -99,
+        25
+      ],
+      "nearest_wall_distance": 0.3808116912841797,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            25
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510095,
+      "step": 146,
+      "position": {
+        "x": 24.640827178955078,
+        "y": 0.03000004030764103,
+        "z": -8.582049369812012
+      },
+      "current_cell": [
+        98,
+        -35
+      ],
+      "nearest_wall_distance": 0.3591728210449219,
+      "observed_wall_proof": [
+        {
+          "ray": 16,
+          "observed_wall_cell": [
+            100,
+            -35
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510095,
+      "step": 305,
+      "position": {
+        "x": 23.750511169433594,
+        "y": 0.02999992109835148,
+        "z": 24.682300567626953
+      },
+      "current_cell": [
+        95,
+        98
+      ],
+      "nearest_wall_distance": 0.3176994323730469,
+      "observed_wall_proof": [
+        {
+          "ray": 0,
+          "observed_wall_cell": [
+            95,
+            100
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510096,
+      "step": 175,
+      "position": {
+        "x": -24.67878532409668,
+        "y": 0.029999980702996254,
+        "z": -16.540613174438477
+      },
+      "current_cell": [
+        -99,
+        -67
+      ],
+      "nearest_wall_distance": 0.3212146759033203,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -67
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510097,
+      "step": 97,
+      "position": {
+        "x": -24.58928871154785,
+        "y": 0.029999980702996254,
+        "z": -10.403080940246582
+      },
+      "current_cell": [
+        -99,
+        -42
+      ],
+      "nearest_wall_distance": 0.41071128845214844,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            -42
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    },
+    {
+      "seed": 510099,
+      "step": 187,
+      "position": {
+        "x": -24.60744857788086,
+        "y": 0.029999980702996254,
+        "z": 1.9856303930282593
+      },
+      "current_cell": [
+        -99,
+        7
+      ],
+      "nearest_wall_distance": 0.3925514221191406,
+      "observed_wall_proof": [
+        {
+          "ray": 48,
+          "observed_wall_cell": [
+            -101,
+            7
+          ],
+          "cell_center_clearance": 0.375
+        }
+      ]
+    }
+  ],
+  "behavior_changed": false,
+  "new_training_steps": 0,
+  "assignment_loss_wall_distance_range": [
+    0.31673240661621094,
+    0.4982452392578125
+  ]
+}

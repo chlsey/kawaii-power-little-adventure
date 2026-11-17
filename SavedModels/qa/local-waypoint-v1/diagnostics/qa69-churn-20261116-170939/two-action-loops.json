@@ -1,0 +1,6 @@
+{
+  "definition": "route assignment -> escape assignment -> same route target and actor X/Z position within 0.001 units, exactly two actions later",
+  "affected_cases": 0,
+  "two_action_cycles": 0,
+  "cases": []
+}

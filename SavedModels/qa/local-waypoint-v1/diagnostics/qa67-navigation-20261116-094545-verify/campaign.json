@@ -1,0 +1,137 @@
+{
+  "qa_id": "QA-67",
+  "status": "complete",
+  "frozen_cases": 4,
+  "seeds": [
+    530000,
+    530001,
+    530002,
+    530003
+  ],
+  "checkpoint": "QA-50",
+  "checkpoint_sha256": "acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64",
+  "model_steps": 656793,
+  "optimizer_epochs": 25610,
+  "lineage_episodes": 4700,
+  "new_training_episodes": 0,
+  "navigation": "QaNavigationCoordinator on observed sensor memory only; no oracle constructed",
+  "generation": "PcgDungeonManager -> Generator -> DungeonValidator; 2 regular 20x20 rooms in 100x100 area",
+  "quarter_turn_rotations": 25,
+  "episode_seconds": 60,
+  "waypoint_cap": 10,
+  "enemies": 0,
+  "puzzles": 0,
+  "training_rewards": false,
+  "source_sha256": {
+    "Assets/Editor/QaTwoRoomNavigationSession.cs": "a944033626a888b56adace4d2d5b779b57799ea7cc9d286438eda5ee99e1fad5",
+    "Assets/PCGDungeon/Scripts/Generation/PcgDungeonManager.cs": "a1e58d4ebecb36695e35c37f7b6abdd8c2a7823c1fc00b1cee401cb4313d46b9",
+    "Assets/PCGDungeon/Scripts/Generation/Generator.cs": "127fa1029c561c37a2106909bab7cf010a1e8a4db265f24d9d602ca883947d1e",
+    "Assets/PCGDungeon/Scripts/Generation/Room.cs": "51c6ff0a26781a636f77a2b06d74300e9b4dd8977056b998f251aa785d66b692",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "da018f0d30bbeb41d061eb1c051362bb5b30bd9c11f4d9d005e7d4d8bce01ed7",
+    "Assets/PCGDungeon/Scripts/QA/QaMapNavigation.cs": "d54545ad43505c3dbf612b3f16efa89fd924ceebf13ba6700ec211d07cccd457",
+    "Assets/PCGDungeon/Scripts/QA/QaPlayerController.cs": "447fe9c37a0d6ef5ac299c48ee6ce4ff8bdf5288f706dac7da25bd062210dc46",
+    "Assets/PCGDungeon/Scripts/QA/QaExitZone.cs": "7a0a2200e11b37d17b39b5f197fb71626de3373773f7c8b1b0735bea65c98d34",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/Scenes/QaPlayerTraining.unity": "f3914cb7a06a120fcc20bc76fc826f79646fce1f71f0994f2062cb24c5e2d8d6",
+    "Assets/PCGDungeon/Settings/Settings.asset": "4bfb45fa25de6c5eb19e0d5f4915b29497a90998a56180321cd8f4142a057e71",
+    "Training/evaluate_two_room_navigation.py": "1b6a5269d069ddf53d087441c8dbccb4b97a7bc27084434b2135af0cdc84a7ec",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "439fa645df458e618d3f66a755b163b77d60888ef8073ef8ca2833a29dd57728",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorGrid.cs": "a696c627427644c853be9209aae7973998275b206b6b5e01db9305c0ef8b39ed",
+    "Training/evaluate_observed_dungeons.py": "b4535a82051c32edeb71912312dcb05976b994cac27010b51cf8b833e48e69d3",
+    "Training/evaluate_navigation_clearance.py": "bfcc1be960ab34da4a37b43a43df475a395fe2dfbb465a0932cd9b0565df93ee",
+    "Assets/Editor/QaNavigationVerification.cs": "1e640b1ca1ec712d2abfd809beeb2d76d57ad94a5aa86efd01870a2bb38113b5"
+  },
+  "runtime": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa67-navigation\\20261116-094545-verify",
+  "reference_preflight": {
+    "episodes": 4,
+    "exits_reached": 4,
+    "success_rate": 1.0,
+    "timeouts": 0,
+    "successful_seconds_mean": 18.950000286102295,
+    "all_attempt_seconds_mean": 18.950000286102295,
+    "failures_by_final_phase": {},
+    "failures_entering_exit_room": 0,
+    "waypoint_arrivals": 70,
+    "assignments": 98,
+    "replans": 0,
+    "actions": 758,
+    "low_movement_actions": 0,
+    "no_waypoint_actions": 0,
+    "away_or_perpendicular_actions": 0,
+    "exit_discoveries": 4,
+    "planner_builds": 685,
+    "goal_selections": 83,
+    "route_searches": 83,
+    "abandoned_goals": 3,
+    "outcomes_by_orientation": {
+      "0": {
+        "cases": 1,
+        "exits": 1
+      },
+      "90": {
+        "cases": 1,
+        "exits": 1
+      },
+      "180": {
+        "cases": 1,
+        "exits": 1
+      },
+      "270": {
+        "cases": 1,
+        "exits": 1
+      }
+    }
+  },
+  "evaluation": {
+    "episodes": 4,
+    "exits_reached": 0,
+    "success_rate": 0.0,
+    "timeouts": 4,
+    "successful_seconds_mean": null,
+    "all_attempt_seconds_mean": 60.0,
+    "failures_by_final_phase": {
+      "corridor": 2,
+      "spawn_room": 2
+    },
+    "failures_entering_exit_room": 0,
+    "waypoint_arrivals": 113,
+    "assignments": 160,
+    "replans": 0,
+    "actions": 2400,
+    "low_movement_actions": 1219,
+    "no_waypoint_actions": 1352,
+    "away_or_perpendicular_actions": 463,
+    "exit_discoveries": 0,
+    "planner_builds": 1271,
+    "goal_selections": 752,
+    "route_searches": 113,
+    "abandoned_goals": 77,
+    "outcomes_by_orientation": {
+      "0": {
+        "cases": 1,
+        "exits": 0
+      },
+      "90": {
+        "cases": 1,
+        "exits": 0
+      },
+      "180": {
+        "cases": 1,
+        "exits": 0
+      },
+      "270": {
+        "cases": 1,
+        "exits": 0
+      }
+    }
+  },
+  "failed_seeds": [
+    530000,
+    530001,
+    530002,
+    530003
+  ],
+  "all_weights_unchanged": true,
+  "source_hashes_verified": true,
+  "settings_restored": true
+}

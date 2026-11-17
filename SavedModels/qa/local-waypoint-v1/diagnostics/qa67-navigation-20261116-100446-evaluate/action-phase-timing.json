@@ -1,0 +1,12 @@
+{
+  "baseline": {
+    "action_phase_wall_seconds": 2451.3236660957336,
+    "actions": 60000,
+    "actions_per_wall_second": 24.47657191494547
+  },
+  "new": {
+    "action_phase_wall_seconds": 5254.364470005035,
+    "actions": 40819,
+    "actions_per_wall_second": 7.768589376130751
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "source_hashes_and_snapshots_verified": true,
+  "checkpoint_sha256_verified": true,
+  "selected_qa50_training_unauthorized": true,
+  "campaign_settings_verified_before_restoring_earlier_line_endings": true,
+  "earlier_editor_build_settings_bytes_restored": true,
+  "owned_jobs_ended": true,
+  "assignment_versions_accounted": true,
+  "archives": {
+    "reference-preflight": {
+      "cases": 4,
+      "actions": 758,
+      "navigation_events": 316
+    },
+    "evaluation": {
+      "cases": 100,
+      "actions": 40819,
+      "navigation_events": 35119
+    },
+    "failure-reference": {
+      "cases": 47,
+      "actions": 10350,
+      "navigation_events": 7323
+    }
+  }
+}

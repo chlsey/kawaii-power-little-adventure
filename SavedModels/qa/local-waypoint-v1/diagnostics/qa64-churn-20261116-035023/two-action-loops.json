@@ -1,0 +1,2619 @@
+{
+  "definition": "route assignment -> escape assignment -> same route target and actor X/Z position within 0.001 units, exactly two actions later",
+  "affected_cases": 30,
+  "affected_timeouts": 29,
+  "two_action_cycles": 5293,
+  "actions_in_cycles": 10586,
+  "cases": [
+    {
+      "seed": 510009,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 294,
+      "longest_consecutive_cycles": 294,
+      "example": [
+        {
+          "seed": 510009,
+          "step": 10,
+          "waypoint_version": 5,
+          "route_points": 26,
+          "planner_builds": 11,
+          "goal_selections": 3,
+          "route_searches": 3,
+          "navigation_version": 3917,
+          "seconds": 1.0,
+          "waypoint_distance": 6.409163475036621,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.318973541259766,
+            "y": 0.029999980702996254,
+            "z": -18.033918380737305
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -11.625
+          }
+        },
+        {
+          "seed": 510009,
+          "step": 11,
+          "waypoint_version": 6,
+          "route_points": 1,
+          "planner_builds": 11,
+          "goal_selections": 3,
+          "route_searches": 3,
+          "navigation_version": 3917,
+          "seconds": 1.100000023841858,
+          "waypoint_distance": 0.6059480309486389,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.601816177368164,
+            "y": 0.03000004030764103,
+            "z": -17.751075744628906
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.03000004030764103,
+            "z": -18.125
+          }
+        },
+        {
+          "seed": 510009,
+          "step": 12,
+          "waypoint_version": 7,
+          "route_points": 26,
+          "planner_builds": 11,
+          "goal_selections": 4,
+          "route_searches": 4,
+          "navigation_version": 3917,
+          "seconds": 1.2000000476837158,
+          "waypoint_distance": 6.409163475036621,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.318973541259766,
+            "y": 0.029999980702996254,
+            "z": -18.033918380737305
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -11.625
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510019,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 290,
+      "longest_consecutive_cycles": 290,
+      "example": [
+        {
+          "seed": 510019,
+          "step": 18,
+          "waypoint_version": 7,
+          "route_points": 34,
+          "planner_builds": 19,
+          "goal_selections": 5,
+          "route_searches": 5,
+          "navigation_version": 5181,
+          "seconds": 1.8000000715255737,
+          "waypoint_distance": 8.105701446533203,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.24820899963379,
+            "y": 0.029999980702996254,
+            "z": 12.77029037475586
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 20.875
+          }
+        },
+        {
+          "seed": 510019,
+          "step": 19,
+          "waypoint_version": 8,
+          "route_points": 1,
+          "planner_builds": 20,
+          "goal_selections": 5,
+          "route_searches": 5,
+          "navigation_version": 5202,
+          "seconds": 1.899999976158142,
+          "waypoint_distance": 0.5900642275810242,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.531051635742188,
+            "y": 0.03000004030764103,
+            "z": 13.053133010864258
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.03000004030764103,
+            "z": 12.625
+          }
+        },
+        {
+          "seed": 510019,
+          "step": 20,
+          "waypoint_version": 9,
+          "route_points": 34,
+          "planner_builds": 20,
+          "goal_selections": 6,
+          "route_searches": 6,
+          "navigation_version": 5202,
+          "seconds": 2.0,
+          "waypoint_distance": 8.105701446533203,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.24820899963379,
+            "y": 0.029999980702996254,
+            "z": 12.77029037475586
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 20.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510057,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 280,
+      "longest_consecutive_cycles": 280,
+      "example": [
+        {
+          "seed": 510057,
+          "step": 39,
+          "waypoint_version": 6,
+          "route_points": 42,
+          "planner_builds": 40,
+          "goal_selections": 5,
+          "route_searches": 5,
+          "navigation_version": 8992,
+          "seconds": 3.9000000953674316,
+          "waypoint_distance": 9.834900856018066,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.367801666259766,
+            "y": 0.03000004030764103,
+            "z": -6.040101528167725
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": -15.875
+          }
+        },
+        {
+          "seed": 510057,
+          "step": 40,
+          "waypoint_version": 7,
+          "route_points": 1,
+          "planner_builds": 41,
+          "goal_selections": 5,
+          "route_searches": 5,
+          "navigation_version": 8994,
+          "seconds": 4.0,
+          "waypoint_distance": 0.561679482460022,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.650644302368164,
+            "y": 0.029999980702996254,
+            "z": -6.322944164276123
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -6.125
+          }
+        },
+        {
+          "seed": 510057,
+          "step": 41,
+          "waypoint_version": 8,
+          "route_points": 42,
+          "planner_builds": 41,
+          "goal_selections": 6,
+          "route_searches": 6,
+          "navigation_version": 8994,
+          "seconds": 4.099999904632568,
+          "waypoint_distance": 9.834900856018066,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.367801666259766,
+            "y": 0.03000004030764103,
+            "z": -6.040101528167725
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": -15.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510026,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 260,
+      "longest_consecutive_cycles": 260,
+      "example": [
+        {
+          "seed": 510026,
+          "step": 79,
+          "waypoint_version": 26,
+          "route_points": 26,
+          "planner_builds": 80,
+          "goal_selections": 15,
+          "route_searches": 15,
+          "navigation_version": 10018,
+          "seconds": 7.900000095367432,
+          "waypoint_distance": 6.430723667144775,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.306373596191406,
+            "y": 0.03000004030764103,
+            "z": -4.305357456207275
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": 2.125
+          }
+        },
+        {
+          "seed": 510026,
+          "step": 80,
+          "waypoint_version": 27,
+          "route_points": 1,
+          "planner_builds": 81,
+          "goal_selections": 15,
+          "route_searches": 15,
+          "navigation_version": 10069,
+          "seconds": 8.0,
+          "waypoint_distance": 0.5828743577003479,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.589216232299805,
+            "y": 0.029999980702996254,
+            "z": -4.022514820098877
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -4.375
+          }
+        },
+        {
+          "seed": 510026,
+          "step": 81,
+          "waypoint_version": 28,
+          "route_points": 26,
+          "planner_builds": 81,
+          "goal_selections": 16,
+          "route_searches": 16,
+          "navigation_version": 10069,
+          "seconds": 8.100000381469727,
+          "waypoint_distance": 6.430723667144775,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.306373596191406,
+            "y": 0.03000004030764103,
+            "z": -4.305357456207275
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": 2.125
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510074,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 260,
+      "longest_consecutive_cycles": 260,
+      "example": [
+        {
+          "seed": 510074,
+          "step": 79,
+          "waypoint_version": 8,
+          "route_points": 37,
+          "planner_builds": 80,
+          "goal_selections": 7,
+          "route_searches": 7,
+          "navigation_version": 10711,
+          "seconds": 7.900000095367432,
+          "waypoint_distance": 8.724689483642578,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.305736541748047,
+            "y": 0.03000004030764103,
+            "z": -15.099414825439453
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": -6.375
+          }
+        },
+        {
+          "seed": 510074,
+          "step": 80,
+          "waypoint_version": 9,
+          "route_points": 1,
+          "planner_builds": 81,
+          "goal_selections": 7,
+          "route_searches": 7,
+          "navigation_version": 10716,
+          "seconds": 8.0,
+          "waypoint_distance": 0.5568063855171204,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.588579177856445,
+            "y": 0.029999980702996254,
+            "z": -14.816572189331055
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -15.125
+          }
+        },
+        {
+          "seed": 510074,
+          "step": 81,
+          "waypoint_version": 10,
+          "route_points": 37,
+          "planner_builds": 81,
+          "goal_selections": 8,
+          "route_searches": 8,
+          "navigation_version": 10716,
+          "seconds": 8.100000381469727,
+          "waypoint_distance": 8.724689483642578,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.305736541748047,
+            "y": 0.03000004030764103,
+            "z": -15.099414825439453
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": -6.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510027,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 256,
+      "longest_consecutive_cycles": 256,
+      "example": [
+        {
+          "seed": 510027,
+          "step": 86,
+          "waypoint_version": 33,
+          "route_points": 36,
+          "planner_builds": 75,
+          "goal_selections": 19,
+          "route_searches": 19,
+          "navigation_version": 12963,
+          "seconds": 8.600000381469727,
+          "waypoint_distance": 8.544419288635254,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.39594268798828,
+            "y": 0.029999980702996254,
+            "z": 7.919393062591553
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -0.625
+          }
+        },
+        {
+          "seed": 510027,
+          "step": 87,
+          "waypoint_version": 34,
+          "route_points": 1,
+          "planner_builds": 75,
+          "goal_selections": 19,
+          "route_searches": 19,
+          "navigation_version": 12963,
+          "seconds": 8.699999809265137,
+          "waypoint_distance": 0.5539057850837708,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.67878532409668,
+            "y": 0.029999980702996254,
+            "z": 7.636550426483154
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 7.625
+          }
+        },
+        {
+          "seed": 510027,
+          "step": 88,
+          "waypoint_version": 35,
+          "route_points": 36,
+          "planner_builds": 75,
+          "goal_selections": 20,
+          "route_searches": 20,
+          "navigation_version": 12963,
+          "seconds": 8.800000190734863,
+          "waypoint_distance": 8.544419288635254,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.39594268798828,
+            "y": 0.029999980702996254,
+            "z": 7.919393062591553
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -0.625
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510093,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 255,
+      "longest_consecutive_cycles": 255,
+      "example": [
+        {
+          "seed": 510093,
+          "step": 89,
+          "waypoint_version": 31,
+          "route_points": 27,
+          "planner_builds": 90,
+          "goal_selections": 17,
+          "route_searches": 17,
+          "navigation_version": 10749,
+          "seconds": 8.90000057220459,
+          "waypoint_distance": 6.367514610290527,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.253501892089844,
+            "y": 0.03000004030764103,
+            "z": -7.7413554191589355
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": -1.375
+          }
+        },
+        {
+          "seed": 510093,
+          "step": 90,
+          "waypoint_version": 32,
+          "route_points": 1,
+          "planner_builds": 91,
+          "goal_selections": 17,
+          "route_searches": 17,
+          "navigation_version": 10770,
+          "seconds": 9.0,
+          "waypoint_distance": 0.5853767395019531,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.536344528198242,
+            "y": 0.029999980702996254,
+            "z": -7.458512783050537
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -7.875
+          }
+        },
+        {
+          "seed": 510093,
+          "step": 91,
+          "waypoint_version": 33,
+          "route_points": 27,
+          "planner_builds": 91,
+          "goal_selections": 18,
+          "route_searches": 18,
+          "navigation_version": 10770,
+          "seconds": 9.100000381469727,
+          "waypoint_distance": 6.367514610290527,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.253501892089844,
+            "y": 0.03000004030764103,
+            "z": -7.7413554191589355
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": -1.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510034,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 249,
+      "longest_consecutive_cycles": 249,
+      "example": [
+        {
+          "seed": 510034,
+          "step": 100,
+          "waypoint_version": 10,
+          "route_points": 35,
+          "planner_builds": 101,
+          "goal_selections": 7,
+          "route_searches": 7,
+          "navigation_version": 13910,
+          "seconds": 10.0,
+          "waypoint_distance": 8.173635482788086,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.342435836791992,
+            "y": 0.029999980702996254,
+            "z": -18.29857063293457
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -10.125
+          }
+        },
+        {
+          "seed": 510034,
+          "step": 101,
+          "waypoint_version": 11,
+          "route_points": 1,
+          "planner_builds": 101,
+          "goal_selections": 7,
+          "route_searches": 7,
+          "navigation_version": 13910,
+          "seconds": 10.100000381469727,
+          "waypoint_distance": 0.6159194707870483,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.625280380249023,
+            "y": 0.03000004030764103,
+            "z": -18.015727996826172
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.03000004030764103,
+            "z": -18.375
+          }
+        },
+        {
+          "seed": 510034,
+          "step": 102,
+          "waypoint_version": 12,
+          "route_points": 35,
+          "planner_builds": 101,
+          "goal_selections": 8,
+          "route_searches": 8,
+          "navigation_version": 13910,
+          "seconds": 10.199999809265137,
+          "waypoint_distance": 8.173635482788086,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.342435836791992,
+            "y": 0.029999980702996254,
+            "z": -18.29857063293457
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -10.125
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510010,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 248,
+      "longest_consecutive_cycles": 224,
+      "example": [
+        {
+          "seed": 510010,
+          "step": 83,
+          "waypoint_version": 9,
+          "route_points": 42,
+          "planner_builds": 84,
+          "goal_selections": 8,
+          "route_searches": 8,
+          "navigation_version": 15946,
+          "seconds": 8.300000190734863,
+          "waypoint_distance": 9.922739028930664,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.267683029174805,
+            "y": 0.03000004030764103,
+            "z": 11.297158241271973
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": 1.375
+          }
+        },
+        {
+          "seed": 510010,
+          "step": 84,
+          "waypoint_version": 10,
+          "route_points": 1,
+          "planner_builds": 85,
+          "goal_selections": 8,
+          "route_searches": 8,
+          "navigation_version": 15947,
+          "seconds": 8.40000057220459,
+          "waypoint_distance": 0.5578219294548035,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.550525665283203,
+            "y": 0.029999980702996254,
+            "z": 11.014315605163574
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 11.375
+          }
+        },
+        {
+          "seed": 510010,
+          "step": 85,
+          "waypoint_version": 11,
+          "route_points": 42,
+          "planner_builds": 85,
+          "goal_selections": 9,
+          "route_searches": 9,
+          "navigation_version": 15947,
+          "seconds": 8.5,
+          "waypoint_distance": 9.922739028930664,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.267683029174805,
+            "y": 0.03000004030764103,
+            "z": 11.297158241271973
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.03000004030764103,
+            "z": 1.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510073,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 241,
+      "longest_consecutive_cycles": 240,
+      "example": [
+        {
+          "seed": 510073,
+          "step": 81,
+          "waypoint_version": 33,
+          "route_points": 32,
+          "planner_builds": 75,
+          "goal_selections": 19,
+          "route_searches": 19,
+          "navigation_version": 11907,
+          "seconds": 8.100000381469727,
+          "waypoint_distance": 7.597282886505127,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.370193481445312,
+            "y": 0.029999980702996254,
+            "z": 8.472281455993652
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 0.875
+          }
+        },
+        {
+          "seed": 510073,
+          "step": 82,
+          "waypoint_version": 34,
+          "route_points": 1,
+          "planner_builds": 76,
+          "goal_selections": 19,
+          "route_searches": 19,
+          "navigation_version": 11908,
+          "seconds": 8.199999809265137,
+          "waypoint_distance": 0.5596937537193298,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.653038024902344,
+            "y": 0.029999980702996254,
+            "z": 8.189438819885254
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 8.375
+          }
+        },
+        {
+          "seed": 510073,
+          "step": 83,
+          "waypoint_version": 35,
+          "route_points": 32,
+          "planner_builds": 76,
+          "goal_selections": 20,
+          "route_searches": 20,
+          "navigation_version": 11908,
+          "seconds": 8.300000190734863,
+          "waypoint_distance": 7.597282886505127,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.370193481445312,
+            "y": 0.029999980702996254,
+            "z": 8.472281455993652
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 0.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510038,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 227,
+      "longest_consecutive_cycles": 227,
+      "example": [
+        {
+          "seed": 510038,
+          "step": 144,
+          "waypoint_version": 42,
+          "route_points": 32,
+          "planner_builds": 140,
+          "goal_selections": 24,
+          "route_searches": 24,
+          "navigation_version": 15674,
+          "seconds": 14.40000057220459,
+          "waypoint_distance": 7.437933921813965,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.363618850708008,
+            "y": 0.029999980702996254,
+            "z": -16.312925338745117
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -8.875
+          }
+        },
+        {
+          "seed": 510038,
+          "step": 145,
+          "waypoint_version": 43,
+          "route_points": 1,
+          "planner_builds": 141,
+          "goal_selections": 24,
+          "route_searches": 24,
+          "navigation_version": 15686,
+          "seconds": 14.5,
+          "waypoint_distance": 0.6252119541168213,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.646461486816406,
+            "y": 0.029999980702996254,
+            "z": -16.03008270263672
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -16.375
+          }
+        },
+        {
+          "seed": 510038,
+          "step": 146,
+          "waypoint_version": 44,
+          "route_points": 32,
+          "planner_builds": 141,
+          "goal_selections": 25,
+          "route_searches": 25,
+          "navigation_version": 15686,
+          "seconds": 14.600000381469727,
+          "waypoint_distance": 7.437933921813965,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.363618850708008,
+            "y": 0.029999980702996254,
+            "z": -16.312925338745117
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -8.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510095,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 226,
+      "longest_consecutive_cycles": 226,
+      "example": [
+        {
+          "seed": 510095,
+          "step": 146,
+          "waypoint_version": 12,
+          "route_points": 42,
+          "planner_builds": 146,
+          "goal_selections": 10,
+          "route_searches": 10,
+          "navigation_version": 19198,
+          "seconds": 14.600000381469727,
+          "waypoint_distance": 9.825807571411133,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.35798454284668,
+            "y": 0.029999980702996254,
+            "z": -8.299206733703613
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -18.125
+          }
+        },
+        {
+          "seed": 510095,
+          "step": 147,
+          "waypoint_version": 13,
+          "route_points": 1,
+          "planner_builds": 146,
+          "goal_selections": 10,
+          "route_searches": 10,
+          "navigation_version": 19198,
+          "seconds": 14.699999809265137,
+          "waypoint_distance": 0.5558301210403442,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.640827178955078,
+            "y": 0.03000004030764103,
+            "z": -8.582049369812012
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.03000004030764103,
+            "z": -8.375
+          }
+        },
+        {
+          "seed": 510095,
+          "step": 148,
+          "waypoint_version": 14,
+          "route_points": 42,
+          "planner_builds": 146,
+          "goal_selections": 11,
+          "route_searches": 11,
+          "navigation_version": 19198,
+          "seconds": 14.800000190734863,
+          "waypoint_distance": 9.825807571411133,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.35798454284668,
+            "y": 0.029999980702996254,
+            "z": -8.299206733703613
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -18.125
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510016,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 209,
+      "longest_consecutive_cycles": 209,
+      "example": [
+        {
+          "seed": 510016,
+          "step": 181,
+          "waypoint_version": 33,
+          "route_points": 27,
+          "planner_builds": 182,
+          "goal_selections": 22,
+          "route_searches": 22,
+          "navigation_version": 24876,
+          "seconds": 18.100000381469727,
+          "waypoint_distance": 6.709335803985596,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.287683486938477,
+            "y": 0.029999980702996254,
+            "z": -7.583767414093018
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -0.875
+          }
+        },
+        {
+          "seed": 510016,
+          "step": 182,
+          "waypoint_version": 34,
+          "route_points": 1,
+          "planner_builds": 183,
+          "goal_selections": 22,
+          "route_searches": 22,
+          "navigation_version": 24920,
+          "seconds": 18.200000762939453,
+          "waypoint_distance": 0.5509249567985535,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.570526123046875,
+            "y": 0.029999980702996254,
+            "z": -7.300924777984619
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -7.625
+          }
+        },
+        {
+          "seed": 510016,
+          "step": 183,
+          "waypoint_version": 35,
+          "route_points": 27,
+          "planner_builds": 183,
+          "goal_selections": 23,
+          "route_searches": 23,
+          "navigation_version": 24920,
+          "seconds": 18.30000114440918,
+          "waypoint_distance": 6.709335803985596,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.287683486938477,
+            "y": 0.029999980702996254,
+            "z": -7.583767414093018
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -0.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510021,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 200,
+      "longest_consecutive_cycles": 200,
+      "example": [
+        {
+          "seed": 510021,
+          "step": 198,
+          "waypoint_version": 45,
+          "route_points": 33,
+          "planner_builds": 193,
+          "goal_selections": 27,
+          "route_searches": 27,
+          "navigation_version": 22353,
+          "seconds": 19.80000114440918,
+          "waypoint_distance": 7.819771766662598,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.35641860961914,
+            "y": 0.029999980702996254,
+            "z": -19.19474983215332
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -11.375
+          }
+        },
+        {
+          "seed": 510021,
+          "step": 199,
+          "waypoint_version": 46,
+          "route_points": 1,
+          "planner_builds": 193,
+          "goal_selections": 27,
+          "route_searches": 27,
+          "navigation_version": 22353,
+          "seconds": 19.899999618530273,
+          "waypoint_distance": 0.5566624999046326,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.63926124572754,
+            "y": 0.029999980702996254,
+            "z": -18.911907196044922
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -19.125
+          }
+        },
+        {
+          "seed": 510021,
+          "step": 200,
+          "waypoint_version": 47,
+          "route_points": 33,
+          "planner_builds": 193,
+          "goal_selections": 28,
+          "route_searches": 28,
+          "navigation_version": 22353,
+          "seconds": 20.0,
+          "waypoint_distance": 7.819771766662598,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.35641860961914,
+            "y": 0.029999980702996254,
+            "z": -19.19474983215332
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -11.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510085,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 192,
+      "longest_consecutive_cycles": 192,
+      "example": [
+        {
+          "seed": 510085,
+          "step": 215,
+          "waypoint_version": 84,
+          "route_points": 29,
+          "planner_builds": 212,
+          "goal_selections": 42,
+          "route_searches": 42,
+          "navigation_version": 19615,
+          "seconds": 21.5,
+          "waypoint_distance": 6.913066387176514,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.34044075012207,
+            "y": 0.029999980702996254,
+            "z": -11.787980079650879
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -4.875
+          }
+        },
+        {
+          "seed": 510085,
+          "step": 216,
+          "waypoint_version": 85,
+          "route_points": 1,
+          "planner_builds": 213,
+          "goal_selections": 42,
+          "route_searches": 42,
+          "navigation_version": 19673,
+          "seconds": 21.600000381469727,
+          "waypoint_distance": 0.6205518841743469,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.62328338623047,
+            "y": 0.029999980702996254,
+            "z": -11.50513744354248
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -11.875
+          }
+        },
+        {
+          "seed": 510085,
+          "step": 217,
+          "waypoint_version": 86,
+          "route_points": 29,
+          "planner_builds": 213,
+          "goal_selections": 43,
+          "route_searches": 43,
+          "navigation_version": 19673,
+          "seconds": 21.700000762939453,
+          "waypoint_distance": 6.913066387176514,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.34044075012207,
+            "y": 0.029999980702996254,
+            "z": -11.787980079650879
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -4.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510018,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 184,
+      "longest_consecutive_cycles": 184,
+      "example": [
+        {
+          "seed": 510018,
+          "step": 231,
+          "waypoint_version": 131,
+          "route_points": 37,
+          "planner_builds": 224,
+          "goal_selections": 66,
+          "route_searches": 66,
+          "navigation_version": 14940,
+          "seconds": 23.100000381469727,
+          "waypoint_distance": 8.863701820373535,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.26761817932129,
+            "y": 0.029999980702996254,
+            "z": -14.488051414489746
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -5.625
+          }
+        },
+        {
+          "seed": 510018,
+          "step": 232,
+          "waypoint_version": 132,
+          "route_points": 1,
+          "planner_builds": 224,
+          "goal_selections": 66,
+          "route_searches": 66,
+          "navigation_version": 14940,
+          "seconds": 23.200000762939453,
+          "waypoint_distance": 0.5976969003677368,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.550460815429688,
+            "y": 0.029999980702996254,
+            "z": -14.205208778381348
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -14.625
+          }
+        },
+        {
+          "seed": 510018,
+          "step": 233,
+          "waypoint_version": 133,
+          "route_points": 37,
+          "planner_builds": 224,
+          "goal_selections": 67,
+          "route_searches": 67,
+          "navigation_version": 14940,
+          "seconds": 23.30000114440918,
+          "waypoint_distance": 8.863701820373535,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.26761817932129,
+            "y": 0.029999980702996254,
+            "z": -14.488051414489746
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -5.625
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510083,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 174,
+      "longest_consecutive_cycles": 174,
+      "example": [
+        {
+          "seed": 510083,
+          "step": 250,
+          "waypoint_version": 27,
+          "route_points": 36,
+          "planner_builds": 244,
+          "goal_selections": 21,
+          "route_searches": 21,
+          "navigation_version": 25419,
+          "seconds": 25.0,
+          "waypoint_distance": 8.44518756866455,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.39594268798828,
+            "y": 0.029999980702996254,
+            "z": 10.820161819458008
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 2.375
+          }
+        },
+        {
+          "seed": 510083,
+          "step": 251,
+          "waypoint_version": 28,
+          "route_points": 1,
+          "planner_builds": 244,
+          "goal_selections": 21,
+          "route_searches": 21,
+          "navigation_version": 25419,
+          "seconds": 25.100000381469727,
+          "waypoint_distance": 0.5606836080551147,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.67878532409668,
+            "y": 0.029999980702996254,
+            "z": 10.53731918334961
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 10.625
+          }
+        },
+        {
+          "seed": 510083,
+          "step": 252,
+          "waypoint_version": 29,
+          "route_points": 36,
+          "planner_builds": 244,
+          "goal_selections": 22,
+          "route_searches": 22,
+          "navigation_version": 25419,
+          "seconds": 25.200000762939453,
+          "waypoint_distance": 8.44518756866455,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.39594268798828,
+            "y": 0.029999980702996254,
+            "z": 10.820161819458008
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 2.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510043,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 173,
+      "longest_consecutive_cycles": 173,
+      "example": [
+        {
+          "seed": 510043,
+          "step": 252,
+          "waypoint_version": 134,
+          "route_points": 34,
+          "planner_builds": 246,
+          "goal_selections": 68,
+          "route_searches": 68,
+          "navigation_version": 17233,
+          "seconds": 25.200000762939453,
+          "waypoint_distance": 8.12269115447998,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.222917556762695,
+            "y": 0.029999980702996254,
+            "z": -18.246267318725586
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -10.125
+          }
+        },
+        {
+          "seed": 510043,
+          "step": 253,
+          "waypoint_version": 135,
+          "route_points": 1,
+          "planner_builds": 247,
+          "goal_selections": 68,
+          "route_searches": 68,
+          "navigation_version": 17273,
+          "seconds": 25.30000114440918,
+          "waypoint_distance": 0.560689389705658,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.505760192871094,
+            "y": 0.029999980702996254,
+            "z": -17.963424682617188
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -18.375
+          }
+        },
+        {
+          "seed": 510043,
+          "step": 254,
+          "waypoint_version": 136,
+          "route_points": 34,
+          "planner_builds": 247,
+          "goal_selections": 69,
+          "route_searches": 69,
+          "navigation_version": 17273,
+          "seconds": 25.399999618530273,
+          "waypoint_distance": 8.12269115447998,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.222917556762695,
+            "y": 0.029999980702996254,
+            "z": -18.246267318725586
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -10.125
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510064,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 170,
+      "longest_consecutive_cycles": 170,
+      "example": [
+        {
+          "seed": 510064,
+          "step": 258,
+          "waypoint_version": 38,
+          "route_points": 39,
+          "planner_builds": 243,
+          "goal_selections": 29,
+          "route_searches": 29,
+          "navigation_version": 24480,
+          "seconds": 25.80000114440918,
+          "waypoint_distance": 9.147485733032227,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.269664764404297,
+            "y": 0.029999980702996254,
+            "z": 17.271879196166992
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 8.125
+          }
+        },
+        {
+          "seed": 510064,
+          "step": 259,
+          "waypoint_version": 39,
+          "route_points": 1,
+          "planner_builds": 243,
+          "goal_selections": 29,
+          "route_searches": 29,
+          "navigation_version": 24480,
+          "seconds": 25.899999618530273,
+          "waypoint_distance": 0.5726627707481384,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.516881942749023,
+            "y": 0.03000004030764103,
+            "z": 16.957422256469727
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.03000004030764103,
+            "z": 17.375
+          }
+        },
+        {
+          "seed": 510064,
+          "step": 260,
+          "waypoint_version": 40,
+          "route_points": 39,
+          "planner_builds": 243,
+          "goal_selections": 30,
+          "route_searches": 30,
+          "navigation_version": 24480,
+          "seconds": 26.0,
+          "waypoint_distance": 9.147143363952637,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.269222259521484,
+            "y": 0.029999980702996254,
+            "z": 17.27153205871582
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 8.125
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510024,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 169,
+      "longest_consecutive_cycles": 169,
+      "example": [
+        {
+          "seed": 510024,
+          "step": 261,
+          "waypoint_version": 122,
+          "route_points": 28,
+          "planner_builds": 258,
+          "goal_selections": 61,
+          "route_searches": 61,
+          "navigation_version": 17658,
+          "seconds": 26.100000381469727,
+          "waypoint_distance": 6.678023338317871,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.366098403930664,
+            "y": 0.029999980702996254,
+            "z": -14.553017616271973
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -7.875
+          }
+        },
+        {
+          "seed": 510024,
+          "step": 262,
+          "waypoint_version": 123,
+          "route_points": 1,
+          "planner_builds": 259,
+          "goal_selections": 61,
+          "route_searches": 61,
+          "navigation_version": 17726,
+          "seconds": 26.200000762939453,
+          "waypoint_distance": 0.6327835321426392,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.648941040039062,
+            "y": 0.029999980702996254,
+            "z": -14.270174980163574
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -14.625
+          }
+        },
+        {
+          "seed": 510024,
+          "step": 263,
+          "waypoint_version": 124,
+          "route_points": 28,
+          "planner_builds": 259,
+          "goal_selections": 62,
+          "route_searches": 62,
+          "navigation_version": 17726,
+          "seconds": 26.30000114440918,
+          "waypoint_distance": 6.678023338317871,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.366098403930664,
+            "y": 0.029999980702996254,
+            "z": -14.553017616271973
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -7.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510087,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 166,
+      "longest_consecutive_cycles": 166,
+      "example": [
+        {
+          "seed": 510087,
+          "step": 266,
+          "waypoint_version": 33,
+          "route_points": 36,
+          "planner_builds": 264,
+          "goal_selections": 27,
+          "route_searches": 27,
+          "navigation_version": 27265,
+          "seconds": 26.600000381469727,
+          "waypoint_distance": 8.454193115234375,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.395944595336914,
+            "y": 0.029999980702996254,
+            "z": 9.829167366027832
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 1.375
+          }
+        },
+        {
+          "seed": 510087,
+          "step": 267,
+          "waypoint_version": 34,
+          "route_points": 1,
+          "planner_builds": 264,
+          "goal_selections": 27,
+          "route_searches": 27,
+          "navigation_version": 27265,
+          "seconds": 26.700000762939453,
+          "waypoint_distance": 0.5593459010124207,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.67878532409668,
+            "y": 0.029999980702996254,
+            "z": 9.54632568359375
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 9.625
+          }
+        },
+        {
+          "seed": 510087,
+          "step": 268,
+          "waypoint_version": 35,
+          "route_points": 36,
+          "planner_builds": 264,
+          "goal_selections": 28,
+          "route_searches": 28,
+          "navigation_version": 27265,
+          "seconds": 26.80000114440918,
+          "waypoint_distance": 8.454194068908691,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.39594268798828,
+            "y": 0.029999980702996254,
+            "z": 9.829168319702148
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 1.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510068,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 161,
+      "longest_consecutive_cycles": 161,
+      "example": [
+        {
+          "seed": 510068,
+          "step": 277,
+          "waypoint_version": 139,
+          "route_points": 33,
+          "planner_builds": 275,
+          "goal_selections": 69,
+          "route_searches": 69,
+          "navigation_version": 18541,
+          "seconds": 27.700000762939453,
+          "waypoint_distance": 7.7011590003967285,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.322355270385742,
+            "y": 0.029999980702996254,
+            "z": -14.575979232788086
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -6.875
+          }
+        },
+        {
+          "seed": 510068,
+          "step": 278,
+          "waypoint_version": 140,
+          "route_points": 1,
+          "planner_builds": 276,
+          "goal_selections": 69,
+          "route_searches": 69,
+          "navigation_version": 18574,
+          "seconds": 27.80000114440918,
+          "waypoint_distance": 0.5837151408195496,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.60519790649414,
+            "y": 0.029999980702996254,
+            "z": -14.293136596679688
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -14.625
+          }
+        },
+        {
+          "seed": 510068,
+          "step": 279,
+          "waypoint_version": 141,
+          "route_points": 33,
+          "planner_builds": 276,
+          "goal_selections": 70,
+          "route_searches": 70,
+          "navigation_version": 18574,
+          "seconds": 27.899999618530273,
+          "waypoint_distance": 7.7011590003967285,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.322355270385742,
+            "y": 0.029999980702996254,
+            "z": -14.575979232788086
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -6.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510022,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 160,
+      "longest_consecutive_cycles": 160,
+      "example": [
+        {
+          "seed": 510022,
+          "step": 278,
+          "waypoint_version": 55,
+          "route_points": 38,
+          "planner_builds": 276,
+          "goal_selections": 37,
+          "route_searches": 37,
+          "navigation_version": 21555,
+          "seconds": 27.80000114440918,
+          "waypoint_distance": 8.975403785705566,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.395944595336914,
+            "y": 0.029999980702996254,
+            "z": 13.35037899017334
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 4.375
+          }
+        },
+        {
+          "seed": 510022,
+          "step": 279,
+          "waypoint_version": 56,
+          "route_points": 1,
+          "planner_builds": 276,
+          "goal_selections": 37,
+          "route_searches": 37,
+          "navigation_version": 21555,
+          "seconds": 27.899999618530273,
+          "waypoint_distance": 0.5567585229873657,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.67878532409668,
+            "y": 0.03000004030764103,
+            "z": 13.067538261413574
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.03000004030764103,
+            "z": 13.125
+          }
+        },
+        {
+          "seed": 510022,
+          "step": 280,
+          "waypoint_version": 57,
+          "route_points": 38,
+          "planner_builds": 276,
+          "goal_selections": 38,
+          "route_searches": 38,
+          "navigation_version": 21555,
+          "seconds": 28.0,
+          "waypoint_distance": 8.9754056930542,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.39594268798828,
+            "y": 0.029999980702996254,
+            "z": 13.350380897521973
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 4.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510058,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 123,
+      "longest_consecutive_cycles": 123,
+      "example": [
+        {
+          "seed": 510058,
+          "step": 353,
+          "waypoint_version": 252,
+          "route_points": 37,
+          "planner_builds": 351,
+          "goal_selections": 124,
+          "route_searches": 124,
+          "navigation_version": 20281,
+          "seconds": 35.29999923706055,
+          "waypoint_distance": 8.81115436553955,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.356348037719727,
+            "y": 0.029999980702996254,
+            "z": -19.436134338378906
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -10.625
+          }
+        },
+        {
+          "seed": 510058,
+          "step": 354,
+          "waypoint_version": 253,
+          "route_points": 1,
+          "planner_builds": 352,
+          "goal_selections": 124,
+          "route_searches": 124,
+          "navigation_version": 20283,
+          "seconds": 35.400001525878906,
+          "waypoint_distance": 0.5599523186683655,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.639190673828125,
+            "y": 0.029999980702996254,
+            "z": -19.153291702270508
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -19.375
+          }
+        },
+        {
+          "seed": 510058,
+          "step": 355,
+          "waypoint_version": 254,
+          "route_points": 37,
+          "planner_builds": 352,
+          "goal_selections": 125,
+          "route_searches": 125,
+          "navigation_version": 20283,
+          "seconds": 35.5,
+          "waypoint_distance": 8.81115436553955,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.356348037719727,
+            "y": 0.029999980702996254,
+            "z": -19.436134338378906
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -10.625
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510077,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 90,
+      "longest_consecutive_cycles": 90,
+      "example": [
+        {
+          "seed": 510077,
+          "step": 418,
+          "waypoint_version": 320,
+          "route_points": 37,
+          "planner_builds": 414,
+          "goal_selections": 152,
+          "route_searches": 152,
+          "navigation_version": 21646,
+          "seconds": 41.79999923706055,
+          "waypoint_distance": 8.81115436553955,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.356348037719727,
+            "y": 0.029999980702996254,
+            "z": -19.436134338378906
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -10.625
+          }
+        },
+        {
+          "seed": 510077,
+          "step": 419,
+          "waypoint_version": 321,
+          "route_points": 1,
+          "planner_builds": 415,
+          "goal_selections": 152,
+          "route_searches": 152,
+          "navigation_version": 21648,
+          "seconds": 41.900001525878906,
+          "waypoint_distance": 0.5599523186683655,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.639190673828125,
+            "y": 0.029999980702996254,
+            "z": -19.153291702270508
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": -19.375
+          }
+        },
+        {
+          "seed": 510077,
+          "step": 420,
+          "waypoint_version": 322,
+          "route_points": 37,
+          "planner_builds": 415,
+          "goal_selections": 153,
+          "route_searches": 153,
+          "navigation_version": 21648,
+          "seconds": 42.0,
+          "waypoint_distance": 8.81115436553955,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.356348037719727,
+            "y": 0.029999980702996254,
+            "z": -19.436134338378906
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -10.625
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510031,
+      "completed": false,
+      "exit_discovered": true,
+      "cycles": 9,
+      "longest_consecutive_cycles": 1,
+      "example": [
+        {
+          "seed": 510031,
+          "step": 286,
+          "waypoint_version": 145,
+          "route_points": 26,
+          "planner_builds": 250,
+          "goal_selections": 74,
+          "route_searches": 74,
+          "navigation_version": 18968,
+          "seconds": 28.600000381469727,
+          "waypoint_distance": 6.595791816711426,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.363698959350586,
+            "y": 0.029999980702996254,
+            "z": 7.470782279968262
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 0.875
+          }
+        },
+        {
+          "seed": 510031,
+          "step": 287,
+          "waypoint_version": 146,
+          "route_points": 1,
+          "planner_builds": 251,
+          "goal_selections": 74,
+          "route_searches": 74,
+          "navigation_version": 19024,
+          "seconds": 28.700000762939453,
+          "waypoint_distance": 0.5540732741355896,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.646541595458984,
+            "y": 0.029999980702996254,
+            "z": 7.187939643859863
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 7.375
+          }
+        },
+        {
+          "seed": 510031,
+          "step": 288,
+          "waypoint_version": 147,
+          "route_points": 27,
+          "planner_builds": 251,
+          "goal_selections": 75,
+          "route_searches": 75,
+          "navigation_version": 19024,
+          "seconds": 28.80000114440918,
+          "waypoint_distance": 6.595791816711426,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.363698959350586,
+            "y": 0.029999980702996254,
+            "z": 7.470782279968262
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 0.875
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510054,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 9,
+      "longest_consecutive_cycles": 1,
+      "example": [
+        {
+          "seed": 510054,
+          "step": 116,
+          "waypoint_version": 22,
+          "route_points": 35,
+          "planner_builds": 114,
+          "goal_selections": 16,
+          "route_searches": 16,
+          "navigation_version": 11472,
+          "seconds": 11.600000381469727,
+          "waypoint_distance": 8.16161060333252,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.31348991394043,
+            "y": 0.029999980702996254,
+            "z": 16.786378860473633
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 8.625
+          }
+        },
+        {
+          "seed": 510054,
+          "step": 117,
+          "waypoint_version": 23,
+          "route_points": 1,
+          "planner_builds": 115,
+          "goal_selections": 16,
+          "route_searches": 16,
+          "navigation_version": 11479,
+          "seconds": 11.699999809265137,
+          "waypoint_distance": 0.6001164317131042,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.596332550048828,
+            "y": 0.029999980702996254,
+            "z": 16.503536224365234
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 16.875
+          }
+        },
+        {
+          "seed": 510054,
+          "step": 118,
+          "waypoint_version": 24,
+          "route_points": 35,
+          "planner_builds": 115,
+          "goal_selections": 17,
+          "route_searches": 17,
+          "navigation_version": 11479,
+          "seconds": 11.800000190734863,
+          "waypoint_distance": 8.16161060333252,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.31348991394043,
+            "y": 0.029999980702996254,
+            "z": 16.786378860473633
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 8.625
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510075,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 7,
+      "longest_consecutive_cycles": 1,
+      "example": [
+        {
+          "seed": 510075,
+          "step": 240,
+          "waypoint_version": 89,
+          "route_points": 32,
+          "planner_builds": 179,
+          "goal_selections": 47,
+          "route_searches": 47,
+          "navigation_version": 14702,
+          "seconds": 24.0,
+          "waypoint_distance": 7.600587844848633,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.364933013916016,
+            "y": 0.029999980702996254,
+            "z": 12.975581169128418
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 5.375
+          }
+        },
+        {
+          "seed": 510075,
+          "step": 241,
+          "waypoint_version": 90,
+          "route_points": 1,
+          "planner_builds": 180,
+          "goal_selections": 47,
+          "route_searches": 47,
+          "navigation_version": 14703,
+          "seconds": 24.100000381469727,
+          "waypoint_distance": 0.5536385178565979,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.647777557373047,
+            "y": 0.029999980702996254,
+            "z": 12.69273853302002
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 12.875
+          }
+        },
+        {
+          "seed": 510075,
+          "step": 242,
+          "waypoint_version": 91,
+          "route_points": 32,
+          "planner_builds": 180,
+          "goal_selections": 48,
+          "route_searches": 48,
+          "navigation_version": 14703,
+          "seconds": 24.200000762939453,
+          "waypoint_distance": 7.600587844848633,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.364933013916016,
+            "y": 0.029999980702996254,
+            "z": 12.975581169128418
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 5.375
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510004,
+      "completed": true,
+      "exit_discovered": true,
+      "cycles": 6,
+      "longest_consecutive_cycles": 1,
+      "example": [
+        {
+          "seed": 510004,
+          "step": 101,
+          "waypoint_version": 33,
+          "route_points": 32,
+          "planner_builds": 87,
+          "goal_selections": 19,
+          "route_searches": 19,
+          "navigation_version": 14729,
+          "seconds": 10.100000381469727,
+          "waypoint_distance": 7.596232891082764,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.363346099853516,
+            "y": 0.029999980702996254,
+            "z": 5.971223831176758
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -1.625
+          }
+        },
+        {
+          "seed": 510004,
+          "step": 102,
+          "waypoint_version": 34,
+          "route_points": 1,
+          "planner_builds": 88,
+          "goal_selections": 19,
+          "route_searches": 19,
+          "navigation_version": 14731,
+          "seconds": 10.199999809265137,
+          "waypoint_distance": 0.5535921454429626,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.646188735961914,
+            "y": 0.029999980702996254,
+            "z": 5.688381195068359
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 5.875
+          }
+        },
+        {
+          "seed": 510004,
+          "step": 103,
+          "waypoint_version": 35,
+          "route_points": 32,
+          "planner_builds": 88,
+          "goal_selections": 20,
+          "route_searches": 20,
+          "navigation_version": 14731,
+          "seconds": 10.300000190734863,
+          "waypoint_distance": 7.596232891082764,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.363346099853516,
+            "y": 0.029999980702996254,
+            "z": 5.971223831176758
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": -1.625
+          }
+        }
+      ]
+    },
+    {
+      "seed": 510013,
+      "completed": false,
+      "exit_discovered": false,
+      "cycles": 5,
+      "longest_consecutive_cycles": 1,
+      "example": [
+        {
+          "seed": 510013,
+          "step": 450,
+          "waypoint_version": 142,
+          "route_points": 26,
+          "planner_builds": 440,
+          "goal_selections": 81,
+          "route_searches": 81,
+          "navigation_version": 32617,
+          "seconds": 45.0,
+          "waypoint_distance": 6.595491886138916,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.362995147705078,
+            "y": 0.029999980702996254,
+            "z": 10.470480918884277
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 3.875
+          }
+        },
+        {
+          "seed": 510013,
+          "step": 451,
+          "waypoint_version": 143,
+          "route_points": 1,
+          "planner_builds": 441,
+          "goal_selections": 81,
+          "route_searches": 81,
+          "navigation_version": 32676,
+          "seconds": 45.10000228881836,
+          "waypoint_distance": 0.5535128116607666,
+          "reason": "escape_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.645837783813477,
+            "y": 0.029999980702996254,
+            "z": 10.187638282775879
+          },
+          "waypoint": {
+            "x": 24.125,
+            "y": 0.029999980702996254,
+            "z": 10.375
+          }
+        },
+        {
+          "seed": 510013,
+          "step": 452,
+          "waypoint_version": 144,
+          "route_points": 27,
+          "planner_builds": 441,
+          "goal_selections": 82,
+          "route_searches": 82,
+          "navigation_version": 32676,
+          "seconds": 45.20000076293945,
+          "waypoint_distance": 6.595491886138916,
+          "reason": "route_assigned",
+          "status": "exploring",
+          "has_waypoint": true,
+          "goal_is_exit": false,
+          "position": {
+            "x": 24.362995147705078,
+            "y": 0.029999980702996254,
+            "z": 10.470480918884277
+          },
+          "waypoint": {
+            "x": 24.375,
+            "y": 0.029999980702996254,
+            "z": 3.875
+          }
+        }
+      ]
+    }
+  ]
+}

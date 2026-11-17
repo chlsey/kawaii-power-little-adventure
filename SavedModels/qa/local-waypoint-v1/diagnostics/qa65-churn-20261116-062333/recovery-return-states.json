@@ -1,0 +1,445 @@
+{
+  "definition": "Before-action position within 0.1 units and waypoint within 0.25 units of a state 2-100 actions earlier, with recovery in the interval and at least 0.05 units movement since the prior action; counted once per returning action.",
+  "limits": [
+    "Revisiting a state does not by itself prove wasted movement; discoveries can change the world knowledge.",
+    "Counts are returning states, not the number or duration of distinct cycles."
+  ],
+  "before": {
+    "actions": 34505,
+    "return_states": 11847,
+    "cases_with_returns": 38,
+    "nearest_return_lags": {
+      "2": 11469,
+      "8": 1,
+      "6": 2,
+      "4": 20,
+      "3": 3,
+      "5": 343,
+      "14": 1,
+      "18": 1,
+      "9": 2,
+      "43": 1,
+      "45": 1,
+      "61": 1,
+      "30": 2
+    },
+    "cases": [
+      {
+        "seed": 510009,
+        "return_states": 589,
+        "nearest_return_lags": {
+          "2": 589
+        }
+      },
+      {
+        "seed": 510019,
+        "return_states": 580,
+        "nearest_return_lags": {
+          "2": 580
+        }
+      },
+      {
+        "seed": 510057,
+        "return_states": 560,
+        "nearest_return_lags": {
+          "2": 560
+        }
+      },
+      {
+        "seed": 510027,
+        "return_states": 526,
+        "nearest_return_lags": {
+          "2": 525,
+          "5": 1
+        }
+      },
+      {
+        "seed": 510073,
+        "return_states": 522,
+        "nearest_return_lags": {
+          "2": 518,
+          "4": 2,
+          "14": 1,
+          "5": 1
+        }
+      },
+      {
+        "seed": 510074,
+        "return_states": 521,
+        "nearest_return_lags": {
+          "2": 521
+        }
+      },
+      {
+        "seed": 510026,
+        "return_states": 519,
+        "nearest_return_lags": {
+          "2": 519
+        }
+      },
+      {
+        "seed": 510010,
+        "return_states": 511,
+        "nearest_return_lags": {
+          "2": 511
+        }
+      },
+      {
+        "seed": 510093,
+        "return_states": 509,
+        "nearest_return_lags": {
+          "2": 509
+        }
+      },
+      {
+        "seed": 510034,
+        "return_states": 499,
+        "nearest_return_lags": {
+          "2": 499
+        }
+      },
+      {
+        "seed": 510038,
+        "return_states": 460,
+        "nearest_return_lags": {
+          "4": 6,
+          "2": 454
+        }
+      },
+      {
+        "seed": 510095,
+        "return_states": 453,
+        "nearest_return_lags": {
+          "2": 453
+        }
+      },
+      {
+        "seed": 510016,
+        "return_states": 417,
+        "nearest_return_lags": {
+          "2": 417
+        }
+      },
+      {
+        "seed": 510021,
+        "return_states": 406,
+        "nearest_return_lags": {
+          "4": 4,
+          "2": 402
+        }
+      },
+      {
+        "seed": 510085,
+        "return_states": 388,
+        "nearest_return_lags": {
+          "4": 5,
+          "2": 383
+        }
+      },
+      {
+        "seed": 510018,
+        "return_states": 370,
+        "nearest_return_lags": {
+          "4": 2,
+          "2": 368
+        }
+      },
+      {
+        "seed": 510064,
+        "return_states": 355,
+        "nearest_return_lags": {
+          "2": 355
+        }
+      },
+      {
+        "seed": 510083,
+        "return_states": 351,
+        "nearest_return_lags": {
+          "2": 351
+        }
+      },
+      {
+        "seed": 510043,
+        "return_states": 346,
+        "nearest_return_lags": {
+          "2": 346
+        }
+      },
+      {
+        "seed": 510024,
+        "return_states": 341,
+        "nearest_return_lags": {
+          "4": 1,
+          "2": 340
+        }
+      },
+      {
+        "seed": 510032,
+        "return_states": 338,
+        "nearest_return_lags": {
+          "5": 338
+        }
+      },
+      {
+        "seed": 510087,
+        "return_states": 336,
+        "nearest_return_lags": {
+          "2": 336
+        }
+      },
+      {
+        "seed": 510022,
+        "return_states": 323,
+        "nearest_return_lags": {
+          "2": 323
+        }
+      },
+      {
+        "seed": 510068,
+        "return_states": 321,
+        "nearest_return_lags": {
+          "2": 321
+        }
+      },
+      {
+        "seed": 510058,
+        "return_states": 246,
+        "nearest_return_lags": {
+          "2": 246
+        }
+      },
+      {
+        "seed": 510075,
+        "return_states": 221,
+        "nearest_return_lags": {
+          "2": 210,
+          "3": 1,
+          "5": 1,
+          "18": 1,
+          "9": 2,
+          "43": 1,
+          "45": 1,
+          "61": 1,
+          "30": 2,
+          "6": 1
+        }
+      },
+      {
+        "seed": 510031,
+        "return_states": 192,
+        "nearest_return_lags": {
+          "2": 192
+        }
+      },
+      {
+        "seed": 510077,
+        "return_states": 183,
+        "nearest_return_lags": {
+          "2": 183
+        }
+      },
+      {
+        "seed": 510054,
+        "return_states": 170,
+        "nearest_return_lags": {
+          "2": 170
+        }
+      },
+      {
+        "seed": 510004,
+        "return_states": 138,
+        "nearest_return_lags": {
+          "2": 136,
+          "8": 1,
+          "6": 1
+        }
+      },
+      {
+        "seed": 510013,
+        "return_states": 76,
+        "nearest_return_lags": {
+          "2": 76
+        }
+      },
+      {
+        "seed": 510035,
+        "return_states": 74,
+        "nearest_return_lags": {
+          "2": 71,
+          "3": 1,
+          "5": 2
+        }
+      },
+      {
+        "seed": 510003,
+        "return_states": 1,
+        "nearest_return_lags": {
+          "2": 1
+        }
+      },
+      {
+        "seed": 510020,
+        "return_states": 1,
+        "nearest_return_lags": {
+          "3": 1
+        }
+      },
+      {
+        "seed": 510049,
+        "return_states": 1,
+        "nearest_return_lags": {
+          "2": 1
+        }
+      },
+      {
+        "seed": 510055,
+        "return_states": 1,
+        "nearest_return_lags": {
+          "2": 1
+        }
+      },
+      {
+        "seed": 510078,
+        "return_states": 1,
+        "nearest_return_lags": {
+          "2": 1
+        }
+      },
+      {
+        "seed": 510088,
+        "return_states": 1,
+        "nearest_return_lags": {
+          "2": 1
+        }
+      }
+    ]
+  },
+  "after": {
+    "actions": 24443,
+    "return_states": 118,
+    "cases_with_returns": 6,
+    "nearest_return_lags": {
+      "5": 6,
+      "2": 22,
+      "17": 3,
+      "66": 2,
+      "63": 1,
+      "4": 8,
+      "65": 3,
+      "10": 2,
+      "3": 1,
+      "59": 1,
+      "58": 1,
+      "44": 8,
+      "72": 5,
+      "36": 4,
+      "51": 7,
+      "11": 1,
+      "12": 5,
+      "53": 1,
+      "15": 2,
+      "6": 1,
+      "48": 4,
+      "30": 1,
+      "31": 1,
+      "32": 1,
+      "47": 2,
+      "7": 2,
+      "9": 1,
+      "38": 3,
+      "40": 1,
+      "41": 2,
+      "35": 2,
+      "87": 7,
+      "28": 1,
+      "37": 1,
+      "24": 5
+    },
+    "cases": [
+      {
+        "seed": 510072,
+        "return_states": 69,
+        "nearest_return_lags": {
+          "2": 10,
+          "12": 3,
+          "15": 2,
+          "6": 1,
+          "36": 3,
+          "48": 4,
+          "30": 1,
+          "31": 1,
+          "32": 1,
+          "47": 2,
+          "7": 2,
+          "9": 1,
+          "4": 2,
+          "44": 7,
+          "38": 3,
+          "40": 1,
+          "41": 2,
+          "5": 2,
+          "35": 2,
+          "10": 1,
+          "87": 7,
+          "28": 1,
+          "37": 1,
+          "24": 5,
+          "72": 4
+        }
+      },
+      {
+        "seed": 510025,
+        "return_states": 41,
+        "nearest_return_lags": {
+          "2": 7,
+          "17": 3,
+          "5": 2,
+          "66": 2,
+          "63": 1,
+          "4": 5,
+          "65": 3,
+          "10": 1,
+          "3": 1,
+          "59": 1,
+          "58": 1,
+          "44": 1,
+          "72": 1,
+          "36": 1,
+          "51": 7,
+          "11": 1,
+          "12": 2,
+          "53": 1
+        }
+      },
+      {
+        "seed": 510008,
+        "return_states": 2,
+        "nearest_return_lags": {
+          "5": 2
+        }
+      },
+      {
+        "seed": 510020,
+        "return_states": 2,
+        "nearest_return_lags": {
+          "2": 2
+        }
+      },
+      {
+        "seed": 510038,
+        "return_states": 2,
+        "nearest_return_lags": {
+          "2": 2
+        }
+      },
+      {
+        "seed": 510088,
+        "return_states": 2,
+        "nearest_return_lags": {
+          "2": 1,
+          "4": 1
+        }
+      }
+    ]
+  }
+}

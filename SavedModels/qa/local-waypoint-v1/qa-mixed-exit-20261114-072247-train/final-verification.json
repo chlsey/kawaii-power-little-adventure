@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "unique_training_seeds": 1000,
+  "training_exits": 997,
+  "training_actions": 176301,
+  "verified_archives": 36,
+  "parent_hash_unchanged": true,
+  "source_hashes_unchanged": true,
+  "project_settings_restored": true,
+  "identical_mixed_layouts": true,
+  "bootstrap_draws": 20000,
+  "bootstrap_seed": 58,
+  "paired": {
+    "mixed": {
+      "parent": 120,
+      "child": 120,
+      "cases": 150,
+      "gained": 19,
+      "lost": 19,
+      "paired_bootstrap_95_percent_points": [
+        -8.0,
+        8.0
+      ]
+    },
+    "original_two_room": {
+      "parent": 45,
+      "child": 38,
+      "cases": 100,
+      "gained": 4,
+      "lost": 11,
+      "paired_bootstrap_95_percent_points": [
+        -15.0,
+        0.0
+      ]
+    }
+  }
+}

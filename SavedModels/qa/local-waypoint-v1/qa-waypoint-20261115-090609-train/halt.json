@@ -1,0 +1,20 @@
+{
+  "status": "halted-by-user-during-frozen-evaluation",
+  "halted_utc": "2026-11-16T02:36:40.488990+00:00",
+  "training_episodes": 1000,
+  "training_exits": 934,
+  "training_timeouts": 66,
+  "training_actions": 287187,
+  "final_model_steps": 943980,
+  "final_optimizer_epochs": 36820,
+  "final_lineage_episodes": 5700,
+  "final_sha256": "c69baa3c5b2130eece1ed04958254ed3d3252e85587080761ec28181af63ab20",
+  "verified_archives": 58,
+  "frozen_evaluation_cases": 63,
+  "frozen_evaluation_exits": 63,
+  "frozen_evaluation_target": 100,
+  "evaluation_result_is_partial": true,
+  "settings_restored": [],
+  "source_snapshot_preserved": true,
+  "no_training_restart_authorized": true
+}

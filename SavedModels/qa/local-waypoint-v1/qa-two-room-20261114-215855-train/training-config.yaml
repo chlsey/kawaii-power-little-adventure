@@ -1,0 +1,31 @@
+# QA-59: exactly 1,000 two-room corridor-traversal episodes from QA-58.
+model: ppo
+port: 7784
+seed: 29800
+max_episodes: 1000
+total_timesteps: 600000
+checkpoint_freq: 5000
+output_dir: ../Logs/qa-corridor-training
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261114-072247-train/final_model.zip
+resume_sha256: ed6fddf1b411dacb345691a6faf95e976e46964ac3ed0e7d3996fae13b7b5763
+parent_lineage_episodes: 15700
+parent_evaluation_phase: child-two-room
+throughput_phase: empty-room-retention
+observation_contract: local-waypoint-v1
+evaluation_seed: 451000
+evaluation_episodes: 100
+episode_seconds: 60
+room_count: 2
+room_size: [20, 20]
+area_size: [100, 100]
+max_waypoint_distance: 10
+completion_reward: 50
+waypoint_reward_budget: 5
+time_cost_per_action: 0.001
+learning_rate: 0.000002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+ppo:
+  batch_size: 64
+device: cpu

@@ -1,0 +1,24 @@
+{
+  "status": "complete",
+  "frozen": true,
+  "new_training_steps": 0,
+  "cases": 10,
+  "exits": 9,
+  "exit_discoveries": 9,
+  "actions": 2944,
+  "waypoint_assignments": 1304,
+  "planner_builds": 2250,
+  "goal_selections": 695,
+  "route_searches": 695,
+  "action_phase_seconds": 147.82612872123718,
+  "actions_per_second": 19.91528849105994,
+  "before": {
+    "exits": 9,
+    "actions": 2933,
+    "waypoint_assignments": 1304,
+    "action_phase_seconds": 490.6726140975952,
+    "actions_per_second": 5.977509067617586
+  },
+  "runtime": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-024643-evaluate",
+  "verification": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-024408-verify\\verification.json"
+}

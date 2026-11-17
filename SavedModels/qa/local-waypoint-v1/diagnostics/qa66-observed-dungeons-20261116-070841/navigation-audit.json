@@ -1,0 +1,1492 @@
+{
+  "status": "complete-policy-audit; reference replays separate and pending",
+  "cases": 100,
+  "actions": 60000,
+  "actions_with_waypoint": 10752,
+  "actions_without_waypoint": 49248,
+  "no_waypoint_percent": 82.08,
+  "assignments": 1628,
+  "assignments_per_100_actions": 2.7133333333333334,
+  "assignments_per_100_guided_actions": 15.141369047619047,
+  "assignment_arrivals": 1210,
+  "assignments_replaced_before_arrival": 418,
+  "assignment_end_reasons": {
+    "waypoint_arrived": 585,
+    "escape_arrived_free": 625,
+    "start_cell_blocked": 347,
+    "goal_progress_stalled": 4,
+    "goal_cell_invalid": 27,
+    "waypoint_segment_invalid": 13,
+    "oscillation_detected": 10,
+    "escape_invalid": 17
+  },
+  "median_instruction_seconds": 0.3000001907348633,
+  "median_assignments_per_case": 16.0,
+  "max_assignments_per_case": 32,
+  "event_counts": {
+    "select_frontier": 506,
+    "route_assigned": 975,
+    "waypoint_arrived": 585,
+    "goal_reached": 443,
+    "no_reachable_goal": 2663,
+    "start_cell_blocked": 47133,
+    "escape_assigned": 653,
+    "escape_arrived_free": 625,
+    "exploration_blocked": 46585,
+    "goal_progress_stalled": 78,
+    "goal_cell_invalid": 37,
+    "recovery_exhausted": 29,
+    "abandon_frontier": 26,
+    "waypoint_segment_invalid": 13,
+    "oscillation_detected": 10,
+    "escape_invalid": 17
+  },
+  "broader_recovery_return_states": 60,
+  "cases_with_recovery_returns": 15,
+  "recovery_returns": [
+    {
+      "seed": 530018,
+      "return_states": 2,
+      "nearest_lags": {
+        "2": 2
+      }
+    },
+    {
+      "seed": 530022,
+      "return_states": 1,
+      "nearest_lags": {
+        "2": 1
+      }
+    },
+    {
+      "seed": 530023,
+      "return_states": 3,
+      "nearest_lags": {
+        "2": 3
+      }
+    },
+    {
+      "seed": 530027,
+      "return_states": 4,
+      "nearest_lags": {
+        "2": 4
+      }
+    },
+    {
+      "seed": 530034,
+      "return_states": 1,
+      "nearest_lags": {
+        "2": 1
+      }
+    },
+    {
+      "seed": 530036,
+      "return_states": 15,
+      "nearest_lags": {
+        "14": 2,
+        "16": 1,
+        "11": 1,
+        "2": 4,
+        "55": 1,
+        "29": 5,
+        "27": 1
+      }
+    },
+    {
+      "seed": 530042,
+      "return_states": 1,
+      "nearest_lags": {
+        "2": 1
+      }
+    },
+    {
+      "seed": 530062,
+      "return_states": 2,
+      "nearest_lags": {
+        "2": 2
+      }
+    },
+    {
+      "seed": 530066,
+      "return_states": 2,
+      "nearest_lags": {
+        "2": 2
+      }
+    },
+    {
+      "seed": 530074,
+      "return_states": 1,
+      "nearest_lags": {
+        "2": 1
+      }
+    },
+    {
+      "seed": 530075,
+      "return_states": 4,
+      "nearest_lags": {
+        "2": 4
+      }
+    },
+    {
+      "seed": 530076,
+      "return_states": 1,
+      "nearest_lags": {
+        "6": 1
+      }
+    },
+    {
+      "seed": 530078,
+      "return_states": 2,
+      "nearest_lags": {
+        "2": 1,
+        "5": 1
+      }
+    },
+    {
+      "seed": 530080,
+      "return_states": 7,
+      "nearest_lags": {
+        "17": 2,
+        "43": 1,
+        "7": 1,
+        "2": 2,
+        "6": 1
+      }
+    },
+    {
+      "seed": 530090,
+      "return_states": 14,
+      "nearest_lags": {
+        "70": 14
+      }
+    }
+  ],
+  "exits": 0,
+  "discoveries": 5,
+  "entered_exit_room": 0,
+  "final_phase": {
+    "corridor": 75,
+    "spawn_room": 25
+  },
+  "final_navigation_status": {
+    "exploration_blocked": 100
+  },
+  "low_movement_actions_under_0_02": 32593,
+  "stuck_windows": 1400,
+  "cases_with_stuck_windows": 99,
+  "away_or_perpendicular_guided_actions": 32,
+  "total_path_length": 6359.897651672363,
+  "cases_below_floor": 0,
+  "per_case": [
+    {
+      "seed": 530000,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 510,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530001,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 507,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530002,
+      "assignments": 19,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 7
+      },
+      "no_waypoint_actions": 461,
+      "stuck_windows": 18,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530003,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 14
+      },
+      "no_waypoint_actions": 489,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530004,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "escape_arrived_free": 8
+      },
+      "no_waypoint_actions": 463,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530005,
+      "assignments": 4,
+      "end_reasons": {
+        "waypoint_arrived": 4
+      },
+      "no_waypoint_actions": 551,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530006,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 5,
+        "escape_arrived_free": 10,
+        "goal_progress_stalled": 1
+      },
+      "no_waypoint_actions": 431,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530007,
+      "assignments": 26,
+      "end_reasons": {
+        "waypoint_arrived": 3,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 17
+      },
+      "no_waypoint_actions": 474,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530008,
+      "assignments": 6,
+      "end_reasons": {
+        "waypoint_arrived": 6
+      },
+      "no_waypoint_actions": 526,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530009,
+      "assignments": 6,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 540,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530010,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 5,
+        "escape_arrived_free": 13
+      },
+      "no_waypoint_actions": 473,
+      "stuck_windows": 6,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530011,
+      "assignments": 32,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 10,
+        "escape_arrived_free": 17,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 478,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530012,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 2
+      },
+      "no_waypoint_actions": 522,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530013,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 1
+      },
+      "no_waypoint_actions": 524,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530014,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 8
+      },
+      "no_waypoint_actions": 447,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530015,
+      "assignments": 31,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 8,
+        "escape_arrived_free": 18
+      },
+      "no_waypoint_actions": 484,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530016,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 510,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530017,
+      "assignments": 18,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 5,
+        "goal_cell_invalid": 1,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 512,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530018,
+      "assignments": 14,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 4,
+        "oscillation_detected": 1
+      },
+      "no_waypoint_actions": 464,
+      "stuck_windows": 18,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530019,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 14
+      },
+      "no_waypoint_actions": 489,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530020,
+      "assignments": 10,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 4
+      },
+      "no_waypoint_actions": 516,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530021,
+      "assignments": 18,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 7,
+        "escape_arrived_free": 6
+      },
+      "no_waypoint_actions": 494,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530022,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 6,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 454,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530023,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "goal_cell_invalid": 1,
+        "escape_arrived_free": 2,
+        "oscillation_detected": 1
+      },
+      "no_waypoint_actions": 532,
+      "stuck_windows": 25,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530024,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 510,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530025,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 5,
+        "escape_arrived_free": 4,
+        "goal_cell_invalid": 1,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 512,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530026,
+      "assignments": 26,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 10,
+        "escape_invalid": 1
+      },
+      "no_waypoint_actions": 460,
+      "stuck_windows": 0,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530027,
+      "assignments": 28,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 13,
+        "waypoint_segment_invalid": 1,
+        "oscillation_detected": 2
+      },
+      "no_waypoint_actions": 479,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530028,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 2
+      },
+      "no_waypoint_actions": 522,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530029,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 1
+      },
+      "no_waypoint_actions": 524,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530030,
+      "assignments": 14,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 3,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 472,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530031,
+      "assignments": 32,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 8,
+        "escape_arrived_free": 18,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 474,
+      "stuck_windows": 6,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530032,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 524,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530033,
+      "assignments": 17,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 5,
+        "escape_arrived_free": 4,
+        "goal_cell_invalid": 1,
+        "waypoint_segment_invalid": 1,
+        "escape_invalid": 1
+      },
+      "no_waypoint_actions": 512,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530034,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "escape_arrived_free": 3
+      },
+      "no_waypoint_actions": 530,
+      "stuck_windows": 18,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530035,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 5,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 452,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530036,
+      "assignments": 23,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "escape_arrived_free": 6,
+        "escape_invalid": 10
+      },
+      "no_waypoint_actions": 484,
+      "stuck_windows": 11,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530037,
+      "assignments": 17,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 5,
+        "escape_arrived_free": 4,
+        "escape_invalid": 2,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 503,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530038,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 7,
+        "escape_arrived_free": 8,
+        "goal_progress_stalled": 1
+      },
+      "no_waypoint_actions": 440,
+      "stuck_windows": 12,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530039,
+      "assignments": 12,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 2,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 456,
+      "stuck_windows": 20,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530040,
+      "assignments": 15,
+      "end_reasons": {
+        "waypoint_arrived": 9,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 5
+      },
+      "no_waypoint_actions": 461,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530041,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 10,
+        "escape_arrived_free": 9,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 491,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530042,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "escape_arrived_free": 3
+      },
+      "no_waypoint_actions": 530,
+      "stuck_windows": 18,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530043,
+      "assignments": 29,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 5,
+        "escape_arrived_free": 18,
+        "waypoint_segment_invalid": 2
+      },
+      "no_waypoint_actions": 488,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530044,
+      "assignments": 19,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 9
+      },
+      "no_waypoint_actions": 458,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530045,
+      "assignments": 20,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 8,
+        "escape_arrived_free": 7
+      },
+      "no_waypoint_actions": 479,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530046,
+      "assignments": 9,
+      "end_reasons": {
+        "waypoint_arrived": 9
+      },
+      "no_waypoint_actions": 471,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530047,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 14
+      },
+      "no_waypoint_actions": 489,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530048,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 2
+      },
+      "no_waypoint_actions": 522,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530049,
+      "assignments": 12,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 3
+      },
+      "no_waypoint_actions": 511,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530050,
+      "assignments": 11,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 1,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 473,
+      "stuck_windows": 17,
+      "exit_discovered": true,
+      "completed": false
+    },
+    {
+      "seed": 530051,
+      "assignments": 30,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 10,
+        "escape_arrived_free": 14,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 480,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530052,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 510,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530053,
+      "assignments": 6,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 540,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530054,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 8
+      },
+      "no_waypoint_actions": 447,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530055,
+      "assignments": 30,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 8,
+        "escape_arrived_free": 17
+      },
+      "no_waypoint_actions": 485,
+      "stuck_windows": 8,
+      "exit_discovered": true,
+      "completed": false
+    },
+    {
+      "seed": 530056,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 2
+      },
+      "no_waypoint_actions": 522,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530057,
+      "assignments": 22,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 8
+      },
+      "no_waypoint_actions": 472,
+      "stuck_windows": 16,
+      "exit_discovered": true,
+      "completed": false
+    },
+    {
+      "seed": 530058,
+      "assignments": 14,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 2,
+        "escape_invalid": 1
+      },
+      "no_waypoint_actions": 451,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530059,
+      "assignments": 30,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 16,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 481,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530060,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 7
+      },
+      "no_waypoint_actions": 517,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530061,
+      "assignments": 12,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 3
+      },
+      "no_waypoint_actions": 511,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530062,
+      "assignments": 14,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 4,
+        "oscillation_detected": 1
+      },
+      "no_waypoint_actions": 464,
+      "stuck_windows": 18,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530063,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 5,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 452,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530064,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 510,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530065,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 10,
+        "escape_arrived_free": 9,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 491,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530066,
+      "assignments": 14,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 4,
+        "oscillation_detected": 1
+      },
+      "no_waypoint_actions": 464,
+      "stuck_windows": 18,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530067,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 5,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 452,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530068,
+      "assignments": 9,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 3
+      },
+      "no_waypoint_actions": 519,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530069,
+      "assignments": 6,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 540,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530070,
+      "assignments": 14,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 5
+      },
+      "no_waypoint_actions": 490,
+      "stuck_windows": 21,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530071,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 7,
+        "escape_arrived_free": 13
+      },
+      "no_waypoint_actions": 490,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530072,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 7
+      },
+      "no_waypoint_actions": 517,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530073,
+      "assignments": 18,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 5,
+        "goal_cell_invalid": 1,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 512,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530074,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "escape_arrived_free": 3
+      },
+      "no_waypoint_actions": 530,
+      "stuck_windows": 18,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530075,
+      "assignments": 28,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 13,
+        "waypoint_segment_invalid": 1,
+        "oscillation_detected": 2
+      },
+      "no_waypoint_actions": 479,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530076,
+      "assignments": 17,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "goal_cell_invalid": 1,
+        "escape_arrived_free": 9,
+        "oscillation_detected": 1
+      },
+      "no_waypoint_actions": 500,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530077,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 1
+      },
+      "no_waypoint_actions": 525,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530078,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "escape_arrived_free": 3,
+        "escape_invalid": 1
+      },
+      "no_waypoint_actions": 531,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530079,
+      "assignments": 18,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 11
+      },
+      "no_waypoint_actions": 490,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530080,
+      "assignments": 31,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 23,
+        "oscillation_detected": 1,
+        "escape_invalid": 1
+      },
+      "no_waypoint_actions": 452,
+      "stuck_windows": 5,
+      "exit_discovered": true,
+      "completed": false
+    },
+    {
+      "seed": 530081,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 1
+      },
+      "no_waypoint_actions": 524,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530082,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 8
+      },
+      "no_waypoint_actions": 447,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530083,
+      "assignments": 30,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 16,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 481,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530084,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "goal_cell_invalid": 1,
+        "escape_arrived_free": 9
+      },
+      "no_waypoint_actions": 502,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530085,
+      "assignments": 19,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 5,
+        "goal_cell_invalid": 3,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 500,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530086,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 7
+      },
+      "no_waypoint_actions": 488,
+      "stuck_windows": 21,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530087,
+      "assignments": 22,
+      "end_reasons": {
+        "waypoint_arrived": 3,
+        "start_cell_blocked": 6,
+        "escape_arrived_free": 13
+      },
+      "no_waypoint_actions": 480,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530088,
+      "assignments": 11,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "escape_arrived_free": 5
+      },
+      "no_waypoint_actions": 513,
+      "stuck_windows": 18,
+      "exit_discovered": true,
+      "completed": false
+    },
+    {
+      "seed": 530089,
+      "assignments": 14,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 5,
+        "escape_arrived_free": 4
+      },
+      "no_waypoint_actions": 498,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530090,
+      "assignments": 32,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 13,
+        "goal_progress_stalled": 2
+      },
+      "no_waypoint_actions": 412,
+      "stuck_windows": 10,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530091,
+      "assignments": 18,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 11
+      },
+      "no_waypoint_actions": 490,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530092,
+      "assignments": 7,
+      "end_reasons": {
+        "waypoint_arrived": 7
+      },
+      "no_waypoint_actions": 517,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530093,
+      "assignments": 6,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 540,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530094,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 8
+      },
+      "no_waypoint_actions": 447,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530095,
+      "assignments": 18,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 7,
+        "escape_arrived_free": 6
+      },
+      "no_waypoint_actions": 505,
+      "stuck_windows": 20,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530096,
+      "assignments": 8,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 510,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530097,
+      "assignments": 6,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 540,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530098,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 8
+      },
+      "no_waypoint_actions": 447,
+      "stuck_windows": 19,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530099,
+      "assignments": 18,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 7,
+        "escape_arrived_free": 6
+      },
+      "no_waypoint_actions": 505,
+      "stuck_windows": 20,
+      "exit_discovered": false,
+      "completed": false
+    }
+  ]
+}

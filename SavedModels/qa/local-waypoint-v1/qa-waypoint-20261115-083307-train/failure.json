@@ -1,0 +1,4 @@
+{
+  "error": "Unity startup/preflight",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\chenk\\documents\\github\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Training\\run_local_movement.py\", line 461, in run_waypoints\n    wait_ready(phase_dir, process)\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\chenk\\documents\\github\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Training\\run_local_movement.py\", line 86, in wait_ready\n    raise TimeoutError('Unity startup/preflight')\nTimeoutError: Unity startup/preflight\n"
+}

@@ -1,0 +1,30 @@
+{
+  "status": "active-not-deadlocked",
+  "checked_utc": "2026-11-15T10:21:32.479557+00:00",
+  "completed_episodes": 75,
+  "target_episodes": 1000,
+  "exits": 69,
+  "timeouts": 6,
+  "completed_episode_actions": 22465,
+  "ppo_reported_steps_per_second": 5.0,
+  "ppo_elapsed_seconds": 3979.0,
+  "ppo_model_timesteps": 679577,
+  "median_seconds_between_completed_episodes": 46.67561972141266,
+  "p90_seconds_between_completed_episodes": 108.51073551177979,
+  "max_seconds_between_completed_episodes": 144.4627640247345,
+  "observed_assignments": 8369,
+  "estimated_remaining_training_hours": 13.60470187664032,
+  "findings": [
+    "Episode count advanced from 66 to 75 while investigating; episode files and PPO rollout metrics continue updating.",
+    "Unity is CPU busy; Python uses very little CPU, so this is not a PPO optimization stall.",
+    "Every measured action advances navigation; the implementation reconstructs the observed-grid planner and runs reachable-frontier search even with an existing goal/waypoint.",
+    "A-star route search uses a linear scan of its open list; escape/frontier handoffs create additional route searches.",
+    "Progress JSON is written only after an episode ends; the count can stay unchanged while hundreds of actions are executing."
+  ],
+  "limits": [
+    "No per-method Unity profiler timings were collected; navigation, sensing and physics costs have not been individually apportioned.",
+    "Remaining-time estimate assumes current observed pace; it is not a completion guarantee."
+  ],
+  "source_or_training_behavior_changed": false,
+  "restarted": false
+}

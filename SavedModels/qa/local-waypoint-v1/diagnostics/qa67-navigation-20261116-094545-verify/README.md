@@ -1,0 +1,5 @@
+# QA-67 initial completed pilot
+
+Four matched QA-66 layouts, seeds 530000-530003, frozen QA-50. World-space capsule, observed-cell/edge refinement, failed-goal caching, live snapshots and safer corner handoffs. Reference steering completes 4/4 with zero missing-waypoint actions; learned QA-50 completes 0/4, with 1352/2400 missing-waypoint actions (56.33%), 160 assignments and 206 broader recovery returns. These are four reused diagnostic cases, not generic-level validation.
+
+All in-memory weights/counters, source/checkpoint hashes verified unchanged; settings restored. [Result](result.json), [assignment audit](navigation-audit.json). Five-component implementation remains in progress: live snapshots exposed actors in the clear portion of coarse wall-hit voxels and off-centre margin mismatches. The following refinement checks actual actor-position clearance and permits physically swept recovery out of the initial voxel only. This pilot remains unchanged evidence of the earlier state.

@@ -4,3 +4,5 @@ SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261111-080204-train/training/ac
 SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261111-070142-train/training/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text
 SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261111-084731-train/segments/training/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text
 SavedModels/qa/local-waypoint-v1/qa-mixed-exit-20261111-084731-train/segments/training-recovery-01/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+SavedModels/qa/local-waypoint-v1/qa-two-room-20261115-012452-train/training/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+SavedModels/qa/local-waypoint-v1/qa-two-room-20261114-215855-train/training/actions.jsonl.gz filter=lfs diff=lfs merge=lfs -text

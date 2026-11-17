@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "episodes": 100,
+  "exploration_assignments": 1064,
+  "arrivals": 874,
+  "trace_rows": 41643,
+  "checkpoint_unchanged": true,
+  "source_hashes_unchanged": true,
+  "settings_restored": true,
+  "weight_updates": 0,
+  "new_training_steps": 0,
+  "median_per_episode_assignment_arrival_rate": 0.8333333333333334
+}

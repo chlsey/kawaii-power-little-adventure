@@ -1,0 +1,21 @@
+{
+  "episodes": 100,
+  "cases_with_recorded_stuck_events": 48,
+  "recorded_stuck_events": 722,
+  "stuck_event_definition": "Less than 0.05 units net 3D displacement over each nonoverlapping 20-action (two-second) window; repeated windows are not distinct incidents.",
+  "timeout_cases": 55,
+  "timeout_cases_with_stuck_events": 48,
+  "successful_cases": 45,
+  "successful_cases_with_stuck_events": 0,
+  "never_discovered_cases": 49,
+  "never_discovered_cases_with_stuck_events": 44,
+  "sustained_requested_low_motion_steps": 13327,
+  "sustained_requested_low_motion_definition": "Existing environment counter: movement requested and position stays within 0.05 horizontal units of the anchor for at least 20 consecutive actions; steps count once threshold is reached.",
+  "longest_requested_low_motion_action_stretch": 529,
+  "longest_requested_low_motion_seconds": 52.900000000000006,
+  "low_motion_definition": "Less than 0.02 horizontal units displaced per action, not necessarily fully immobile.",
+  "actions": 41643,
+  "low_motion_actions": 16105,
+  "no_waypoint_actions": 28407,
+  "low_motion_without_waypoint": 16105
+}

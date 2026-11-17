@@ -1,0 +1,1323 @@
+[
+  {
+    "seed": 510000,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 16.40000114440918,
+    "completed": true,
+    "exploration_assignments": 12,
+    "outcomes": {
+      "arrived": 10,
+      "replaced_without_arrival": 1,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510001,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 25,
+    "outcomes": {
+      "arrived": 20,
+      "replaced_without_arrival": 5
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510002,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 23.300000762939455,
+    "completed": true,
+    "exploration_assignments": 5,
+    "outcomes": {
+      "arrived": 4,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510003,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 9,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510004,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 8,
+    "outcomes": {
+      "arrived": 5,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 3
+  },
+  {
+    "seed": 510005,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 7.400000190734863,
+    "completed": true,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 6,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510006,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 6.900000190734863,
+    "completed": true,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 5,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510007,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 25,
+    "outcomes": {
+      "arrived": 21,
+      "replaced_without_arrival": 4
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510008,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 4,
+    "outcomes": {
+      "arrived": 3,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510009,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 2,
+    "outcomes": {
+      "arrived": 1,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510010,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 9,
+    "outcomes": {
+      "arrived": 6,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 3
+  },
+  {
+    "seed": 510011,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 19,
+    "outcomes": {
+      "arrived": 15,
+      "replaced_without_arrival": 4
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510012,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 5,
+    "outcomes": {
+      "arrived": 2,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510013,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 14,
+    "outcomes": {
+      "arrived": 12,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510014,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 5,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510015,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 13,
+    "outcomes": {
+      "arrived": 11,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510016,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 23.800000762939455,
+    "completed": true,
+    "exploration_assignments": 13,
+    "outcomes": {
+      "arrived": 12,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510017,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 6.400000190734863,
+    "completed": true,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 5,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510018,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 3,
+    "outcomes": {
+      "arrived": 2,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510019,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 43.6,
+    "completed": false,
+    "exploration_assignments": 5,
+    "outcomes": {
+      "arrived": 1,
+      "replaced_without_arrival": 4
+    },
+    "replans": 0,
+    "abandoned_goals": 3
+  },
+  {
+    "seed": 510020,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 4,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510021,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 9,
+    "outcomes": {
+      "arrived": 8,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510022,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 4,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510023,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 9.400000190734863,
+    "completed": true,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 10,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510024,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 10,
+    "outcomes": {
+      "arrived": 7,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510025,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 14,
+    "outcomes": {
+      "arrived": 13,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510026,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 12.50000057220459,
+    "completed": true,
+    "exploration_assignments": 4,
+    "outcomes": {
+      "arrived": 3,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510027,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 9,
+    "outcomes": {
+      "arrived": 6,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 3
+  },
+  {
+    "seed": 510028,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 7.500000095367431,
+    "completed": true,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 5,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510029,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 7.500000095367431,
+    "completed": true,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 6,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510030,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 5.900000190734863,
+    "completed": true,
+    "exploration_assignments": 5,
+    "outcomes": {
+      "arrived": 5
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510031,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 30.40000114440918,
+    "completed": true,
+    "exploration_assignments": 19,
+    "outcomes": {
+      "arrived": 15,
+      "replaced_without_arrival": 3,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510032,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 24.999999618530275,
+    "completed": true,
+    "exploration_assignments": 16,
+    "outcomes": {
+      "arrived": 12,
+      "replaced_without_arrival": 2,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 2
+  },
+  {
+    "seed": 510033,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 14.1,
+    "completed": true,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 10,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510034,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 6,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510035,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 24.6,
+    "completed": true,
+    "exploration_assignments": 17,
+    "outcomes": {
+      "arrived": 13,
+      "replaced_without_arrival": 3,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510036,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 13.1,
+    "completed": true,
+    "exploration_assignments": 14,
+    "outcomes": {
+      "arrived": 12,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510037,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 11.50000057220459,
+    "completed": true,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 9,
+      "replaced_without_arrival": 1,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510038,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 5,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510039,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 18.90000114440918,
+    "completed": true,
+    "exploration_assignments": 14,
+    "outcomes": {
+      "arrived": 12,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510040,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 5.500000095367431,
+    "completed": true,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 4,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510041,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 3,
+    "outcomes": {
+      "arrived": 2,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510042,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 8.400000190734863,
+    "completed": true,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 6,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510043,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 5,
+    "outcomes": {
+      "arrived": 4,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510044,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 23,
+    "outcomes": {
+      "arrived": 21,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510045,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 9,
+    "outcomes": {
+      "arrived": 6,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510046,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 11.00000057220459,
+    "completed": true,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 10,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510047,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 3,
+    "outcomes": {
+      "arrived": 2,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510048,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 22.300000762939455,
+    "completed": false,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 5,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510049,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 16,
+    "outcomes": {
+      "arrived": 14,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510050,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 8,
+    "outcomes": {
+      "arrived": 7,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510051,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 6,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510052,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 11.900000190734863,
+    "completed": true,
+    "exploration_assignments": 9,
+    "outcomes": {
+      "arrived": 8,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510053,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 8.1,
+    "completed": true,
+    "exploration_assignments": 9,
+    "outcomes": {
+      "arrived": 8,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510054,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 25.6,
+    "completed": true,
+    "exploration_assignments": 16,
+    "outcomes": {
+      "arrived": 12,
+      "replaced_without_arrival": 2,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 3
+  },
+  {
+    "seed": 510055,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 23.800000762939455,
+    "completed": true,
+    "exploration_assignments": 18,
+    "outcomes": {
+      "arrived": 15,
+      "replaced_without_arrival": 2,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 2
+  },
+  {
+    "seed": 510056,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 10,
+    "outcomes": {
+      "arrived": 9,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510057,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 37.39999923706055,
+    "completed": false,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 3,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 3
+  },
+  {
+    "seed": 510058,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 4,
+    "outcomes": {
+      "arrived": 2,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510059,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 6.500000095367431,
+    "completed": true,
+    "exploration_assignments": 8,
+    "outcomes": {
+      "arrived": 7,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510060,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 14.299999809265136,
+    "completed": false,
+    "exploration_assignments": 4,
+    "outcomes": {
+      "arrived": 3,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510061,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 6.1,
+    "completed": true,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 5,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510062,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 16.800000762939455,
+    "completed": true,
+    "exploration_assignments": 13,
+    "outcomes": {
+      "arrived": 12,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510063,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 23,
+    "outcomes": {
+      "arrived": 19,
+      "replaced_without_arrival": 4
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510064,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 34.300000762939455,
+    "completed": true,
+    "exploration_assignments": 25,
+    "outcomes": {
+      "arrived": 22,
+      "replaced_without_arrival": 2,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510065,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 5.900000190734863,
+    "completed": true,
+    "exploration_assignments": 5,
+    "outcomes": {
+      "arrived": 4,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510066,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 17.800000762939455,
+    "completed": true,
+    "exploration_assignments": 10,
+    "outcomes": {
+      "arrived": 8,
+      "replaced_without_arrival": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 2
+  },
+  {
+    "seed": 510067,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 14.700000381469726,
+    "completed": true,
+    "exploration_assignments": 12,
+    "outcomes": {
+      "arrived": 11,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510068,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 4,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510069,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 7.699999904632568,
+    "completed": true,
+    "exploration_assignments": 8,
+    "outcomes": {
+      "arrived": 7,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510070,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 8.1,
+    "completed": true,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 5,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510071,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 6.300000286102295,
+    "completed": true,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 5,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510072,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 2,
+    "outcomes": {
+      "arrived": 1,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510073,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 8,
+    "outcomes": {
+      "arrived": 5,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 3
+  },
+  {
+    "seed": 510074,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 8,
+    "outcomes": {
+      "arrived": 5,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 3
+  },
+  {
+    "seed": 510075,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 25,
+    "outcomes": {
+      "arrived": 22,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 2
+  },
+  {
+    "seed": 510076,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 10,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510077,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 5,
+    "outcomes": {
+      "arrived": 3,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510078,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 29.90000114440918,
+    "completed": false,
+    "exploration_assignments": 17,
+    "outcomes": {
+      "arrived": 16,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510079,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 11.50000057220459,
+    "completed": true,
+    "exploration_assignments": 8,
+    "outcomes": {
+      "arrived": 7,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510080,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 16,
+    "outcomes": {
+      "arrived": 14,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510081,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 6.000000095367431,
+    "completed": true,
+    "exploration_assignments": 5,
+    "outcomes": {
+      "arrived": 4,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510082,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 6.000000095367431,
+    "completed": true,
+    "exploration_assignments": 4,
+    "outcomes": {
+      "arrived": 3,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510083,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 48.800000762939455,
+    "completed": true,
+    "exploration_assignments": 31,
+    "outcomes": {
+      "arrived": 28,
+      "replaced_without_arrival": 1,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 2
+  },
+  {
+    "seed": 510084,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 17.1,
+    "completed": true,
+    "exploration_assignments": 17,
+    "outcomes": {
+      "arrived": 15,
+      "replaced_without_arrival": 1,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510085,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 7,
+    "outcomes": {
+      "arrived": 6,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510086,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 25,
+    "outcomes": {
+      "arrived": 23,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510087,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 38.39999923706055,
+    "completed": true,
+    "exploration_assignments": 28,
+    "outcomes": {
+      "arrived": 22,
+      "replaced_without_arrival": 4,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 2
+  },
+  {
+    "seed": 510088,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 36.20000228881836,
+    "completed": false,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 10,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510089,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 21,
+    "outcomes": {
+      "arrived": 18,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510090,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 10,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510091,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 4,
+    "outcomes": {
+      "arrived": 3,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510092,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 6.1,
+    "completed": true,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 5,
+      "superseded_by_exit_goal": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510093,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 25.90000114440918,
+    "completed": true,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 4,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 2
+  },
+  {
+    "seed": 510094,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 6,
+    "outcomes": {
+      "arrived": 5,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510095,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 39.1,
+    "completed": true,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 9,
+      "replaced_without_arrival": 2
+    },
+    "replans": 0,
+    "abandoned_goals": 2
+  },
+  {
+    "seed": 510096,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 16,
+    "outcomes": {
+      "arrived": 13,
+      "replaced_without_arrival": 3
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510097,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 11,
+    "outcomes": {
+      "arrived": 10,
+      "replaced_without_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 0
+  },
+  {
+    "seed": 510098,
+    "exit_discovered": true,
+    "first_exit_observed_seconds": 18.499999618530275,
+    "completed": true,
+    "exploration_assignments": 14,
+    "outcomes": {
+      "arrived": 12,
+      "superseded_by_exit_goal": 1,
+      "episode_ended_before_arrival": 1
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  },
+  {
+    "seed": 510099,
+    "exit_discovered": false,
+    "first_exit_observed_seconds": null,
+    "completed": false,
+    "exploration_assignments": 19,
+    "outcomes": {
+      "arrived": 15,
+      "replaced_without_arrival": 4
+    },
+    "replans": 0,
+    "abandoned_goals": 1
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "checkpoint_sha256": "acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64",
+  "frozen": true,
+  "weight_updates": 0,
+  "episodes": 100,
+  "seeds": [
+    510000,
+    510099
+  ],
+  "environment": "50x50 empty room; exit 30-40 units away, initially unseen; 60 seconds",
+  "exploration_assignments": 1064,
+  "outcomes": {
+    "arrived": 874,
+    "replaced_without_arrival": 141,
+    "superseded_by_exit_goal": 37,
+    "episode_ended_before_arrival": 12
+  },
+  "exploration_assignment_arrival_rate": 0.8214285714285714,
+  "mean_successful_assignment_seconds": 1.220709400564364,
+  "episodes_with_exploration_assignments": 100,
+  "exit_discovered": 51,
+  "exit_discovery_rate": 0.51,
+  "exit_completed": 45,
+  "exit_completion_rate": 0.45,
+  "discovered_but_not_completed": 6,
+  "never_discovered": 49,
+  "mean_discovery_seconds": 17.337255227332022,
+  "discovery_timing_cases": 51,
+  "replans": 0,
+  "abandoned_goals": 101,
+  "limits": [
+    "Empty room only; no internal walls, corridors, combat or puzzles.",
+    "Replacement is not necessarily a movement failure; discovery can change goals.",
+    "Assignment arrival is different from reaching the frontier goal or completing the level."
+  ]
+}

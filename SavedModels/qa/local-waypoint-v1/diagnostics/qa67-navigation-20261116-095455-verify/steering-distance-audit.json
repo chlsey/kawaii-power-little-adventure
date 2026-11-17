@@ -1,0 +1,23 @@
+{
+  "route_assigned/over_1": {
+    "guided": 441
+  },
+  "route_assigned/0.5_to_1": {
+    "guided": 38
+  },
+  "route_assigned/within_0.5": {
+    "guided": 5
+  },
+  "escape_assigned/over_1": {
+    "guided": 172,
+    "away_or_perpendicular": 144
+  },
+  "escape_assigned/0.5_to_1": {
+    "guided": 392,
+    "away_or_perpendicular": 319
+  },
+  "escape_assigned/within_0.5": {
+    "guided": 54,
+    "away_or_perpendicular": 1
+  }
+}

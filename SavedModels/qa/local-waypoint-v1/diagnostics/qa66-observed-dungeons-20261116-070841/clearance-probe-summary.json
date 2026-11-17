@@ -1,0 +1,23 @@
+{
+  "status": "offline diagnostic only; no Unity navigation changes",
+  "cases": 4,
+  "normal_clearance": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "scaled_radius_only": [
+    0,
+    3,
+    0,
+    0
+  ],
+  "no_wall_inflation": [
+    26,
+    34,
+    44,
+    35
+  ],
+  "limits": "Approximate maps reconstructed from serialized rays; not a safe-clearance recommendation or a deployed fix."
+}

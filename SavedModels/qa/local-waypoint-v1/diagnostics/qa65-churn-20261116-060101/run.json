@@ -1,0 +1,30 @@
+{
+  "mode": "evaluate",
+  "observation_contract": "local-waypoint-v1",
+  "task": "exploration-waypoint-consistency",
+  "parent_checkpoint_sha256": "acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64",
+  "parent_lineage_episodes": 4700,
+  "checkpoint_sha256": "acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64",
+  "source_sha256": {
+    "Assets/Scenes/QaWaypoint50Training.unity": "a97d2e2f2c7e2dda61f66c8c7ae6cf025eab4f5068c0a6bac926b5b814f3a73b",
+    "Training/run_local_movement.py": "dc55d6d8dcabbc4a489a041080376c5376e8842a150a5adee9d19f8bc1df4eba",
+    "Assets/Editor/QaLocalMovementSession.cs": "86212b5da862d146d063c17978b0640d72d94efb1d8082377873e1e5f7edea84",
+    "Assets/Editor/QaWaypointVerification.cs": "ff108b4c79c444fe6247ac36cc19b555547e59d2967782ed9394c065925fb40a",
+    "Assets/PCGDungeon/Scripts/QA/QaMapNavigation.cs": "c6524b5ea787134df8d8947acf5bfda4d3ac21b791dcd5cc6b50e1a2206e8fd2",
+    "Assets/PCGDungeon/Scripts/QA/QaNavigationCoordinator.cs": "70d7138dbc14ec245181504c7113f74848892a3b707d166e8c307fba61c807cf",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorGrid.cs": "a696c627427644c853be9209aae7973998275b206b6b5e01db9305c0ef8b39ed",
+    "Assets/PCGDungeon/Scripts/QA/ModelSensorPackage.cs": "30453f5f588d5c6aa149bef0e943ce54500605e55985e036a37ed087305373dc",
+    "Assets/PCGDungeon/Scripts/Policy/QaWaypointPolicyMapping.cs": "bfc2c35d73e8baf45a6d5cdf3b12ccd4f84eed24d3aec4a3b8cea206caa5a7e2",
+    "Assets/PCGDungeon/Scripts/Policy/QaLocalMovementPolicyMapping.cs": "c5438c2edcca15b0c20a1a902c82f3441b56586a65a006036a22c58859a107c9",
+    "Assets/PCGDungeon/Scripts/RL/QaSingleRoomRlEnvironment.cs": "add6fe5da77ff4eac33b74698dbe46b6983e5c1bbd4fe7d2746bbb9fefb6ee4b"
+  },
+  "manual_advancement": true,
+  "waypoint_inputs_masked": false,
+  "initial_model_timesteps": 656793,
+  "navigator_disabled": false,
+  "completion_reward": 50.0,
+  "episode_seconds": 60,
+  "max_waypoint_distance": 10.0,
+  "parent_training_task": "waypoint-wall-corner-recovery",
+  "parent_training_completion_reward": null
+}

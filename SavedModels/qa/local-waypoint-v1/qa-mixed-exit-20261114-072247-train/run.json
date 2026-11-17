@@ -1,5 +1,5 @@
 {
-  "status": "evaluation",
+  "status": "complete",
   "qa_id": "QA-58",
   "parent_checkpoint": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\qa-mixed-exit-20261111-084731-train\\final_model.zip",
   "parent_sha256": "5ed80b880d2cff680c2a4e104d309c08bfdd5c7178a4b37921f69dad9f2ffb80",

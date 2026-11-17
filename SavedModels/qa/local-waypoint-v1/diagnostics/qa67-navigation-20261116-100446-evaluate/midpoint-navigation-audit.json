@@ -1,0 +1,1277 @@
+{
+  "status": "partial-prefix-audit; first 51 of 100 cases; final campaign running",
+  "cases": 51,
+  "actions": 21540,
+  "actions_with_waypoint": 11931,
+  "actions_without_waypoint": 9609,
+  "no_waypoint_percent": 44.610027855153206,
+  "assignments": 2787,
+  "assignments_per_100_actions": 12.938718662952645,
+  "assignments_per_100_guided_actions": 23.35931606738748,
+  "assignment_arrivals": 1379,
+  "assignments_replaced_before_arrival": 1379,
+  "assignment_end_reasons": {
+    "waypoint_arrived": 507,
+    "goal_cell_invalid": 203,
+    "start_cell_blocked": 777,
+    "escape_arrived_free": 872,
+    "oscillation_detected": 128,
+    "waypoint_segment_invalid": 111,
+    "escape_stalled": 44,
+    "episode_ended": 29,
+    "goal_reached": 4,
+    "select_exit": 8,
+    "escape_invalid": 103,
+    "stalled_replan": 1
+  },
+  "median_instruction_seconds": 0.20000076293945312,
+  "median_assignments_per_case": 36,
+  "max_assignments_per_case": 229,
+  "event_counts": {
+    "select_frontier": 1605,
+    "route_assigned": 1650,
+    "waypoint_arrived": 507,
+    "goal_reached": 226,
+    "goal_cell_invalid": 361,
+    "start_cell_blocked": 862,
+    "escape_assigned": 1137,
+    "escape_arrived_free": 872,
+    "oscillation_detected": 128,
+    "waypoint_segment_invalid": 111,
+    "abandon_frontier": 1001,
+    "no_reachable_goal": 9609,
+    "escape_stalled": 44,
+    "recovery_exhausted": 34,
+    "select_exit": 42,
+    "abandon_exit": 19,
+    "escape_invalid": 103,
+    "stalled_replan": 1
+  },
+  "broader_recovery_return_states": 2245,
+  "cases_with_recovery_returns": 26,
+  "recovery_returns": [
+    {
+      "seed": 530000,
+      "return_states": 25,
+      "nearest_lags": {
+        "19": 1,
+        "6": 7,
+        "12": 5,
+        "14": 7,
+        "8": 3,
+        "26": 2
+      }
+    },
+    {
+      "seed": 530001,
+      "return_states": 190,
+      "nearest_lags": {
+        "2": 40,
+        "9": 1,
+        "28": 4,
+        "26": 5,
+        "52": 2,
+        "33": 1,
+        "62": 1,
+        "36": 4,
+        "19": 1,
+        "65": 3,
+        "47": 1,
+        "12": 13,
+        "14": 9,
+        "22": 7,
+        "23": 11,
+        "41": 7,
+        "84": 4,
+        "66": 1,
+        "67": 1,
+        "68": 1,
+        "27": 2,
+        "59": 12,
+        "100": 1,
+        "15": 2,
+        "99": 3,
+        "57": 14,
+        "98": 1,
+        "39": 34,
+        "38": 4
+      }
+    },
+    {
+      "seed": 530005,
+      "return_states": 11,
+      "nearest_lags": {
+        "2": 1,
+        "14": 4,
+        "22": 1,
+        "11": 1,
+        "35": 1,
+        "15": 1,
+        "33": 2
+      }
+    },
+    {
+      "seed": 530007,
+      "return_states": 9,
+      "nearest_lags": {
+        "6": 4,
+        "12": 2,
+        "4": 3
+      }
+    },
+    {
+      "seed": 530011,
+      "return_states": 25,
+      "nearest_lags": {
+        "2": 3,
+        "4": 3,
+        "17": 1,
+        "10": 4,
+        "12": 1,
+        "24": 1,
+        "29": 1,
+        "30": 1,
+        "8": 1,
+        "13": 2,
+        "3": 1,
+        "22": 1,
+        "21": 1,
+        "14": 3,
+        "11": 1
+      }
+    },
+    {
+      "seed": 530012,
+      "return_states": 12,
+      "nearest_lags": {
+        "2": 12
+      }
+    },
+    {
+      "seed": 530014,
+      "return_states": 99,
+      "nearest_lags": {
+        "10": 9,
+        "17": 3,
+        "19": 3,
+        "2": 12,
+        "6": 9,
+        "16": 5,
+        "4": 6,
+        "14": 10,
+        "80": 1,
+        "39": 1,
+        "49": 6,
+        "22": 2,
+        "71": 1,
+        "91": 2,
+        "32": 20,
+        "28": 1,
+        "30": 2,
+        "38": 2,
+        "88": 1,
+        "13": 2,
+        "57": 1
+      }
+    },
+    {
+      "seed": 530017,
+      "return_states": 393,
+      "nearest_lags": {
+        "13": 1,
+        "17": 4,
+        "4": 22,
+        "2": 1,
+        "23": 1,
+        "6": 1,
+        "8": 67,
+        "72": 1,
+        "10": 1,
+        "49": 3,
+        "76": 6,
+        "16": 1,
+        "98": 2,
+        "42": 1,
+        "51": 1,
+        "28": 1,
+        "63": 4,
+        "12": 17,
+        "35": 3,
+        "52": 2,
+        "69": 2,
+        "64": 1,
+        "68": 2,
+        "45": 1,
+        "24": 16,
+        "36": 217,
+        "32": 14
+      }
+    },
+    {
+      "seed": 530022,
+      "return_states": 165,
+      "nearest_lags": {
+        "2": 35,
+        "36": 2,
+        "21": 4,
+        "77": 4,
+        "79": 28,
+        "76": 1,
+        "78": 2,
+        "27": 1,
+        "28": 1,
+        "7": 2,
+        "59": 1,
+        "61": 14,
+        "38": 1,
+        "34": 1,
+        "8": 1,
+        "24": 1,
+        "62": 5,
+        "64": 3,
+        "22": 3,
+        "23": 1,
+        "44": 2,
+        "65": 1,
+        "66": 1,
+        "37": 1,
+        "18": 2,
+        "96": 1,
+        "99": 12,
+        "100": 4,
+        "84": 1,
+        "85": 1,
+        "6": 2,
+        "91": 6,
+        "90": 5,
+        "89": 14,
+        "74": 1
+      }
+    },
+    {
+      "seed": 530023,
+      "return_states": 537,
+      "nearest_lags": {
+        "3": 1,
+        "2": 2,
+        "9": 1,
+        "10": 533
+      }
+    },
+    {
+      "seed": 530024,
+      "return_states": 14,
+      "nearest_lags": {
+        "2": 14
+      }
+    },
+    {
+      "seed": 530025,
+      "return_states": 393,
+      "nearest_lags": {
+        "13": 1,
+        "17": 4,
+        "4": 22,
+        "2": 1,
+        "23": 1,
+        "6": 1,
+        "8": 67,
+        "72": 1,
+        "10": 1,
+        "49": 3,
+        "76": 6,
+        "16": 1,
+        "98": 2,
+        "42": 1,
+        "51": 1,
+        "28": 1,
+        "63": 4,
+        "12": 17,
+        "35": 3,
+        "52": 2,
+        "69": 2,
+        "64": 1,
+        "68": 2,
+        "45": 1,
+        "24": 16,
+        "36": 217,
+        "32": 14
+      }
+    },
+    {
+      "seed": 530026,
+      "return_states": 9,
+      "nearest_lags": {
+        "2": 6,
+        "5": 2,
+        "3": 1
+      }
+    },
+    {
+      "seed": 530028,
+      "return_states": 5,
+      "nearest_lags": {
+        "2": 2,
+        "4": 2,
+        "8": 1
+      }
+    },
+    {
+      "seed": 530030,
+      "return_states": 13,
+      "nearest_lags": {
+        "2": 12,
+        "3": 1
+      }
+    },
+    {
+      "seed": 530031,
+      "return_states": 1,
+      "nearest_lags": {
+        "2": 1
+      }
+    },
+    {
+      "seed": 530032,
+      "return_states": 5,
+      "nearest_lags": {
+        "2": 5
+      }
+    },
+    {
+      "seed": 530033,
+      "return_states": 6,
+      "nearest_lags": {
+        "7": 3,
+        "30": 3
+      }
+    },
+    {
+      "seed": 530035,
+      "return_states": 1,
+      "nearest_lags": {
+        "2": 1
+      }
+    },
+    {
+      "seed": 530036,
+      "return_states": 9,
+      "nearest_lags": {
+        "2": 7,
+        "4": 2
+      }
+    },
+    {
+      "seed": 530037,
+      "return_states": 2,
+      "nearest_lags": {
+        "2": 2
+      }
+    },
+    {
+      "seed": 530038,
+      "return_states": 1,
+      "nearest_lags": {
+        "4": 1
+      }
+    },
+    {
+      "seed": 530042,
+      "return_states": 3,
+      "nearest_lags": {
+        "4": 2,
+        "11": 1
+      }
+    },
+    {
+      "seed": 530043,
+      "return_states": 269,
+      "nearest_lags": {
+        "2": 77,
+        "26": 1,
+        "28": 1,
+        "16": 1,
+        "14": 2,
+        "22": 12,
+        "23": 12,
+        "41": 117,
+        "39": 13,
+        "13": 22,
+        "24": 11
+      }
+    },
+    {
+      "seed": 530044,
+      "return_states": 36,
+      "nearest_lags": {
+        "4": 2,
+        "2": 8,
+        "6": 3,
+        "12": 2,
+        "14": 2,
+        "7": 2,
+        "5": 1,
+        "97": 5,
+        "95": 1,
+        "62": 1,
+        "68": 3,
+        "80": 2,
+        "78": 1,
+        "11": 1,
+        "79": 2
+      }
+    },
+    {
+      "seed": 530048,
+      "return_states": 12,
+      "nearest_lags": {
+        "2": 2,
+        "7": 2,
+        "5": 1,
+        "15": 4,
+        "6": 2,
+        "10": 1
+      }
+    }
+  ],
+  "exits": 23,
+  "discoveries": 24,
+  "entered_exit_room": 23,
+  "final_phase": {
+    "corridor": 15,
+    "spawn_room": 13,
+    "exit_room": 23
+  },
+  "final_navigation_status": {
+    "no_reachable_goal": 22,
+    "recovering": 4,
+    "exit": 12,
+    "exploring": 13
+  },
+  "low_movement_actions_under_0_02": 6033,
+  "stuck_windows": 257,
+  "cases_with_stuck_windows": 25,
+  "away_or_perpendicular_guided_actions": 1399,
+  "total_path_length": 4740.750612258911,
+  "cases_below_floor": 0,
+  "per_case": [
+    {
+      "seed": 530000,
+      "assignments": 34,
+      "end_reasons": {
+        "waypoint_arrived": 11,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 8,
+        "escape_arrived_free": 10,
+        "oscillation_detected": 3,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 427,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530001,
+      "assignments": 67,
+      "end_reasons": {
+        "waypoint_arrived": 2,
+        "start_cell_blocked": 15,
+        "escape_arrived_free": 14,
+        "escape_stalled": 17,
+        "oscillation_detected": 17,
+        "goal_cell_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 4,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530002,
+      "assignments": 52,
+      "end_reasons": {
+        "waypoint_arrived": 10,
+        "goal_cell_invalid": 7,
+        "start_cell_blocked": 17,
+        "escape_arrived_free": 17,
+        "goal_reached": 1
+      },
+      "no_waypoint_actions": 375,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530003,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 1,
+        "waypoint_segment_invalid": 3,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 14
+      },
+      "no_waypoint_actions": 496,
+      "stuck_windows": 5,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530004,
+      "assignments": 12,
+      "end_reasons": {
+        "waypoint_arrived": 9,
+        "select_exit": 1,
+        "goal_reached": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530005,
+      "assignments": 35,
+      "end_reasons": {
+        "waypoint_arrived": 11,
+        "waypoint_segment_invalid": 13,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 5,
+        "oscillation_detected": 1
+      },
+      "no_waypoint_actions": 464,
+      "stuck_windows": 11,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530006,
+      "assignments": 10,
+      "end_reasons": {
+        "waypoint_arrived": 3,
+        "goal_cell_invalid": 2,
+        "start_cell_blocked": 2,
+        "escape_arrived_free": 2,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530007,
+      "assignments": 49,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 17,
+        "escape_arrived_free": 19,
+        "goal_cell_invalid": 2,
+        "oscillation_detected": 2,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 416,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530008,
+      "assignments": 28,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "select_exit": 1,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 9,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530009,
+      "assignments": 15,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "waypoint_segment_invalid": 5,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 1
+      },
+      "no_waypoint_actions": 500,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530010,
+      "assignments": 31,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 10,
+        "escape_arrived_free": 10,
+        "waypoint_segment_invalid": 2
+      },
+      "no_waypoint_actions": 413,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530011,
+      "assignments": 46,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 13,
+        "escape_arrived_free": 16,
+        "waypoint_segment_invalid": 8,
+        "oscillation_detected": 2,
+        "escape_stalled": 1
+      },
+      "no_waypoint_actions": 383,
+      "stuck_windows": 14,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530012,
+      "assignments": 45,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "goal_cell_invalid": 4,
+        "start_cell_blocked": 12,
+        "escape_arrived_free": 12,
+        "goal_reached": 1,
+        "oscillation_detected": 6,
+        "escape_invalid": 2,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530013,
+      "assignments": 62,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "goal_cell_invalid": 17,
+        "start_cell_blocked": 19,
+        "escape_arrived_free": 19
+      },
+      "no_waypoint_actions": 378,
+      "stuck_windows": 15,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530014,
+      "assignments": 189,
+      "end_reasons": {
+        "waypoint_arrived": 21,
+        "goal_cell_invalid": 12,
+        "start_cell_blocked": 67,
+        "escape_arrived_free": 70,
+        "waypoint_segment_invalid": 1,
+        "oscillation_detected": 11,
+        "escape_invalid": 5,
+        "select_exit": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530015,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 14,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 489,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530016,
+      "assignments": 12,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 1,
+        "waypoint_segment_invalid": 1
+      },
+      "no_waypoint_actions": 480,
+      "stuck_windows": 10,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530017,
+      "assignments": 229,
+      "end_reasons": {
+        "waypoint_arrived": 43,
+        "start_cell_blocked": 76,
+        "escape_arrived_free": 77,
+        "oscillation_detected": 10,
+        "escape_invalid": 19,
+        "goal_cell_invalid": 2,
+        "waypoint_segment_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530018,
+      "assignments": 23,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 4,
+        "goal_cell_invalid": 5,
+        "select_exit": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530019,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 2,
+        "waypoint_segment_invalid": 3,
+        "start_cell_blocked": 2,
+        "escape_arrived_free": 13
+      },
+      "no_waypoint_actions": 494,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530020,
+      "assignments": 29,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "goal_cell_invalid": 2,
+        "waypoint_segment_invalid": 3,
+        "select_exit": 1,
+        "start_cell_blocked": 8,
+        "escape_arrived_free": 8,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530021,
+      "assignments": 41,
+      "end_reasons": {
+        "waypoint_arrived": 11,
+        "waypoint_segment_invalid": 8,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 9,
+        "goal_cell_invalid": 2,
+        "select_exit": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530022,
+      "assignments": 59,
+      "end_reasons": {
+        "waypoint_arrived": 2,
+        "start_cell_blocked": 15,
+        "escape_arrived_free": 16,
+        "escape_stalled": 11,
+        "oscillation_detected": 13,
+        "stalled_replan": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 3,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530023,
+      "assignments": 226,
+      "end_reasons": {
+        "waypoint_arrived": 58,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 55,
+        "escape_invalid": 56,
+        "oscillation_detected": 1,
+        "escape_arrived_free": 54,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 26,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530024,
+      "assignments": 115,
+      "end_reasons": {
+        "waypoint_arrived": 11,
+        "goal_cell_invalid": 12,
+        "start_cell_blocked": 42,
+        "escape_arrived_free": 42,
+        "oscillation_detected": 6,
+        "select_exit": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530025,
+      "assignments": 229,
+      "end_reasons": {
+        "waypoint_arrived": 43,
+        "start_cell_blocked": 76,
+        "escape_arrived_free": 77,
+        "oscillation_detected": 10,
+        "escape_invalid": 19,
+        "goal_cell_invalid": 2,
+        "waypoint_segment_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530026,
+      "assignments": 97,
+      "end_reasons": {
+        "waypoint_arrived": 9,
+        "goal_cell_invalid": 9,
+        "waypoint_segment_invalid": 1,
+        "start_cell_blocked": 37,
+        "escape_arrived_free": 37,
+        "oscillation_detected": 3,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530027,
+      "assignments": 25,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 2,
+        "waypoint_segment_invalid": 3,
+        "start_cell_blocked": 2,
+        "escape_arrived_free": 13
+      },
+      "no_waypoint_actions": 494,
+      "stuck_windows": 7,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530028,
+      "assignments": 20,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "waypoint_segment_invalid": 4,
+        "start_cell_blocked": 3,
+        "escape_arrived_free": 4,
+        "oscillation_detected": 1,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 486,
+      "stuck_windows": 13,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530029,
+      "assignments": 27,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "goal_cell_invalid": 14,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 4,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530030,
+      "assignments": 92,
+      "end_reasons": {
+        "waypoint_arrived": 11,
+        "start_cell_blocked": 32,
+        "escape_arrived_free": 32,
+        "goal_cell_invalid": 11,
+        "oscillation_detected": 5,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530031,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 7,
+        "escape_arrived_free": 7,
+        "goal_cell_invalid": 1,
+        "select_exit": 1,
+        "waypoint_segment_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530032,
+      "assignments": 16,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "waypoint_segment_invalid": 3,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 4,
+        "escape_stalled": 1,
+        "oscillation_detected": 1
+      },
+      "no_waypoint_actions": 436,
+      "stuck_windows": 17,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530033,
+      "assignments": 40,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "start_cell_blocked": 14,
+        "escape_arrived_free": 14,
+        "waypoint_segment_invalid": 3,
+        "goal_cell_invalid": 2
+      },
+      "no_waypoint_actions": 418,
+      "stuck_windows": 18,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530034,
+      "assignments": 36,
+      "end_reasons": {
+        "waypoint_arrived": 10,
+        "start_cell_blocked": 11,
+        "escape_arrived_free": 12,
+        "waypoint_segment_invalid": 1,
+        "goal_cell_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 3,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530035,
+      "assignments": 48,
+      "end_reasons": {
+        "waypoint_arrived": 3,
+        "waypoint_segment_invalid": 2,
+        "goal_cell_invalid": 11,
+        "start_cell_blocked": 15,
+        "escape_arrived_free": 15,
+        "escape_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530036,
+      "assignments": 80,
+      "end_reasons": {
+        "waypoint_arrived": 8,
+        "start_cell_blocked": 27,
+        "escape_arrived_free": 27,
+        "goal_cell_invalid": 14,
+        "oscillation_detected": 3,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530037,
+      "assignments": 60,
+      "end_reasons": {
+        "waypoint_arrived": 9,
+        "start_cell_blocked": 20,
+        "escape_arrived_free": 20,
+        "goal_cell_invalid": 8,
+        "oscillation_detected": 1,
+        "escape_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530038,
+      "assignments": 39,
+      "end_reasons": {
+        "waypoint_arrived": 10,
+        "start_cell_blocked": 12,
+        "escape_arrived_free": 12,
+        "waypoint_segment_invalid": 3,
+        "goal_cell_invalid": 2
+      },
+      "no_waypoint_actions": 385,
+      "stuck_windows": 6,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530039,
+      "assignments": 10,
+      "end_reasons": {
+        "waypoint_arrived": 2,
+        "waypoint_segment_invalid": 3,
+        "goal_cell_invalid": 4,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530040,
+      "assignments": 35,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "goal_cell_invalid": 19,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 4,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530041,
+      "assignments": 48,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 17,
+        "escape_arrived_free": 17,
+        "goal_cell_invalid": 7,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530042,
+      "assignments": 36,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 9,
+        "escape_arrived_free": 17,
+        "waypoint_segment_invalid": 3,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 458,
+      "stuck_windows": 8,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530043,
+      "assignments": 71,
+      "end_reasons": {
+        "waypoint_arrived": 4,
+        "goal_reached": 1,
+        "goal_cell_invalid": 1,
+        "start_cell_blocked": 13,
+        "oscillation_detected": 26,
+        "escape_stalled": 13,
+        "escape_arrived_free": 12,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530044,
+      "assignments": 72,
+      "end_reasons": {
+        "waypoint_arrived": 21,
+        "goal_cell_invalid": 2,
+        "start_cell_blocked": 14,
+        "escape_arrived_free": 19,
+        "waypoint_segment_invalid": 11,
+        "oscillation_detected": 4,
+        "escape_stalled": 1
+      },
+      "no_waypoint_actions": 208,
+      "stuck_windows": 6,
+      "exit_discovered": true,
+      "completed": false
+    },
+    {
+      "seed": 530045,
+      "assignments": 53,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "start_cell_blocked": 20,
+        "escape_arrived_free": 20,
+        "goal_cell_invalid": 6,
+        "waypoint_segment_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530046,
+      "assignments": 44,
+      "end_reasons": {
+        "waypoint_arrived": 6,
+        "start_cell_blocked": 17,
+        "escape_arrived_free": 17,
+        "waypoint_segment_invalid": 1,
+        "goal_cell_invalid": 2,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    },
+    {
+      "seed": 530047,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 5,
+        "goal_cell_invalid": 1,
+        "waypoint_segment_invalid": 3,
+        "start_cell_blocked": 1,
+        "escape_arrived_free": 14
+      },
+      "no_waypoint_actions": 496,
+      "stuck_windows": 5,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530048,
+      "assignments": 36,
+      "end_reasons": {
+        "waypoint_arrived": 11,
+        "waypoint_segment_invalid": 13,
+        "start_cell_blocked": 4,
+        "escape_arrived_free": 5,
+        "oscillation_detected": 2,
+        "goal_cell_invalid": 1
+      },
+      "no_waypoint_actions": 483,
+      "stuck_windows": 16,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530049,
+      "assignments": 24,
+      "end_reasons": {
+        "waypoint_arrived": 9,
+        "waypoint_segment_invalid": 2,
+        "goal_cell_invalid": 3,
+        "start_cell_blocked": 2,
+        "escape_arrived_free": 8
+      },
+      "no_waypoint_actions": 427,
+      "stuck_windows": 6,
+      "exit_discovered": false,
+      "completed": false
+    },
+    {
+      "seed": 530050,
+      "assignments": 19,
+      "end_reasons": {
+        "waypoint_arrived": 7,
+        "start_cell_blocked": 5,
+        "escape_arrived_free": 5,
+        "waypoint_segment_invalid": 1,
+        "episode_ended": 1
+      },
+      "no_waypoint_actions": 0,
+      "stuck_windows": 0,
+      "exit_discovered": true,
+      "completed": true
+    }
+  ],
+  "matched_baseline_assignments": 826,
+  "matched_baseline_guided_actions": 5522,
+  "matched_baseline_assignments_per_100_guided_actions": 14.958348424483882,
+  "exact_two_action_cycles": 0,
+  "planned_cases": 100
+}

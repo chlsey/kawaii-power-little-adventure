@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "new_training_episodes": 0,
+  "qa_id": "QA-63",
+  "checkpoint": "QA-50",
+  "frozen_cases": 10,
+  "verification": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-024408-verify\\verification.json",
+  "result": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\SavedModels\\qa\\local-waypoint-v1\\diagnostics\\qa63-retention-20261116-024407\\result.json"
+}

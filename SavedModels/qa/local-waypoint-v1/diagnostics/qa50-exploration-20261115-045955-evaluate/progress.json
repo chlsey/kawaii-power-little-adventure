@@ -1,0 +1,13 @@
+{
+  "status": "evaluation",
+  "target_episodes": 100,
+  "steps": 41643,
+  "completed_episodes": 100,
+  "successes": 45,
+  "timeouts": 55,
+  "deaths": 0,
+  "success_rate": 0.45,
+  "mean_successful_exit_seconds": 19.206666967603894,
+  "total_stuck_penalty": 133.26996845379472,
+  "total_exploration_reward": 0.0
+}

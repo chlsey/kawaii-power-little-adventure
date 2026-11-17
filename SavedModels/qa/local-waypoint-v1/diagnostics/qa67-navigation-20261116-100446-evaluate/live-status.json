@@ -1,0 +1,15 @@
+{
+  "utc": "11:53:42",
+  "status": "complete",
+  "policy_cases": 100,
+  "policy_exits": 49,
+  "policy_discoveries": 51,
+  "actions": 40819,
+  "no_waypoint_actions": 18260,
+  "planning_ms": 416835.3,
+  "matched_baseline_no_waypoint_percent": 82.08,
+  "policy_no_waypoint_percent": 44.73,
+  "reference_cases": 51,
+  "reference_exits": 42,
+  "reference_discoveries": 42
+}

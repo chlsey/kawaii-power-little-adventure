@@ -1,0 +1,23 @@
+{
+  "scene": "Assets/Scenes/QaWaypoint50Training.unity",
+  "port": 7783,
+  "episodes": 100,
+  "verify": false,
+  "mode": "train",
+  "policy_version": "local-waypoint-v1",
+  "room_width": 50,
+  "room_depth": 50,
+  "initial_exit_visible": false,
+  "completion_reward": 50.0,
+  "episode_seconds": 60,
+  "time_scale": 100,
+  "navigator_disabled": false,
+  "trace_exit_decisions": false,
+  "max_waypoint_distance": 10.0,
+  "min_exit_distance": 30,
+  "max_exit_distance": 40,
+  "training_seed": 520000,
+  "training_episodes": 1000,
+  "evaluation_seed": 510000,
+  "evaluation_episodes": 100
+}

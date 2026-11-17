@@ -1,0 +1,33 @@
+# QA-62: normal exploration navigator with safe exploration escape; full QA-50 continuation.
+task: exploration-navigation-recovery
+model: ppo
+port: 7783
+seed: 520000
+total_timesteps: 600000
+learning_rate: 0.00002
+gamma: 0.99
+ent_coef: 0.01
+n_steps: 256
+device: cpu
+checkpoint_freq: 5000
+output_dir: ../Logs/qa-navigation-recovery
+resume_from: ../SavedModels/qa/local-waypoint-v1/qa-waypoint-recovery-20261109-224625-train/final_model.zip
+resume_sha256: acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64
+parent_lineage_episodes: 4700
+observation_contract: local-waypoint-v1
+socket_timeout_seconds: 300
+startup_timeout_seconds: 1800
+ppo:
+  batch_size: 64
+max_episodes: 1000
+evaluation_episodes: 100
+evaluation_seed: 510000
+unity_scene: Assets/Scenes/QaWaypoint50Training.unity
+room_size: [50, 50]
+initial_exit_visible: false
+exit_distance_range: [30, 40]
+completion_reward: 50.0
+episode_seconds: 60
+time_scale: 100
+max_waypoint_distance: 10.0
+trace_exit_decisions: false

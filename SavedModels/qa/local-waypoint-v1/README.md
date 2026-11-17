@@ -1,5 +1,15 @@
 # Local waypoint navigation (`local-waypoint-v1`)
 
+Latest full evaluation: [QA-70](diagnostics/qa70-two-room-20261116-183302/README.md), 100 matched two-room tests of the retained QA-68 navigator with frozen QA-50. Exits **49 -> 44/100**, discoveries **51 -> 47/100**, normalized assignments **24.83 -> 23.14**, and missing guidance **44.73% -> 49.61%**. Five exits gained / ten lost; lower churn does not establish better completion. All 57 direct checks and model/source invariance checks pass. No learning or model deployment.
+
+Latest churn follow-up: [QA-68](diagnostics/qa68-churn-20261116-170047/README.md) retains physically clear active instructions. On twelve selected matched cases, exits **6 -> 8/12** and interruptions **508 -> 425**, but normalized assignments remain **26.96 -> 27.30 per 100 guided actions**. [QA-69](diagnostics/qa69-churn-20261116-170939/README.md) lowers the rate to 18.75 while regressing exits to 4/12; its route-clearance changes were rejected and rolled back. Current source is QA-68, QA-50 weights remain frozen, and the subsequent full 100-case result is recorded above.
+
+Previous full 100-case frozen diagnostic: [QA-67](diagnostics/qa67-navigation-20261116-100446-evaluate/README.md), shared world capsule, physical observed-cell refinement, live blocked maps and failed-goal caching. On 100 matched generated dungeons, exits **0 -> 49/100**, discoveries **5 -> 51/100**, missing guidance **82.08% -> 44.73%**. Normalized assignments increase **15.14 -> 24.83 per 100 guided actions**, and observed throughput falls **24.48 -> 7.77 actions/second**; recovery churn and performance remain open. Reference steering clears 42/51 policy failures. Zero learning; QA-50 stays selected. [QA-65](diagnostics/qa65-churn-20261116-062333/README.md) is the historical empty-room result under its earlier source; [QA-62](qa-waypoint-20261115-090609-train/README.md) remains stopped.
+
+**Selected baseline for future QA work: [QA-50](qa-waypoint-recovery-20261109-224625-train/README.md), by user choice.** Highest recorded original two-room count: 57/100; mixed reference 117/150. Full checkpoint verified and preserved; 4,700 lineage episodes, stored LR 0.00002. Selection does not start training or change a deployed model. See `Training/qa-player-selected-checkpoint.json` at the game root; future runners still require an explicit run config. QA-59/60 remain historical alternatives.
+
+Prior corridor experiment: [QA-59](qa-two-room-20261114-215855-train/README.md), exactly 1,000 corridor-focused two-room episodes (all training exits). Frozen two-room exits 38 -> 46/100, an uncertain observed gain; empty waypoint mean 45.59 -> 45.66. Final lineage 16,700 episodes. Mixed retention untested, prior alternatives preserved, no deployment.
+
 This is the current QA workflow. A deterministic, game-owned orchestrator owns observed-map memory, goals, routes and recovery; one learned local actor receives current rays, previous movement and one assigned waypoint. Normal navigation assignments are visible and capped at ten units by default; historical batch recipes retain six unless configured otherwise. Direct skill drills can assign longer targets. Policy architecture: **134 -> 64 -> 64 -> 2** (world X/Z movement). See the [system contract](../../../Training/PCG-system-design.md#overall-navigation-and-action-design).
 
 ## Current checkpoint and branch
@@ -90,7 +100,7 @@ The [QA-33 navigator-enabled test](diagnostics/distant-exit-20261107-220640-eval
 
 ## QA-58 another 1,000 mixed-room episodes
 
-[QA-58](qa-mixed-exit-20261114-072247-train/README.md) continues full QA-57 at unchanged settings, completing exactly 1,000 episodes with 997 exits / three timeouts in 176,301 actions. Frozen mixed completion stays **120/150**; original two-room and empty waypoint retention remain pending. Final checkpoint retained at **2,610,165 steps / 101,870 optimizer epochs / 15,700 lineage episodes** (11,000 mixed total); all 36 checkpoint hashes verified. No deployment or further learning.
+[QA-58](qa-mixed-exit-20261114-072247-train/README.md) completes exactly 1,000 more episodes from full QA-57 at unchanged settings: 997 exits / three timeouts, 176,301 actions. Frozen mixed completion stays **120/150** (19 gained / 19 lost), original two-room **45 -> 38/100** (four gained / eleven lost; uncertain decline), empty arrivals **45.58 -> 45.59**. Final **2,610,165 steps / 101,870 optimizer epochs / 15,700 lineage episodes** (11,000 mixed total). All 36 archive hashes/CRC verified; settings restored, processes stopped, prior models retained. No further learning or deployment; QA-55/50 retain their task-specific reference counts.
 
 ## QA-57 recovered 3,000-episode continuation
 

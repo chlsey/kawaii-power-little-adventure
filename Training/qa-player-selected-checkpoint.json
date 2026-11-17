@@ -1,0 +1,18 @@
+{
+  "selected_run": "QA-50",
+  "purpose": "User-selected baseline for future QA training and frozen evaluation",
+  "resume_from": "../SavedModels/qa/local-waypoint-v1/qa-waypoint-recovery-20261109-224625-train/final_model.zip",
+  "resume_sha256": "acffd0594bb6a03a157e2853688dfc4d7647606d052cb241fe620d9f8eb4db64",
+  "observation_contract": "local-waypoint-v1",
+  "model_steps": 656793,
+  "optimizer_epochs": 25610,
+  "completed_lineage_episodes": 4700,
+  "checkpoint_learning_rate": 0.00002,
+  "parent_evaluation_phase": "after-400-two-room",
+  "throughput_phase": "after-400-empty",
+  "recorded_two_room_exits": 57,
+  "recorded_two_room_cases": 100,
+  "new_training_authorized": false,
+  "deployment_changed": false,
+  "notes": "Selection reference only. Existing runners still require an explicit run config and episode budget. Preserve QA-59 and QA-60 as alternative experiments."
+}

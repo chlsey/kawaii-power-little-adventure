@@ -1,0 +1,16 @@
+{
+  "qa_id": "QA-65",
+  "status": "complete",
+  "frozen_cases": 100,
+  "new_training_episodes": 0,
+  "checkpoint": "QA-50",
+  "seeds": [
+    510000,
+    510099
+  ],
+  "baseline": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-035058-evaluate",
+  "verification": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-062334-verify",
+  "runtime": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-062408-evaluate",
+  "parent_source_hashes_verified": true,
+  "settings_restored": true
+}

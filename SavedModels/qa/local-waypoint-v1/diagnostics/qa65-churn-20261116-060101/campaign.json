@@ -1,0 +1,18 @@
+{
+  "qa_id": "QA-65",
+  "status": "interrupted-for-refinement",
+  "frozen_cases": 100,
+  "new_training_episodes": 0,
+  "checkpoint": "QA-50",
+  "seeds": [
+    510000,
+    510099
+  ],
+  "baseline": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-035058-evaluate",
+  "verification": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-060102-verify",
+  "runtime": "Logs\\qa50-exploration-waypoints\\20261116-060134-evaluate",
+  "completed_frozen_cases": 38,
+  "exits": 37,
+  "reason": "Seed 510025 shows 16-17 action cycles beyond eight-sample history; expand detector to cover measured recurrence.",
+  "new_training_steps": 0
+}

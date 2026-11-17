@@ -1,0 +1,46 @@
+{
+  "status": "analyzed-existing-run",
+  "new_episodes": 0,
+  "total_assignments": 18026,
+  "recovery_transition_count": 16527,
+  "recovery_transition_percent": 91.68423388438922,
+  "timeout_case_assignments": 14376,
+  "timeout_case_assignment_percent": 79.75147009874625,
+  "blocked_start_replacements": 7977,
+  "exploration_replacements": 7868,
+  "exit_goal_replacements": 109,
+  "walls": {
+    "west": {
+      "events": 863,
+      "event_percent": 10.81860348501943,
+      "cases": 37
+    },
+    "east": {
+      "events": 6361,
+      "event_percent": 79.74175755296477,
+      "cases": 35
+    },
+    "south": {
+      "events": 742,
+      "event_percent": 9.301742509715432,
+      "cases": 20
+    },
+    "north": {
+      "events": 11,
+      "event_percent": 0.13789645230036354,
+      "cases": 2
+    }
+  },
+  "east_reentry_steering": {
+    "east_reentry_actions": 6361,
+    "action_x_positive": 6361,
+    "target_x_inward_action_x_outward": 1809,
+    "target_x_outward_action_x_outward": 4552,
+    "near_parallel_target_x_abs_under_0_1": 5161
+  },
+  "limits": [
+    "Wall labels use nearest outer room boundary in world X/Z, not actor facing.",
+    "Cases can contact more than one wall; wall case counts need not sum to unique cases.",
+    "Repeated events are concentrated by prolonged loops; this is not independent directional reliability evidence."
+  ]
+}

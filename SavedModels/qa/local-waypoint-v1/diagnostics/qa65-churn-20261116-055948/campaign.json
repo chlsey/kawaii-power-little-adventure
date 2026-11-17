@@ -1,0 +1,14 @@
+{
+  "qa_id": "QA-65",
+  "status": "interrupted-preflight",
+  "frozen_cases": 100,
+  "new_training_episodes": 0,
+  "checkpoint": "QA-50",
+  "seeds": [
+    510000,
+    510099
+  ],
+  "baseline": "C:\\Users\\chenk\\Documents\\GitHub\\kevin-ai-repo-csc495\\source-code\\kawaii-power-little-adventure\\Logs\\qa50-exploration-waypoints\\20261116-035058-evaluate",
+  "reason": "Finish fresh-goal stall bookkeeping before frozen episodes.",
+  "completed_frozen_cases": 0
+}

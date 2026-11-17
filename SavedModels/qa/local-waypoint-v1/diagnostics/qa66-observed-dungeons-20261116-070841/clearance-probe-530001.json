@@ -1,0 +1,39 @@
+{
+  "seed": 530001,
+  "source": "Reconstructed from serialized ray inputs; float-rounding differences from Unity are possible.",
+  "actual_status": "no_reachable_goal",
+  "actor_radius": 0.30000001192092896,
+  "actor_skin_width": 0.07999999821186066,
+  "actor_scale": 0.6000001430511475,
+  "observed_cells": 6872,
+  "wall_cells": 317,
+  "unique_ray_states": 55,
+  "normal": {
+    "clearance": 0.4300000101327896,
+    "start_free": true,
+    "reachable_cells": 5904,
+    "frontiers_at_least_one_unit_away": 0,
+    "eligible_frontiers_after_completed_goal_exclusions": 0
+  },
+  "scaled_radius_only": {
+    "clearance": 0.31000004827976396,
+    "start_free": true,
+    "reachable_cells": 6224,
+    "frontiers_at_least_one_unit_away": 3,
+    "eligible_frontiers_after_completed_goal_exclusions": 3
+  },
+  "physical_radius_only": {
+    "clearance": 0.18000005006790332,
+    "start_free": true,
+    "reachable_cells": 6224,
+    "frontiers_at_least_one_unit_away": 3,
+    "eligible_frontiers_after_completed_goal_exclusions": 3
+  },
+  "no_inflation": {
+    "clearance": 0.0,
+    "start_free": true,
+    "reachable_cells": 6555,
+    "frontiers_at_least_one_unit_away": 34,
+    "eligible_frontiers_after_completed_goal_exclusions": 34
+  }
+}

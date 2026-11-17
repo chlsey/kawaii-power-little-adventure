@@ -1,0 +1,149 @@
+{
+  "status": "offline terminal snapshot diagnostic; physical edge sweeps not reconstructed; a raw frontier is not proof of a safe passage",
+  "cases": [
+    {
+      "seed": 530033,
+      "status": "no_reachable_goal",
+      "excluded": 25,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6185,
+        "frontier_cells": 61,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6503,
+        "frontier_cells": 97,
+        "eligible_frontiers": 34
+      }
+    },
+    {
+      "seed": 530042,
+      "status": "no_reachable_goal",
+      "excluded": 36,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6255,
+        "frontier_cells": 69,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6648,
+        "frontier_cells": 96,
+        "eligible_frontiers": 16
+      }
+    },
+    {
+      "seed": 530053,
+      "status": "no_reachable_goal",
+      "excluded": 13,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6202,
+        "frontier_cells": 11,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6607,
+        "frontier_cells": 48,
+        "eligible_frontiers": 28
+      }
+    },
+    {
+      "seed": 530054,
+      "status": "no_reachable_goal",
+      "excluded": 8,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6114,
+        "frontier_cells": 6,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6433,
+        "frontier_cells": 26,
+        "eligible_frontiers": 17
+      }
+    },
+    {
+      "seed": 530075,
+      "status": "no_reachable_goal",
+      "excluded": 32,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6219,
+        "frontier_cells": 71,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6568,
+        "frontier_cells": 93,
+        "eligible_frontiers": 12
+      }
+    },
+    {
+      "seed": 530087,
+      "status": "no_reachable_goal",
+      "excluded": 36,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6263,
+        "frontier_cells": 73,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6612,
+        "frontier_cells": 98,
+        "eligible_frontiers": 15
+      }
+    },
+    {
+      "seed": 530089,
+      "status": "no_reachable_goal",
+      "excluded": 26,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6183,
+        "frontier_cells": 63,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6517,
+        "frontier_cells": 96,
+        "eligible_frontiers": 21
+      }
+    },
+    {
+      "seed": 530090,
+      "status": "no_reachable_goal",
+      "excluded": 33,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6193,
+        "frontier_cells": 83,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6514,
+        "frontier_cells": 107,
+        "eligible_frontiers": 17
+      }
+    },
+    {
+      "seed": 530094,
+      "status": "no_reachable_goal",
+      "excluded": 24,
+      "position_clear": true,
+      "planner_free_cells": {
+        "reachable_cells": 6168,
+        "frontier_cells": 58,
+        "eligible_frontiers": 0
+      },
+      "observed_nonwall_cells": {
+        "reachable_cells": 6492,
+        "frontier_cells": 85,
+        "eligible_frontiers": 18
+      }
+    }
+  ]
+}

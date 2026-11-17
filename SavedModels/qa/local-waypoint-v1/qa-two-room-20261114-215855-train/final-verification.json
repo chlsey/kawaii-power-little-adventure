@@ -1,0 +1,23 @@
+{
+  "status": "complete",
+  "archives": 25,
+  "unique_training_seeds": 1000,
+  "training_exits": 1000,
+  "training_actions": 123853,
+  "parent_unchanged": true,
+  "source_hashes_unchanged": true,
+  "settings_restored": true,
+  "identical_evaluation_layouts": true,
+  "paired": {
+    "both_clear": 30,
+    "gained": 16,
+    "lost": 8,
+    "both_fail": 46
+  },
+  "paired_bootstrap_95_percentage_points": [
+    -1,
+    18
+  ],
+  "bootstrap_draws": 20000,
+  "bootstrap_seed": 59
+}
