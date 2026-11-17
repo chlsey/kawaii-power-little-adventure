@@ -23,6 +23,8 @@ public sealed class ModelSensorGrid
     public int Depth => cells.GetLength(1);
     public int DiscoveredWallCellCount { get; private set; }
     public int ViewedOpenCellCount { get; private set; }
+    public int NavigationVersion { get; private set; }
+    public int ExitDiscoveryVersion { get; private set; }
 
     public ModelSensorGrid(Vector2Int centerCell)
     {
@@ -51,7 +53,11 @@ public sealed class ModelSensorGrid
         EnsureBounds(cell, cell);
         int x = cell.x - MinCell.x;
         int z = cell.y - MinCell.y;
-        cells[x, z].Observed = true;
+        if (!cells[x, z].Observed)
+        {
+            cells[x, z].Observed = true;
+            NavigationVersion++;
+        }
         cells[x, z].Visited = true;
     }
 
@@ -123,16 +129,24 @@ public sealed class ModelSensorGrid
         int endZ = endCell.y - MinCell.y;
         if (hitId == QaObjectType.None)
             MarkViewedOpenCell(endCell);
-        else
+        else if (!cells[endX, endZ].Observed)
+        {
             cells[endX, endZ].Observed = true;
+            NavigationVersion++;
+        }
         if (hitId == QaObjectType.Wall && !cells[endX, endZ].Wall)
         {
             cells[endX, endZ].Wall = true;
             DiscoveredWallCellCount++;
+            NavigationVersion++;
         }
         else if (hitId == QaObjectType.LevelEnd)
         {
-            cells[endX, endZ].Exit = true;
+            if (!cells[endX, endZ].Exit)
+            {
+                cells[endX, endZ].Exit = true;
+                ExitDiscoveryVersion++;
+            }
         }
     }
 
@@ -143,7 +157,11 @@ public sealed class ModelSensorGrid
         int z = cell.y - MinCell.y;
         if (!cells[x, z].Observed && !cells[x, z].Wall && !cells[x, z].Exit)
             ViewedOpenCellCount++;
-        cells[x, z].Observed = true;
+        if (!cells[x, z].Observed)
+        {
+            cells[x, z].Observed = true;
+            NavigationVersion++;
+        }
     }
 
     private void EnsureBounds(Vector2Int first, Vector2Int second)

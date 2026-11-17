@@ -26,6 +26,23 @@ The current system combines a deterministic observed-map/navigation orchestrator
 
 Select the config with `--config Training/<name>.yaml` from the game directory. The [scene guide](../Assets/Scenes/QaSingleRoomTraining.README.md#waypoint-reaching-skill-drill) owns complete launch commands and preflight behavior; the [checkpoint index](../SavedModels/qa/local-waypoint-v1/README.md) and [QA changelog](changelog/qa-player.md) own results and lineage. All positive waypoint rewards share a +5 attempt budget, below the current +50 local-objective reward floor. Skill arrival ends only the drill; the exit environment requires actual game completion. `test_waypoint_reach.py` and `test_waypoint_reach_batch.py` are the earlier frozen diagnostic launchers, not unit tests or the curriculum runner.
 
+### Frozen observed-dungeon navigation checks
+
+Use `evaluate_navigation_clearance.py` for frozen QA-50 with the real observed-map coordinator, generated two-room layouts and capsule-verified local grid refinement. This differs from the historical `evaluate_two_room_navigation.py` default, which uses a privileged test-only floor/exit heuristic. The observed run never constructs that heuristic or supplies generator destinations to navigation.
+
+Close other batch sessions using this checkout. Run the direct physics/navigation scenarios first, from the game root:
+
+```powershell
+$qaVerificationDirectory = Join-Path (Get-Location) "Logs/qa-navigation-verification"
+New-Item -ItemType Directory -Force -Path $qaVerificationDirectory | Out-Null
+& "C:/Program Files/Unity/Hub/Editor/6000.3.2f1/Editor/Unity.exe" -batchmode -nographics -projectPath (Get-Location).Path -executeMethod QaNavigationVerification.Run -trainingRunDirectory $qaVerificationDirectory -logFile "$qaVerificationDirectory/unity.log"
+python Training/evaluate_navigation_clearance.py --mode verify
+```
+
+The direct scenarios check the scaled capsule, physically clear versus colliding passages, an observed L-shaped route and failed-goal cache invalidation. Inspect `verification.json`; failures write `verification-failure.txt`. The Python verification then uses four matched generated cases, both reference steering and frozen QA-50. With explicit evaluation authorization, `--mode evaluate` repeats all 100 QA-66 seeds 530000-530099. Both modes use sixty-second caps, actual exits and zero training rewards; neither calls learning or advances curriculum.
+
+Runtime files go to `Logs/qa67-navigation/`; retained campaigns go to `SavedModels/qa/local-waypoint-v1/diagnostics/qa67-navigation-*`. Results verify layout fingerprints against QA-66, unchanged model weights/counters/checkpoint and source hashes, and restore project settings. Failed policy cases receive matched observed-navigation reference replays. The adapter records the first blocked state of each kind per case in `blocked-*.json`, including actual observed cells, planner classifications and world-space capsule bounds; snapshotting does not run planner queries. Cell classifications are 1 for ordinary free, 2 for physically refined free, 0 for blocked and -1 for an inflation candidate not yet checked. Episode records include failed-search cache skips, refinement counts and measured coordinator time. Use `analyze_observed_navigation.py <retained-campaign-directory>` after completion to account for assignment endings and recurrence.
+
 ### Historical grid and full-dungeon workflows
 
 The historical [local movement experiment](../Assets/Scenes/QaSingleRoomTraining.README.md#local-movement-experiment) uses the maintained `run_local_movement.py` command to train a 134-input policy without map encoding. The [hidden-exit config](qa-player-local-movement-hidden-40x40.yaml) continues the validated 20 x 20 checkpoint in a 40 x 40 room with the exit initially outside vision. The scene guide owns placement and launch details; the changelog owns results. Historical grid/full-dungeon workflows follow below.
@@ -77,6 +94,8 @@ Five outputs drive movement X/Y, attack, interact, and an unused ability value. 
 The first sensed exit surface point becomes the fixed progress target for the attempt. Hidden approach updates the closest-distance record without a bonus, so retreating or changing visibility cannot repay earlier progress. Rewards do not read the dungeon manager's exit position. Exploration rewards exclude the spawn scan, wall/exit hit cells, and visits. They pay only for previously unknown open cells revealed by rays after the action, and are suppressed when the exit is visible before/after the action or the action completes the level. Suppressed and capped discoveries are consumed; rescans and revisits cannot repay the same cells.
 
 ## Configure and save runs
+
+Waypoint-run configs can set `startup_timeout_seconds` for the real-time wait while Unity loads and verifies seeded placements/reference controls. The default is 300 seconds; large continuation preflights can require more time. This is separate from `socket_timeout_seconds` and does not change episode duration or the authorized training budget.
 
 | Config | Requested timesteps | Output directory |
 | --- | --- | --- |

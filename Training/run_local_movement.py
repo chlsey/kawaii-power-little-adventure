@@ -16,7 +16,7 @@ sys.path.insert(0, str(GAME.parent / 'unity-reinforcement-learning/PythonEnv'))
 import numpy as np
 import torch
 from stable_baselines3 import PPO
-from stable_baselines3.common.callbacks import CallbackList, CheckpointCallback, StopTrainingOnMaxEpisodes
+from stable_baselines3.common.callbacks import BaseCallback, CallbackList, CheckpointCallback, StopTrainingOnMaxEpisodes
 from stable_baselines3.common.logger import configure
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import DummyVecEnv
@@ -75,8 +75,8 @@ def launch_unity(executable, directory, config, episodes, verify, mode="train"):
     return process
 
 
-def wait_ready(directory, process):
-    deadline = time.monotonic() + 300
+def wait_ready(directory, process, timeout=300):
+    deadline = time.monotonic() + timeout
     while not (directory / 'unity-ready.txt').exists():
         if (directory / 'unity-failure.txt').exists():
             raise RuntimeError((directory / 'unity-failure.txt').read_text())
@@ -368,6 +368,17 @@ def prepare_waypoint_transfer(config, config_path):
     return destination
 
 
+class WaypointLineageCallback(BaseCallback):
+    def __init__(self, environment, parent_episodes):
+        super().__init__()
+        self.environment = environment
+        self.parent_episodes = parent_episodes
+
+    def _on_step(self):
+        self.model.completed_lineage_episodes = self.parent_episodes + len(self.environment.episodes)
+        return True
+
+
 def run_waypoints(config_path, unity, mode, episodes, without_waypoint=False):
     config = load_config(config_path)
     completion_reward = float(config.get('completion_reward', 50.0))
@@ -447,7 +458,7 @@ def run_waypoints(config_path, unity, mode, episodes, without_waypoint=False):
             seed = config['seed'] if training else config['evaluation_seed']
             phase_dir = directory / phase
             process = launch_unity(unity, phase_dir, config, target, training, mode)
-            wait_ready(phase_dir, process)
+            wait_ready(phase_dir, process, config.get('startup_timeout_seconds', 300))
             if training:
                 shutil.copy2(phase_dir / 'verification.json', destination / 'verification.json')
             ready = json.loads((phase_dir / 'policy-contract.json').read_text())
@@ -464,10 +475,13 @@ def run_waypoints(config_path, unity, mode, episodes, without_waypoint=False):
                 vector = DummyVecEnv([lambda: Monitor(environment)])
                 model.set_env(vector)
                 model.set_logger(configure(str(phase_dir), ['csv']))
-                callbacks = [StopTrainingOnMaxEpisodes(target)]
+                callbacks = [WaypointLineageCallback(environment, config['parent_lineage_episodes'])]
                 if config['checkpoint_freq']:
                     callbacks.append(CheckpointCallback(config['checkpoint_freq'], str(destination / 'checkpoints')))
+                callbacks.append(StopTrainingOnMaxEpisodes(target))
                 model.learn(config['total_timesteps'], callback=CallbackList(callbacks), reset_num_timesteps=model.num_timesteps == 0)
+                assert len(environment.episodes) == target
+                model.completed_lineage_episodes = config['parent_lineage_episodes'] + target
                 checkpoint = directory / 'final_model.zip'
                 model.save(checkpoint)
                 # Retain the final checkpoint before starting the separate evaluation process.
@@ -492,6 +506,7 @@ def run_waypoints(config_path, unity, mode, episodes, without_waypoint=False):
                           seed_range=[seed, seed + target - 1], steps=environment.steps,
                           weight_updates=model._n_updates - updates, observation_contract=model.observation_contract,
                           parent_lineage_episodes=config['parent_lineage_episodes'],
+                          completed_lineage_episodes=getattr(model, 'completed_lineage_episodes', config['parent_lineage_episodes']),
                           initial_model_timesteps=initial_model_timesteps,
                           new_training_steps=model.num_timesteps - initial_model_timesteps,
                           new_model_training_steps=model.num_timesteps,

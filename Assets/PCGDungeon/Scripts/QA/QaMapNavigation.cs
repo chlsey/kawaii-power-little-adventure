@@ -63,10 +63,22 @@ public sealed class QaObservedRoutePlanner
     private static readonly IEqualityComparer<Vector2Int> CellComparer = new CellEquality();
     public ModelSensorGrid Grid { get; }
     private readonly HashSet<Vector2Int> free = new HashSet<Vector2Int>(CellComparer);
+    private readonly HashSet<Vector2Int> inflated = new HashSet<Vector2Int>(CellComparer);
+    private readonly HashSet<Vector2Int> refined = new HashSet<Vector2Int>(CellComparer);
+    private readonly Dictionary<Vector2Int, Dictionary<Vector2Int, bool>> edges =
+        new Dictionary<Vector2Int, Dictionary<Vector2Int, bool>>(CellComparer);
+    private readonly System.Func<Vector3, bool> canOccupy;
+    private readonly System.Func<Vector3, Vector3, bool> canTraverse;
+    private readonly float height;
+    public int RefinementChecks { get; private set; }
+    public int RefinedCells => refined.Count;
 
-    public QaObservedRoutePlanner(ModelSensorGrid grid, float clearance)
+    public QaObservedRoutePlanner(ModelSensorGrid grid, float clearance,
+        System.Func<Vector3, bool> canOccupy = null,
+        System.Func<Vector3, Vector3, bool> canTraverse = null, float height = 0f)
     {
         Grid = grid;
+        this.canOccupy = canOccupy; this.canTraverse = canTraverse; this.height = height;
         var walls = new List<Vector2Int>();
         for (int z = 0; z < grid.Depth; z++)
         for (int x = 0; x < grid.Width; x++)
@@ -85,14 +97,67 @@ public sealed class QaObservedRoutePlanner
             float dx = Mathf.Max(0f, (Mathf.Abs(x) - 0.5f) * ModelSensorGrid.CellSize);
             float dz = Mathf.Max(0f, (Mathf.Abs(z) - 0.5f) * ModelSensorGrid.CellSize);
             if (dx * dx + dz * dz <= clearance * clearance)
-                free.Remove(wall + new Vector2Int(x, z));
+            {
+                Vector2Int cell = wall + new Vector2Int(x, z);
+                if (free.Remove(cell)) inflated.Add(cell);
+            }
         }
     }
 
     public static Vector3 Point(Vector2Int cell, float height) =>
         new Vector3((cell.x + 0.5f) * ModelSensorGrid.CellSize, height, (cell.y + 0.5f) * ModelSensorGrid.CellSize);
 
-    public bool IsFree(Vector2Int cell) => free.Contains(cell);
+    public bool IsFree(Vector2Int cell)
+    {
+        if (free.Contains(cell)) return true;
+        if (canOccupy == null || !inflated.Remove(cell)) return false;
+        RefinementChecks++;
+        if (!canOccupy(Point(cell, height))) return false;
+        free.Add(cell); refined.Add(cell);
+        return true;
+    }
+
+    // Does not run queries: diagnostic snapshots must not alter planning state.
+    public int CellState(Vector2Int cell)
+    {
+        if (refined.Contains(cell)) return 2;
+        if (free.Contains(cell)) return 1;
+        if (inflated.Contains(cell)) return -1;
+        return 0;
+    }
+
+    private bool EdgeClear(Vector2Int from, Vector2Int to)
+    {
+        if (canTraverse == null || !refined.Contains(from) && !refined.Contains(to)) return true;
+        if (!edges.TryGetValue(from, out Dictionary<Vector2Int, bool> destinations))
+        {
+            destinations = new Dictionary<Vector2Int, bool>(CellComparer);
+            edges.Add(from, destinations);
+        }
+        if (!destinations.TryGetValue(to, out bool clear))
+        {
+            clear = canTraverse(Point(from, height), Point(to, height));
+            destinations.Add(to, clear);
+        }
+        return clear;
+    }
+
+    // Recovery may leave its starting wall-hit voxel with a physical sweep;
+    // subsequent wall voxels and all unknown cells remain blocked.
+    public bool SegmentObserved(Vector3 from, Vector3 to, bool leavingStartCell = false)
+    {
+        Vector2Int start = ModelSensorGrid.WorldToCell(from);
+        int steps = Mathf.CeilToInt(QaNavigationCoordinator.Distance(from, to) / 0.02f);
+        for (int i = 0; i <= steps; i++)
+        {
+            Vector2Int cell = ModelSensorGrid.WorldToCell(Vector3.Lerp(from, to, i / (float)Mathf.Max(1, steps)));
+            ModelMapCell value = Grid.ReadCell(cell);
+            // A wall hit occupies a whole voxel. Recovery may leave its clear
+            // portion only with a separate full physical capsule sweep.
+            if (!value.Observed || value.Wall && (!leavingStartCell || cell != start)) return false;
+        }
+        return true;
+    }
 
     public bool SegmentKnown(Vector3 from, Vector3 to)
     {
@@ -101,10 +166,11 @@ public sealed class QaObservedRoutePlanner
         for (int i = 0; i <= steps; i++)
         {
             Vector2Int cell = ModelSensorGrid.WorldToCell(Vector3.Lerp(from, to, i / (float)Mathf.Max(1, steps)));
-            if (!free.Contains(cell)) return false;
+            if (!IsFree(cell)) return false;
             if (cell.x != previous.x && cell.y != previous.y &&
-                (!free.Contains(new Vector2Int(cell.x, previous.y)) ||
-                 !free.Contains(new Vector2Int(previous.x, cell.y)))) return false;
+                (!IsFree(new Vector2Int(cell.x, previous.y)) ||
+                 !IsFree(new Vector2Int(previous.x, cell.y)))) return false;
+            if (cell != previous && !EdgeClear(previous, cell)) return false;
             previous = cell;
         }
         return true;
@@ -117,9 +183,10 @@ public sealed class QaObservedRoutePlanner
         {
             if (x == 0 && z == 0) continue;
             Vector2Int next = cell + new Vector2Int(x, z);
-            if (!free.Contains(next)) continue;
-            if (x != 0 && z != 0 && (!free.Contains(cell + new Vector2Int(x, 0)) ||
-                !free.Contains(cell + new Vector2Int(0, z)))) continue;
+            if (!IsFree(next)) continue;
+            if (x != 0 && z != 0 && (!IsFree(cell + new Vector2Int(x, 0)) ||
+                !IsFree(cell + new Vector2Int(0, z)))) continue;
+            if (!EdgeClear(cell, next)) continue;
             yield return next;
         }
     }
@@ -129,7 +196,7 @@ public sealed class QaObservedRoutePlanner
         var reached = new HashSet<Vector2Int>(CellComparer);
         var queue = new Queue<Vector2Int>();
         Vector2Int start = ModelSensorGrid.WorldToCell(position);
-        if (!free.Contains(start)) return reached;
+        if (!IsFree(start)) return reached;
         reached.Add(start);
         queue.Enqueue(start);
         while (queue.Count > 0)
@@ -153,7 +220,7 @@ public sealed class QaObservedRoutePlanner
         var closed = new HashSet<Vector2Int>(CellComparer);
         var cost = new Dictionary<Vector2Int, float>();
         var parent = new Dictionary<Vector2Int, Vector2Int>();
-        if (!free.Contains(start) || !free.Contains(target)) return new List<Vector3>();
+        if (!IsFree(start) || !IsFree(target)) return new List<Vector3>();
         open.Add(start);
         cost[start] = 0f;
         while (open.Count > 0)

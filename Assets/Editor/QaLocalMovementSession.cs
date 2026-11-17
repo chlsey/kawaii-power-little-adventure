@@ -98,7 +98,9 @@ public static partial class QaLocalMovementSession
         while (!File.Exists(Path.Combine(directory, "session-finished.txt")))
         {
             QaEpisodeMetrics metrics = environment.Player.Metrics;
-            if (metrics != null && !environment.Sensors.IsTracking && !ReferenceEquals(previous, metrics))
+            // Evaluation can start before the first reset creates the sensor map.
+            if (metrics != null && environment.Sensors.Grid != null &&
+                !environment.Sensors.IsTracking && !ReferenceEquals(previous, metrics))
             {
                 Vector3 spawn = environment.SpawnPosition;
                 Vector3 exit = environment.ExitPosition;
@@ -120,6 +122,9 @@ public static partial class QaLocalMovementSession
                     waypoint_assignments = environment.Navigation.WaypointVersion,
                     replans = environment.Navigation.Replans,
                     abandoned_goals = environment.Navigation.AbandonedGoals,
+                    planner_builds = environment.Navigation.PlannerBuilds,
+                    goal_selections = environment.Navigation.GoalSelections,
+                    route_searches = environment.Navigation.RouteSearches,
                     navigation_status = environment.Navigation.Status,
                     navigator_disabled = environment.NavigatorDisabled,
                     exit_discovered = HasDiscoveredExit(environment.Sensors.Grid)
@@ -287,6 +292,7 @@ public static partial class QaLocalMovementSession
         public string end_reason, navigation_status;
         public float waypoint_bonus;
         public int waypoint_assignments, replans, abandoned_goals;
+        public int planner_builds, goal_selections, route_searches;
     }
 
     // Diagnostics never feed true exit positions or trace fields into the policy/navigation.
@@ -294,6 +300,7 @@ public static partial class QaLocalMovementSession
     {
         private readonly QaSingleRoomRlEnvironment environment;
         private readonly StreamWriter writer;
+        private readonly StreamWriter navigationWriter;
         private readonly BoxCollider exitCollider;
         private Decision record;
         private Vector3 before, waypoint;
@@ -308,6 +315,8 @@ public static partial class QaLocalMovementSession
                 JsonUtility.ToJson(new TraceContract { exit_size = bounds.size,
                     acceptance_radius = QaNavigationCoordinator.AcceptanceRadius }));
             writer = new StreamWriter(Path.Combine(directory, "exit-decisions.jsonl"));
+            navigationWriter = new StreamWriter(Path.Combine(directory, "navigation-events.jsonl"));
+            environment.Navigation.DiagnosticEvent += NavigationChanged;
             environment.ActionStarting += Before;
             environment.ActionMeasured += After;
         }
@@ -349,13 +358,34 @@ public static partial class QaLocalMovementSession
                 record.waypoint_distance_after <= QaNavigationCoordinator.AcceptanceRadius;
             writer.WriteLine(JsonUtility.ToJson(record));
             if (done) writer.Flush();
+            if (done) navigationWriter.Flush();
+        }
+
+        private void NavigationChanged(string reason)
+        {
+            var nav = environment.Navigation;
+            Vector3 position = environment.Player.transform.position;
+            navigationWriter.WriteLine(JsonUtility.ToJson(new NavigationEvent
+            {
+                seed = environment.ActiveSeed, step = environment.Player.Metrics.StepCount,
+                seconds = environment.Player.Metrics.ElapsedSeconds, reason = reason,
+                position = position, waypoint = nav.Waypoint, has_waypoint = nav.HasWaypoint,
+                goal_is_exit = nav.GoalIsExit, waypoint_version = nav.WaypointVersion,
+                waypoint_distance = QaNavigationCoordinator.Distance(position, nav.Waypoint),
+                route_points = nav.Route.Count, status = nav.Status,
+                planner_builds = nav.PlannerBuilds, goal_selections = nav.GoalSelections,
+                route_searches = nav.RouteSearches,
+                navigation_version = environment.Sensors.Grid.NavigationVersion
+            }));
         }
 
         public void Dispose()
         {
             environment.ActionStarting -= Before;
             environment.ActionMeasured -= After;
+            environment.Navigation.DiagnosticEvent -= NavigationChanged;
             writer.Dispose();
+            navigationWriter.Dispose();
         }
     }
 
@@ -363,6 +393,16 @@ public static partial class QaLocalMovementSession
     {
         public Vector3 exit_size;
         public float acceptance_radius;
+    }
+
+    [Serializable] private class NavigationEvent
+    {
+        public int seed, step, waypoint_version, route_points;
+        public int planner_builds, goal_selections, route_searches, navigation_version;
+        public float seconds, waypoint_distance;
+        public string reason, status;
+        public bool has_waypoint, goal_is_exit;
+        public Vector3 position, waypoint;
     }
 
     [Serializable] private class Decision

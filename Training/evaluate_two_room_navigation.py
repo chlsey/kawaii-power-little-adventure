@@ -53,9 +53,11 @@ def summary(rows):
         away_or_perpendicular_actions=sum(r['away_actions'] for r in rows))
 
 
-def phase(directory, name, seeds, model=None, idle=False):
+def phase(directory, name, seeds, model=None, idle=False, observed=False):
     output = directory / name
     output.mkdir()
+    if observed:
+        save(output / 'session.json',dict(observed_navigation=True))
     process = subprocess.Popen([str(UNITY), '-batchmode', '-nographics', '-projectPath', str(GAME),
         '-executeMethod', 'QaTwoRoomNavigationSession.Run', '-trainingRunDirectory', str(output),
         '-logFile', str(output / 'unity.log')], cwd=GAME, creationflags=subprocess.CREATE_NO_WINDOW)
@@ -86,7 +88,7 @@ def phase(directory, name, seeds, model=None, idle=False):
             row = records(output / 'episodes.jsonl')[-1]
             assert row['seed'] == seed and row['steps'] == steps
             assert row['completed'] or steps == 600
-            if i == 0 or (i + 1) % 10 == 0:
+            if observed or i == 0 or (i + 1) % 10 == 0:
                 progress = dict(phase=name, target=len(seeds), **summary(records(output / 'episodes.jsonl')))
                 save(directory / 'progress.json', progress)
                 print(json.dumps(progress), flush=True)

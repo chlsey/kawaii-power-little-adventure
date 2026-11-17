@@ -85,6 +85,17 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
     private CharacterController actor;
     private ModelSensorPackage sensors;
     private QaDungeonExitHeuristic navigation;
+    private QaNavigationCoordinator observed;
+    private bool observedNavigation;
+    private StreamWriter navigationEvents;
+    private readonly HashSet<string> planningSnapshots = new HashSet<string>();
+    private ActionRecord pendingAction;
+    private Vector3 generatorPosition;
+    private Quaternion generatorRotation;
+    private bool HasWaypoint => observedNavigation ? observed.HasWaypoint : navigation.HasWaypoint;
+    private Vector3 Waypoint => observedNavigation ? observed.Waypoint : navigation.Waypoint;
+    private int WaypointVersion => observedNavigation ? observed.WaypointVersion : navigation.Version;
+    private int NavigationReplans => observedNavigation ? observed.Replans : navigation.Replans;
     private string directory;
     private int seed, arrivals, collisionActions, awayActions, noWaypointActions;
     private float actionEnd, pathLength, minimumExitDistance, bestWaypointDistance;
@@ -119,8 +130,13 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
             roomThroughput = options.room_throughput;
             roomSequence = options.room_sequence;
             mixedRooms = options.mixed_rooms;
+            observedNavigation = options.observed_navigation;
         }
+        if (observedNavigation && (trainingRewards || roomThroughput || roomSequence || mixedRooms))
+            throw new InvalidOperationException("Observed two-room evaluation must remain frozen and use generated geometry");
         generator = Object.FindFirstObjectByType<Generator>();
+        generatorPosition = generator.transform.position;
+        generatorRotation = generator.transform.rotation;
         // Clone the asset so the normal game scene/settings remain unchanged.
         var settings = Object.Instantiate(generator.GenerationSettings);
         var data = settings.generation;
@@ -150,11 +166,13 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         serialized.ApplyModifiedPropertiesWithoutUndo();
         File.WriteAllText(Path.Combine(directory, "generation-settings.json"), JsonUtility.ToJson(data, true));
         actions = new StreamWriter(Path.Combine(directory, "actions.jsonl"));
+        if (observedNavigation) navigationEvents = new StreamWriter(Path.Combine(directory, "navigation-events.jsonl"));
     }
 
     public override void ResetEpisode(int episodeSeed)
     {
         seed = episodeSeed;
+        if (observedNavigation) generator.transform.SetPositionAndRotation(generatorPosition, generatorRotation);
         int requestedRooms = roomSequence ? 16 : (roomThroughput ? 8 : 2);
         if (mixedRooms) requestedRooms = 1 + seed % 3;
         if (!manager.StartPlayerEpisode(new PcgGenerationParameters
@@ -181,35 +199,48 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
             foreach (QaExitZone exit in generator.GetComponentsInChildren<QaExitZone>()) exit.gameObject.SetActive(false);
         // Align the controller's feet with the generated floor's 0.1-unit top.
         actor.enabled = false;
+        if (observedNavigation)
+            generator.transform.rotation = Quaternion.Euler(0f, (seed % 4) * 90f, 0f) * generatorRotation;
         if (mixedRooms) player.transform.position = mixedLayout.Spawn;
         player.transform.position += Vector3.up * 0.11f;
         actor.enabled = true;
         if (mixedRooms) player.BeginTest();
         Physics.SyncTransforms();
         sensors.BeginAttempt();
-        navigation = new QaDungeonExitHeuristic(generator, actor, sensors, ExitPosition, mixedRooms);
+        planningSnapshots.Clear();
+        if (observedNavigation)
+        {
+            observed = new QaNavigationCoordinator();
+            observed.DiagnosticEvent += RecordNavigationEvent;
+        }
+        else navigation = new QaDungeonExitHeuristic(generator, actor, sensors, ExitPosition, mixedRooms);
         visitedRooms.Clear();
         visitedRooms.Add(generator.PlayerSpawnRoom);
         newRooms = roomHandoffs = 0;
         goalRoom = -1;
         if (roomThroughput) SelectNextRoom();
-        navigation.Advance(false);
+        AdvanceNavigation(false);
         rewards = new QaWaypointRewardTracker();
-        rewards.Assign(navigation.HasWaypoint, navigation.Version, navigation.Waypoint, player.transform.position);
+        rewards.Assign(HasWaypoint, WaypointVersion, Waypoint, player.transform.position);
         episodeReward = 0f;
         arrivals = collisionActions = awayActions = noWaypointActions = 0;
         pathLength = 0f;
         minimumExitDistance = QaNavigationCoordinator.Distance(player.transform.position, ExitPosition);
         previousPosition = player.transform.position;
         recorded = enteredExitRoom = false;
-        bestWaypointDistance = navigation.HasWaypoint ? QaNavigationCoordinator.Distance(previousPosition, navigation.Waypoint) : -1f;
+        bestWaypointDistance = HasWaypoint ? QaNavigationCoordinator.Distance(previousPosition, Waypoint) : -1f;
         Append("layouts.jsonl", new Layout
         {
             seed = seed, spawn = player.transform.position, exit = ExitPosition,
-            rooms = manager.GeneratedRoomCount, floors = navigation.Floors,
+            rooms = manager.GeneratedRoomCount, floors = observedNavigation ? GeneratedFloors() : navigation.Floors,
             room_centers = Array.ConvertAll(rooms, room => room.transform.position),
-            initial_route = navigation.InitialRoute.ToArray(), route_available = navigation.HasWaypoint,
-            mixed_rooms = mixedRooms, room_details = mixedRooms ? mixedLayout.Rooms : null
+            initial_route = observedNavigation ? observed.Route.ToArray() : navigation.InitialRoute.ToArray(), route_available = HasWaypoint,
+            mixed_rooms = mixedRooms, room_details = mixedRooms ? mixedLayout.Rooms : null,
+            observed_navigation = observedNavigation, orientation = observedNavigation ? seed % 4 : 0,
+            initial_exit_visible = sensors.ExitVisible, actor_radius = actor.radius, actor_skin_width = actor.skinWidth,
+            actor_scale = actor.transform.lossyScale, actor_bounds = actor.bounds,
+            world_radius = new QaNavigationCapsule(actor).Radius,
+            planning_clearance = new QaNavigationCapsule(actor).Clearance
         });
     }
 
@@ -217,24 +248,28 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
     {
         sensors.Capture();
         observation = QaWaypointPolicyMapping.Observe(player.Observe(), sensors,
-            navigation.HasWaypoint, navigation.Waypoint, player.transform.position);
+            HasWaypoint, Waypoint, player.transform.position);
         return observation;
     }
 
     public override void ApplyAction(float[] action)
     {
         Vector3 position = player.transform.position;
-        actions.WriteLine(JsonUtility.ToJson(new ActionRecord
+        pendingAction = new ActionRecord
         {
             seed = seed, step = player.Metrics.StepCount + 1, position = position,
-            waypoint = navigation.Waypoint, has_waypoint = navigation.HasWaypoint,
-            waypoint_version = navigation.Version, phase = Phase(position),
+            waypoint = Waypoint, has_waypoint = HasWaypoint,
+            waypoint_version = WaypointVersion, phase = Phase(position),
             new_rooms = newRooms, goal_room = goalRoom,
-            observation = observation, action = action
-        }));
-        if (navigation.HasWaypoint)
+            observation = observation, action = action,
+            seconds = player.Metrics.ElapsedSeconds, exit_visible_before = sensors.ExitVisible,
+            goal_is_exit = observedNavigation && observed.GoalIsExit,
+            navigation_status = observedNavigation ? observed.Status : "oracle"
+        };
+        if (!observedNavigation) actions.WriteLine(JsonUtility.ToJson(pendingAction));
+        if (HasWaypoint)
         {
-            Vector3 delta = navigation.Waypoint - position;
+            Vector3 delta = Waypoint - position;
             if (delta.x * action[0] + delta.z * action[1] <= 0f) awayActions++;
         }
         else noWaypointActions++;
@@ -247,6 +282,13 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
     public override float CalculateReward(out bool isDone)
     {
         Vector3 position = player.transform.position;
+        if (observedNavigation)
+        {
+            sensors.Capture();
+            pendingAction.after = position;
+            pendingAction.exit_visible_after = sensors.ExitVisible;
+            actions.WriteLine(JsonUtility.ToJson(pendingAction));
+        }
         float moved = QaNavigationCoordinator.Distance(previousPosition, position);
         pathLength += moved;
         if (moved < 0.02f) collisionActions++;
@@ -273,9 +315,9 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         }
         minimumExitDistance = Mathf.Min(minimumExitDistance, QaNavigationCoordinator.Distance(position, ExitPosition));
         if (Phase(position) == "exit_room") enteredExitRoom = true;
-        if (navigation.HasWaypoint)
+        if (HasWaypoint)
         {
-            float distance = QaNavigationCoordinator.Distance(position, navigation.Waypoint);
+            float distance = QaNavigationCoordinator.Distance(position, Waypoint);
             bestWaypointDistance = Mathf.Min(bestWaypointDistance, distance);
             if (distance <= QaNavigationCoordinator.AcceptanceRadius) arrivals++;
         }
@@ -295,14 +337,15 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         if (!isDone)
         {
             if (roomThroughput && newRoomCount > 0) SelectNextRoom();
-            int version = navigation.Version;
-            navigation.Advance(true);
-            rewards.Assign(navigation.HasWaypoint, navigation.Version, navigation.Waypoint, position);
-            if (version != navigation.Version)
-                bestWaypointDistance = QaNavigationCoordinator.Distance(position, navigation.Waypoint);
+            int version = WaypointVersion;
+            AdvanceNavigation(true);
+            rewards.Assign(HasWaypoint, WaypointVersion, Waypoint, position);
+            if (version != WaypointVersion)
+                bestWaypointDistance = QaNavigationCoordinator.Distance(position, Waypoint);
         }
         if (isDone && !recorded)
         {
+            if (observedNavigation && !player.Metrics.Completed) CaptureBlockedPlanning("terminal");
             string reason = player.Metrics.Completed ? "completed" : "timeout";
             if (roomThroughput) reason = "time_budget";
             if (player.Metrics.PlayerDied) reason = "player_died";
@@ -312,19 +355,31 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
                 steps = player.Metrics.StepCount, elapsed_seconds = player.Metrics.ElapsedSeconds,
                 path_length = pathLength, final_exit_distance = QaNavigationCoordinator.Distance(position, ExitPosition),
                 minimum_exit_distance = minimumExitDistance, waypoint_arrivals = arrivals,
-                assignments = navigation.Version, replans = navigation.Replans,
+                assignments = WaypointVersion, replans = NavigationReplans,
                 no_waypoint_actions = noWaypointActions, low_movement_actions = collisionActions,
                 away_actions = awayActions, stuck_events = player.Metrics.StuckEvents,
                 final_phase = Phase(position), entered_exit_room = enteredExitRoom,
-                final_waypoint_distance = navigation.HasWaypoint ? QaNavigationCoordinator.Distance(position, navigation.Waypoint) : -1f,
+                final_waypoint_distance = HasWaypoint ? QaNavigationCoordinator.Distance(position, Waypoint) : -1f,
                 closest_final_waypoint_distance = bestWaypointDistance, position = position,
                 training_rewards = trainingRewards, positive_waypoint_reward = rewards.PositiveRewardTotal,
                 total_reward = episodeReward,
                 new_rooms = newRooms, room_handoffs = roomHandoffs, room_throughput = roomThroughput,
                 room_count = rooms.Length, room_sequence = roomSequence, mixed_rooms = mixedRooms,
-                room_types = mixedRooms ? Array.ConvertAll(mixedLayout.Rooms, room => room.type) : null
+                room_types = mixedRooms ? Array.ConvertAll(mixedLayout.Rooms, room => room.type) : null,
+                observed_navigation = observedNavigation, orientation = observedNavigation ? seed % 4 : 0,
+                exit_discovered = observedNavigation && HasDiscoveredExit(),
+                navigation_status = observedNavigation ? observed.Status : "oracle",
+                planner_builds = observedNavigation ? observed.PlannerBuilds : 0,
+                goal_selections = observedNavigation ? observed.GoalSelections : 0,
+                route_searches = observedNavigation ? observed.RouteSearches : 0,
+                abandoned_goals = observedNavigation ? observed.AbandonedGoals : 0,
+                goal_search_skips = observedNavigation ? observed.GoalSearchSkips : 0,
+                refinement_checks = observedNavigation ? observed.RefinementChecks : 0,
+                refined_cells = observedNavigation ? observed.RefinedCells : 0,
+                planning_milliseconds = observedNavigation ? observed.PlanningMilliseconds : 0
             });
             actions.Flush();
+            navigationEvents?.Flush();
             recorded = true;
             manager.EndPlayerEpisode(reason);
         }
@@ -353,7 +408,69 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
     }
 
     private void Append(string name, object value) => File.AppendAllText(Path.Combine(directory, name), JsonUtility.ToJson(value) + "\n");
-    private void OnDestroy() { actions?.Dispose(); }
+    private void OnDestroy() { actions?.Dispose(); navigationEvents?.Dispose(); }
+
+    private void AdvanceNavigation(bool completed)
+    {
+        if (observedNavigation)
+        {
+            observed.Advance(sensors, actor, completed);
+            if ((observed.Status == "no_reachable_goal" || observed.Status == "exploration_blocked") &&
+                planningSnapshots.Add(observed.Status)) CaptureBlockedPlanning();
+        }
+        else navigation.Advance(completed);
+    }
+
+    private void CaptureBlockedPlanning(string label = null)
+    {
+        var cells = new List<PlanningCell>();
+        ModelSensorGrid grid = sensors.Grid;
+        for (int z = 0; z < grid.Depth; z++)
+        for (int x = 0; x < grid.Width; x++)
+        {
+            Vector2Int cell = grid.MinCell + new Vector2Int(x, z);
+            ModelMapCell value = grid.ReadCell(cell);
+            if (!value.Observed) continue;
+            cells.Add(new PlanningCell { x = cell.x, z = cell.y, wall = value.Wall,
+                exit = value.Exit, visited = value.Visited, planner_state = observed.PlannerSnapshot.CellState(cell) });
+        }
+        var body = new QaNavigationCapsule(actor);
+        if (label == null) label = observed.Status;
+        File.WriteAllText(Path.Combine(directory, "blocked-" + seed + "-" + label + ".json"),
+            JsonUtility.ToJson(new PlanningSnapshot
+            {
+                seed = seed, step = player.Metrics.StepCount, status = observed.Status,
+                position = actor.transform.position, bounds = actor.bounds, radius = body.Radius,
+                clearance = body.Clearance, bottom = body.Bottom, top = body.Top,
+                navigation_version = grid.NavigationVersion, exit_version = grid.ExitDiscoveryVersion,
+                excluded_frontiers = observed.ExcludedCount, excluded_points = observed.ExcludedFrontiers,
+                has_goal = observed.HasGoal, goal_cell = observed.GoalCell,
+                position_clear = sensors.CanOccupyObservedPoint(actor.transform.position, body), cells = cells.ToArray()
+            }));
+    }
+
+    private bool HasDiscoveredExit() => sensors.Grid.ExitDiscoveryVersion > 0;
+
+    // Generated floor and exit positions are measurement data, never navigator inputs.
+    private Vector3[] GeneratedFloors()
+    {
+        var floors = new List<Vector3>();
+        foreach (Transform tile in generator.GetComponentsInChildren<Transform>())
+            if (tile.CompareTag("Floor")) floors.Add(tile.position);
+        return floors.ToArray();
+    }
+
+    private void RecordNavigationEvent(string reason)
+    {
+        navigationEvents.WriteLine(JsonUtility.ToJson(new NavigationEvent
+        {
+            seed = seed, step = player.Metrics.StepCount, reason = reason,
+            seconds = player.Metrics.ElapsedSeconds, position = player.transform.position,
+            waypoint = observed.Waypoint, waypoint_version = observed.WaypointVersion,
+            has_waypoint = observed.HasWaypoint, goal_is_exit = observed.GoalIsExit,
+            status = observed.Status, route_points = observed.Route.Count
+        }));
+    }
 
     private void SelectNextRoom()
     {
@@ -371,7 +488,32 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         else { navigation.SetGoal(rooms[goalRoom].transform.position); roomHandoffs++; }
     }
 
-    [Serializable] private class Settings { public bool training_rewards, room_throughput, room_sequence, mixed_rooms; }
+    [Serializable] private class Settings { public bool training_rewards, room_throughput, room_sequence, mixed_rooms, observed_navigation; }
+    [Serializable] private class NavigationEvent
+    {
+        public int seed, step, waypoint_version, route_points;
+        public string reason, status;
+        public float seconds;
+        public Vector3 position, waypoint;
+        public bool has_waypoint, goal_is_exit;
+    }
+    [Serializable] private class PlanningCell
+    {
+        public int x, z, planner_state;
+        public bool wall, exit, visited;
+    }
+    [Serializable] private class PlanningSnapshot
+    {
+        public int seed, step, navigation_version, exit_version, excluded_frontiers;
+        public string status;
+        public Vector3 position, bottom, top;
+        public Bounds bounds;
+        public float radius, clearance;
+        public bool has_goal, position_clear;
+        public Vector2Int goal_cell;
+        public Vector3[] excluded_points;
+        public PlanningCell[] cells;
+    }
     [Serializable] private class RoomVisit { public int seed, step, room, new_rooms; public Vector3 position; }
 
     [Serializable] private class Layout
@@ -382,6 +524,12 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         public Vector3[] floors, initial_route, room_centers;
         public bool mixed_rooms;
         public QaMixedRoomLayout.RoomData[] room_details;
+        public bool observed_navigation, initial_exit_visible;
+        public int orientation;
+        public float actor_radius, actor_skin_width;
+        public Vector3 actor_scale;
+        public Bounds actor_bounds;
+        public float world_radius, planning_clearance;
     }
     [Serializable] private class ActionRecord
     {
@@ -390,6 +538,10 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         public string phase;
         public Vector3 position, waypoint;
         public float[] observation, action;
+        public Vector3 after;
+        public float seconds;
+        public bool exit_visible_before, exit_visible_after, goal_is_exit;
+        public string navigation_status;
     }
     [Serializable] private class Episode
     {
@@ -406,6 +558,11 @@ public sealed class QaTwoRoomNavigationEnvironment : RlEnvironmentBehaviour
         public bool room_sequence;
         public bool mixed_rooms;
         public string[] room_types;
+        public bool observed_navigation, exit_discovered;
+        public int orientation, planner_builds, goal_selections, route_searches, abandoned_goals;
+        public int goal_search_skips, refinement_checks, refined_cells;
+        public double planning_milliseconds;
+        public string navigation_status;
     }
 }
 
